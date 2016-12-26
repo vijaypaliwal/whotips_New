@@ -62,7 +62,7 @@
   
   
   <preference name="StatusBarOverlaysWebView" value="false" />
-  <preference name="StatusBarBackgroundColor" value="#2196F3" />
+  <preference name="StatusBarBackgroundColor" value="#cea608" />
   <preference name="StatusBarStyle" value="lightcontent" />
   <preference name="KeyboardDisplayRequiresUserAction" value="false" />
 <preference name="HideKeyboardFormAccessoryBar" value="false"/>
@@ -95,6 +95,8 @@
   <gap:splash src=".pgbomit/res/screen/android/screen-hdpi-portrait.png"  gap:platform="android" gap:density="hdpi" />
   <gap:splash src=".pgbomit/res/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:density="xhdpi" />
   <gap:splash src=".pgbomit/res/screen/blackberry/screen-225.png"         gap:platform="blackberry" />
+  
+  
   <gap:splash src=".pgbomit/res/screen/ios/screen-iphone-portrait.png"    gap:platform="ios"     width="320" height="480" />
   <gap:splash src=".pgbomit/res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios"     width="640" height="1136" />
   <gap:splash src=".pgbomit/res/screen/ios/screen-ipad-portrait.png"      gap:platform="ios"     width="768" height="1024" />
