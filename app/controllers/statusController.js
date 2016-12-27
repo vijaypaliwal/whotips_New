@@ -172,7 +172,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
     {
 
-        $scope.ContactObject = { id: 0, firstName: "", lastName: "", email: "", places: "", AgeType: 0, imagepath: "", Relations: "" };
+        $scope.ContactObject = { id: 0, firstName: "", lastName: "", email: "", places: "", AgeType: 0, imagepath: "", Relations: "",gender:"" };
 
     }
 
