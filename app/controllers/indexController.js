@@ -10,28 +10,28 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
         }
     }
 
-    var bodyheight = $(window).height();
+    //var bodyheight = $(window).height();
 
    
 
-     var _tmp= (bodyheight * 6) / 100 ;
-     $scope.topheaderheight = _tmp.toString() + "px";
+    // var _tmp= (bodyheight * 6) / 100 ;
+    // $scope.topheaderheight = _tmp.toString() + "px";
 
-     var resultarea = (bodyheight * 30) / 100;
+    // var resultarea = (bodyheight * 30) / 100;
 
-     $scope.resultarea = resultarea.toString() + "px";
+    // $scope.resultarea = resultarea.toString() + "px";
 
-     var selectionarea = (bodyheight * 28) / 100;
+    // var selectionarea = (bodyheight * 28) / 100;
 
-     $scope.selectionarea = selectionarea.toString() + "px";
+    // $scope.selectionarea = selectionarea.toString() + "px";
 
-     var dataarea = (bodyheight * 30) / 100;
+    // var dataarea = (bodyheight * 30) / 100;
 
-     $scope.dataarea = dataarea.toString() + "px";
+    // $scope.dataarea = dataarea.toString() + "px";
 
-     var bottomarea = (bodyheight * 6) / 100;
+    // var bottomarea = (bodyheight * 6) / 100;
 
-     $scope.bottomarea = bottomarea.toString() + "px";
+    // $scope.bottomarea = bottomarea.toString() + "px";
   
 
 

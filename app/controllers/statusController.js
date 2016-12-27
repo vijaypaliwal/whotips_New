@@ -11,15 +11,18 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.RelationsTypeDiv = false;
     $scope.GenderType = true;
     $scope.PlacesType = false;
+    $scope.SearchText = "";
+
+    $scope.CurrentActiveClass = "";
 
     $scope.addupdatename = false;
     $scope.RelationTypes = [{ Type: 1, Text: "Father" },
     { Type: 1, Text: "Brother" }
-    , { Type: 1, Text: "Husband" }, { Type: 1, Text: "Son" }, { Type: 2, Text: "Mother" }, { Type: 2, Text: "Sister" }, { Type: 2, Text: "Wife" }, { Type: 2, Text: "Daughter" }]
+   ]
 
     $scope.PlacesTypes = [{ Type: 1, Text: "Place 1" },
    { Type: 1, Text: "Place 2" }
-   , { Type: 1, Text: "Place 3" }, { Type: 1, Text: "Place 4" }, { Type: 2, Text: "Place 11" }, { Type: 2, Text: "Place 12" }, { Type: 2, Text: "Place 13" }, { Type: 2, Text: "Place 14" }]
+   ]
 
     
     function CheckScopeBeforeApply() {
@@ -46,6 +49,11 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     var dataset;
 
     var DataType;
+
+
+    var mySwiper
+    var swiper
+
 
     $scope.openNamebox = function () {
         $scope.addupdatename = !$scope.addupdatename;
@@ -316,7 +324,38 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
         initDatabase();
 
+        mySwiper = new Swiper('.swiper-container', {
+            initialSlide: 0,
+            speed: 500,
+            effect: 'flip',
+            allowSwipeToPrev: false,
+            onSlideChangeEnd: function (swiperHere) {
+
+
+                $scope.CurrentActiveClass = swiperHere.activeIndex;
+                CheckScopeBeforeApply();
+
+
+            }
+
+        });
+
+      //swiper = new Swiper('.swiper-container', {
+      //      scrollbar: '.swiper-scrollbar',
+      //      scrollbarHide: true,
+      //      slidesPerView: 'auto',
+      //      centeredSlides: true,
+      //      spaceBetween: 30,
+      //      grabCursor: true
+      //  });
+
         CheckScopeBeforeApply();
+    }
+    $scope.GoToNext = function () {
+        mySwiper.swipeNext();
+    }
+    $scope.GoToPrev = function () {
+        mySwiper.swipePrev();
     }
 
     $scope.GetAgeType = function (Type) {
@@ -371,18 +410,13 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.UpdateAgeType = function (Type) {
         $scope.ContactObject.AgeType = Type;
         CheckScopeBeforeApply();
-        $scope.GenderLike = false;
-        $scope.RelationsTypeDiv = true;
-        $scope.GenderType = false;
-        CheckScopeBeforeApply();
+        $scope.GoToNext();
         
     }
     $scope.gotonext = function (Type) {
         $scope.ContactObject.gender = Type;
 
-        $scope.GenderLike = true;
-        $scope.RelationsTypeDiv = false;
-        $scope.GenderType = false;
+        $scope.GoToNext();
 
         CheckScopeBeforeApply();
 

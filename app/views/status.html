@@ -5,124 +5,153 @@
 
     <div class="resultcontent">
         <div class="row">
-            <div class="col-xs-6">
 
-                <p ng-click="openDiv(1)">
-                    <i class="fa fa-male" ng-if="ContactObject.gender=='M'"></i> 
-                    <i class="fa fa-female" ng-if="ContactObject.gender=='F'"></i> Gender <span ng-if="ContactObject.gender=='M'">Male</span>
-                    <span ng-if="ContactObject.gender=='F'">Female</span>
-                </p>
-                <p ng-click="openDiv(2)">
-                    <i class="fa fa-dot-circle-o"></i> Age {{GetAgeType(ContactObject.AgeType)}}
-                </p>
-
-                <p ng-click="openDiv(3)">
-                    <i class="fa fa-user"></i> People {{ContactObject.Relations}}
-                </p>
-
-                <p ng-click="openDiv(4)">
-                    <i class="fa fa-map-marker"></i> Places {{ContactObject.places}}
-                </p>
-
-            </div>
-
-            <div class="col-xs-6">
-                <div class="profilepic">
-                    <i class="fa fa-male" ng-if="ContactObject.gender=='M'"></i>
+            <div class="col-xs-12">
+                <div ng-click="openDiv(1)" class="profilepic waves-effect">
+                    <i class="fa fa-male" ng-if="ContactObject.gender=='M'||ContactObject.gender==''"></i>
                     <i class="fa fa-female" ng-if="ContactObject.gender=='F'"></i>
                 </div>
 
-                <p class="center">
-                    {{ContactObject.firstName}} {{ContactObject.lastName}}
-                </p>
 
                 <p class="center">
-                    <span ng-click="openNamebox()">Add/Update</span>
-                    
-                  
+                    <span ng-click="openNamebox()">Name {{ContactObject.firstName}} {{ContactObject.lastName}}</span>
+
+
                 </p>
             </div>
+            <div class="col-xs-12">
+
+              
+                <p ng-click="openDiv(2)">
+                    Age {{GetAgeType(ContactObject.AgeType)}}
+                </p>
+
+                <p ng-click="openDiv(3)">
+                    People {{ContactObject.Relations}}
+                </p>
+
+                <p ng-click="openDiv(4)">
+                    Places {{ContactObject.places}}
+                </p>
+
+            </div>
+
+
+            
         </div>
     </div>
 
 </div>
 
+<div ng-if="CurrentActiveClass==2" class="waves-effect addrelation" ng-click="openAdd()">+</div>
+
+<div ng-if="CurrentActiveClass==3" class="waves-effect addrelation" ng-click="openAddPlace()">+</div>
 
 <div ng-style="{'height':selectionarea}" class="selectionarea">
 
-    <div class="genderarea" ng-if="GenderType==true">
-        <div class="row">
-            <div class="col-xs-6">
-                <div ng-click="gotonext('M')" class="gender">
-                    <i class="fa fa-male"></i>
+    
+
+    
+
+   
+
+    
+    
+
+
+
+    <div class="swiper-container">
+
+
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide" activeClass="genderarea">
+                <div class="genderarea">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div ng-click="gotonext('M')" class="waves-effect gender">
+                                <i class="fa fa-male"></i>
+                            </div>
+                            <p>Male</p>
+                        </div>
+
+                        <div class="col-xs-6">
+
+                            <div ng-click="gotonext('F')" class="waves-effect gender">
+                                <i class="fa fa-female"></i>
+                            </div>
+                            <p>Female</p>
+                        </div>
+                    </div>
                 </div>
-                <p>Male</p>
             </div>
 
-            <div class="col-xs-6">
+            <div class="swiper-slide" activeclass="genderlike">
+                <div class="genderlike">
 
-                <div ng-click="gotonext('F')" class="gender">
-                    <i class="fa fa-female"></i>
+                    <h4 class="waves-effect" ng-click="UpdateAgeType(1)">Younger than me</h4>
+                    <h4 class="waves-effect" ng-click="UpdateAgeType(2)">Same as me</h4>
+                    <h4 class="waves-effect" ng-click="UpdateAgeType(3)">Older than me</h4>
                 </div>
-                <p>Female</p>
+            </div>
+
+            <div class="swiper-slide" activeclass="relations1">
+                <div class="relations">
+
+                    <ul>
+                        <li ng-click="AddtoContactPeople(_obj.Text)" ng-repeat="_obj in RelationTypes" ng-if="_obj.Type==1">
+                            <div class="waves-effect relationicon">
+                                <i class="fa fa-users"></i>
+                            </div>
+
+                            <a>
+
+                                {{_obj.Text}}
+                            </a>
+                        </li>
+
+                        <li  ng-click="AddtoContactPeople(_obj.Text)" ng-repeat="_obj in RelationTypes" ng-if="_obj.Type==2">
+                            <div class="waves-effect relationicon">
+                                <i class="fa fa-users"></i>
+                            </div>
+                            <a>{{_obj.Text}}</a>
+                        </li>
+
+
+                    </ul>
+
+
+
+
+                </div>
+            </div>
+
+            <div class="swiper-slide" activeclass="relations2">
+                <div class="relations">
+
+                    <ul>
+                        <li ng-click="AddtoContactPlace(_obj.Text)" ng-repeat="_obj in PlacesTypes" ng-if="_obj.Type==1">
+                            <div class="waves-effect relationicon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            <a>{{_obj.Text}}</a>
+                        </li>
+                        <li ng-click="AddtoContactPlace(_obj.Text)" ng-repeat="_obj in PlacesTypes" ng-if="_obj.Type==2">
+                            <div class="waves-effect relationicon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            <a>{{_obj.Text}}</a>
+                        </li>
+                    </ul>
+
+
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="genderlike" ng-if="GenderLike==true">
-
-        <h4 ng-click="UpdateAgeType(1)">Younger than me</h4>
-        <h4 ng-click="UpdateAgeType(2)">Same as me</h4>
-        <h4 ng-click="UpdateAgeType(3)">Older than me</h4>
-    </div>
-
-    <div class="relations" ng-if="RelationsTypeDiv==true">
-        <div class="row">
-            <div class="col-md-12 col-xs-12">
-
-                <div class="col-md-4 col-xs-4">
-                    <div class="col-md-12 col-xs-12" ng-click="AddtoContactPeople(_obj.Text)" ng-repeat="_obj in RelationTypes" ng-if="_obj.Type==1">{{_obj.Text}}</div><br />
-                </div>
-                <div class="col-md-4 col-xs-4">
-                   
-
-                    <div class="addrelation" ng-click="openAdd()">+</div>
-
-                    
-                </div>
-                <div class="col-md-4 col-xs-4">
-                    <div class="col-md-12 col-xs-12" ng-click="AddtoContactPeople(_obj.Text)" ng-repeat="_obj in RelationTypes" ng-if="_obj.Type==2">{{_obj.Text}}</div> <br />
-                </div>
-            </div>
-
-
-
-        </div>
-
-    </div>
-    <div class="relations" ng-if="PlacesType==true">
-        <div class="row">
-            <div class="col-md-12 col-xs-12">
-
-                <div class="col-md-4 col-xs-4">
-                    <div class="col-md-12 col-xs-12" ng-click="AddtoContactPlace(_obj.Text)" ng-repeat="_obj in PlacesTypes" ng-if="_obj.Type==1">{{_obj.Text}}</div><br />
-                </div>
-                <div class="col-md-4 col-xs-4">
-                    <div class="addrelation" ng-click="openAddPlace()">+</div>
-
-                   
-                    
-                </div>
-                <div class="col-md-4 col-xs-4">
-                    <div class="col-md-12 col-xs-12" ng-click="AddtoContactPlace(_obj.Text)" ng-repeat="_obj in PlacesTypes" ng-if="_obj.Type==2">{{_obj.Text}}</div> <br />
-                </div>
-            </div>
-
-
-
-        </div>
-
-    </div>
+    
 
    
     
@@ -130,37 +159,32 @@
 
 <div ng-style="{'height':dataarea}" class="dataarea">
 
-    <!--<div ng-repeat="_obj in Contacts">
-        {{_obj.firstName}}{{_obj.lastName}} <br />
-        <a ng-click="EditRecord(_obj.id)">Edit</a>
-        <a ng-click="DeleteRecord(_obj.id)">delete</a>
-
-
-    </div>-->
-
-    <div class="row" ng-repeat="_obj in Contacts">
-      
-            <div class="col-xs-2">
-                <i class="fa fa-thumb-tack"></i>
-            </div>
-            <div class="col-xs-8">
-                <span>     {{_obj.firstName}}{{_obj.lastName}} </span>
-            </div>
-            <div class="col-md-2">
-                <a class="btn btn-danger" ng-click="DeleteRecord(_obj.id)">
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                </a>
-            </div>
-    
-
+    <div ng-show="Contacts.length>0" class="form-group">
+        <input id="search" type="text" class="form-control input-lg" ng-model="SearchText" placeholder="Search">
     </div>
+
+    <div ng-show="Contacts.length>0" class="addedrecord">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="_obj in Contacts | filter:SearchText">
+                {{_obj.firstName}}{{_obj.lastName}} <a class="" ng-click="DeleteRecord(_obj.id)">
+                    Delete
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    
 
 </div>
 
 <div ng-style="{'height':bottomarea, 'line-height':bottomarea,}" class="bottomarea">
-    <a ng-click="insertRecord()" class="btn btn-success">
+    <a ng-click="insertRecord()" >
         <i class="fa fa-check"></i> Done
     </a>
+</div>
+
+<div>
+    <br /><br />
 </div>
 
 <div class="modal fade" id="Addrelation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -202,22 +226,25 @@
     <div class="modal-body">
         <div class="row" >
             <div class="col-md-12">
-                first Name
-                <input type="text" class="form-control" ng-model="ContactObject.firstName" />
+                <div class="form-group">
+                    <input type="text" placeholder="first Name" class="form-control" ng-model="ContactObject.firstName" />
+                </div>
+             
+              
 
             </div>
             <div class="col-md-12">
-                Last Name
-                <input type="text" class="form-control" ng-model="ContactObject.lastName" />
+                <div class="form-group">
+                    <input placeholder="Last Name" type="text" class="form-control" ng-model="ContactObject.lastName" />
+                </div>
+               
+             
 
             </div>
-            <div class="col-md-12">
-                Email
-                <input type="text" class="form-control" ng-model="ContactObject.email" />
-            </div>
+            <br />
 
             <div class="col-md-12">
-                <a data-dismiss="modal" class="btn btn-success">
+                <a style="width:100%" data-dismiss="modal" class="waves-effect btn btn-success">
                     Add
                 </a>
                
