@@ -229,6 +229,8 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         else {
             insertRecord();
 
+            $scope.GotoIndex(0);
+
         }
     }
 
