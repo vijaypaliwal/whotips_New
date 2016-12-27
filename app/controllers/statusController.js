@@ -18,11 +18,11 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.addupdatename = false;
     $scope.RelationTypes = [{ Type: 1, Text: "Father" },
     { Type: 1, Text: "Brother" }
-   ]
+    ]
 
     $scope.PlacesTypes = [{ Type: 1, Text: "Place 1" },
    { Type: 1, Text: "Place 2" }
-   ]
+    ]
 
     
     function CheckScopeBeforeApply() {
@@ -222,7 +222,14 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
 
     $scope.insertRecord = function () {
-        insertRecord();
+        if ($.trim($scope.ContactObject.firstName) == '' || $.trim($scope.ContactObject.lastName) == '')
+        {
+            $scope.openNamebox();
+        }
+        else {
+            insertRecord();
+
+        }
     }
 
 
