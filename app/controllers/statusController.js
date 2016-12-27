@@ -266,7 +266,9 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         }
         CheckScopeBeforeApply();
     }
-
+    $scope.GotoIndex = function (index) {
+        mySwiper.swipeTo(index, 1000, false);
+    }
     $scope.AddnewToPeople=function()
     {
         debugger;

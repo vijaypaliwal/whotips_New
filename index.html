@@ -33,13 +33,23 @@
 
        .topheader
         {
-             text-align: center;
-    color: #fff;
+           color: #fff;
     font-size: 15px;
     height: 31px;
     line-height: 36px;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    top:0;
+    left:0;
+    right:0;
+    z-index:10;
 
         }
+
+       body{
+           padding-top:30px !important;
+       }
 
        .resultarea
        {
@@ -54,6 +64,11 @@
            padding:7px;
            overflow-y: auto;
     overflow-x: hidden;
+       }
+
+       .selectionarea h4
+       {
+           display:block;
        }
 
        .dataarea
@@ -216,6 +231,7 @@
 
         .swiper-container {
             width: 100%;
+            height:auto !important;
         }
 
         
