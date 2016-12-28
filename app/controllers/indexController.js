@@ -12,6 +12,10 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
     var bodyheight = $(window).height();
 
+    var tableheight = bodyheight - 365;
+
+    $scope.tableheight = tableheight.toString() + "px";
+
    
 
      var _tmp= (bodyheight * 6) / 100 ;

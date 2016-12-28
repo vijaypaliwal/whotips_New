@@ -29,8 +29,8 @@
     <style>
 
 
-       .maleColor {
-            color: #3f51b5;
+        .maleColor {
+            color: #9C27B0;
         }
 
         .femaleColor {
@@ -58,17 +58,19 @@
     background: #673AB7;
 }
 
-     
 
-      .resultarea {
-    background: #fff;
-    position: fixed;
-    top: 47px;
-    width: 100%;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.10), 0 6px 6px rgba(0,0,0,0.12);
-    z-index:100;
-    left:0;
-}
+
+        .resultarea {
+            background: #e6e6e6;
+            position: fixed;
+            top: 78px;
+            border-bottom: 1px solid rgba(204, 204, 204, 0.62);
+            width: 100%;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            z-index: 100;
+            left: 0;
+        }
 
 
         .dummydiv {
@@ -82,8 +84,8 @@
         
         
          .title {
-            font-family: cursive;
-            margin-top: 5px;
+           
+           
             font-size: 14px;
         }
         
@@ -107,11 +109,14 @@
     overflow-y: auto;
   
     overflow-x: hidden;
-    margin-top: 168px;
+    margin-top: 205px;
       z-index:100;
 }
 
-     
+     body
+     {
+         overflow:hidden;
+     }
 
 
        .selectionarea h4
@@ -124,7 +129,7 @@
           
            overflow-y: auto;
           overflow-x: hidden;
-          margin-top:180px;
+          margin-top:160px;
        }
 
 
@@ -204,7 +209,7 @@
     .genderarea {
     text-align: center;
     margin-top: 27px;
-    color: #9a9a9a;
+    color: #000;
     font-family: cursive;
 }
 
@@ -260,10 +265,10 @@
     border-radius: 100%;
     font-size: 20px;
     text-align: center;
-    position: fixed;
+    /*position: fixed;
      top:150px;
     right: 16px;
-    z-index: 120;
+    z-index: 120;*/
 }
 
     .addmore
@@ -278,10 +283,10 @@
     border-radius: 100%;
     font-size: 20px;
     text-align: center;
-    position: fixed;
+    /*position: fixed;
      top:150px;
     right: 65px;
-    z-index: 120;
+    z-index: 120;*/
     }
 
     .addmore span
@@ -312,8 +317,8 @@
  
     position: fixed;
     z-index: 100;
-    background: #fff;
-    height:160px !important;
+    background: #e6e6e6;
+    height:155px !important;
     left:0;
 }
 
@@ -344,13 +349,34 @@
 
       .dataarea .btn-danger {
     color: #fff;
-    float: right;
+   
     text-align: center;
     text-transform: capitalize;
     padding-left: 10px;
     background-color: #f04124;
     padding-right: 10px;
+    border-radius:100%;
+    height:30px;
+    width:30px;
+    padding:0px;
+    line-height:30px;
 }
+
+        .dataarea .btn-danger i
+        {
+            font-size:14px;
+        }
+         .btn-danger.pin {
+            background-color: #009688;
+            margin-bottom: 5px;
+        }
+
+        .align-right
+        {
+            text-align:right;
+        }
+
+
 
     .relations ul
     
@@ -444,11 +470,129 @@
 
       .addedrecord small
    {
-      font-size:12px;
+      font-size:13px !important;
     color:#9a9a9a;
    }
+        .list-group-item
+        {
+            padding:7px 7px;
+        }
 
-  
+        #next,
+        #prev {
+            color: #333;
+            display: inline-block;
+            font: normal bold 4em Arial,sans-serif;
+            overflow: hidden;
+            position: relative;
+            text-decoration: none;
+            width: auto;
+        }
+
+        #next,
+        #prev {
+            padding: 0.5em 1.5em;
+            position: absolute;
+            left: 0px;
+            left: 7px;
+            margin-top: -60px;
+            z-index:100;
+        }
+
+        #next {
+            text-align: right;
+            position: absolute;
+            right: 7px;
+            margin-top: -60px;
+            z-index: 90;
+        }
+
+            #next:before,
+            #next:after,
+            #prev:before,
+            #prev:after {
+                background: #ab9797;
+                -moz-border-radius: 2.5px;
+                -webkit-border-radius: 2.5px;
+                border-radius: 2.5px;
+                content: "";
+                display: block;
+                height: 2px;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                width: 31px;
+            }
+
+        #prev:before,
+        #prev:after {
+            left: 0;
+        }
+
+        #next:before,
+        #prev:before {
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        #next:after,
+        #prev:after {
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+
+        #prev:after,
+        #next:before {
+            margin-top: -.36em;
+        }
+
+        #next:hover,
+        #next:focus,
+        #prev:hover,
+        #prev:focus {
+            color: #c00;
+        }
+
+            #next:hover:before,
+            #next:hover:after,
+            #next:focus:before,
+            #next:focus:after,
+            #prev:hover:before,
+            #prev:hover:after,
+            #prev:focus:before,
+            #prev:focus:after {
+                background: #c00;
+            }
+
+
+        .tabbar {
+            background: rgb(81,45,168) !important;
+            color: white;
+            margin-top: 40px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+        }
+
+            .tabbar .active {
+                border-bottom: 2px solid #fff;
+            }
+
+            .tabbar .col-xs-4 {
+                padding-top: 15px;
+                margin-bottom: 3px;
+                color: white !important;
+            }
+
+                .tabbar .col-xs-4:hover, :visited {
+                    color: white !important;
+                }
 
 
     </style>
@@ -468,7 +612,21 @@
 
     </div>
 
-  
+    <div class="row tabbar">
+        <div class="col-md-12">
+
+            <a class="col-xs-4 " ng-class="getClass('/more')" href="#/more">More</a>
+
+
+            <a class="col-xs-4 " ng-class="getClass('/find')" href="#/find">Get</a>
+
+
+            <a class="col-xs-4" ng-class="getClass('/status')" href="#/status">Add</a>
+
+
+        </div>
+
+    </div>
 
 
     <div class="container">

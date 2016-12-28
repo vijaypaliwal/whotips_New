@@ -9,7 +9,15 @@ app.config(function ($routeProvider) {
         templateUrl: "app/views/status.html"
     });
 
-   
+    $routeProvider.when("/find", {
+        controller: "statusController",
+        templateUrl: "app/views/find.html"
+    });
+
+    $routeProvider.when("/more", {
+        controller: "statusController",
+        templateUrl: "app/views/more.html"
+    });
     $routeProvider.otherwise({ redirectTo: "/status" });
 
 });

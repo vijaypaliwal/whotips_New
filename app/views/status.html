@@ -21,7 +21,7 @@
                 </div>
                 <div>
                     <p class="text" ng-click="GotoIndex(1)">
-                        <i class="fa fa-dot-circle-o"></i>  {{GetAgeType(ContactObject.AgeType)}}
+                        <i style="font-size:19px;" class="fa fa-dot-circle-o"></i>  {{GetAgeType(ContactObject.AgeType)}}
                     </p>
                 </div>
 
@@ -51,12 +51,10 @@
 
 <div class="dummydiv"></div>
 
-<div ng-if="CurrentActiveClass==2" class="waves-effect addrelation" ng-click="openAdd()">+</div>
 
-<div ng-if="CurrentActiveClass==3" class="waves-effect addrelation" ng-click="openAddPlace()">+</div>
 
-<div class="waves-effect addmore" ng-if="CurrentActiveClass==2 && RelationTypes.length>8" ng-click="viewallrelation()">8<span>+</span> </div>
-<div class="waves-effect addmore" ng-if="CurrentActiveClass==3 && PlacesTypes.length>8" ng-click="viewallplaces()">8<span>+</span> </div>
+
+
 <!--ng-style="{'height':selectionarea}"-->
 
 <div class="selectionarea">
@@ -64,11 +62,18 @@
 
     <div class="swiper-container">
 
-
+     
 
         <div class="swiper-wrapper">
 
+        
+              
+         
+
+
             <div class="swiper-slide" activeclass="genderarea">
+
+               
                 <p class="title">Select Gender </p>
                 <div class="genderarea">
                     <div class="row">
@@ -106,22 +111,29 @@
                 <div class="relations">
 
                     <ul>
-                        <li ng-click="AddtoContactPeople(_obj.Text)" ng-repeat="_obj in RelationTypes" ng-if="_obj.Type==1">
-                            <div class="waves-effect relationicon">
-                                <i class="fa fa-users"></i>
-                            </div>
+                        <li ng-click="AddtoContactPeople(_obj.Text)" ng-repeat="_obj in RelationTypes" >
+                            <span ng-if="$index<6">
+                                <div class="waves-effect relationicon" ng-if="$index<7">
+                                    <i class="fa fa-users"></i>
+                                </div>
 
-                            <a>
+                                <a>
 
-                                {{_obj.Text}}
-                            </a>
+                                    {{_obj.Text}}
+                                </a>
+                                </span>
+</li>
+
+                        <li>
+                            <div class="waves-effect addmore" ng-if="RelationTypes.length>6" ng-click="viewallrelation()">6<span>+</span> </div>
+
+                          
                         </li>
+                        <li>
+                            <div class="waves-effect addrelation" ng-click="openAdd()">+</div>
+                          
 
-                        <li ng-click="AddtoContactPeople(_obj.Text)" ng-repeat="_obj in RelationTypes" ng-if="_obj.Type==2">
-                            <div class="waves-effect relationicon">
-                                <i class="fa fa-users"></i>
-                            </div>
-                            <a>{{_obj.Text}}</a>
+                            
                         </li>
 
 
@@ -136,17 +148,19 @@
                 <div class="relations">
 
                     <ul>
-                        <li ng-click="AddtoContactPlace(_obj.Text)" ng-repeat="_obj in PlacesTypes" ng-if="_obj.Type==1">
-                            <div class="waves-effect placeicon">
-                                <i class="fa fa-map-marker"></i>
-                            </div>
-                            <a>{{_obj.Text}}</a>
+                        <li ng-click="AddtoContactPlace(_obj.Text)" ng-repeat="_obj in PlacesTypes" >
+                            <span ng-if="$index<6">
+                                <div class="waves-effect placeicon">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <a>{{_obj.Text}}</a>
+                            </span>
                         </li>
-                        <li ng-click="AddtoContactPlace(_obj.Text)" ng-repeat="_obj in PlacesTypes" ng-if="_obj.Type==2">
-                            <div class="waves-effect placeicon">
-                                <i class="fa fa-map-marker"></i>
-                            </div>
-                            <a>{{_obj.Text}}</a>
+                        <li>
+                            <div class="waves-effect addmore" ng-if="PlacesTypes.length>6" ng-click="viewallplaces()">6<span>+</span> </div>
+                        </li>
+                        <li>
+                            <div class="waves-effect addrelation" ng-click="openAddPlace()">+</div>
                         </li>
                     </ul>
 
@@ -154,6 +168,9 @@
                 </div>
             </div>
         </div>
+
+        <!--<a ng-click="GoToPrev()" id="prev"></a>
+        <a ng-click="GoToNext()" id="next"></a>-->
     </div>
 
 
@@ -162,9 +179,10 @@
 
 </div>
 
+
 <!--ng-style="{'height':dataarea}"-->
 
-<div class="dataarea">
+<div ng-style="{'height':tableheight}" class="dataarea">
 
     <div ng-show="Contacts.length>0" class="addedrecord">
         <ul class="list-group">
@@ -179,9 +197,21 @@
                         <small>{{_obj.Relations}}</small>
                     </div>
                     <div class="col-xs-4">
-                        <a class="btn btn-danger" ng-click="DeleteRecord(_obj.id)">
-                            Delete
-                        </a>
+
+                        <div class="align-right">
+                            <a class="btn btn-danger pin">
+                                <i class="fa fa-thumb-tack"></i>
+                            </a>
+                        </div>
+
+                        <div class="align-right">
+                            <a class="btn btn-danger" ng-click="DeleteRecord(_obj.id)">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+
+
+
                     </div>
                 </div>
 
