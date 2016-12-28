@@ -2,6 +2,8 @@
 app.controller('statusController', ['$scope', 'localStorageService', 'authService', '$location', 'log', function ($scope, localStorageService, authService, $location, log) {
 
 
+  
+
     $scope.mainObjectToSend = [];
     $scope.ContactObject = { id: 0, firstName: "", lastName: "", email: "", gender: "", places: "", AgeType: 0, imagepath: "", Relations: "" };
     $scope.Contacts = [];
@@ -16,15 +18,20 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.CurrentActiveClass = "";
 
     $scope.addupdatename = false;
-    $scope.RelationTypes = [{ Type: 1, Text: "Father" },
-    { Type: 1, Text: "Brother" }
+    $scope.RelationTypes = [{ Type: 1, Text: "Family" },
+    { Type: 1, Text: "Brother" }, { Type: 1, Text: "Father" },
+    { Type: 1, Text: "Mother" }, { Type: 1, Text: "Sister" },
+   
     ]
 
     $scope.PlacesTypes = [{ Type: 1, Text: "Place 1" },
-   { Type: 1, Text: "Place 2" }
+   { Type: 1, Text: "Place 2" }, { Type: 1, Text: "Place 3" },
+   { Type: 1, Text: "Place 4" }
+   , { Type: 1, Text: "Place 5" },
+   { Type: 1, Text: "Place 6" }
     ]
 
-    
+
     function CheckScopeBeforeApply() {
         if (!$scope.$$phase) {
             $scope.$apply();
@@ -172,7 +179,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
     {
 
-        $scope.ContactObject = { id: 0, firstName: "", lastName: "", email: "", places: "", AgeType: 0, imagepath: "", Relations: "",gender:"" };
+        $scope.ContactObject = { id: 0, firstName: "", lastName: "", email: "", places: "", AgeType: 0, imagepath: "", Relations: "", gender: "" };
 
     }
 
@@ -222,8 +229,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
 
     $scope.insertRecord = function () {
-        if ($.trim($scope.ContactObject.firstName) == '' || $.trim($scope.ContactObject.lastName) == '')
-        {
+        if ($.trim($scope.ContactObject.firstName) == '' || $.trim($scope.ContactObject.lastName) == '') {
             $scope.openNamebox();
         }
         else {
@@ -239,12 +245,117 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
     }
 
+    $scope.GetColorClass=function(_G)
+    {
+        var _class = _G == "M" ? "maleColor" : "femaleColor";
+        return _class
+    }
+
     $scope.DeleteRecord = function (id) {
         deleteRecord(id);
     }
 
-    $scope.openDiv=function(Type)
+    $scope.FilterByType=function(_type,_array)
     {
+        switch (_type) {
+            case 1:
+            
+                _array = jQuery.grep(_array, function (el) {
+                    return el.gender == $scope.ContactObject.gender;
+                });
+                break;
+            case 2:
+                
+                _array = jQuery.grep(_array, function (el) {
+                    return el.places.indexOf($scope.ContactObject.places) !== -1;
+                });
+                break;
+            case 3:
+                
+                _array = jQuery.grep(_array, function (el) {
+                    return el.Relations.indexOf($scope.ContactObject.Relations) !== -1;
+                });
+                break;
+
+            case 4:
+
+                _array = jQuery.grep(_array, function (el) {
+                    return el.AgeType==$scope.ContactObject.AgeType;
+                });
+                break;
+
+                
+            default:
+
+        }
+
+        return _array;
+    }
+
+
+    $scope.viewallrelation = function () {
+        $("#Allrelation").modal('show');
+    }
+
+    $scope.viewallplaces = function () {
+        $("#Allplaces").modal('show');
+    }
+
+    $scope.GetFiltered=function(_array)
+    {
+        var _TempArray = [];
+        var _isChanged = false;
+        var _TempArray2 = _array;
+        for (var i = 0; i < _array.length; i++) {
+            var _isGender = false;
+            var _isplaces = false;
+            var _isRelations = false;
+            if($.trim($scope.ContactObject.gender)!="")
+            {
+                if(_array[i].gender==$scope.ContactObject.gender)
+                {
+                    _isChanged = true;
+                    _TempArray2 = $scope.FilterByType(1, _TempArray2);
+
+
+                }
+            }
+            if ($.trim($scope.ContactObject.places) != "") {
+
+                if (_array[i].places.indexOf($scope.ContactObject.places) !== -1) {
+                    _isChanged = true;
+                    _TempArray2 = $scope.FilterByType(2, _TempArray2);
+                }
+              
+            }
+
+            if ($.trim($scope.ContactObject.Relations) != "") {
+
+                if (_array[i].Relations.indexOf($scope.ContactObject.Relations) !== -1) {
+                    _isChanged = true;
+                    _TempArray2 = $scope.FilterByType(3, _TempArray2);
+
+                }
+
+            }
+
+            if ($.trim($scope.ContactObject.AgeType) != "") {
+
+                if (_array[i].AgeType == $scope.ContactObject.AgeType) {
+                    _isChanged = true;
+                    _TempArray2 = $scope.FilterByType(4, _TempArray2);
+
+                }
+
+            }
+
+        }
+
+        _TempArray = _isChanged == true ? _TempArray2 : _array;
+        return _TempArray;
+    }
+
+    $scope.openDiv = function (Type) {
         switch (Type) {
             case 1:
                 $scope.GenderLike = false;
@@ -276,57 +387,70 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         CheckScopeBeforeApply();
     }
     $scope.GotoIndex = function (index) {
+        $scope.CurrentActiveClass = index;
         mySwiper.swipeTo(index, 1000, false);
-    }
-    $scope.AddnewToPeople=function()
-    {
-        debugger;
-        var _isAlreadyExist = false;
-        for (var i = 0; i < $scope.RelationTypes.length; i++) {
-            if ($scope.RelationTypes[i].Text == $.trim($scope.NewRelation.Text))
-            {
-                _isAlreadyExist = true; break;
-            }
-
-        }
-        if (_isAlreadyExist == false) {
-
-            $scope.RelationTypes.push({ Type: 1, Text: $scope.NewRelation.Text });
-        }
         CheckScopeBeforeApply();
-        $("#Addrelation").modal('hide');
-      
+    }
+    $scope.AddnewToPeople = function () {
+        debugger;
+        if ($.trim($scope.NewRelation.Text) != "") {
+
+            var _isAlreadyExist = false;
+            for (var i = 0; i < $scope.RelationTypes.length; i++) {
+                if ($scope.RelationTypes[i].Text == $.trim($scope.NewRelation.Text)) {
+                    _isAlreadyExist = true; break;
+                }
+
+            }
+            if (_isAlreadyExist == false) {
+
+                $scope.RelationTypes.push({ Type: 1, Text: $scope.NewRelation.Text });
+            }
+            CheckScopeBeforeApply();
+            $("#Addrelation").modal('hide');
+        }
+        else {
+            alert("please enter some value");
+        }
+
     }
 
     $scope.AddnewToPlaces = function () {
         debugger;
-        var _isAlreadyExist = false;
-        for (var i = 0; i < $scope.PlacesTypes.length; i++) {
-            if ($scope.PlacesTypes[i].Text == $.trim($scope.NewPlace.Text)) {
-                _isAlreadyExist = true; break;
+        if ($.trim($scope.NewPlace.Text) != "") {
+
+            var _isAlreadyExist = false;
+            for (var i = 0; i < $scope.PlacesTypes.length; i++) {
+                if ($scope.PlacesTypes[i].Text == $.trim($scope.NewPlace.Text)) {
+                    _isAlreadyExist = true; break;
+                }
+
+            }
+            if (_isAlreadyExist == false) {
+
+                $scope.PlacesTypes.push({ Type: 1, Text: $scope.NewPlace.Text });
             }
 
-        }
-        if (_isAlreadyExist == false) {
 
-            $scope.PlacesTypes.push({ Type: 1, Text: $scope.NewPlace.Text });
+            CheckScopeBeforeApply();
+            $("#Addplace").modal('hide');
         }
-
-      
-        CheckScopeBeforeApply();
-        $("#Addplace").modal('hide');
+        else {
+            alert("please enter some value");
+        }
     }
 
     $scope.openAdd = function () {
         $scope.IsRelationOn = !$scope.IsRelationOn;
         $("#Addrelation").modal('show');
+        $scope.NewRelation.Text = "";
         CheckScopeBeforeApply();
     }
 
     $scope.openAddPlace = function () {
         $scope.IsPlaceOn = !$scope.IsPlaceOn;
         $("#Addplace").modal('show');
-        
+        $scope.NewPlace.Text = "";
         CheckScopeBeforeApply();
     }
     function init() {
@@ -350,15 +474,17 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             }
 
         });
+        setTimeout(function () {
+            swiper = new Swiper('.swiper-container1', {
+                scrollbar: '.swiper-scrollbar',
+                scrollbarHide: false,
+                slidesPerView: 'auto',
+                centeredSlides: false,
+                spaceBetween: 100,
+                grabCursor: true
+            });
+        }, 1000);
 
-      //swiper = new Swiper('.swiper-container', {
-      //      scrollbar: '.swiper-scrollbar',
-      //      scrollbarHide: true,
-      //      slidesPerView: 'auto',
-      //      centeredSlides: true,
-      //      spaceBetween: 30,
-      //      grabCursor: true
-      //  });
 
         CheckScopeBeforeApply();
     }
@@ -386,10 +512,8 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         }
     }
 
-    $scope.AddtoContactPeople=function(text)
-    {
-        if($.trim($scope.ContactObject.Relations)!="")
-        {
+    $scope.AddtoContactPeople = function (text) {
+        if ($.trim($scope.ContactObject.Relations) != "") {
             if ($scope.ContactObject.Relations.indexOf(text) == -1) {
 
                 $scope.ContactObject.Relations = $scope.ContactObject.Relations + "," + text;
@@ -416,13 +540,13 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         CheckScopeBeforeApply();
     }
 
-    
+
 
     $scope.UpdateAgeType = function (Type) {
         $scope.ContactObject.AgeType = Type;
         CheckScopeBeforeApply();
         $scope.GoToNext();
-        
+
     }
     $scope.gotonext = function (Type) {
         $scope.ContactObject.gender = Type;

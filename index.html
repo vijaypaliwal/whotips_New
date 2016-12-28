@@ -27,44 +27,92 @@
   
 
     <style>
-        .green-color{
-            background:#F44336;
+
+
+       .maleColor {
+            color: #3f51b5;
         }
 
-       .topheader
+        .femaleColor {
+            color: #E91E63;
+        }
+
+        .row
         {
-           color: #fff;
-    font-size: 15px;
-    height: 31px;
-    line-height: 36px;
-    position: fixed;
-    width: 100%;
-    text-align: center;
-    top:0;
-    left:0;
-    right:0;
-    z-index:10;
-
+            margin-bottom:0px;
         }
 
-       body{
-           padding-top:30px !important;
-       }
 
-       .resultarea
-       {
-           background:#F44336;
-           overflow-y: auto;
-    overflow-x: hidden;
-       }
+      .topheader {
+    color: #fff;
+    font-size: 15px;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    top: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: #673AB7;
+}
 
-       .selectionarea
-       {
-           background:#e8e8e8;
-           padding:7px;
-           overflow-y: auto;
+     
+
+      .resultarea {
+    background: #fff;
+    position: fixed;
+    top: 47px;
+    width: 100%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.10), 0 6px 6px rgba(0,0,0,0.12);
+    z-index:100;
+    left:0;
+}
+
+
+        .dummydiv {
+            background: #e6e6e6;
+            width: 100%;
+            height: 100px;
+            position: fixed;
+            z-index: 10;
+            top: 120px;
+        }
+        
+        
+         .title {
+            font-family: cursive;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+        
+         .text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-inline-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+            margin-bottom: 0;
+            font-size: 15px;
+            line-height: 18px;
+            color: #8c8c8c;
+        }
+
+     .selectionarea {
+  
+    padding: 7px;
+    overflow-y: auto;
+  
     overflow-x: hidden;
-       }
+    margin-top: 168px;
+      z-index:100;
+}
+
+     
+
 
        .selectionarea h4
        {
@@ -73,29 +121,27 @@
 
        .dataarea
        {
-           background:#fff;
-           padding:7px;
+          
            overflow-y: auto;
-    overflow-x: hidden;
+          overflow-x: hidden;
+          margin-top:180px;
        }
 
-        .dataarea .row
-       {
-          padding-top:5px;
-          padding-bottom:5px;
-          border-bottom:1px solid #dadada;
-       }
 
-      .bottomarea {
-    background: #4fb952;
+      
+
+  .bottomarea {
+    background: #8BC34A;
     text-align: center;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
     color: #fff;
     font-size: 17px;
+    position: fixed;
+    bottom: 0;
+    left:0;
+    right:0;
+    height:42px;
+    line-height: 42px;
+    width: 100%;
 }
 
       .bottomarea i{
@@ -122,40 +168,29 @@
         .container
         {
             width:100%;
+            background:#e6e6e6;
+            max-width:initial;
         }
 
         .resultcontent
         {
            
             padding:8px;
-            color:#fff;
-            text-align:center;
+           
+        
+          
         }
 
-        .resultcontent p {
-    font-size: 14px;
-    margin-bottom: 5px;
-}
-
-           .resultcontent i
+        .resultcontent img
         {
-         font-size: 16px;
-    width: 18px;
+            border-radius:100%;
+            height:80px;
+            width:80px;
         }
 
-      .profilepic {
-   margin: 0 auto;
-    text-align: center;
-    height: 65px;
-    width: 65px;
-    background: #fff;
-    font-size: 25px;
-    border-radius: 100%;
-    color: brown;
-    line-height: 65px;
-    margin-bottom: 7px;
-  
-}
+
+
+       
 
       .profilepic i{
           font-size:25px;
@@ -165,10 +200,13 @@
           text-align:center;
       }
 
-      .genderarea
-      {
-          text-align:center;
-      }
+
+    .genderarea {
+    text-align: center;
+    margin-top: 27px;
+    color: #9a9a9a;
+    font-family: cursive;
+}
 
     .genderarea .gender {
     height: 60px;
@@ -181,6 +219,18 @@
     color:#fff;
 }
 
+
+    .male.gender
+    {
+          background: #9C27B0;
+    }
+
+     .female.gender
+    {
+          background: #E91E63;
+    }
+
+
     .gender p{
         color:#fff;
     }
@@ -189,6 +239,7 @@
     {
      
         text-align:center;
+        margin-top:20px;
     }
 
     .relations
@@ -196,11 +247,11 @@
         text-align: center;
     font-size: 14px;
     line-height: 25px;
+    margin-top:12px;
     }
 
-    .addrelation
-    {
-      background: #6f9a37;
+    .addrelation {
+    background: #6f9a37;
     color: #fff;
     height: 40px;
     width: 40px;
@@ -209,10 +260,37 @@
     border-radius: 100%;
     font-size: 20px;
     text-align: center;
-        position: absolute;
-    margin-top: -22px;
-    right: 16px
+    position: fixed;
+     top:150px;
+    right: 16px;
+    z-index: 120;
+}
+
+    .addmore
+
+    {
+         background: #2196F3;
+    color: #fff;
+    height: 40px;
+    width: 40px;
+    line-height: 37px;
+    margin: 0 auto;
+    border-radius: 100%;
+    font-size: 20px;
+    text-align: center;
+    position: fixed;
+     top:150px;
+    right: 65px;
+    z-index: 120;
     }
+
+    .addmore span
+    {
+        position: absolute;
+    font-size: 12px;
+    margin-top: -8px;
+    }
+
 
     .modal
     {
@@ -229,12 +307,19 @@
     }
 
 
-        .swiper-container {
-            width: 100%;
-            height:auto !important;
-        }
+      .swiper-container {
+    width: 100%;
+ 
+    position: fixed;
+    z-index: 100;
+    background: #fff;
+    height:160px !important;
+    left:0;
+}
 
         
+
+
 
     .input-group-addon
     {
@@ -257,16 +342,15 @@
             top: 25%;
         }
 
-        .dataarea .btn-danger {
-            color: #fff;
-            border-radius: 100%;
-            height: 35px;
-            width: 35px;
-            float: right;
-            text-align: center;
-            padding: 0;
-            margin-top: -5px;
-        }
+      .dataarea .btn-danger {
+    color: #fff;
+    float: right;
+    text-align: center;
+    text-transform: capitalize;
+    padding-left: 10px;
+    background-color: #f04124;
+    padding-right: 10px;
+}
 
     .relations ul
     
@@ -274,27 +358,51 @@
         display: inline-block;
     }
 
-    .relations ul li
-    
-    {
-        float: left;
-    margin-right: 20px;
-    }
-    .relationicon
-    {
-           height: 45px;
-    width: 45px;
-    line-height:45px;
-    background: #fff;
+   .relations ul li {
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 60px;
+    text-align: center;
+    /* text-align: -webkit-center; */
+}
+
+
+   .relationicon {
+    height: 32px;
+    width: 32px;
+    line-height: 32px;
+    background: #FFC107;
     border-radius: 100%;
     display: block;
-    color: #6d6b6b;
-    }
+    margin:0 auto;
+    color: #fff;
+}
 
     .relationicon i{
-        font-size:20px;
+        font-size:15px;
     }
 
+        .placeicon {
+               height: 32px;
+    width: 32px;
+    line-height:32px;
+    background: #FF5722;
+    border-radius: 100%;
+    display: block;
+    color: #fff;
+    margin:0 auto;
+
+        }
+
+         .placeicon i{
+        font-size:15px;
+    }
+
+       .resultcontent  i
+         {
+             font-size:initial;
+         }
 
      
 
@@ -302,7 +410,14 @@
     
     {
         
-    color: #000;
+   color: #000;
+    font-size: 11px;
+       overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-inline-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
     }
 
    .swiper-slide
@@ -319,16 +434,18 @@
     height: 36px;
 }
 
-   .addedrecord
+
+
+     .addedrecord p
    {
-       padding:10px;
-       background:#eaeaea;
+      font-size:15px;
+      margin-bottom:0;
    }
 
-     .addedrecord a
+      .addedrecord small
    {
-       float: right;
-    color: brown;
+      font-size:12px;
+    color:#9a9a9a;
    }
 
   
@@ -342,8 +459,10 @@
 </head>
 <body data-ng-controller="indexController">
     <!-- Sidebar -->
+
+    <!--ng-style="{'height':topheaderheight,'line-height':topheaderheight}"-->
   
-    <div ng-style="{'height':topheaderheight,'line-height':topheaderheight}" class="topheader green-color">
+    <div  class="topheader">
 
         <span>Who Tips</span>
 
@@ -352,7 +471,7 @@
   
 
 
-    <div class="">
+    <div class="container">
         <div data-ng-view="">
 
         </div>
