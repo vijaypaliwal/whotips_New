@@ -17,6 +17,23 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
     $scope.tableheight = tableheight.toString() + "px";
 
    
+    $(document)
+  .on('focus', 'input,select', function () {
+
+      //  $cordovaKeyboard.disableScroll(true);
+
+
+
+      $('.bottomarea').css("position", "absolute");
+      $('.topheader').css('position', 'absolute');
+
+  })
+  .on('blur', 'input,select', function () {
+
+      $('.bottomarea').css("position", "fixed");
+      $('.topheader').css('position', 'fixed');
+
+  });
 
      var _tmp= (bodyheight * 6) / 100 ;
      $scope.topheaderheight = _tmp.toString() + "px";
