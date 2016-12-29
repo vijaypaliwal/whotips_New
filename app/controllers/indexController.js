@@ -16,23 +16,48 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
     $scope.tableheight = tableheight.toString() + "px";
 
-   
+    $scope.$on('$locationChangeStart', function (event) {
+
+
+
+        var _path = $location.path();
+
+        $cordovaKeyboard.hideAccessoryBar(false);
+
+
+        if (_path == "/status") {
+           
+            $cordovaKeyboard.disableScroll(true);
+        }
+        else {
+           
+            $cordovaKeyboard.disableScroll(false);
+        }
+
+      
+
+
+        initIndex();
+
+    });
+
+
     $(document)
   .on('focus', 'input,select', function () {
 
-       $cordovaKeyboard.disableScroll(true);
+      // $cordovaKeyboard.disableScroll(true);
 
 
 
-      $('.bottomarea').css("position", "absolute");
-      $('.topheader').css('position', 'absolute');
+      //$('.bottomarea').css("position", "absolute");
+      //$('.topheader').css('position', 'absolute');
 
   })
   .on('blur', 'input,select', function () {
 
-      $cordovaKeyboard.disableScroll(false);
-      $('.bottomarea').css("position", "fixed");
-      $('.topheader').css('position', 'fixed');
+      //$cordovaKeyboard.disableScroll(false);
+      //$('.bottomarea').css("position", "fixed");
+      //$('.topheader').css('position', 'fixed');
 
   });
 
