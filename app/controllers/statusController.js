@@ -14,8 +14,20 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.GenderType = true;
     $scope.PlacesType = false;
     $scope.SearchText = "";
+    $scope.IsDontknow = false;
 
     $scope.CurrentActiveClass = "";
+
+
+    $scope.$watch('IsDontknow', function () {
+        if ($scope.IsDontknow == true)
+        {
+            $scope.ContactObject.firstName = "";
+
+        }
+        CheckScopeBeforeApply();
+
+    });
 
     $scope.addupdatename = false;
     $scope.RelationTypes = [{ Type: 1, Text: "Family" },
@@ -122,8 +134,15 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
     {
         //firstName, lastName, email, places, AgeType, imagepath, Relations
+        if ($scope.IsDontknow == false) {
 
-        db.transaction(function (tx) { tx.executeSql(insertStatement, [$scope.ContactObject.firstName, $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations], loadAndReset, onError); });
+
+            db.transaction(function (tx) { tx.executeSql(insertStatement, [$scope.ContactObject.firstName, $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations], loadAndReset, onError); });
+        }
+        else {
+            db.transaction(function (tx) { tx.executeSql(insertStatement, ["N/A", $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations], loadAndReset, onError); });
+
+        }
 
         //tx.executeSql(SQL Query Statement,[ Parameters ] , Sucess Result Handler Function, Error Result Handler Function );
 
@@ -180,7 +199,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     {
 
         $scope.ContactObject = { id: 0, firstName: "", lastName: "", email: "", places: "", AgeType: 0, imagepath: "", Relations: "", gender: "" };
-
+        $scope.IsDontknow = false;
     }
 
     function loadAndReset() //Function for Load and Reset...
@@ -229,8 +248,8 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
 
     $scope.insertRecord = function () {
-        if ($.trim($scope.ContactObject.firstName) == '' || $.trim($scope.ContactObject.lastName) == '') {
-            $scope.openNamebox();
+        if ($scope.IsDontknow==false && $.trim($scope.ContactObject.firstName) == '') {
+            alert("Please enter Name");
         }
         else {
             insertRecord();

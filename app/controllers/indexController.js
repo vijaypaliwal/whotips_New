@@ -16,14 +16,23 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
     $scope.tableheight = tableheight.toString() + "px";
 
+
+    function ChangePathMethod() {
+        var _path = $location.path();
+        if (_path == "/status") {
+            $cordovaKeyboard.hideAccessoryBar(false);
+            $cordovaKeyboard.disableScroll(true);
+        }
+
+    }
+    
     $scope.$on('$locationChangeStart', function (event) {
 
 
 
         var _path = $location.path();
 
-        $cordovaKeyboard.hideAccessoryBar(false);
-
+        
 
         if (_path == "/status") {
            
@@ -80,8 +89,10 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
      $scope.bottomarea = bottomarea.toString() + "px";
   
+     setTimeout(function () {
+         ChangePathMethod();
 
-
+     },100)
   
 
     $scope.logOut = function () {
