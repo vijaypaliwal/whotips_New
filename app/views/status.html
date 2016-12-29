@@ -4,13 +4,14 @@
     <div class="resultcontent">
         <div class="row">
 
-           
+
             <div class="col-xs-8">
 
                 <div>
-                    <p style="font-size:19px; color:#333" class="text"> 
+                    <p style="font-size:19px; color:#333" class="text" ng-click="GotoIndex(4)">
                         <span ng-if="ContactObject.firstName==''&& ContactObject.lastName==''"> Martin Adams </span>
-                     {{ContactObject.firstName}} {{ContactObject.lastName}} </p>
+                        {{ContactObject.firstName}} {{ContactObject.lastName}}
+                    </p>
                 </div>
                 <div>
                     <p class="text" ng-click="GotoIndex(1)">
@@ -20,7 +21,7 @@
 
                 <div>
                     <p class="text" ng-click="GotoIndex(2)">
-                        <i class="fa fa-users"></i> 
+                        <i class="fa fa-users"></i>
                         <span ng-if="ContactObject.Relations==''">People Wife,Father </span>
                         {{ContactObject.Relations}}
                     </p>
@@ -28,9 +29,9 @@
 
                 <div>
                     <p class="text" ng-click="GotoIndex(3)">
-                        <i class="fa fa-envelope"></i> 
+                        <i class="fa fa-envelope"></i>
                         <span ng-if="ContactObject.places==''">Places Nathdwara,Udaipur </span>
-                         {{ContactObject.places}}
+                        {{ContactObject.places}}
                     </p>
                 </div>
 
@@ -38,10 +39,10 @@
             </div>
             <div class="col-xs-4">
 
-                <div ng-click="GotoIndex(0)" class="waves-effect">
-                    <img src="img/male.jpg" ng-if="ContactObject.gender=='M'||ContactObject.gender==''" />
-                    <img src="img/female.jpg" ng-if="ContactObject.gender=='F'" />
-                </div>
+                <div ng-click="openNamebox()" class="waves-effect">
+                    <img src="img/male.jpg" ng-if="ContactObject.imagepath=='' && (ContactObject.gender=='M'||ContactObject.gender=='')" />
+                    <img src="img/female.jpg" ng-if="ContactObject.imagepath=='' && ContactObject.gender=='F'" />
+                    <img src="{{ContactObject.imagepath}}" ng-if="ContactObject.imagepath!=''"  /></div>
 
             </div>
         </div>
@@ -52,375 +53,388 @@
 <div class="dummydiv">
     <div class="row" ng-if="CurrentActiveClass==2">
 
-        <div class="col-xs-9 pull-left"><input type="text" name="name" class="input-control" ng-model="NewRelation.Text" placeholder="Add Relation" /></div>
-        <div class="col-xs-3 pull-left"><input type="button" name="name" ng-click="AddnewToPeople()" class="btn btn-success" value="Add" /></div>
+        <div class="col-xs-9 pull-left"><input type="text" name="name" class="form-control" ng-model="NewRelation.Text" placeholder="  Add Relation" /></div>
+        <div class="col-xs-3 pull-left">
+            <a ng-click="AddnewToPeople()" class="btn-floating waves-effect waves-light accent-color btn z-depth-1">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
     </div>
     <div class="row" ng-if="CurrentActiveClass==3">
 
-        <div class="col-xs-9 pull-left"><input type="text" name="name" class="input-control" ng-model="NewPlace.Text" placeholder="Add Place" /></div>
-        <div class="col-xs-3 pull-left"><input type="button" name="name" class="btn btn-success" ng-click="AddnewToPlaces()" value="Add" /></div>
+        <div class="col-xs-9 pull-left"><input type="text" name="name" class="form-control" ng-model="NewPlace.Text" placeholder="  Add Place" /></div>
+        <div class="col-xs-3 pull-left">
+            <a ng-click="AddnewToPlaces()" class="btn-floating waves-effect waves-light accent-color btn z-depth-1">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+
     </div>
 
-</div>
+    </div>
+
+
+
+    <!--ng-style="{'height':selectionarea}"-->
+
+    <div class="selectionarea">
+
+
+        <div class="swiper-container">
+
+
+
+            <div class="swiper-wrapper">
 
 
 
 
 
-<!--ng-style="{'height':selectionarea}"-->
 
-<div class="selectionarea">
-
-
-    <div class="swiper-container">
-
-     
-
-        <div class="swiper-wrapper">
-
-        
-              
-         
+                <div class="swiper-slide" activeclass="genderarea">
 
 
-            <div class="swiper-slide" activeclass="genderarea">
-
-               
-                <p class="title">Select Gender </p>
-                <div class="genderarea">
-                    <div class="row">
-                        <div class="col-xs-6">
-                            <div ng-click="gotonext('M')" class="waves-effect male gender">
-                                <i class="fa fa-male"></i>
+                    <p class="title">Select Gender </p>
+                    <div class="genderarea">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div ng-click="gotonext('M')" class="waves-effect male gender">
+                                    <i class="fa fa-male"></i>
+                                </div>
+                                <!--<p>Male</p>-->
                             </div>
-                            <!--<p>Male</p>-->
-                        </div>
 
-                        <div class="col-xs-6">
+                            <div class="col-xs-6">
 
-                            <div ng-click="gotonext('F')" class="waves-effect female gender">
-                                <i class="fa fa-female"></i>
+                                <div ng-click="gotonext('F')" class="waves-effect female gender">
+                                    <i class="fa fa-female"></i>
+                                </div>
+                                <!--<p>Female</p>-->
                             </div>
-                            <!--<p>Female</p>-->
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="swiper-slide" activeclass="genderlike">
-                <p class="title">Select Age </p>
-                <div class="genderlike age">
+                <div class="swiper-slide" activeclass="genderlike">
+                    <p class="title">Select Age </p>
+                    <div class="genderlike age">
 
-            
-                    <ul>
-                        <li ng-click="UpdateAgeType(1)">
-                            <span>
-                                <div class="waves-effect ageplaceicon youngerthenme">
-                                    <i class="fa fa-user"></i>
-                                </div>
-                                <a>Younger than me</a>
-                            </span>
-                        </li>
-                        <li ng-click="UpdateAgeType(2)">
-                            <span>
-                                <div class="waves-effect ageplaceicon sameasme">
-                                    <i class="fa fa-user"></i>
-                                </div>
-                                <a>Same as me</a>
-                            </span>
-                        </li>
-                        <li ng-click="UpdateAgeType(3)">
-                            <span>
-                                <div class="waves-effect ageplaceicon olderthenme">
-                                    <i class="fa fa-user"></i>
-                                </div>
-                                <a>Older than me</a>
-                            </span>
-                        </li>
 
-                    </ul>
-                </div>
-            </div>
-
-            <div class="swiper-slide" activeclass="relations1">
-
-                <p class="title">Choose People </p>
-                <div class="relations">
-
-                    <ul>
-                        <li ng-click="AddtoContactPeople(_obj.Text)" ng-repeat="_obj in RelationTypes" >
-                            <span ng-if="$index<6">
-                                <div class="waves-effect relationicon" ng-if="$index<7">
-                                    <i class="fa fa-user"></i>
-                                </div>
-
-                                <a>
-
-                                    {{_obj.Text}}
-                                </a>
+                        <ul>
+                            <li ng-click="UpdateAgeType(1)">
+                                <span>
+                                    <div class="waves-effect ageplaceicon accent-color">
+                                        <i class="fa fa-dot-circle-o"></i>
+                                    </div>
+                                    <a>Younger than me</a>
                                 </span>
-</li>
+                            </li>
+                            <li ng-click="UpdateAgeType(2)">
+                                <span>
+                                    <div class="waves-effect ageplaceicon accent-color">
+                                        <i class="fa fa-dot-circle-o"></i>
+                                    </div>
+                                    <a>Same as me</a>
+                                </span>
+                            </li>
+                            <li ng-click="UpdateAgeType(3)">
+                                <span>
+                                    <div class="waves-effect ageplaceicon accent-color">
+                                        <i class="fa fa-dot-circle-o"></i>
+                                    </div>
+                                    <a>Older than me</a>
+                                </span>
+                            </li>
 
-                        <li>
-                            <div class="waves-effect addmore" ng-if="RelationTypes.length>6" ng-click="viewallrelation()">6<span>+</span> </div>
-
-                          
-                        </li>
-                        <!--<li>
-                            <div class="waves-effect addrelation" ng-click="openAdd()">+</div>
-                          
-
-                            
-                        </li>-->
-
-
-                    </ul>
-
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-            <div class="swiper-slide" activeclass="relations2">
+                <div class="swiper-slide" activeclass="relations1">
 
-                <p class="title">Choose Places </p>
-                <div class="relations">
+                    <p class="title">Choose People </p>
+                    <div class="relations">
 
-                    <ul>
-                        <li ng-click="AddtoContactPlace(_obj.Text)" ng-repeat="_obj in PlacesTypes" >
-                            <span ng-if="$index<6">
-                                <div class="waves-effect placeicon">
-                                    <i class="fa fa-map-marker"></i>
-                                </div>
-                                <a>{{_obj.Text}}</a>
-                            </span>
-                        </li>
-                        <li>
-                            <div class="waves-effect addmore" ng-if="PlacesTypes.length>6" ng-click="viewallplaces()">6<span>+</span> </div>
-                        </li>
-                        <!--<li>
-                            <div class="waves-effect addrelation" ng-click="openAddPlace()">+</div>
-                        </li>-->
-                    </ul>
+                        <ul>
+                            <li ng-click="AddtoContactPeople(_obj.Text)" ng-repeat="_obj in RelationTypes">
+                                <span ng-if="$index<6">
+                                    <div class="waves-effect relationicon accent-color" ng-if="$index<7">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+
+                                    <a>
+
+                                        {{_obj.Text}}
+                                    </a>
+                                </span>
+                            </li>
+
+                            <li>
+                                <div class="waves-effect addmore" ng-if="RelationTypes.length>6" ng-click="viewallrelation()">6<span>+</span> </div>
 
 
+                            </li>
+                            <!--<li>
+                                <div class="waves-effect addrelation" ng-click="openAdd()">+</div>
+
+
+
+                            </li>-->
+
+
+                        </ul>
+
+                    </div>
                 </div>
-            </div>
 
-            <div class="swiper-slide">
+                <div class="swiper-slide" activeclass="relations2">
 
-                <p class="title">Name </p>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <input type="text" placeholder="Name" class="form-control" id="firstname" ng-disabled="IsDontknow==true" ng-model="ContactObject.firstName" />
-                            <p class="remember animated bouncein delay-6">
-                                <input type="checkbox" id="test5" ng-model="IsDontknow">
-                                <label for="test5">i don't know</label>
-                            </p>
+                    <p class="title">Choose Places </p>
+                    <div class="relations">
+
+                        <ul>
+                            <li ng-click="AddtoContactPlace(_obj.Text)" ng-repeat="_obj in PlacesTypes">
+                                <span ng-if="$index<6">
+                                    <div class="waves-effect placeicon accent-color">
+                                        <i class="fa fa-map-marker"></i>
+                                    </div>
+                                    <a>{{_obj.Text}}</a>
+                                </span>
+                            </li>
+                            <li>
+                                <div class="waves-effect addmore" ng-if="PlacesTypes.length>6" ng-click="viewallplaces()">6<span>+</span> </div>
+                            </li>
+                            <!--<li>
+                                <div class="waves-effect addrelation" ng-click="openAddPlace()">+</div>
+                            </li>-->
+                        </ul>
+
+
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+
+                    <p class="title">Name </p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" placeholder=" Name" class="form-control" id="firstname" ng-disabled="IsDontknow==true" ng-model="ContactObject.firstName" />
+                                <p class="remember animated bouncein delay-6">
+                                    <input type="checkbox" id="test5" ng-model="IsDontknow">
+                                    <label for="test5">i don't know</label>
+                                </p>
+                            </div>
+
+
+
+
                         </div>
 
-
+                        <br />
 
 
                     </div>
 
-                    <br />
-
-
                 </div>
+            </div>
 
+            <!--<a ng-click="GoToPrev()" id="prev"></a>
+            <a ng-click="GoToNext()" id="next"></a>-->
+        </div>
+
+
+
+
+
+    </div>
+
+
+    <!--ng-style="{'height':dataarea}"-->
+
+    <div ng-style="{'height':tableheight}" class="dataarea" style="display:none;">
+
+        <div ng-show="Contacts.length>0" class="addedrecord">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="_obj in GetFiltered(Contacts)">
+
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <span style="font-size:19px;" class="{{GetColorClass(_obj.gender)}}">
+                                {{_obj.firstName}} {{_obj.lastName}}
+                            </span><br />
+                            <small> {{_obj.places}}</small> <br />
+                            <small>{{_obj.Relations}}</small>
+                        </div>
+                        <div class="col-xs-4">
+
+                            <div class="align-right">
+                                <a class="btn btn-danger pin">
+                                    <i class="fa fa-thumb-tack"></i>
+                                </a>
+                            </div>
+
+                            <div class="align-right">
+                                <a class="btn btn-danger" ng-click="DeleteRecord(_obj.id)">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </li>
+
+
+            </ul>
+        </div>
+
+        <br /><br />
+
+
+
+
+
+    </div>
+
+    <!--ng-style="{'height':bottomarea, 'line-height':bottomarea,}"-->
+
+    <div class="bottomarea" ng-click="insertRecord()">
+        <a>
+            <i class="fa fa-check"></i> Done
+        </a>
+    </div>
+
+
+    <div class="modal fade" id="Addrelation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div style="background:#fff;" class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span> <i class="fa fa-times"></i> </span></button>
+            <h4>Add Relation</h4>
+        </div>
+
+        <div class="modal-body">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="NewRelation.Text" placeholder="Add new" aria-describedby="basic-addon2">
+                <span class="input-group-addon" id="basic-addon2" ng-click="AddnewToPeople()"> <i class="fa fa-check"></i> </span>
             </div>
         </div>
 
-        <!--<a ng-click="GoToPrev()" id="prev"></a>
-        <a ng-click="GoToNext()" id="next"></a>-->
     </div>
 
+    <div class="modal fade" id="Addplace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div style="background:#fff;" class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span> <i class="fa fa-times"></i> </span></button>
+            <h4>Add Place</h4>
+        </div>
+
+        <div class="modal-body">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="NewPlace.Text" placeholder="Add new" aria-describedby="basic-addon2">
+                <span class="input-group-addon" id="basic-addon2" ng-click="AddnewToPlaces()"><i class="fa fa-check"></i></span>
+            </div>
+        </div>
+
+    </div>
+
+    
+<div class="modal fade" id="AddName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
 
-
-
-</div>
-
-
-<!--ng-style="{'height':dataarea}"-->
-
-<div ng-style="{'height':tableheight}" class="dataarea" style="display:none;">
-
-    <div ng-show="Contacts.length>0" class="addedrecord">
-        <ul class="list-group">
-            <li class="list-group-item" ng-repeat="_obj in GetFiltered(Contacts)">
-
-                <div class="row">
-                    <div class="col-xs-8">
-                        <span style="font-size:19px;" class="{{GetColorClass(_obj.gender)}}">
-                            {{_obj.firstName}} {{_obj.lastName}}
-                        </span><br />
-                        <small> {{_obj.places}}</small> <br />
-                        <small>{{_obj.Relations}}</small>
-                    </div>
-                    <div class="col-xs-4">
-
-                        <div class="align-right">
-                            <a class="btn btn-danger pin">
-                                <i class="fa fa-thumb-tack"></i>
-                            </a>
-                        </div>
-
-                        <div class="align-right">
-                            <a class="btn btn-danger" ng-click="DeleteRecord(_obj.id)">
-                                <i class="fa fa-times"></i>
-                            </a>
-                        </div>
-
-
-
-                    </div>
-                </div>
-
-
-
-
-
+    <div class="modal-body">
+        <ul>
+            <li>
+                <a ng-click="capturePhotoNew();"> <i class="fa fa-camera"></i> Capture Photo</a>
             </li>
+            <li>
 
-
+                <a ng-click="getPhoto()"><i class="fa fa-picture-o"></i> From Photo Library</a>
+            </li>
         </ul>
     </div>
 
-    <br /><br />
-
-
-
-
+    
 
 </div>
 
-<!--ng-style="{'height':bottomarea, 'line-height':bottomarea,}"-->
-
-<div class="bottomarea" ng-click="insertRecord()">
-    <a>
-        <i class="fa fa-check"></i> Done
-    </a>
-</div>
-
-
-<div class="modal fade" id="Addrelation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div style="background:#fff;" class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span> <i class="fa fa-times"></i> </span></button>
-        <h4>Add Relation</h4>
-    </div>
-
-    <div class="modal-body">
-        <div class="input-group">
-            <input type="text" class="form-control" ng-model="NewRelation.Text" placeholder="Add new" aria-describedby="basic-addon2">
-            <span class="input-group-addon" id="basic-addon2" ng-click="AddnewToPeople()"> <i class="fa fa-check"></i> </span>
+    <div style="top:15%;" class="modal fade" id="Allrelation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div style="background:#fff;" class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span> <i class="fa fa-times"></i> </span></button>
+            <h4>All relations</h4>
         </div>
-    </div>
 
-</div>
+        <div class="modal-body">
+            <div class="relations">
 
-<div class="modal fade" id="Addplace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div style="background:#fff;" class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span> <i class="fa fa-times"></i> </span></button>
-        <h4>Add Place</h4>
-    </div>
+                <ul>
+                    <li ng-click="AddtoContactPeople(_obj.Text)" ng-repeat="_obj in RelationTypes" ng-if="_obj.Type==1">
+                        <div class="waves-effect relationicon">
+                            <i class="fa fa-users"></i>
+                        </div>
 
-    <div class="modal-body">
-        <div class="input-group" >
-            <input type="text" class="form-control" ng-model="NewPlace.Text" placeholder="Add new" aria-describedby="basic-addon2">
-            <span class="input-group-addon" id="basic-addon2" ng-click="AddnewToPlaces()"><i class="fa fa-check"></i></span>
+                        <a>
+
+                            {{_obj.Text}}
+                        </a>
+                    </li>
+
+                    <li ng-click="AddtoContactPeople(_obj.Text)" ng-repeat="_obj in RelationTypes" ng-if="_obj.Type==2">
+                        <div class="waves-effect relationicon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <a>{{_obj.Text}}</a>
+                    </li>
+
+
+                </ul>
+
+            </div>
         </div>
+
     </div>
 
-</div>
 
-<div class="modal fade" id="AddName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div style="background:#fff;" class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span> <i class="fa fa-times"></i> </span></button>
-        <h4>Add User</h4>
-    </div>
 
-    <div class="modal-body">
-        <div class="row">
-         
+    <div style="top:15%;" class="modal fade" id="Allplaces" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div style="background:#fff;" class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span> <i class="fa fa-times"></i> </span></button>
+            <h4>All places</h4>
         </div>
-    </div>
 
-</div>
+        <div class="modal-body">
+            <div class="relations">
 
-<div style="top:15%;" class="modal fade" id="Allrelation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div style="background:#fff;" class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span> <i class="fa fa-times"></i> </span></button>
-        <h4>All relations</h4>
-    </div>
+                <ul>
+                    <li ng-click="AddtoContactPlace(_obj.Text)" ng-repeat="_obj in PlacesTypes" ng-if="_obj.Type==1">
+                        <div class="waves-effect relationicon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
 
-    <div class="modal-body">
-        <div class="relations">
+                        <a>
 
-            <ul>
-                <li ng-click="AddtoContactPeople(_obj.Text)" ng-repeat="_obj in RelationTypes" ng-if="_obj.Type==1">
-                    <div class="waves-effect relationicon">
-                        <i class="fa fa-users"></i>
-                    </div>
+                            {{_obj.Text}}
+                        </a>
+                    </li>
 
-                    <a>
-
-                        {{_obj.Text}}
-                    </a>
-                </li>
-
-                <li ng-click="AddtoContactPeople(_obj.Text)" ng-repeat="_obj in RelationTypes" ng-if="_obj.Type==2">
-                    <div class="waves-effect relationicon">
-                        <i class="fa fa-users"></i>
-                    </div>
-                    <a>{{_obj.Text}}</a>
-                </li>
+                    <li ng-click="AddtoContactPlace(_obj.Text)" ng-repeat="_obj in PlacesTypes" ng-if="_obj.Type==2">
+                        <div class="waves-effect relationicon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <a>{{_obj.Text}}</a>
+                    </li>
 
 
-            </ul>
+                </ul>
 
+            </div>
         </div>
+
     </div>
-
-</div>
-
-
-
-<div style="top:15%;" class="modal fade" id="Allplaces" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div style="background:#fff;" class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span> <i class="fa fa-times"></i> </span></button>
-        <h4>All places</h4>
-    </div>
-
-    <div class="modal-body">
-        <div class="relations">
-
-            <ul>
-                <li ng-click="AddtoContactPlace(_obj.Text)" ng-repeat="_obj in PlacesTypes" ng-if="_obj.Type==1">
-                    <div class="waves-effect relationicon">
-                        <i class="fa fa-map-marker"></i>
-                    </div>
-
-                    <a>
-
-                        {{_obj.Text}}
-                    </a>
-                </li>
-
-                <li ng-click="AddtoContactPlace(_obj.Text)" ng-repeat="_obj in PlacesTypes" ng-if="_obj.Type==2">
-                    <div class="waves-effect relationicon">
-                        <i class="fa fa-map-marker"></i>
-                    </div>
-                    <a>{{_obj.Text}}</a>
-                </li>
-
-
-            </ul>
-
-        </div>
-    </div>
-
-</div>
 
 
 

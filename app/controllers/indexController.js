@@ -40,7 +40,6 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
             default:
                 $scope.CurrentPage = "";
         }
-        $scope.$apply();
 
 
 
@@ -55,7 +54,6 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
         }
 
 
-        initIndex();
 
     });
 

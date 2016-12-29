@@ -1,4 +1,36 @@
-﻿
+﻿<style>
+    .bottomarea {
+        background-color: #3F51B5;
+        background: #8BC34A;
+        text-align: center;
+        color: #fff;
+        font-size: 17px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 42px;
+        line-height: 42px;
+        width: 100%;
+    }
+
+        .bottomarea i {
+            font-size: 17px;
+        }
+
+        .bottomarea .btn {
+            height: auto;
+            line-height: normal;
+            padding: 4px;
+            font-size: 17px;
+            text-transform: none;
+            background-color: #3F51B5;
+        }
+
+            .bottomarea .btn i {
+                font-size: 17px;
+            }
+</style>
 
 
 <div>
@@ -11,19 +43,23 @@
 
 <br />
 <br />
-
-<div class="row">
-
-
-    <a class="col-xs-12 purplebtn btn" ng-class="getClass('/more')" href="#/more"> <i class="fa fa-th-list"></i> More</a>
-
-
-    <a class="col-xs-12 purplebtn btn" ng-class="getClass('/find')" href="#/find"> <i class="fa fa-search"></i> Get</a>
-
-
-    <a class="col-xs-12 purplebtn btn" ng-class="getClass('/status')" href="#/status"><i class="fa fa-plus"></i>Add</a>
-
-
-  
-
+<div class="btn-group btn-group-justified bottomarea">
+    <a class="btn btn-primary" ng-class="getClass('/more')" href="#/more"><i class="fa fa-th-list"></i> More</a>
+    <a class="btn btn-primary" ng-class="getClass('/find')" href="#/find"><i class="fa fa-search"></i> Get</a>
+    <a class="btn btn-primary" ng-class="getClass('/status')" href="#/status"><i class="fa fa-plus"></i>Add</a>
 </div>
+<!--<div class="row">
+
+
+    <a class="col-xs-4 purplebtn btn" ng-class="getClass('/more')" href="#/more"> <i class="fa fa-th-list"></i> More</a>
+
+
+    <a class="col-xs-4 purplebtn btn" ng-class="getClass('/find')" href="#/find"> <i class="fa fa-search"></i> Get</a>
+
+
+    <a class="col-xs-4 purplebtn btn" ng-class="getClass('/status')" href="#/status"><i class="fa fa-plus"></i>Add</a>
+
+
+
+
+</div>-->

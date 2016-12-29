@@ -72,10 +72,18 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
     var mySwiper
     var swiper
+    $("body").on("click", function (e) {
 
+        if ($(e.target).hasClass('modal-backdrop')) {
+
+        
+
+                $('#AddName').modal('hide');
+
+        }
+    });
 
     $scope.openNamebox = function () {
-        $scope.addupdatename = !$scope.addupdatename;
         $("#AddName").modal('show');
         CheckScopeBeforeApply();
     }
@@ -587,7 +595,56 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
     }
 
+    $scope.onPhotoDataSuccessNew = function (imageData) {
+        var _ImgObj = { ImageID: 0, FileName: "", bytestring: "", Size: 0 }
 
+        imageData = "data:image/jpeg;base64," + imageData;
+
+        $scope.ContactObject.imagepath = imageData;
+
+        CheckScopeBeforeApply();
+
+        // log.success("Images captured length"+$scope.ImageList.length);
+
+    }
+
+    $scope.onFail = function (message) {
+
+        log.error('Failed because: ' + message);
+    }
+    $scope.capturePhotoNew = function () {
+        navigator.camera.getPicture($scope.onPhotoDataSuccessNew, $scope.onFail, {
+            quality: 50,
+            targetWidth: 120,
+            targeHeight: 120,
+            correctOrientation: true,
+            destinationType: destinationType.DATA_URL,
+            allowEdit: true,
+            saveToPhotoAlbum: true,
+        });
+    }
+
+
+    $scope.onPhotoURISuccessNew = function (imageData) {
+        var _ImgObj = { ImageID: 0, FileName: "", bytestring: "", Size: 0 }
+
+        imageData = "data:image/jpeg;base64," + imageData;
+
+        $scope.ContactObject.imagepath = imageData;
+
+        CheckScopeBeforeApply();
+
+    }
+
+    $scope.getPhoto = function (source) {
+        // Retrieve image file location from specified source
+        navigator.camera.getPicture($scope.onPhotoURISuccessNew, $scope.onFail, {
+            quality: 50,
+            destinationType: destinationType.DATA_URL,
+            correctOrientation: true,
+            sourceType: pictureSource.PHOTOLIBRARY
+        });
+    }
 
     $scope.keepformopen = function (check) {
 
