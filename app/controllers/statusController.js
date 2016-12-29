@@ -620,7 +620,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             correctOrientation: true,
             destinationType: destinationType.DATA_URL,
             allowEdit: true,
-            saveToPhotoAlbum: true,
+            //saveToPhotoAlbum: true,
         });
     }
 
