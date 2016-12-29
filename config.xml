@@ -62,7 +62,7 @@
   
   
   <preference name="StatusBarOverlaysWebView" value="false" />
-  <preference name="StatusBarBackgroundColor" value="#673AB7" />
+  <preference name="StatusBarBackgroundColor" value="#3F51B5" />
   <preference name="StatusBarStyle" value="lightcontent" />
   <preference name="KeyboardDisplayRequiresUserAction" value="false" />
 <preference name="HideKeyboardFormAccessoryBar" value="false"/>
