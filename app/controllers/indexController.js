@@ -20,7 +20,7 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
     $(document)
   .on('focus', 'input,select', function () {
 
-      //  $cordovaKeyboard.disableScroll(true);
+       $cordovaKeyboard.disableScroll(true);
 
 
 
@@ -30,6 +30,7 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
   })
   .on('blur', 'input,select', function () {
 
+      $cordovaKeyboard.disableScroll(false);
       $('.bottomarea').css("position", "fixed");
       $('.topheader').css('position', 'fixed');
 
