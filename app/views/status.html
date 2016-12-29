@@ -39,10 +39,12 @@
             </div>
             <div class="col-xs-4">
 
-                <div ng-click="openNamebox()" class="waves-effect">
-                    <img src="img/male.jpg" ng-if="ContactObject.imagepath=='' && (ContactObject.gender=='M'||ContactObject.gender=='')" />
-                    <img src="img/female.jpg" ng-if="ContactObject.imagepath=='' && ContactObject.gender=='F'" />
-                    <img src="{{ContactObject.imagepath}}" ng-if="ContactObject.imagepath!=''"  /></div>
+                <div ng-click="openNamebox()" class="waves-effect picture">
+                    <div class="waves-effect male  gender" ng-if="ContactObject.imagepath=='' && (ContactObject.gender=='M'||ContactObject.gender=='')"><i class="fa fa-male"></i></div>
+
+                    <div class="female gender" ng-if="ContactObject.imagepath=='' && ContactObject.gender=='F'"><i class="fa fa-female" /></div> 
+                    <img src="{{ContactObject.imagepath}}" ng-if="ContactObject.imagepath!=''" />
+                </div>
 
             </div>
         </div>

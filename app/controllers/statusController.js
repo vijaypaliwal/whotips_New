@@ -2,7 +2,7 @@
 app.controller('statusController', ['$scope', 'localStorageService', 'authService', '$location', 'log', function ($scope, localStorageService, authService, $location, log) {
 
 
-  
+
 
     $scope.mainObjectToSend = [];
     $scope.ContactObject = { id: 0, firstName: "", lastName: "", email: "", gender: "", places: "", AgeType: 0, imagepath: "", Relations: "" };
@@ -20,8 +20,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
 
     $scope.$watch('IsDontknow', function () {
-        if ($scope.IsDontknow == true)
-        {
+        if ($scope.IsDontknow == true) {
             $scope.ContactObject.firstName = "";
 
         }
@@ -33,7 +32,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.RelationTypes = [{ Type: 1, Text: "Family" },
     { Type: 1, Text: "Brother" }, { Type: 1, Text: "Father" },
     { Type: 1, Text: "Mother" }, { Type: 1, Text: "Sister" },
-   
+
     ]
 
     $scope.PlacesTypes = [{ Type: 1, Text: "Place 1" },
@@ -76,9 +75,9 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
         if ($(e.target).hasClass('modal-backdrop')) {
 
-        
 
-                $('#AddName').modal('hide');
+
+            $('#AddName').modal('hide');
 
         }
     });
@@ -256,7 +255,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
 
     $scope.insertRecord = function () {
-        if ($scope.IsDontknow==false && $.trim($scope.ContactObject.firstName) == '') {
+        if ($scope.IsDontknow == false && $.trim($scope.ContactObject.firstName) == '') {
             alert("Please enter Name");
             $scope.GotoIndex(3);
         }
@@ -273,8 +272,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
     }
 
-    $scope.GetColorClass=function(_G)
-    {
+    $scope.GetColorClass = function (_G) {
         var _class = _G == "M" ? "maleColor" : "femaleColor";
         return _class
     }
@@ -283,23 +281,22 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         deleteRecord(id);
     }
 
-    $scope.FilterByType=function(_type,_array)
-    {
+    $scope.FilterByType = function (_type, _array) {
         switch (_type) {
             case 1:
-            
+
                 _array = jQuery.grep(_array, function (el) {
                     return el.gender == $scope.ContactObject.gender;
                 });
                 break;
             case 2:
-                
+
                 _array = jQuery.grep(_array, function (el) {
                     return el.places.indexOf($scope.ContactObject.places) !== -1;
                 });
                 break;
             case 3:
-                
+
                 _array = jQuery.grep(_array, function (el) {
                     return el.Relations.indexOf($scope.ContactObject.Relations) !== -1;
                 });
@@ -308,11 +305,11 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             case 4:
 
                 _array = jQuery.grep(_array, function (el) {
-                    return el.AgeType==$scope.ContactObject.AgeType;
+                    return el.AgeType == $scope.ContactObject.AgeType;
                 });
                 break;
 
-                
+
             default:
 
         }
@@ -329,8 +326,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         $("#Allplaces").modal('show');
     }
 
-    $scope.GetFiltered=function(_array)
-    {
+    $scope.GetFiltered = function (_array) {
         var _TempArray = [];
         var _isChanged = false;
         var _TempArray2 = _array;
@@ -338,10 +334,8 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             var _isGender = false;
             var _isplaces = false;
             var _isRelations = false;
-            if($.trim($scope.ContactObject.gender)!="")
-            {
-                if(_array[i].gender==$scope.ContactObject.gender)
-                {
+            if ($.trim($scope.ContactObject.gender) != "") {
+                if (_array[i].gender == $scope.ContactObject.gender) {
                     _isChanged = true;
                     _TempArray2 = $scope.FilterByType(1, _TempArray2);
 
@@ -354,7 +348,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
                     _isChanged = true;
                     _TempArray2 = $scope.FilterByType(2, _TempArray2);
                 }
-              
+
             }
 
             if ($.trim($scope.ContactObject.Relations) != "") {
@@ -437,7 +431,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             }
 
             CheckScopeBeforeApply();
-            
+
         }
         else {
             alert("please enter some value");
@@ -500,8 +494,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
                 $scope.CurrentActiveClass = swiperHere.activeIndex;
                 CheckScopeBeforeApply();
-                if (swiperHere.activeIndex==4)
-                {
+                if (swiperHere.activeIndex == 4) {
                     $("#firstname").focus();
                 }
                 $cordovaKeyboard.hideAccessoryBar(false);
@@ -618,7 +611,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             targetWidth: 120,
             targeHeight: 120,
             correctOrientation: true,
-            destinationType: destinationType.DATA_URL,
+            destinationType: Camera.destinationType.DATA_URL,
             allowEdit: true,
             saveToPhotoAlbum: true,
         });
@@ -640,7 +633,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         // Retrieve image file location from specified source
         navigator.camera.getPicture($scope.onPhotoURISuccessNew, $scope.onFail, {
             quality: 50,
-            destinationType: destinationType.DATA_URL,
+            destinationType: Camera.destinationType.DATA_URL,
             correctOrientation: true,
             sourceType: pictureSource.PHOTOLIBRARY
         });
