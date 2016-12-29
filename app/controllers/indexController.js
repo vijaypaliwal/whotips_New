@@ -16,13 +16,8 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
     $scope.tableheight = tableheight.toString() + "px";
 
-
-    function ChangePathMethod() {
-        alert("change path called");
-            $cordovaKeyboard.hideAccessoryBar(false);
-            $cordovaKeyboard.disableScroll(true);
-
-    }
+    $scope.CurrentPage = "Add";
+  
     
     $scope.$on('$locationChangeStart', function (event) {
 
@@ -30,18 +25,34 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
         var _path = $location.path();
 
-        
+
+      
+        switch (_path) {
+            case "/status":
+                $scope.CurrentPage="Add"
+                break;
+            case "/find":
+                $scope.CurrentPage = "Find"
+                break;
+            case "/more":
+                $scope.CurrentPage = "More"
+                break;
+            default:
+                $scope.CurrentPage = "";
+        }
+        $scope.$apply();
+
+
+
 
         if (_path == "/status") {
-           
+
             $cordovaKeyboard.disableScroll(true);
         }
         else {
-           
+
             $cordovaKeyboard.disableScroll(false);
         }
-
-      
 
 
         initIndex();
@@ -87,10 +98,7 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
      $scope.bottomarea = bottomarea.toString() + "px";
   
-     setTimeout(function () {
-         ChangePathMethod();
-
-     },0)
+   
   
 
     $scope.logOut = function () {
@@ -199,6 +207,10 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
     $scope.getClass = function (path) {
         return ($location.path().substr(0, path.length) === path) ? 'active' : '';
     }
+    $scope.getActiveClass = function (path) {
+        return ($location.path().substr(0, path.length) === path) ? 'none' : '';
+    }
+
     $scope.authentication = authService.authentication;
 
     $scope.GetProfileData = function () {

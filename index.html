@@ -21,49 +21,127 @@
     <link href="content/css/toastr.css" rel="stylesheet" />
     <link href="content/css/simple-sidebar.css" rel="stylesheet" />
     <link href="content/css/idangerous.swiper.css" rel="stylesheet" />
-  
+
     <link href="content/css/animate.min.css" rel="stylesheet" />
-   
-  
+
+
 
     <style>
 
-
-        .maleColor {
-            color: #9C27B0;
+        .age ul li a; {
+            color: #000;
+            font-size: 11px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-inline-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
         }
 
+        .age {
+            text-align: center;
+            font-size: 14px;
+            line-height: 25px;
+            margin-top: 12px;
+        }
+
+            .age ul {
+                display: inline-block;
+            }
+
+                .age ul li {
+                    float: left;
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    width: 60px;
+                    text-align: center;
+                }
+
+        .age {
+            text-align: center;
+            font-size: 14px;
+            line-height: 25px;
+            margin-top: 12px;
+        }
+
+        .ageplaceicon {
+            height: 32px;
+            width: 32px;
+            line-height: 32px;
+            background: #9C27B0;
+            border-radius: 100%;
+            display: block;
+            color: #fff;
+            margin: 0 auto;
+        }
+
+            .ageplaceicon i {
+                font-size: 15px;
+            }
+
+        .sameasme {
+            width: 42px;
+            height: 42px;
+            line-height: 42px;
+            margin-bottom: 8px;
+        }
+
+            .sameasme i {
+                font-size: 19px;
+            }
+
+        .olderthenme {
+            width: 52px;
+            height: 52px;
+            line-height: 52px;
+        }
+
+            .olderthenme i {
+                font-size: 25px;
+            }
+
+        .youngerthenme; {
+            margin-bottom: 16px;
+        }
+        .maleColor {
+            color: #3f51b5;
+        }
+          .purplebtn{
+                background: rgb(81,45,168) !important;
+            color: white;
+            margin-top: 40px;
+            }
         .femaleColor {
             color: #E91E63;
         }
 
-        .row
-        {
-            margin-bottom:0px;
+        .row {
+            margin-bottom: 0px;
         }
 
 
-      .topheader {
-    color: #fff;
-    font-size: 15px;
-    width: 100%;
-    height: 45px;
-    line-height: 45px;
-    text-align: center;
-    top: 0;
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    background: #673AB7;
-}
+        .topheader {
+            color: #fff;
+            font-size: 15px;
+            width: 100%;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            top: 0;
+            position: fixed;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            background: #3F51B5;
+        }
 
 
 
         .resultarea {
             background: #e6e6e6;
             position: fixed;
-            top: 78px;
+            top: 50px;
             border-bottom: 1px solid rgba(204, 204, 204, 0.62);
             width: 100%;
             padding-top: 5px;
@@ -74,23 +152,22 @@
 
 
         .dummydiv {
-            background: #e6e6e6;
-            width: 100%;
-            height: 100px;
-            position: fixed;
-            z-index: 10;
-            top: 120px;
+            background: #000;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    z-index: 100;
+    top: 160px;
+    left: 0px;
         }
-        
-        
-         .title {
-           
-           
+
+
+        .title {
             font-size: 14px;
         }
-        
-        
-         .text {
+
+
+        .text {
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-inline-box;
@@ -98,239 +175,216 @@
             -webkit-box-orient: vertical;
             word-break: break-all;
             margin-bottom: 0;
-            font-size: 15px;
+            font-size: 17px;
             line-height: 18px;
             color: #8c8c8c;
         }
 
-     .selectionarea {
-  
-    padding: 7px;
-    overflow-y: auto;
-  
-    overflow-x: hidden;
-    margin-top: 205px;
-      z-index:100;
-}
-
-     body
-     {
-         overflow:hidden;
-     }
-
-
-       .selectionarea h4
-       {
-           display:block;
-       }
-
-       .dataarea
-       {
-          
-           overflow-y: auto;
-          overflow-x: hidden;
-          margin-top:160px;
-       }
-
-
-      
-
-  .bottomarea {
-    background: #8BC34A;
-    text-align: center;
-    color: #fff;
-    font-size: 17px;
-    position: fixed;
-    bottom: 0;
-    left:0;
-    right:0;
-    height:42px;
-    line-height: 42px;
-    width: 100%;
-}
-
-      .bottomarea i{
-          font-size:17px;
-      }
-
-        .bottomarea .btn
-       {
-         height:auto;
-         line-height:normal;
-       
-    padding: 4px;
-    font-size: 12px;
-    text-transform: none;
-       }
-
-        .bottomarea .btn i
-        {
-              font-size: 12px;
+        .selectionarea {
+            padding: 7px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin-top: 205px;
+            z-index: 100;
         }
 
-        html, body { height: 100%; padding: 0; margin: 0; font-family:Verdana; }
-
-        .container
-        {
-            width:100%;
-            background:#e6e6e6;
-            max-width:initial;
+        body {
+            overflow: hidden;
         }
 
-        .resultcontent
-        {
-           
-            padding:8px;
-           
-        
-          
+
+        .selectionarea h4 {
+            display: block;
         }
 
-        .resultcontent img
-        {
-            border-radius:100%;
-            height:80px;
-            width:80px;
+        .dataarea {
+            overflow-y: auto;
+            overflow-x: hidden;
+            margin-top: 40px;
         }
 
 
 
-       
 
-      .profilepic i{
-          font-size:25px;
-      }
+        .bottomarea {
+            background: #8BC34A;
+            text-align: center;
+            color: #fff;
+            font-size: 17px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 42px;
+            line-height: 42px;
+            width: 100%;
+        }
 
-      .center{
-          text-align:center;
-      }
+            .bottomarea i {
+                font-size: 17px;
+            }
 
+            .bottomarea .btn {
+                height: auto;
+                line-height: normal;
+                padding: 4px;
+                font-size: 12px;
+                text-transform: none;
+            }
 
-    .genderarea {
-    text-align: center;
-    margin-top: 27px;
-    color: #000;
-    font-family: cursive;
-}
+                .bottomarea .btn i {
+                    font-size: 12px;
+                }
 
-    .genderarea .gender {
-    height: 60px;
-    width: 60px;
-    margin: 0 auto;
-    text-align: center;
-    background: #6f9a37;
-    line-height: 60px;
-    border-radius: 100%;
-    color:#fff;
-}
+        html, body {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            font-family: Verdana;
+        }
 
+        .container {
+            width: 100%;
+            background: #e6e6e6;
+            max-width: initial;
+        }
 
-    .male.gender
-    {
-          background: #9C27B0;
-    }
+        .resultcontent {
+            padding: 8px;
+        }
 
-     .female.gender
-    {
-          background: #E91E63;
-    }
-
-
-    .gender p{
-        color:#fff;
-    }
-
-    .genderlike
-    {
-     
-        text-align:center;
-        margin-top:20px;
-    }
-
-    .relations
-    {
-        text-align: center;
-    font-size: 14px;
-    line-height: 25px;
-    margin-top:12px;
-    }
-
-    .addrelation {
-    background: #6f9a37;
-    color: #fff;
-    height: 40px;
-    width: 40px;
-    line-height: 37px;
-    margin: 0 auto;
-    border-radius: 100%;
-    font-size: 20px;
-    text-align: center;
-    /*position: fixed;
-     top:150px;
-    right: 16px;
-    z-index: 120;*/
-}
-
-    .addmore
-
-    {
-         background: #2196F3;
-    color: #fff;
-    height: 40px;
-    width: 40px;
-    line-height: 37px;
-    margin: 0 auto;
-    border-radius: 100%;
-    font-size: 20px;
-    text-align: center;
-    /*position: fixed;
-     top:150px;
-    right: 65px;
-    z-index: 120;*/
-    }
-
-    .addmore span
-    {
-        position: absolute;
-    font-size: 12px;
-    margin-top: -8px;
-    }
-
-
-    .modal
-    {
-        background:#fff;
-        bottom:auto;
-        top:35%;
-        overflow:hidden;
-    }
-
-    .modal h4{
-
-        margin-top:0;
-        margin-bottom:0;
-    }
-
-
-      .swiper-container {
-    width: 100%;
- 
-    position: fixed;
-    z-index: 100;
-    background: #e6e6e6;
-    height:155px !important;
-    left:0;
-}
-
-        
+            .resultcontent img {
+                border-radius: 100%;
+                height: 80px;
+                width: 80px;
+            }
 
 
 
-    .input-group-addon
-    {
+
+
+        .profilepic i {
+            font-size: 25px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+
+        .genderarea {
+            text-align: center;
+            margin-top: 27px;
+            color: #000;
+            font-family: cursive;
+        }
+
+            .genderarea .gender {
+                height: 60px;
+                width: 60px;
+                margin: 0 auto;
+                text-align: center;
+                background: #6f9a37;
+                line-height: 60px;
+                border-radius: 100%;
+                color: #fff;
+            }
+
+
+        .male.gender {
+            background: #3f51b5;
+        }
+
+        .female.gender {
+            background: #E91E63;
+        }
+
+
+        .gender p {
+            color: #fff;
+        }
+
+        .genderlike {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .relations {
+            text-align: center;
+            font-size: 14px;
+            line-height: 25px;
+            margin-top: 12px;
+        }
+
+        .addrelation {
+            background: #6f9a37;
+            color: #fff;
+            height: 40px;
+            width: 40px;
+            line-height: 37px;
+            margin: 0 auto;
+            border-radius: 100%;
+            font-size: 20px;
+            text-align: center;
+            /*position: fixed;
+         top:150px;
+        right: 16px;
+        z-index: 120;*/
+        }
+
+        .addmore {
+            background: #2196F3;
+            color: #fff;
+            height: 40px;
+            width: 40px;
+            line-height: 37px;
+            margin: 0 auto;
+            border-radius: 100%;
+            font-size: 20px;
+            text-align: center;
+            /*position: fixed;
+         top:150px;
+        right: 65px;
+        z-index: 120;*/
+        }
+
+            .addmore span {
+                position: absolute;
+                font-size: 12px;
+                margin-top: -8px;
+            }
+
+
+        .modal {
+            background: #fff;
+            bottom: auto;
+            top: 35%;
+            overflow: hidden;
+        }
+
+            .modal h4 {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+
+        .swiper-container {
+            width: 100%;
+            position: fixed;
+            z-index: 100;
+            background: #e6e6e6;
+            height: 155px !important;
+            left: 0;
+        }
+
+
+
+
+
+        .input-group-addon {
             background: #459c45;
-    color: #fff;
-    }
+            color: #fff;
+        }
 
         .list-group-item:first-child {
             border-top-left-radius: 4px;
@@ -347,135 +401,122 @@
             top: 25%;
         }
 
-      .dataarea .btn-danger {
-    color: #fff;
-   
-    text-align: center;
-    text-transform: capitalize;
-    padding-left: 10px;
-    background-color: #f04124;
-    padding-right: 10px;
-    border-radius:100%;
-    height:30px;
-    width:30px;
-    padding:0px;
-    line-height:30px;
-}
-
-        .dataarea .btn-danger i
-        {
-            font-size:14px;
+        .dataarea .btn-danger {
+            color: #fff;
+            text-align: center;
+            text-transform: capitalize;
+            padding-left: 10px;
+            background-color: #f04124;
+            padding-right: 10px;
+            border-radius: 100%;
+            height: 30px;
+            width: 30px;
+            padding: 0px;
+            line-height: 30px;
         }
-         .btn-danger.pin {
+
+            .dataarea .btn-danger i {
+                font-size: 14px;
+            }
+
+        .btn-danger.pin {
             background-color: #009688;
             margin-bottom: 5px;
         }
 
-        .align-right
-        {
-            text-align:right;
+        .align-right {
+            text-align: right;
         }
 
 
 
-    .relations ul
-    
-    {
-        display: inline-block;
-    }
+        .relations ul {
+            display: inline-block;
+        }
 
-   .relations ul li {
-    float: left;
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 60px;
-    text-align: center;
-    /* text-align: -webkit-center; */
-}
+            .relations ul li {
+                float: left;
+                margin-left: 10px;
+                margin-right: 10px;
+                width: 60px;
+                text-align: center;
+                /* text-align: -webkit-center; */
+            }
 
 
-   .relationicon {
-    height: 32px;
-    width: 32px;
-    line-height: 32px;
-    background: #FFC107;
-    border-radius: 100%;
-    display: block;
-    margin:0 auto;
-    color: #fff;
-}
+        .relationicon {
+            height: 32px;
+            width: 32px;
+            line-height: 32px;
+            background: #FFC107;
+            border-radius: 100%;
+            display: block;
+            margin: 0 auto;
+            color: #fff;
+        }
 
-    .relationicon i{
-        font-size:15px;
-    }
+            .relationicon i {
+                font-size: 15px;
+            }
 
         .placeicon {
-               height: 32px;
-    width: 32px;
-    line-height:32px;
-    background: #FF5722;
-    border-radius: 100%;
-    display: block;
-    color: #fff;
-    margin:0 auto;
-
+            height: 32px;
+            width: 32px;
+            line-height: 32px;
+            background: #FF5722;
+            border-radius: 100%;
+            display: block;
+            color: #fff;
+            margin: 0 auto;
         }
 
-         .placeicon i{
-        font-size:15px;
-    }
+            .placeicon i {
+                font-size: 15px;
+            }
 
-       .resultcontent  i
-         {
-             font-size:initial;
-         }
-
-     
-
-         .relations ul li a
-    
-    {
-        
-   color: #000;
-    font-size: 11px;
-       overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-inline-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    word-break: break-all;
-    }
-
-   .swiper-slide
-   {
-       height :auto !important;
-   }
-
-   .dataarea .form-group
-   {
-       margin-bottom: 10px;
-   }
-
-   .dataarea .form-control {
-    height: 36px;
-}
+        .resultcontent i {
+            font-size: initial;
+        }
 
 
 
-     .addedrecord p
-   {
-      font-size:15px;
-      margin-bottom:0;
-   }
+        .relations ul li a {
+            color: #000;
+            font-size: 11px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-inline-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+        }
 
-      .addedrecord small
-   {
-      font-size:13px !important;
-    color:#9a9a9a;
-   }
-        .list-group-item
-        {
-            padding:7px 7px;
+        .swiper-slide {
+            height: auto !important;
+        }
+
+        .dataarea .form-group {
+            margin-bottom: 10px;
+        }
+
+        .dataarea .form-control {
+            height: 36px;
+        }
+
+
+
+        .addedrecord p {
+            font-size: 15px;
+            margin-bottom: 0;
+        }
+
+        .addedrecord small {
+            font-size: 13px !important;
+            color: #9a9a9a;
+        }
+
+        .list-group-item {
+            padding: 7px 7px;
         }
 
         #next,
@@ -496,7 +537,7 @@
             left: 0px;
             left: 7px;
             margin-top: -60px;
-            z-index:100;
+            z-index: 100;
         }
 
         #next {
@@ -595,38 +636,35 @@
                 }
 
 
+
+        .backicon {
+            padding: 6px;
+            font-size: 33px;
+            position: fixed;
+            left: 0;
+        }
+        .none {
+            display:none;
+        }
     </style>
 
 
-  
+
 
 </head>
 <body data-ng-controller="indexController">
     <!-- Sidebar -->
-
     <!--ng-style="{'height':topheaderheight,'line-height':topheaderheight}"-->
-  
-    <div  class="topheader">
 
-        <span>Who Tips</span>
-
-    </div>
-
-    <div class="row tabbar">
-        <div class="col-md-12">
-
-            <a class="col-xs-4 " ng-class="getClass('/more')" href="#/more">More</a>
-
-
-            <a class="col-xs-4 " ng-class="getClass('/find')" href="#/find">Get</a>
-
-
-            <a class="col-xs-4" ng-class="getClass('/status')" href="#/status">Add</a>
-
-
-        </div>
+    <div class="topheader">
+        <a href="#/menu" ng-class="getActiveClass('/menu')">
+            <i class="fa fa-angle-left pull-left backicon"></i>
+        </a>
+        <span>Who Tips <span ng-if="CurrentPage!=''">- {{CurrentPage}}</span> </span>
 
     </div>
+
+    <!---->
 
 
     <div class="container">
@@ -635,19 +673,24 @@
         </div>
 
     </div>
+    <!--<div class="row tabbar">
+        <div class="col-md-12">
 
+            <a class="col-xs-4 " ng-class="getClass('/more')" href="#/more"> <i class="fa fa-th-list"></i>More</a>
+
+
+            <a class="col-xs-4 " ng-class="getClass('/find')" href="#/find"> <i class="fa fa-search"></i> Get</a>
+
+
+            <a class="col-xs-4" ng-class="getClass('/status')" href="#/status"> <i class="fa fa-plus"></i> Add</a>
+
+
+        </div>
+
+    </div>-->
 
     <!-- Sidebar -->
-
-    
-
-
     <!-- Right Sidebar -->
-    
-
-    
-
-
     <!-- 3rd party libraries -->
     <script src="scripts/jquery-1.11.0.min.js"></script>
 
@@ -693,9 +736,9 @@
     <script src="app/services/authService.js?v=2"></script>
     <!-- Load controllers -->
     <script src="app/controllers/indexController.js?v=2"></script>
-  
+
     <script src="app/controllers/statusController.js?v=2"></script>
-  
+
     <!-- Load custom filters -->
     <!-- Load custom directives -->
 

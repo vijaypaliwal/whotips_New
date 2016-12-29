@@ -250,6 +250,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.insertRecord = function () {
         if ($scope.IsDontknow==false && $.trim($scope.ContactObject.firstName) == '') {
             alert("Please enter Name");
+            $scope.GotoIndex(3);
         }
         else {
             insertRecord();
@@ -424,9 +425,11 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             if (_isAlreadyExist == false) {
 
                 $scope.RelationTypes.push({ Type: 1, Text: $scope.NewRelation.Text });
+                $scope.NewRelation.Text = "";
             }
+
             CheckScopeBeforeApply();
-            $("#Addrelation").modal('hide');
+            
         }
         else {
             alert("please enter some value");
@@ -448,6 +451,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             if (_isAlreadyExist == false) {
 
                 $scope.PlacesTypes.push({ Type: 1, Text: $scope.NewPlace.Text });
+                $scope.NewPlace.Text = "";
             }
 
 
@@ -487,6 +491,13 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
 
                 $scope.CurrentActiveClass = swiperHere.activeIndex;
+                CheckScopeBeforeApply();
+                if (swiperHere.activeIndex==4)
+                {
+                    $("#firstname").focus();
+                }
+                $cordovaKeyboard.hideAccessoryBar(false);
+                $cordovaKeyboard.disableScroll(true);
                 CheckScopeBeforeApply();
 
 

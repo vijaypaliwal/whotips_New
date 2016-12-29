@@ -1,9 +1,56 @@
 ﻿
 
 
-<div>
-    <h2>
-        Find content
 
-    </h2>
+
+
+<div class="dataarea">
+
+    <div>
+        <h4>
+            Find People
+
+        </h4>
+    </div>
+
+    <div ng-show="Contacts.length>0" class="addedrecord">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="_obj in GetFiltered(Contacts)">
+
+                <div class="row">
+                    <div class="col-xs-8">
+                        <span style="font-size:19px;" class="{{GetColorClass(_obj.gender)}}">
+                            {{_obj.firstName}} {{_obj.lastName}}
+                        </span><br />
+                        <small> {{_obj.places}}</small> <br />
+                        <small>{{_obj.Relations}}</small>
+                    </div>
+                    <div class="col-xs-4">
+
+                        <div class="align-right">
+                            <a class="btn btn-danger pin">
+                                <i class="fa fa-thumb-tack"></i>
+                            </a>
+                        </div>
+
+                        <div class="align-right">
+                            <a class="btn btn-danger" ng-click="DeleteRecord(_obj.id)">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
+
+
+            </li>
+
+
+        </ul>
+    </div>
 </div>

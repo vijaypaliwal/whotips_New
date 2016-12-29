@@ -18,7 +18,12 @@ app.config(function ($routeProvider) {
         controller: "statusController",
         templateUrl: "app/views/more.html"
     });
-    $routeProvider.otherwise({ redirectTo: "/status" });
+
+    $routeProvider.when("/menu", {
+        controller: "menuController",
+        templateUrl: "app/views/menu.html"
+    });
+    $routeProvider.otherwise({ redirectTo: "/menu" });
 
 });
 
