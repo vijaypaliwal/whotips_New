@@ -603,7 +603,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         $scope.ContactObject.imagepath = imageData;
 
         CheckScopeBeforeApply();
-
+        $("#AddName").modal('hide');
         // log.success("Images captured length"+$scope.ImageList.length);
 
     }
@@ -633,7 +633,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         $scope.ContactObject.imagepath = imageData;
 
         CheckScopeBeforeApply();
-
+        $("#AddName").modal('hide');
     }
 
     $scope.getPhoto = function (source) {
