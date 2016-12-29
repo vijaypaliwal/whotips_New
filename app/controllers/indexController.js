@@ -18,11 +18,9 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
 
     function ChangePathMethod() {
-        var _path = $location.path();
-        if (_path == "/status") {
+        alert("change path called");
             $cordovaKeyboard.hideAccessoryBar(false);
             $cordovaKeyboard.disableScroll(true);
-        }
 
     }
     
@@ -92,7 +90,7 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
      setTimeout(function () {
          ChangePathMethod();
 
-     },100)
+     },0)
   
 
     $scope.logOut = function () {
