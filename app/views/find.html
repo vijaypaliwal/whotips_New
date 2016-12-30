@@ -1,6 +1,46 @@
 ﻿
 
+<style>
+    .times {
+        position: absolute;
+        right: 10px;
+        margin-top: -45px;
+        margin-right: 12px;
+    }
+    .picture .gender {
+        height: 60px;
+        width: 60px;
+        margin: 0 auto;
+        text-align: center;
+        background: #2196F3;
+        line-height: 40px;
+        border-radius: 100%;
+        color: #fff;
+    }
 
+    .gender .male {
+        background: #2196F3;
+    }
+
+    .female.gender {
+        background: #E91E63 !important;
+    }
+    
+     .picture .fa-male {
+        font-size: 40px;
+        margin-top: 10px;
+    }
+    .picture .fa-female {
+        font-size: 40px;
+        margin-top: 10px;
+    }
+
+    .picture img {
+        border-radius: 100%;
+        height: 60px;
+        width: 60px;
+    }
+</style>
 
 
 
@@ -12,20 +52,34 @@
 
         </h4>
     </div>
-
+    <div class="input-field">
+        <input id="search" type="search" placeholder="Search" ng-model="SearchText" >
+        <label for="search" class="active" style="top:38px;">
+            <i class="fa fa-search"></i>
+        </label>
+    </div>
+    <i ng-if="SearchText!=''" ng-click="ClearSearchText()" class="times fa fa-times"></i>
     <div ng-show="Contacts.length>0" class="addedrecord">
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="_obj in Contacts">
+            <li class="list-group-item" ng-repeat="_obj in Contacts| filter :SearchText">
 
                 <div class="row">
-                    <div class="col-xs-8">
+                    <div class=" col-xs-3">
+                        <div ng-click="openNamebox()" class="waves-effect picture">
+                            <div class="waves-effect male  gender" ng-if="(_obj.imagepath==undefined ||_obj.imagepath=='' || _obj.imagepath==null)  && _obj.gender=='M'"><i class="fa fa-male"></i></div>
+                          
+                            <div class="female gender" ng-if="(_obj.imagepath==undefined || _obj.imagepath=='' || _obj.imagepath==null) && _obj.gender=='F'"><i class="fa fa-female" /></div>
+                            <img src="{{_obj.imagepath}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
                         <span style="font-size:19px;" class="{{GetColorClass(_obj.gender)}}">
                             {{_obj.firstName}} {{_obj.lastName}}
                         </span><br />
                         <small> {{_obj.places}}</small> <br />
                         <small>{{_obj.Relations}}</small>
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-xs-2">
 
                         <div class="align-right">
                             <a class="btn btn-danger pin">
@@ -43,6 +97,8 @@
 
                     </div>
                 </div>
+
+     
 
 
 

@@ -84,6 +84,16 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
      $scope.resultarea = resultarea.toString() + "px";
 
+     $scope.topdummyarea = (resultarea + 45).toString() + "px";
+
+     $scope.topselectionarea = (resultarea + 45 + 53).toString() + "px";
+
+     var headinglineheight = (resultarea * 13) / 100;
+
+     $scope.headinglineheight = headinglineheight.toString() + "px";
+
+
+
      var selectionarea = (bodyheight * 28) / 100;
 
      $scope.selectionarea = selectionarea.toString() + "px";

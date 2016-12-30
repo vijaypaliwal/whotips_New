@@ -268,14 +268,17 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         }
     }
 
-
+    $scope.ClearSearchText = function () {
+        $scope.SearchText = "";
+        CheckScopeBeforeApply();
+    }
     $scope.EditRecord = function (id) {
 
     }
 
     $scope.GetColorClass=function(_G)
     {
-        var _class = _G == "M" ? "maleColor" : "femaleColor";
+        var _class = _G == "F" ? "femaleColor" : "maleColor";
         return _class
     }
 
@@ -440,7 +443,9 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             
         }
         else {
-            alert("please enter some value");
+
+            log.error("Enter some value");
+        
         }
 
     }
@@ -467,7 +472,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             $("#Addplace").modal('hide');
         }
         else {
-            alert("please enter some value");
+            log.error("Enter some value");
         }
     }
 
@@ -626,7 +631,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             correctOrientation: true,
             destinationType: destinationType.DATA_URL,
             allowEdit: true,
-            //saveToPhotoAlbum: true,
+            saveToPhotoAlbum: true,
         });
     }
 

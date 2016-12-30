@@ -28,13 +28,51 @@
 
     <style>
 
-        #AddName ul li {
-            padding: 11px;
-            background: white;
-            border-bottom: 1px solid #999;
+
+        #AddName
+        {
+            bottom:0;
+            width:100%;
+            top:auto;
         }
 
-        .age ul li a; {
+            #AddName .modal-header {
+                background: #3F51B5;
+                text-align: center;
+                color:#fff;
+            }
+
+            #AddName h4
+            {
+                color:#fff;
+            }
+
+            #AddName .modal-body
+            {
+                padding-bottom:5px;
+            }
+            
+             #AddName ul li {
+                padding: 10px;
+                background: white;
+                border: 1px solid #ccc;
+                border-radius: 15px;
+                margin-bottom: 25px;
+                margin-top: 5px;
+            }
+
+                #AddName ul li a
+                {
+                    padding-left:15px;
+                    color:#333;
+                }
+                
+                
+                 #AddName ul li i {
+                    font-size: 17px;
+                }
+
+        .age ul li a {
             color: #000;
             font-size: 11px;
             overflow: hidden;
@@ -147,7 +185,7 @@
         .resultarea {
             background: #e6e6e6;
             position: fixed;
-            top: 50px;
+            top: 45px;
             border-bottom: 1px solid rgba(204, 204, 204, 0.62);
             width: 100%;
             padding-top: 5px;
@@ -161,15 +199,20 @@
             background: #e0e0e0;
             width: 100%;
             height: 53px;
-            position: absolute;
+            position: fixed;
             z-index: 100;
-            top: 190px;
-            left: 0px;
-            margin-top: 2px;
+         
+            left: 3px;
+           
         }
 
-
-        .title {
+        .form-control
+        {
+            padding-left:15px !important;
+        }
+        
+        
+         .title {
             font-size: 14px;
         }
 
@@ -183,8 +226,8 @@
             word-break: break-all;
             margin-bottom: 0;
             font-size: 17px;
-            line-height: 18px;
-            color: #8c8c8c;
+          
+           
             padding:3px;
         }
 
@@ -220,12 +263,15 @@
             color: #fff;
             font-size: 17px;
             position: fixed;
-            bottom: 0;
+            bottom: 5px;
             left: 0;
             right: 0;
             height: 42px;
             line-height: 42px;
-            width: 100%;
+           border-radius:5px;
+            width: 80%;
+            margin: 0 0 0 -40%;
+            left: 50%;
         }
 
             .bottomarea i {
@@ -259,6 +305,7 @@
 
         .resultcontent {
             padding: 8px;
+            padding-left:2px;
         }
 
             .resultcontent img {
@@ -421,9 +468,7 @@
             border-bottom-left-radius: 4px;
         }
 
-        #AddName {
-            top: 25%;
-        }
+      
 
         .dataarea .btn-danger {
             color: #fff;
