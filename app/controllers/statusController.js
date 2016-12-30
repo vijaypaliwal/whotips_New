@@ -280,6 +280,23 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         return _class
     }
 
+    $(document)
+  .on('focus', '#textdata', function () {
+
+      $cordovaKeyboard.close();
+
+
+
+
+
+  })
+  .on('blur', '#textdata', function () {
+
+      $cordovaKeyboard.close();
+
+
+  });
+
     
 
     $scope.DeleteRecord = function (id) {
