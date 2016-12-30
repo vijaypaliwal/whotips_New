@@ -257,7 +257,8 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
     $scope.insertRecord = function () {
         if ($scope.IsDontknow==false && $.trim($scope.ContactObject.firstName) == '') {
-            alert("Please enter Name");
+       
+            log.error("Please enter Name");
             $scope.GotoIndex(3);
         }
         else {
