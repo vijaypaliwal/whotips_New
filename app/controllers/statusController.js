@@ -280,6 +280,13 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         return _class
     }
 
+    $scope.GetBGColorClass = function (_G) {
+        var _class = _G == "F" ? "femaleBGColor" : "maleBGColor";
+        return _class
+    }
+
+    
+
     $scope.DeleteRecord = function (id) {
         deleteRecord(id);
     }

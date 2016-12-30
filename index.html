@@ -79,7 +79,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-inline-box;
-            -webkit-line-clamp: 1;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             word-break: break-all;
         }
@@ -150,17 +150,30 @@
             margin-bottom: 16px;
         }
         .maleColor {
-            color: #3f51b5;
+            color: #2196F3;
         }
+
+        .femaleColor {
+            color: #E91E63;
+        }
+
+        .maleBGColor {
+            background: #2196F3 !important;
+            color: white !important;
+        }
+
+        .femaleBGColor {
+            background: #E91E63 !important;
+            color: white !important;
+        }
+
+
           .purplebtn{
                 background: rgb(81,45,168) !important;
             color: white;
             margin-top: 40px;
             }
-        .femaleColor {
-            color: #E91E63;
-        }
-
+        
         .row {
             margin-bottom: 0px;
         }
@@ -408,12 +421,12 @@
         .addmore {
             background: #2196F3;
             color: #fff;
-            height: 40px;
-            width: 40px;
-            line-height: 37px;
+            height: 32px;
+            width: 32px;
+            line-height: 32px;
             margin: 0 auto;
             border-radius: 100%;
-            font-size: 20px;
+            font-size: 16px;
             text-align: center;
             /*position: fixed;
          top:150px;
@@ -425,6 +438,7 @@
                 position: absolute;
                 font-size: 12px;
                 margin-top: -8px;
+                right: 3px;
             }
 
 
@@ -499,19 +513,23 @@
             text-align: right;
         }
 
-
-
-        .relations ul {
+        .input-field
+        {
+            padding-right:5px;
+        }
+        
+        
+        
+         .relations ul {
             display: inline-block;
         }
 
             .relations ul li {
                 float: left;
-                margin-left: 10px;
-                margin-right: 10px;
-                width: 60px;
+                padding-left: 10px;
+                padding-right: 10px;
+                width: 25%;
                 text-align: center;
-                /* text-align: -webkit-center; */
             }
 
 
@@ -546,8 +564,8 @@
             }
 
         .resultcontent i {
-            font-size: initial;
-            width:18px;
+            /*font-size: initial;
+            width:18px;*/
         }
 
 
