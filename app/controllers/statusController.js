@@ -162,7 +162,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
         var iddelete = id.toString();
 
-        db.transaction(function (tx) { tx.executeSql(deleteStatement, [id], showRecords, onError); alert("Delete Sucessfully"); });
+        db.transaction(function (tx) { tx.executeSql(deleteStatement, [id], showRecords, onError); log.success("Delete Sucessfully"); });
 
         resetForm();
 
@@ -249,9 +249,6 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             });
 
         });
-
-
-
     }
 
 
@@ -259,7 +256,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         if ($scope.IsDontknow==false && $.trim($scope.ContactObject.firstName) == '') {
        
             log.error("Please enter Name");
-            $scope.GotoIndex(3);
+            $scope.GotoIndex(4);
         }
         else {
             insertRecord();
@@ -512,7 +509,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
                 {
                     $("#firstname").focus();
                 }
-                $cordovaKeyboard.hideAccessoryBar(false);
+              //  $cordovaKeyboard.hideAccessoryBar(false);
                 $cordovaKeyboard.disableScroll(true);
                 CheckScopeBeforeApply();
 
