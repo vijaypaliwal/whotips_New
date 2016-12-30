@@ -80,7 +80,7 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
      var _tmp= (bodyheight * 6) / 100 ;
      $scope.topheaderheight = _tmp.toString() + "px";
 
-     var resultarea = (bodyheight * 30) / 100;
+     var resultarea = (bodyheight * 27) / 100;
 
      $scope.resultarea = resultarea.toString() + "px";
 
