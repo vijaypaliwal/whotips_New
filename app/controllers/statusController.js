@@ -634,6 +634,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.onPhotoURISuccessNew = function (imageData) {
         var _ImgObj = { ImageID: 0, FileName: "", bytestring: "", Size: 0 }
 
+        alert(imageData);
         imageData = "data:image/jpeg;base64," + imageData;
 
         $scope.ContactObject.imagepath = imageData;
