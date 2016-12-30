@@ -219,7 +219,10 @@
 
                     <p class="title">Name </p>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-xs-2">
+
+                        </div>
+                        <div class="col-xs-8">
                             <div class="form-group">
                                 <input type="text" placeholder=" Name" class="form-control" id="firstname" ng-disabled="IsDontknow==true" ng-model="ContactObject.firstName" />
                                 <p class="remember animated bouncein delay-6">
@@ -233,6 +236,10 @@
 
                         </div>
 
+                        <div class="col-xs-2">
+
+                        </div>
+
                         <br />
 
 
@@ -241,6 +248,9 @@
                 </div>
             </div>
 
+            <!-- Add Arrows -->
+            <div class="swiper-button-next" ng-class="{'swiper-button-disabled':CurrentActiveClass==4}" ng-click="GoToNext()"></div>
+            <div class="swiper-button-prev" ng-class="{'swiper-button-disabled':CurrentActiveClass==0}" ng-click="GoToPrev()"></div>
             <!--<a ng-click="GoToPrev()" id="prev"></a>
             <a ng-click="GoToNext()" id="next"></a>-->
         </div>
@@ -353,10 +363,10 @@
             <li>
                 <a ng-click="capturePhotoNew();"> <i class="fa fa-camera"></i> Capture Photo</a>
             </li>
-            <!--<li>
+            <li>
 
                 <a ng-click="getPhoto()"><i class="fa fa-picture-o"></i> From Photo Library</a>
-            </li>-->
+            </li>
         </ul>
     </div>
 

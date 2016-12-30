@@ -490,6 +490,8 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
         initDatabase();
 
+      
+
         mySwiper = new Swiper('.swiper-container', {
             initialSlide: 0,
             speed: 500,
@@ -509,7 +511,11 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
                 CheckScopeBeforeApply();
 
 
-            }
+            },
+            //pagination: '.swiper-pagination',
+            //paginationClickable: true,
+            //nextButton: '.swiper-button-next',
+            //prevButton: '.swiper-button-prev',
 
         });
         setTimeout(function () {
@@ -640,10 +646,13 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         // Retrieve image file location from specified source
         navigator.camera.getPicture($scope.onPhotoURISuccessNew, $scope.onFail, {
             quality: 50,
-            destinationType: destinationType.DATA_URL,
             correctOrientation: true,
-            sourceType: pictureSource.PHOTOLIBRARY
+            destinationType: navigator.camera.DestinationType.FILE_URI,
+            sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         });
+
+
+        
     }
 
     $scope.keepformopen = function (check) {
