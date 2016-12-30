@@ -1,5 +1,40 @@
 ﻿
 
+
+<style>
+
+        	.modal-dialog{
+			margin:0;
+			position: fixed;
+			top:0;
+			bottom:0;
+			right:auto;
+			background: #fff;
+			width:60%;
+			overflow-y: auto;
+		}
+		.modal-content{
+			border:none;
+			background: none;
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+			border-radius:0;
+		}
+		.fade-scale {
+			transform: scale(1,0); /* scale(0); horizontal*/
+			opacity: 0;
+			-webkit-transition: all .25s linear;
+			-o-transition: all .25s linear;
+			transition: all .25s linear;
+		}
+
+		.fade-scale.in {
+			opacity: 1;
+			transform: scale(1,1); /* scale(1); horizontal*/
+		}
+
+</style>
 <style>
     .times {
         position: absolute;
@@ -40,6 +75,26 @@
         height: 60px;
         width: 60px;
     }
+    .toggle{
+
+    
+        
+         background: #E91E63;
+         border-radius: 10px;
+             padding: 1px;
+             margin: 10px;
+        }
+    p {
+        font-size: 16px;
+        margin: 12px 10px 10px;
+        
+        color:#fff;
+    }
+    .q
+    {
+        box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+        padding-bottom:10px;
+    }
 </style>
 
 
@@ -59,16 +114,21 @@
         </label>
     </div>
     <i ng-if="SearchText!=''" ng-click="ClearSearchText()" class="times fa fa-times"></i>
-    <div ng-show="Contacts.length>0" class="addedrecord">
+<!--  -->
+
+    
+
+    
+
+    <div ng-show="Contacts.length>0">
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="_obj in Contacts| filter :SearchText">
-
-                <div class="row">
+                <div class="row ">
                     <div class=" col-xs-3">
                         <div ng-click="openNamebox()" class="waves-effect picture">
-                            <div class="waves-effect male  gender" ng-if="(_obj.imagepath==undefined ||_obj.imagepath=='' || _obj.imagepath==null)  && _obj.gender=='M'"><i class="fa fa-male"></i></div>
-                          
-                            <div class="female gender" ng-if="(_obj.imagepath==undefined || _obj.imagepath=='' || _obj.imagepath==null) && _obj.gender=='F'"><i class="fa fa-female" /></div>
+                            <div class="waves-effect male  gender" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)  && _obj.gender=='M'"><i class="fa fa-male"></i></div>
+
+                            <div class="waves-effect female gender" ng-if="(_obj.imagepath=='' || _obj.imagepath==null) && _obj.gender=='F'"><i class="fa fa-female" /></div>
                             <img src="{{_obj.imagepath}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
                         </div>
                     </div>
@@ -97,16 +157,33 @@
 
                     </div>
                 </div>
-
-     
-
-
-
-
-
+                <div class="toggle {{GetBGColorClass(_obj.gender)}}" style="display:none;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore </p></div>
             </li>
-
 
         </ul>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $(".list-group-item").click(function () {
+                debugger;
+                $(this).find(".toggle").toggle("slow");
+               
+                        $(this).find(".row").toggleClass("q");
+                   
+              
+            });
+        }, 100);
+       
+    });
+</script>
+
+
+
+
+
+
+
+
