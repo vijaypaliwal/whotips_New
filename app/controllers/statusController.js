@@ -1,11 +1,8 @@
 ﻿'use strict';
 app.controller('statusController', ['$scope', 'localStorageService', 'authService', '$location', 'log', function ($scope, localStorageService, authService, $location, log) {
 
-
-  
-
     $scope.mainObjectToSend = [];
-    $scope.ContactObject = { id: 0, firstName: "", lastName: "", email: "", gender: "", places: "", AgeType: 0, imagepath: "", Relations: "" };
+    $scope.ContactObject = { id: 0, firstName: "", lastName: "", email: "", gender: "M", places: "", AgeType: 0, imagepath: "", Relations: "" };
     $scope.Contacts = [];
     $scope.NewRelation = { Text: "" };
     $scope.NewPlace = { Text: "" };
@@ -15,11 +12,9 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.PlacesType = false;
     $scope.SearchText = "";
     $scope.IsDontknow = false;
-
     $scope.CurrentActiveClass = "";
-
-
-    $scope.$watch('IsDontknow', function () {
+    $scope.$watch('IsDontknow', function ()
+    {
         if ($scope.IsDontknow == true)
         {
             $scope.ContactObject.firstName = "";
@@ -39,8 +34,8 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.PlacesTypes = [{ Type: 1, Text: "Place 1" },
    { Type: 1, Text: "Place 2" }, { Type: 1, Text: "Place 3" },
    { Type: 1, Text: "Place 4" }
-   , { Type: 1, Text: "Place 5" },
-   { Type: 1, Text: "Place 6" }
+   , 
+   { Type: 1, Text: "Place 5" }
     ]
 
 
@@ -445,8 +440,18 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             }
 
             CheckScopeBeforeApply();
+            $scope.receltyadded = $scope.RelationTypes.length;
+
+            setTimeout(function () {
+                $("." + $scope.receltyadded).addClass("animated bounce");
+            },500)
+
+          
             
         }
+
+         
+
         else {
 
             log.error("Enter some value");
@@ -475,6 +480,11 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
             CheckScopeBeforeApply();
             $("#Addplace").modal('hide');
+            $scope.receltyadded = $scope.PlacesTypes.length;
+
+            setTimeout(function () {
+                $("." + $scope.receltyadded).addClass("animated bounce");
+            }, 500)
         }
         else {
             log.error("Enter some value");
@@ -605,9 +615,26 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.gotonext = function (Type) {
         $scope.ContactObject.gender = Type;
 
+      
+
         $scope.GoToNext();
 
+      
+
+        setTimeout(function () {
+            $(".gender").addClass("animated fadeIn");
+        }, 10);
+
+        $(".gender").addClass("animated fadeIn");
+
+        setTimeout(function () {
+            $(".gender").removeClass("animated");
+            $(".gender").removeClass("fadeIn");
+        }, 1000);
+
         CheckScopeBeforeApply();
+
+      
 
     }
 
