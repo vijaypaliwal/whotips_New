@@ -634,7 +634,6 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.onPhotoURISuccessNew = function (imageData) {
         var _ImgObj = { ImageID: 0, FileName: "", bytestring: "", Size: 0 }
 
-        alert(imageData);
         imageData = "data:image/jpeg;base64," + imageData;
 
         $scope.ContactObject.imagepath = imageData;
@@ -648,7 +647,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         navigator.camera.getPicture($scope.onPhotoURISuccessNew, $scope.onFail, {
             quality: 50,
             correctOrientation: true,
-            destinationType: navigator.camera.DestinationType.FILE_URI,
+            destinationType: navigator.camera.DestinationType.DATA_URL,
             sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         });
 
