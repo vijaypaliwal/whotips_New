@@ -281,7 +281,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     }
 
     $(document)
-  .on('focus', '#textdata', function () {
+  .on('focus', '#text', function () {
 
       $cordovaKeyboard.close();
 
@@ -290,7 +290,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
 
   })
-  .on('blur', '#textdata', function () {
+  .on('blur', '#text', function () {
 
       $cordovaKeyboard.close();
 
