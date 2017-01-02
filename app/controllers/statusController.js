@@ -198,6 +198,10 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
         $scope.ContactObject = { id: 0, firstName: "Add Name Later", lastName: "", email: "", places: "", AgeType: 0, imagepath: "", Relations: "", gender: "", Tips: "" };
         $scope.IsDontknow = false;
+        $scope.Connections = [];
+        $scope.ContactTips = [];
+        $scope.ContactPlaces = [];
+        CheckScopeBeforeApply();
     }
 
     function loadAndReset() //Function for Load and Reset...
