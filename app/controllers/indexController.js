@@ -78,10 +78,11 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
   });
 
+
      var _tmp= (bodyheight * 6) / 100 ;
      $scope.topheaderheight = _tmp.toString() + "px";
 
-     var resultarea = (bodyheight * 27) / 100;
+     var resultarea = (bodyheight * 28) / 100;
 
      $scope.resultarea = resultarea.toString() + "px";
 
@@ -89,11 +90,9 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
      $scope.topselectionarea = (resultarea + 45 + 53).toString() + "px";
 
-     var headinglineheight = (resultarea * 13) / 100;
+     var headinglineheight = (resultarea * 8) / 100;
 
      $scope.headinglineheight = headinglineheight.toString() + "px";
-
-
 
      var selectionarea = (bodyheight * 28) / 100;
 

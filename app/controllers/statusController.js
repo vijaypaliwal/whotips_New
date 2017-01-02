@@ -2,10 +2,11 @@
 app.controller('statusController', ['$scope', 'localStorageService', 'authService', '$location', 'log', function ($scope, localStorageService, authService, $location, log) {
 
     $scope.mainObjectToSend = [];
-    $scope.ContactObject = { id: 0, firstName: "", lastName: "", email: "", gender: "M", places: "", AgeType: 0, imagepath: "", Relations: "" };
+    $scope.ContactObject = { id: 0, firstName: "Add Name Later", lastName: "", email: "", gender: "", places: "", AgeType: 0, imagepath: "", Relations: "", Tips: "" };
     $scope.Contacts = [];
     $scope.NewRelation = { Text: "" };
     $scope.NewPlace = { Text: "" };
+    $scope.NewTips = { Text: "" }
     $scope.GenderLike = false;
     $scope.RelationsTypeDiv = false;
     $scope.GenderType = true;
@@ -13,10 +14,11 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.SearchText = "";
     $scope.IsDontknow = false;
     $scope.CurrentActiveClass = "";
-    $scope.$watch('IsDontknow', function ()
-    {
-        if ($scope.IsDontknow == true)
-        {
+    $scope.Connections = [];
+    $scope.ContactTips = [];
+    $scope.ContactPlaces = [];
+    $scope.$watch('IsDontknow', function () {
+        if ($scope.IsDontknow == true) {
             $scope.ContactObject.firstName = "";
 
         }
@@ -25,18 +27,11 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     });
 
     $scope.addupdatename = false;
-    $scope.RelationTypes = [{ Type: 1, Text: "Family" },
-    { Type: 1, Text: "Brother" }, { Type: 1, Text: "Father" },
-    { Type: 1, Text: "Mother" }, { Type: 1, Text: "Sister" },
-   
-    ]
+    $scope.RelationTypes = []
 
-    $scope.PlacesTypes = [{ Type: 1, Text: "Place 1" },
-   { Type: 1, Text: "Place 2" }, { Type: 1, Text: "Place 3" },
-   { Type: 1, Text: "Place 4" }
-   , 
-   { Type: 1, Text: "Place 5" }
-    ]
+    $scope.PlacesTypes = []
+
+    $scope.Tips = []
 
 
     function CheckScopeBeforeApply() {
@@ -71,9 +66,9 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
         if ($(e.target).hasClass('modal-backdrop')) {
 
-        
 
-                $('#AddName').modal('hide');
+
+            $('#AddName').modal('hide');
 
         }
     });
@@ -248,8 +243,8 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
 
     $scope.insertRecord = function () {
-        if ($scope.IsDontknow==false && $.trim($scope.ContactObject.firstName) == '') {
-       
+        if ($scope.IsDontknow == false && $.trim($scope.ContactObject.firstName) == '') {
+
             log.error("Please enter Name");
             $scope.GotoIndex(4);
         }
@@ -269,8 +264,54 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
     }
 
-    $scope.GetColorClass=function(_G)
+
+    $scope.IsAvailable = function (Type, text)
     {
+
+        //$scope.Connections = [];
+        //$scope.ContactTips = [];
+        //$scope.ContactPlaces = [];
+        debugger;
+        var _defaultClass=""
+        switch(Type)
+        {
+            case 1:
+                for (var i = 0; i < $scope.Connections.length; i++) {
+                    if($scope.Connections[i]==text)
+                    {
+                        _defaultClass = "greenBG";
+                        return _defaultClass;
+                    }
+
+                }
+                
+
+                break;
+            case 2:
+                for (var i = 0; i < $scope.ContactPlaces.length; i++) {
+                    if ($scope.ContactPlaces[i] == text) {
+                        _defaultClass = "greenBG";
+                        return _defaultClass;
+                    }
+
+                }
+                break;
+            case 3:
+                for (var i = 0; i < $scope.ContactPlaces.length; i++) {
+                    if ($scope.ContactPlaces[i] == text) {
+                        _defaultClass = "greenBG";
+                        return _defaultClass;
+                    }
+
+                }
+                break;
+            default:
+
+        }
+
+    }
+
+    $scope.GetColorClass = function (_G) {
         var _class = _G == "F" ? "femaleColor" : "maleColor";
         return _class
     }
@@ -281,29 +322,28 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     }
 
 
-    
+
 
     $scope.DeleteRecord = function (id) {
         deleteRecord(id);
     }
 
-    $scope.FilterByType=function(_type,_array)
-    {
+    $scope.FilterByType = function (_type, _array) {
         switch (_type) {
             case 1:
-            
+
                 _array = jQuery.grep(_array, function (el) {
                     return el.gender == $scope.ContactObject.gender;
                 });
                 break;
             case 2:
-                
+
                 _array = jQuery.grep(_array, function (el) {
                     return el.places.indexOf($scope.ContactObject.places) !== -1;
                 });
                 break;
             case 3:
-                
+
                 _array = jQuery.grep(_array, function (el) {
                     return el.Relations.indexOf($scope.ContactObject.Relations) !== -1;
                 });
@@ -312,11 +352,11 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             case 4:
 
                 _array = jQuery.grep(_array, function (el) {
-                    return el.AgeType==$scope.ContactObject.AgeType;
+                    return el.AgeType == $scope.ContactObject.AgeType;
                 });
                 break;
 
-                
+
             default:
 
         }
@@ -333,8 +373,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         $("#Allplaces").modal('show');
     }
 
-    $scope.GetFiltered=function(_array)
-    {
+    $scope.GetFiltered = function (_array) {
         var _TempArray = [];
         var _isChanged = false;
         var _TempArray2 = _array;
@@ -342,10 +381,8 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             var _isGender = false;
             var _isplaces = false;
             var _isRelations = false;
-            if($.trim($scope.ContactObject.gender)!="")
-            {
-                if(_array[i].gender==$scope.ContactObject.gender)
-                {
+            if ($.trim($scope.ContactObject.gender) != "") {
+                if (_array[i].gender == $scope.ContactObject.gender) {
                     _isChanged = true;
                     _TempArray2 = $scope.FilterByType(1, _TempArray2);
 
@@ -358,7 +395,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
                     _isChanged = true;
                     _TempArray2 = $scope.FilterByType(2, _TempArray2);
                 }
-              
+
             }
 
             if ($.trim($scope.ContactObject.Relations) != "") {
@@ -445,18 +482,18 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
             setTimeout(function () {
                 $("." + $scope.receltyadded).addClass("animated bounce");
-            },500)
+            }, 500)
 
-          
-            
+
+
         }
 
-         
+
 
         else {
 
             log.error("Enter some value");
-        
+
         }
 
     }
@@ -492,6 +529,32 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         }
     }
 
+
+    $scope.AddnewToTips = function () {
+        debugger;
+        if ($.trim($scope.NewTips.Text) != "") {
+
+            var _isAlreadyExist = false;
+            for (var i = 0; i < $scope.Tips.length; i++) {
+                if ($scope.Tips[i].Text == $.trim($scope.NewTips.Text)) {
+                    _isAlreadyExist = true; break;
+                }
+
+            }
+            if (_isAlreadyExist == false) {
+
+                $scope.Tips.push({ Type: 1, Text: $scope.NewTips.Text });
+                $scope.NewTips.Text = "";
+            }
+
+            CheckScopeBeforeApply();
+
+        }
+        else {
+            log.error("Enter some value");
+        }
+    }
+
     $scope.openAdd = function () {
         $scope.IsRelationOn = !$scope.IsRelationOn;
         $("#Addrelation").modal('show');
@@ -511,7 +574,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
         initDatabase();
 
-      
+
 
         mySwiper = new Swiper('.swiper-container', {
             initialSlide: 0,
@@ -523,11 +586,10 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
                 $scope.CurrentActiveClass = swiperHere.activeIndex;
                 CheckScopeBeforeApply();
-                if (swiperHere.activeIndex==4)
-                {
+                if (swiperHere.activeIndex == 5) {
                     $("#firstname").focus();
                 }
-              //  $cordovaKeyboard.hideAccessoryBar(false);
+                //  $cordovaKeyboard.hideAccessoryBar(false);
                 $cordovaKeyboard.disableScroll(true);
                 CheckScopeBeforeApply();
 
@@ -563,29 +625,49 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.GetAgeType = function (Type) {
         switch (Type) {
             case 1:
-                return "Younger than me";
+                return "Much Younger than Me";
                 break;
             case 2:
-                return "Same as me";
+                return "My Generation";
                 break;
             case 3:
-                return "Older than me";
+                return "Much Older than me";
                 break;
             default:
-                return "Same as me";
+                return "Relative Age";
 
         }
     }
 
+    $scope.viewallTips = function () {
+        $("#AllTips").modal('show');
+    }
+
     $scope.AddtoContactPeople = function (text) {
+
+
         if ($.trim($scope.ContactObject.Relations) != "") {
+
+
             if ($scope.ContactObject.Relations.indexOf(text) == -1) {
 
                 $scope.ContactObject.Relations = $scope.ContactObject.Relations + "," + text;
+                $scope.Connections.push(text);
+            }
+
+            else {
+                var y = angular.copy($scope.Connections);
+                y = jQuery.grep(y, function (value) {
+                    return value != text;
+                });
+
+                $scope.Connections = angular.copy(y);
+                $scope.ContactObject.Relations = $scope.Connections.join(", ");
             }
         }
         else {
             $scope.ContactObject.Relations = text;
+            $scope.Connections.push(text);
         }
 
         CheckScopeBeforeApply();
@@ -596,10 +678,54 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
             if ($scope.ContactObject.places.indexOf(text) == -1) {
 
                 $scope.ContactObject.places = $scope.ContactObject.places + "," + text;
+                $scope.ContactPlaces.push(text);
+            }
+
+            else {
+
+                var y = angular.copy($scope.ContactPlaces);
+                y = jQuery.grep(y, function (value) {
+                    return value != text;
+                });
+
+                $scope.ContactPlaces = angular.copy(y);
+                $scope.ContactObject.places = $scope.ContactPlaces.join(", ");
             }
         }
         else {
             $scope.ContactObject.places = text;
+
+            $scope.ContactPlaces.push(text);
+        }
+
+        CheckScopeBeforeApply();
+    }
+
+    $scope.AddtoTips = function (text) {
+        debugger;
+        if ($.trim($scope.ContactObject.Tips) != "") {
+            if ($scope.ContactObject.Tips.indexOf(text) == -1) {
+
+                $scope.ContactObject.Tips = $scope.ContactObject.Tips + "," + text;
+                $scope.ContactTips.push(text);
+            }
+
+
+
+            else {
+
+                var y = angular.copy($scope.ContactTips);
+                y = jQuery.grep(y, function (value) {
+                    return value != text;
+                });
+
+                $scope.ContactTips = angular.copy(y);
+                $scope.ContactObject.Tips = $scope.ContactTips.join(", ");
+            }
+        }
+        else {
+            $scope.ContactObject.Tips = text;
+            $scope.ContactTips.push(text);
         }
 
         CheckScopeBeforeApply();
@@ -616,11 +742,11 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     $scope.gotonext = function (Type) {
         $scope.ContactObject.gender = Type;
 
-      
+
 
         $scope.GoToNext();
 
-      
+
 
         setTimeout(function () {
             $(".gender").addClass("animated fadeIn");
@@ -635,7 +761,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
         CheckScopeBeforeApply();
 
-      
+
 
     }
 
@@ -690,7 +816,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         });
 
 
-        
+
     }
 
     $scope.keepformopen = function (check) {
