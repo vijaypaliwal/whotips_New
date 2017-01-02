@@ -196,7 +196,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
     {
 
-        $scope.ContactObject = { id: 0, firstName: "", lastName: "", email: "", places: "", AgeType: 0, imagepath: "", Relations: "", gender: "" };
+        $scope.ContactObject = { id: 0, firstName: "Add Name Later", lastName: "", email: "", places: "", AgeType: 0, imagepath: "", Relations: "", gender: "", Tips: "" };
         $scope.IsDontknow = false;
     }
 
@@ -297,8 +297,8 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
                 }
                 break;
             case 3:
-                for (var i = 0; i < $scope.ContactPlaces.length; i++) {
-                    if ($scope.ContactPlaces[i] == text) {
+                for (var i = 0; i < $scope.ContactTips.length; i++) {
+                    if ($scope.ContactTips[i] == text) {
                         _defaultClass = "greenBG";
                         return _defaultClass;
                     }
