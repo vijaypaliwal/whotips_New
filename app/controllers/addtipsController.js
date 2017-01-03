@@ -17,6 +17,13 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     $scope.Connections = [];
     $scope.ContactTips = [];
     $scope.ContactPlaces = [];
+
+    Array.prototype.pushIfNotExist = function (element, comparer) {
+        if (!this.inArray(comparer)) {
+            this.push(element);
+        }
+    };
+    $scope.RecentlyAddedTips = [];
     $scope.$watch('IsDontknow', function () {
         if ($scope.IsDontknow == true) {
             $scope.ContactObject.firstName = "";
@@ -33,7 +40,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
     $scope.Tips = []
 
-   
+
     function CheckScopeBeforeApply() {
         if (!$scope.$$phase) {
             $scope.$apply();
@@ -111,7 +118,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
             }
 
             else {
-              
+
 
                 createTable();  // If supported then call Function for create table in SQLite
 
@@ -147,8 +154,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         db.transaction(function (tx) { tx.executeSql(createStatementTips, [], showRecordTips, onError); });
     }
 
-    function GetSkin(_Type)
-    {
+    function GetSkin(_Type) {
         switch (_Type) {
             case 0:
                 return "Like Mine";
@@ -204,7 +210,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
             case 2:
                 return "Younger Than me";
                 break;
-            
+
             default:
                 return "";
         }
@@ -234,11 +240,11 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     function insertRecordTips(value) // Get value from Input and insert record . Function Call when Save/Submit Button Click..
 
     {
-        
+
 
 
         db.transaction(function (tx) { tx.executeSql(insertStatementTips, [value], showRecordTips, onError); });
-       
+
 
         //tx.executeSql(SQL Query Statement,[ Parameters ] , Sucess Result Handler Function, Error Result Handler Function );
 
@@ -345,6 +351,37 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     }
 
 
+    function UpdateRecentTips() {
+        debugger;
+        $scope.RecentlyAddedTips = [];
+        var _RecentTips = localStorageService.get("RecentlyAddedTips");
+        if (_RecentTips != null && _RecentTips != undefined && _RecentTips != "" && _RecentTips.length > 0) {
+            for (var i = 0; i < _RecentTips.length; i++) {
+
+                var element = _RecentTips[i];
+                $scope.RecentlyAddedTips.pushIfNotExist(element, function (e) {
+                    return e.id === element.id;
+                });
+
+            }
+        }
+
+        if ($scope.ContactTips.length > 0) {
+
+            for (var i = 0; i < $scope.ContactTips.length; i++) {
+
+                var element = $scope.ContactTips[i];
+                $scope.RecentlyAddedTips.pushIfNotExist(element, function (e) {
+                    return e.id === element.id && e.Text == element.Text;
+                });
+            }
+        }
+        CheckScopeBeforeApply();
+
+        localStorageService.set("RecentlyAddedTips", $scope.RecentlyAddedTips);
+        
+    }
+
     function showRecordTips() // Function For Retrive data from Database Display records as list
 
     {
@@ -370,12 +407,15 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
 
 
+
     $scope.insertRecord = function () {
-     
-            insertRecord();
 
+        insertRecord();
 
+        UpdateRecentTips();
     }
+
+
 
     $scope.ClearSearchText = function () {
         $scope.SearchText = "";
@@ -416,7 +456,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
                 break;
             case 3:
                 for (var i = 0; i < $scope.ContactTips.length; i++) {
-                    if ($scope.ContactTips[i] == text) {
+                    if ($scope.ContactTips[i].Text == text) {
                         _defaultClass = "green";
                         return _defaultClass;
                     }
@@ -435,7 +475,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     }
 
     $scope.GetSelectedClass = function (_G, Type) {
-        var _class =  "";
+        var _class = "";
         switch (Type) {
             case 1:
                 _class = $scope.ContactObject.gender == _G ? "green" : "";
@@ -455,7 +495,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
             default:
 
         }
-        
+
         return _class
     }
 
@@ -757,9 +797,36 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
             });
         }, 1000);
 
-
+        UpdateRecentTips();
+        GetTipsArray(1);
         CheckScopeBeforeApply();
     }
+
+
+    function GetTipsArray(type) {
+        var _TipsData = angular.copy($scope.Tips);
+        var _TempData = []
+        if (type == 1) {
+            for (var i = 0; i < $scope.RecentlyAddedTips.length; i++) {
+
+                var element = $scope.RecentlyAddedTips[i];
+                _TempData.pushIfNotExist(element, function (e) {
+                    return e.id === element.id;
+                });
+
+            }
+            for (var i = 0; i < _TipsData.length; i++) {
+                var element = _TipsData[i];
+                _TempData.pushIfNotExist(element, function (e) {
+                    return e.id === element.id;
+                });
+            }
+
+        }
+
+        $scope.Tips = type == 1 ? angular.copy(_TipsData) : angular.copy(_TempData);
+    }
+
     $scope.GoToNext = function () {
         mySwiper.swipeNext();
     }
@@ -852,7 +919,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
             if ($scope.ContactObject.Tips.indexOf(text) == -1) {
 
                 $scope.ContactObject.Tips = $scope.ContactObject.Tips + "," + text;
-                $scope.ContactTips.push(text);
+                $scope.ContactTips.push({ id: 1 + Math.floor(Math.random() * 100), Text: text });
             }
 
 
@@ -861,16 +928,18 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
                 var y = angular.copy($scope.ContactTips);
                 y = jQuery.grep(y, function (value) {
-                    return value != text;
+                    return value.Text != text;
                 });
 
                 $scope.ContactTips = angular.copy(y);
-                $scope.ContactObject.Tips = $scope.ContactTips.join(", ");
+                $scope.ContactObject.Tips = $.map($scope.ContactTips, function (obj) {
+                    return obj.Text
+                }).join(", ");
             }
         }
         else {
             $scope.ContactObject.Tips = text;
-            $scope.ContactTips.push(text);
+            $scope.ContactTips.push({ id: 1 + Math.floor(Math.random() * 100), Text: text });
         }
 
         CheckScopeBeforeApply();
