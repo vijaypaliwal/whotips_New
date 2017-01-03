@@ -46,7 +46,7 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
         $cordovaKeyboard.hideAccessoryBar(false);
 
-        if (_path == "/status") {
+        if (_path == "/status" || _path == "/addtips") {
 
             $cordovaKeyboard.disableScroll(true);
         }
