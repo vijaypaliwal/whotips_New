@@ -2,7 +2,7 @@
 app.controller('addtipsController', ['$scope', 'localStorageService', 'authService', '$location', 'log', function ($scope, localStorageService, authService, $location, log) {
 
     $scope.mainObjectToSend = [];
-    $scope.ContactObject = { id: 0, firstName: "Add Name Later", lastName: "", email: "", gender: "", places: "", AgeType: 0, imagepath: "", Relations: "", Tips: "" };
+    $scope.ContactObject = { id: 0, firstName: "Add Name Later", lastName: "", email: "", gender: "", places: "", AgeType: 0, imagepath: "", Relations: "", Tips: "", Hair: "", Skin: "", Height: "" };
     $scope.Contacts = [];
     $scope.NewRelation = { Text: "" };
     $scope.NewPlace = { Text: "" };
@@ -33,19 +33,38 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
     $scope.Tips = []
 
-
+   
     function CheckScopeBeforeApply() {
         if (!$scope.$$phase) {
             $scope.$apply();
         }
     };
 
+    $scope.UpdateGender = function (Type) {
+        switch (Type) {
+            case 1:
+                $scope.ContactObject.gender = "M";
+                break;
+            case 2:
+                $scope.ContactObject.gender = "F";
+                break;
+            default:
+                $scope.ContactObject.gender = "N";
 
-    var createStatement = "CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT,lastName TEXT, email TEXT,gender integer,places TEXT,AgeType integer,imagepath TEXT,Relations TEXT)";
 
+        }
+        CheckScopeBeforeApply();
+    }
+
+
+    var createStatement = "CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT,lastName TEXT, email TEXT,gender integer,places TEXT,AgeType integer,imagepath TEXT,Relations TEXT,Tips TEXT,Hair TEXT,Skin TEXT,Height TEXT)";
+    var createStatementTips = "CREATE TABLE IF NOT EXISTS Tips (id INTEGER PRIMARY KEY AUTOINCREMENT, Note TEXT)";
     var selectAllStatement = "SELECT * FROM Contacts";
+    var selectAllTipsStatement = "SELECT * FROM Tips ORDER BY Note";
 
-    var insertStatement = "INSERT INTO Contacts (firstName, lastName,email,gender,places,AgeType,imagepath,Relations) VALUES (?, ?,?,?, ?,?,?, ?)";
+    var insertStatement = "INSERT INTO Contacts (firstName, lastName,email,gender,places,AgeType,imagepath,Relations,Tips,Hair,Skin,Height) VALUES (?, ?,?,?, ?,?,?, ?,?,?, ?,?)";
+
+    var insertStatementTips = "INSERT INTO Tips (Note) VALUES (?)";
 
     var updateStatement = "UPDATE Contacts SET firstName = ?, lastName = ?,email=?gender=?,places=?,AgeType=?,imagepath=?,Relations=? WHERE id=?";
 
@@ -81,7 +100,6 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     function initDatabase()  // Function Call When Page is ready.
 
     {
-
         try {
 
             if (!window.openDatabase)  // Check browser is supported SQLite or not.
@@ -93,6 +111,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
             }
 
             else {
+              
 
                 createTable();  // If supported then call Function for create table in SQLite
 
@@ -125,8 +144,73 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     {
 
         db.transaction(function (tx) { tx.executeSql(createStatement, [], showRecords, onError); });
+        db.transaction(function (tx) { tx.executeSql(createStatementTips, [], showRecordTips, onError); });
+    }
+
+    function GetSkin(_Type)
+    {
+        switch (_Type) {
+            case 0:
+                return "Like Mine";
+                break;
+            case 1:
+                return "Darker Mine";
+                break;
+            case 2:
+                return "Lighter Mine";
+                break;
+            default:
+                return "";
+
+        }
 
     }
+
+    function GetHairs(_Type) {
+        switch (_Type) {
+            case 0:
+                return "Bald";
+                break;
+            case 1:
+                return "Dark";
+                break;
+            case 2:
+                return "Brown";
+                break;
+            case 3:
+                return "Blond";
+                break;
+            case 4:
+                return "Red";
+                break;
+            case 5:
+                return "Grey";
+                break;
+            default:
+                return "";
+
+        }
+
+    }
+
+    function GetHeight(_Type) {
+        switch (_Type) {
+            case 0:
+                return "About My Height";
+                break;
+            case 1:
+                return "Taller Than me";
+                break;
+            case 2:
+                return "Younger Than me";
+                break;
+            
+            default:
+                return "";
+        }
+
+    }
+
 
     function insertRecord() // Get value from Input and insert record . Function Call when Save/Submit Button Click..
 
@@ -135,12 +219,26 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         if ($scope.IsDontknow == false) {
 
 
-            db.transaction(function (tx) { tx.executeSql(insertStatement, [$scope.ContactObject.firstName, $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations], loadAndReset, onError); });
+            db.transaction(function (tx) { tx.executeSql(insertStatement, [$scope.ContactObject.firstName, $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations, $scope.ContactObject.Tips, GetHairs($scope.ContactObject.Hair), GetSkin($scope.ContactObject.Skin), GetHeight($scope.ContactObject.Height)], loadAndReset, onError); });
         }
         else {
-            db.transaction(function (tx) { tx.executeSql(insertStatement, ["N/A", $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations], loadAndReset, onError); });
+            db.transaction(function (tx) { tx.executeSql(insertStatement, ["N/A", $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations, $scope.ContactObject.Tips, $scope.ContactObject.Hair, $scope.ContactObject.Skin, $scope.ContactObject.Height], loadAndReset, onError); });
 
         }
+
+        //tx.executeSql(SQL Query Statement,[ Parameters ] , Sucess Result Handler Function, Error Result Handler Function );
+
+    }
+
+
+    function insertRecordTips(value) // Get value from Input and insert record . Function Call when Save/Submit Button Click..
+
+    {
+        
+
+
+        db.transaction(function (tx) { tx.executeSql(insertStatementTips, [value], showRecordTips, onError); });
+       
 
         //tx.executeSql(SQL Query Statement,[ Parameters ] , Sucess Result Handler Function, Error Result Handler Function );
 
@@ -196,7 +294,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
     {
 
-        $scope.ContactObject = { id: 0, firstName: "Add Name Later", lastName: "", email: "", places: "", AgeType: 0, imagepath: "", Relations: "", gender: "", Tips: "" };
+        $scope.ContactObject = { id: 0, firstName: "Add Name Later", lastName: "", email: "", gender: "", places: "", AgeType: 0, imagepath: "", Relations: "", Tips: "", Hair: "", Skin: "", Height: "" };
         $scope.IsDontknow = false;
         $scope.Connections = [];
         $scope.ContactTips = [];
@@ -210,7 +308,8 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
         resetForm();
 
-        showRecords()
+        showRecords();
+        log.success("added successfully");
 
     }
 
@@ -235,7 +334,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
                 for (var i = 0, item = null; i < dataset.length; i++) {
 
                     item = dataset.item(i);
-                    var _TempObj = { id: (item['id']).toString(), firstName: (item['firstName']).toString(), lastName: (item['lastName']).toString(), email: (item['email']).toString(), gender: (item['gender']), places: (item['places']).toString(), AgeType: (item['AgeType']).toString(), imagepath: (item['imagepath']).toString(), Relations: (item['Relations']).toString() };
+                    var _TempObj = { id: (item['id']).toString(), firstName: (item['firstName']).toString(), lastName: (item['lastName']).toString(), email: (item['email']).toString(), gender: (item['gender']), places: (item['places']).toString(), AgeType: (item['AgeType']).toString(), imagepath: (item['imagepath']).toString(), Relations: (item['Relations']).toString(), Tips: (item['Tips']).toString(), Hair: (item['Hair']).toString(), Skin: (item['Skin']).toString(), Height: (item['Height']).toString() };
                     $scope.Contacts.push(_TempObj);
 
                 }
@@ -246,18 +345,36 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     }
 
 
-    $scope.insertRecord = function () {
-        if ($scope.IsDontknow == false && $.trim($scope.ContactObject.firstName) == '') {
+    function showRecordTips() // Function For Retrive data from Database Display records as list
 
-            log.error("Please enter Name");
-            $scope.GotoIndex(4);
-        }
-        else {
+    {
+
+        $scope.Tips = [];
+        db.transaction(function (tx) {
+
+            tx.executeSql(selectAllTipsStatement, [], function (tx, result) {
+                dataset = result.rows;
+                debugger;
+                for (var i = 0, item = null; i < dataset.length; i++) {
+
+                    item = dataset.item(i);
+                    var _TempObj = { id: (item['id']).toString(), Text: (item['Note']).toString() };
+                    $scope.Tips.push(_TempObj);
+
+                }
+                CheckScopeBeforeApply();
+            });
+
+        });
+    }
+
+
+
+    $scope.insertRecord = function () {
+     
             insertRecord();
 
-            $scope.GotoIndex(0);
 
-        }
     }
 
     $scope.ClearSearchText = function () {
@@ -269,26 +386,23 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     }
 
 
-    $scope.IsAvailable = function (Type, text)
-    {
+    $scope.IsAvailable = function (Type, text) {
 
         //$scope.Connections = [];
         //$scope.ContactTips = [];
         //$scope.ContactPlaces = [];
         debugger;
-        var _defaultClass=""
-        switch(Type)
-        {
+        var _defaultClass = ""
+        switch (Type) {
             case 1:
                 for (var i = 0; i < $scope.Connections.length; i++) {
-                    if($scope.Connections[i]==text)
-                    {
+                    if ($scope.Connections[i] == text) {
                         _defaultClass = "greenBG";
                         return _defaultClass;
                     }
 
                 }
-                
+
 
                 break;
             case 2:
@@ -303,7 +417,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
             case 3:
                 for (var i = 0; i < $scope.ContactTips.length; i++) {
                     if ($scope.ContactTips[i] == text) {
-                        _defaultClass = "greenBG";
+                        _defaultClass = "green";
                         return _defaultClass;
                     }
 
@@ -317,6 +431,31 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
     $scope.GetColorClass = function (_G) {
         var _class = _G == "F" ? "femaleColor" : "maleColor";
+        return _class
+    }
+
+    $scope.GetSelectedClass = function (_G, Type) {
+        var _class =  "";
+        switch (Type) {
+            case 1:
+                _class = $scope.ContactObject.gender == _G ? "green" : "";
+                break;
+            case 2:
+                _class = $scope.ContactObject.AgeType == _G ? "green" : "";
+                break;
+            case 3:
+                _class = $scope.ContactObject.Hair == _G ? "green" : "";
+                break;
+            case 4:
+                _class = $scope.ContactObject.Skin == _G ? "green" : "";
+                break;
+            case 5:
+                _class = $scope.ContactObject.Height == _G ? "green" : "";
+                break;
+            default:
+
+        }
+        
         return _class
     }
 
@@ -541,13 +680,15 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
             var _isAlreadyExist = false;
             for (var i = 0; i < $scope.Tips.length; i++) {
                 if ($scope.Tips[i].Text == $.trim($scope.NewTips.Text)) {
-                    _isAlreadyExist = true; break;
+                    _isAlreadyExist = true;
+                    break;
                 }
 
             }
             if (_isAlreadyExist == false) {
 
-                $scope.Tips.push({ Type: 1, Text: $scope.NewTips.Text });
+                //$scope.Tips.push({ Type: 1, Text: $scope.NewTips.Text });
+                insertRecordTips($scope.NewTips.Text);
                 $scope.NewTips.Text = "";
             }
 
@@ -837,5 +978,6 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     $scope.addrealtion = function () {
         $("#Addrelation").modal('show');
     }
+
 
 }]);

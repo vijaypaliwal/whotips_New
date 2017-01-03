@@ -258,6 +258,40 @@
     content: "\f00c";
 }
 
+.option .green .fa-male:before {
+    content: "\f00c";
+}
+.option .green .fa-female:before {
+    content: "\f00c";
+}
+.option .green .fa-question:before {
+    content: "\f00c";
+}
+.option .green .fa-arrow-down:before {
+    content: "\f00c";
+}
+.option .green .fa-arrow-up:before {
+    content: "\f00c";
+}
+.option .green .fa-arrows-v:before {
+    content: "\f00c";
+}
+.option .green .fa-smile-o:before {
+    content: "\f00c";
+}
+.option .green .fa-child:before {
+    content: "\f00c";
+}
+
+.option .green .fa-wheelchair:before {
+    content: "\f00c";
+}
+
+.option .green .fa-user:before {
+    content: "\f00c";
+}
+
+
 
 
 

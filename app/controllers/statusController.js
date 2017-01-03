@@ -2,7 +2,7 @@
 app.controller('statusController', ['$scope', 'localStorageService', 'authService', '$location', 'log', function ($scope, localStorageService, authService, $location, log) {
 
     $scope.mainObjectToSend = [];
-    $scope.ContactObject = { id: 0, firstName: "Add Name Later", lastName: "", email: "", gender: "", places: "", AgeType: 0, imagepath: "", Relations: "", Tips: "" };
+    $scope.ContactObject = { id: 0, firstName: "Add Name Later", lastName: "", email: "", gender: "", places: "", AgeType: 0, imagepath: "", Relations: "", Tips: "",Hair:"",Skin:"",Height:"" };
     $scope.Contacts = [];
     $scope.NewRelation = { Text: "" };
     $scope.NewPlace = { Text: "" };
@@ -41,11 +41,11 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
     };
 
 
-    var createStatement = "CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT,lastName TEXT, email TEXT,gender integer,places TEXT,AgeType integer,imagepath TEXT,Relations TEXT)";
+    var createStatement = "CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT,lastName TEXT, email TEXT,gender integer,places TEXT,AgeType integer,imagepath TEXT,Relations TEXT,Tips TEXT,Hair TEXT,Skin TEXT,Height TEXT)";
 
     var selectAllStatement = "SELECT * FROM Contacts";
 
-    var insertStatement = "INSERT INTO Contacts (firstName, lastName,email,gender,places,AgeType,imagepath,Relations) VALUES (?, ?,?,?, ?,?,?, ?)";
+    var insertStatement = "INSERT INTO Contacts (firstName, lastName,email,gender,places,AgeType,imagepath,Relations,Tips,Hair,Skin,Height) VALUES (?, ?,?,?, ?,?,?, ?,?,?, ?,?)";
 
     var updateStatement = "UPDATE Contacts SET firstName = ?, lastName = ?,email=?gender=?,places=?,AgeType=?,imagepath=?,Relations=? WHERE id=?";
 
@@ -135,10 +135,10 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
         if ($scope.IsDontknow == false) {
 
 
-            db.transaction(function (tx) { tx.executeSql(insertStatement, [$scope.ContactObject.firstName, $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations], loadAndReset, onError); });
+            db.transaction(function (tx) { tx.executeSql(insertStatement, [$scope.ContactObject.firstName, $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations, $scope.ContactObject.Tips,$scope.ContactObject.Hair, $scope.ContactObject.Skin, $scope.ContactObject.Height], loadAndReset, onError); });
         }
         else {
-            db.transaction(function (tx) { tx.executeSql(insertStatement, ["N/A", $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations], loadAndReset, onError); });
+            db.transaction(function (tx) { tx.executeSql(insertStatement, ["N/A", $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations, $scope.ContactObject.Tips, $scope.ContactObject.Hair, $scope.ContactObject.Skin, $scope.ContactObject.Height], loadAndReset, onError); });
 
         }
 
@@ -196,7 +196,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
 
     {
 
-        $scope.ContactObject = { id: 0, firstName: "Add Name Later", lastName: "", email: "", places: "", AgeType: 0, imagepath: "", Relations: "", gender: "", Tips: "" };
+        $scope.ContactObject = { id: 0, firstName: "Add Name Later", lastName: "", email: "", gender: "", places: "", AgeType: 0, imagepath: "", Relations: "", Tips: "", Hair: "", Skin: "", Height: "" };
         $scope.IsDontknow = false;
         $scope.Connections = [];
         $scope.ContactTips = [];
@@ -235,7 +235,7 @@ app.controller('statusController', ['$scope', 'localStorageService', 'authServic
                 for (var i = 0, item = null; i < dataset.length; i++) {
 
                     item = dataset.item(i);
-                    var _TempObj = { id: (item['id']).toString(), firstName: (item['firstName']).toString(), lastName: (item['lastName']).toString(), email: (item['email']).toString(), gender: (item['gender']), places: (item['places']).toString(), AgeType: (item['AgeType']).toString(), imagepath: (item['imagepath']).toString(), Relations: (item['Relations']).toString() };
+                    var _TempObj = { id: (item['id']).toString(), firstName: (item['firstName']).toString(), lastName: (item['lastName']).toString(), email: (item['email']).toString(), gender: (item['gender']), places: (item['places']).toString(), AgeType: (item['AgeType']).toString(), imagepath: (item['imagepath']).toString(), Relations: (item['Relations']).toString(), Tips: (item['Tips']).toString(), Hair: (item['Hair']).toString(), Skin: (item['Skin']).toString(), Height: (item['Height']).toString() };
                     $scope.Contacts.push(_TempObj);
 
                 }

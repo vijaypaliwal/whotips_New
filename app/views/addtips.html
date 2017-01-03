@@ -2,6 +2,7 @@
     .resultpart
     {
         margin-top:50px;
+        height:48px;
     }
 
     .container
@@ -21,11 +22,7 @@
 
     }
 
-    .col-xs-3,col-xs-2, .col-xs-6 ,col-xs-7 
-    {
-        padding-left:7px;
-        padding-right:7px;
-    }
+  
 
     .form-control
     {
@@ -82,6 +79,7 @@
         background:#eaeaea;
         padding-top:5px;
         padding-bottom:5px;
+        height:47px;
     }
 
     .tipheader .form-control{
@@ -90,11 +88,10 @@
         margin-top:0;
     }
 
-    .tiprecord
-    {
-        border:1px solid #eaeaea;
-      padding:6px;
-        margin-bottom:5px;
+    .tiprecord {
+        border: 1px solid #eaeaea;
+        margin-bottom: 5px;
+        overflow: auto;
     }
 
     .tiprecord ul li
@@ -182,7 +179,7 @@
 
             .Hairoption ul li a {
     color: #000;
-    font-size: 11px;
+    font-size: 8px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-inline-box;
@@ -192,10 +189,11 @@
 }
 
 
+
         .hairoptionicon {
-            height: 15px;
-            width: 15px;
-            line-height: 32px;
+            height: 20px;
+            width: 20px;
+          
             background: #FFC107;
             border-radius: 100%;
             display: block;
@@ -204,7 +202,7 @@
         }
 
             .hairoptionicon i {
-                font-size: 5px;
+                font-size: 0;
             }
 
             .pink{
@@ -241,19 +239,36 @@
                  background:#000;
              }
 
-                 
+    .green {
+        background-color: #4CAF50 !important;
+        color:#fff;
+    }
 
-                   .tiprecord ul li a
-                  {
-                        
-    font-size: 12px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-inline-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    word-break: break-all;
-                  }
+    .tiprecord ul li a {
+        font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-inline-box;
+      
+        padding-top: 3px;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+        padding-left: 5px;
+    }
+
+
+    .mine {
+        background: #ffcd94;
+    }
+
+    .lightmine {
+        background: #ffe0bd;
+    }
+
+    .darkmine {
+        background: #eac086;
+    }
 
 </style>
 
@@ -270,7 +285,7 @@
 
         <div class="col-xs-7">
             <div class="username">
-                <input type="text" placeholder="Type Name" class="form-control" value="" />
+                <input type="text" placeholder="Type Name" ng-model="ContactObject.firstName" class="form-control" value="" />
             </div>
         </div>
 
@@ -310,7 +325,7 @@
 
     <div ng-style="{'height':tiparea}" class="tiprecord">
         <ul>
-            <li ng-repeat="_obj in Tips">
+            <li ng-repeat="_obj in Tips|filter:NewTips.Text" ng-click="AddtoTips(_obj.Text)" class="{{IsAvailable(3,_obj.Text)}}">
                 <a>{{_obj.Text}}</a>
             </li>
         </ul>
@@ -319,29 +334,29 @@
 
 <div class="selectionpart">
     <div class="row">
-        <div class="col-xs-3">
+        <div class="col-xs-2">
             <h4>Gender</h4>
         </div>
 
-        <div class="col-xs-9">
+        <div class="col-xs-10">
             <div class="option">
                 <ul>
-                    <li>
-                        <div class="optionicon purple">
+                    <li ng-click="UpdateGender(0)">
+                        <div class="optionicon purple {{GetSelectedClass('N',1)}}">
                             <i class="fa fa-question"></i>
                         </div>
                         <a>Dont' Know</a>
                     </li>
 
-                    <li>
-                        <div class="optionicon blue">
+                    <li ng-click="UpdateGender(1)">
+                        <div class="optionicon blue {{GetSelectedClass('M',1)}}">
                             <i class="fa fa-male"></i>
                         </div>
                         <a>Male</a>
                     </li>
 
-                    <li>
-                        <div class="optionicon pink">
+                    <li ng-click="UpdateGender(2)">
+                        <div class="optionicon pink {{GetSelectedClass('F',1)}}">
                             <i class="fa fa-female"></i>
                         </div>
                         <a>Female</a>
@@ -352,30 +367,30 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-3">
+        <div class="col-xs-2">
             <h4>Age</h4>
         </div>
 
-        <div class="col-xs-9">
+        <div class="col-xs-10">
             <div class="option">
                 <ul>
-                    <li>
-                        <div class="optionicon red">
-                            <i class="fa fa-question"></i>
+                    <li ng-click="ContactObject.AgeType=0;">
+                        <div class="optionicon red {{GetSelectedClass(0,2)}}">
+                            <i class="fa fa-user"></i>
                         </div>
                         <a>My Gen</a>
                     </li>
 
-                    <li>
-                        <div class="optionicon red">
-                            <i class="fa fa-male"></i>
+                    <li ng-click="ContactObject.AgeType=1;">
+                        <div class="optionicon red {{GetSelectedClass(1,2)}}">
+                            <i class="fa fa-child"></i>
                         </div>
                         <a>Younger Gen</a>
                     </li>
 
-                    <li>
-                        <div class="optionicon red">
-                            <i class="fa fa-female"></i>
+                    <li ng-click="ContactObject.AgeType=2;">
+                        <div class="optionicon red {{GetSelectedClass(2,2)}}">
+                            <i class="fa fa-wheelchair"></i>
                         </div>
                         <a>Older Gen</a>
                     </li>
@@ -386,48 +401,51 @@
 
 
     <div class="row">
-        
+        <div class="col-xs-2">
+            <h4>Hair</h4>
+        </div>
 
-        <div class="col-xs-12">
+
+        <div class="col-xs-10">
             <div class="Hairoption">
                 <ul>
-                    <li>
-                        <div class="hairoptionicon white">
+                    <li ng-click="ContactObject.Hair=0;">
+                        <div class="hairoptionicon white {{GetSelectedClass(0,3)}}">
                             <i class="fa fa-question"></i>
                         </div>
                         <a>Bald</a>
                     </li>
 
-                    <li>
-                        <div class="hairoptionicon black">
+                    <li ng-click="ContactObject.Hair=1;">
+                        <div class="hairoptionicon black {{GetSelectedClass(1,3)}}">
                             <i class="fa fa-question"></i>
                         </div>
                         <a>Dark</a>
                     </li>
 
-                    <li>
-                        <div class="hairoptionicon brown">
+                    <li ng-click="ContactObject.Hair=2;">
+                        <div class="hairoptionicon brown {{GetSelectedClass(2,3)}}">
                             <i class="fa fa-question"></i>
                         </div>
                         <a>Brown</a>
                     </li>
 
-                    <li>
-                        <div class="hairoptionicon yellow">
+                    <li ng-click="ContactObject.Hair=3;">
+                        <div class="hairoptionicon yellow {{GetSelectedClass(3,3)}}">
                             <i class="fa fa-question"></i>
                         </div>
                         <a>Blond</a>
                     </li>
 
-                    <li>
-                        <div class="hairoptionicon red">
+                    <li ng-click="ContactObject.Hair=4;">
+                        <div class="hairoptionicon red {{GetSelectedClass(4,3)}}">
                             <i class="fa fa-question"></i>
                         </div>
                         <a>Red</a>
                     </li>
 
-                    <li>
-                        <div class="hairoptionicon grey">
+                    <li ng-click="ContactObject.Hair=5;">
+                        <div class="hairoptionicon grey {{GetSelectedClass(5,3)}}">
                             <i class="fa fa-question"></i>
                         </div>
                         <a>Grey</a>
@@ -438,30 +456,30 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-3">
+        <div class="col-xs-2">
             <h4>Skin</h4>
         </div>
 
-        <div class="col-xs-9">
+        <div class="col-xs-10">
             <div class="option">
                 <ul>
-                    <li>
-                        <div class="optionicon brown">
-                            <i class="fa fa-question"></i>
+                    <li ng-click="ContactObject.Skin=0;">
+                        <div class="optionicon mine {{GetSelectedClass(0,4)}}">
+                            <i class="fa fa-smile-o"></i>
                         </div>
                         <a>Like Mine</a>
                     </li>
 
-                    <li>
-                        <div class="optionicon brown">
-                            <i class="fa fa-male"></i>
+                    <li ng-click="ContactObject.Skin=1;">
+                        <div class="optionicon darkmine {{GetSelectedClass(1,4)}}">
+                            <i class="fa fa-smile-o"></i>
                         </div>
                         <a>Darker Mine</a>
                     </li>
 
-                    <li>
-                        <div class="optionicon brown">
-                            <i class="fa fa-female"></i>
+                    <li ng-click="ContactObject.Skin=2;">
+                        <div class="optionicon lightmine {{GetSelectedClass(2,4)}}">
+                            <i class="fa fa-smile-o"></i>
                         </div>
                         <a>Lighter Mine</a>
                     </li>
@@ -472,30 +490,30 @@
 
 
     <div class="row">
-        <div class="col-xs-3">
+        <div class="col-xs-2">
             <h4>Height</h4>
         </div>
 
-        <div class="col-xs-9">
+        <div class="col-xs-10">
             <div class="option">
                 <ul>
-                    <li>
-                        <div class="optionicon">
-                            <i class="fa fa-question"></i>
+                    <li ng-click="ContactObject.Height=0;">
+                        <div class="optionicon {{GetSelectedClass(0,5)}}">
+                            <i class="fa fa-arrows-v"></i>
                         </div>
                         <a>About My Height</a>
                     </li>
 
-                    <li>
-                        <div class="optionicon">
-                            <i class="fa fa-male"></i>
+                    <li ng-click="ContactObject.Height=1;">
+                        <div class="optionicon {{GetSelectedClass(1,5)}}">
+                            <i class="fa fa-arrow-up"></i>
                         </div>
                         <a>Taller than Me</a>
                     </li>
 
-                    <li>
-                        <div class="optionicon">
-                            <i class="fa fa-female"></i>
+                    <li ng-click="ContactObject.Height=2;">
+                        <div class="optionicon {{GetSelectedClass(2,5)}}">
+                            <i class="fa fa-arrow-down"></i>
                         </div>
                         <a>Shorter than Me</a>
                     </li>
