@@ -9,6 +9,11 @@ app.config(function ($routeProvider) {
         templateUrl: "app/views/status.html"
     });
 
+    $routeProvider.when("/addtips", {
+        controller: "addtipsController",
+        templateUrl: "app/views/addtips.html"
+    });
+
     $routeProvider.when("/find", {
         controller: "statusController",
         templateUrl: "app/views/find.html"
@@ -23,7 +28,7 @@ app.config(function ($routeProvider) {
         controller: "menuController",
         templateUrl: "app/views/menu.html"
     });
-    $routeProvider.otherwise({ redirectTo: "/menu" });
+    $routeProvider.otherwise({ redirectTo: "/addtips" });
 
 });
 

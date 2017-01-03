@@ -1,0 +1,553 @@
+﻿<style>
+    .resultpart
+    {
+        margin-top:50px;
+    }
+
+    .container
+    {
+        background:#fff;
+    }
+
+    .profileimg img
+    {
+        height:40px;
+        width:40px;
+        border-radius:50px;
+    }
+
+    .resultpart img
+    {
+
+    }
+
+    .col-xs-3,col-xs-2, .col-xs-6 ,col-xs-7 
+    {
+        padding-left:7px;
+        padding-right:7px;
+    }
+
+    .form-control
+    {
+         border-radius:0 !important;
+      
+    }
+
+    .username .form-control
+    {
+        border-radius:0;
+        border:transparent;
+        border-bottom:1px solid #ccc;
+        margin-top:5px;
+        margin-bottom:7px;
+    }
+
+    .btn-danger{
+        background-color:#f04124;
+    }
+
+    .noname
+    {
+        text-align:center;
+    }
+
+    .noname .btn{
+        height:35px;
+        width:35px;
+        border-radius:35px;
+        padding:0;
+        line-height:35px;
+         
+    }
+
+    .addtip
+
+    {
+        text-align:center;
+    }
+
+    .addtip .btn
+    {
+         height: 35px;
+    width: 35px;
+    border-radius: 40px;
+      padding: 0;
+    line-height: 35px;
+  
+    text-align: center;
+    }
+
+    .tiparea .tipheader
+    {
+        background:#eaeaea;
+        padding-top:5px;
+        padding-bottom:5px;
+    }
+
+    .tipheader .form-control{
+        margin-bottom:0;
+        padding-left:10px;
+        margin-top:0;
+    }
+
+    .tiprecord
+    {
+        border:1px solid #eaeaea;
+      padding:6px;
+        margin-bottom:5px;
+    }
+
+    .tiprecord ul li
+    {
+        border-bottom:1px solid #eaeaea;
+    }
+
+    .option
+
+    {
+        height:48px;
+    }
+
+     .option ul {
+            display: inline-block;
+            width:100%;
+            margin-bottom:0;
+        }
+
+            .option ul li {
+              float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 13px;
+    margin-top: 3px;
+    width: 33%;
+    text-align: center;
+            }
+
+            .option ul li a {
+    color: #000;
+    font-size: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-inline-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+
+
+        .optionicon {
+            height: 30px;
+            width: 30px;
+            line-height: 30px;
+            background: #FFC107;
+            border-radius: 100%;
+            display: block;
+            margin: 0 auto;
+            color: #fff;
+        }
+
+            .optionicon i {
+                font-size: 15px;
+            }
+
+          .selectionpart  .row:nth-child(odd) {
+    background: #ececec;
+}
+
+          .selectionpart h4
+          {
+             margin-top: 17px;
+    font-size: 15px;
+          }
+
+
+
+            .Hairoption ul {
+            display: inline-block;
+            width:100%;
+            margin-bottom:0;
+            padding-top:5px;
+        }
+
+            .Hairoption ul li {
+              float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    line-height: 13px;
+    margin-top: 3px;
+    width: 16.66%;
+    text-align: center;
+            }
+
+            .Hairoption ul li a {
+    color: #000;
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-inline-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+
+
+        .hairoptionicon {
+            height: 15px;
+            width: 15px;
+            line-height: 32px;
+            background: #FFC107;
+            border-radius: 100%;
+            display: block;
+            margin: 0 auto;
+            color: #fff;
+        }
+
+            .hairoptionicon i {
+                font-size: 5px;
+            }
+
+            .pink{
+                background:#E91E63;
+            }
+
+             .blue{
+                background:#2196F3;
+            }
+
+             .red{
+                 background:#F44336;
+             }
+
+              .purple{
+                 background:#9C27B0;
+             }
+               .yellow{
+                 background:#FFC107;
+             }
+
+                .brown{
+                 background:#795548;
+             }
+                  .grey{
+                 background:#9E9E9E;
+             }
+
+                 .white{
+                 background:#fff;
+             }
+
+                  .black{
+                 background:#000;
+             }
+
+                 
+
+                   .tiprecord ul li a
+                  {
+                        
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-inline-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+                  }
+
+</style>
+
+
+<div class="resultpart">
+
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="profileimg">
+                <img src="img/male.jpg" alt="" />
+            </div>
+
+        </div>
+
+        <div class="col-xs-7">
+            <div class="username">
+                <input type="text" placeholder="Type Name" class="form-control" value="" />
+            </div>
+        </div>
+
+        <div class="col-xs-3">
+            <div class="noname">
+                <a class="btn btn-danger" href="">
+                    <i class="fa fa-question"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+  
+
+</div>
+
+<div class="tiparea">
+    <div class="tipheader">
+        <div class="row">
+            <div class="col-xs-9">
+                <input ng-model="NewTips.Text" placeholder="Find Or Add Tip" type="text" class="form-control" value="" />
+
+            </div>
+
+            <div class="col-xs-3">
+                <div class="addtip">
+                    <a ng-click="AddnewToTips()" class="btn btn-success">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+      
+
+    </div>
+
+    <div ng-style="{'height':tiparea}" class="tiprecord">
+        <ul>
+            <li ng-repeat="_obj in Tips">
+                <a>{{_obj.Text}}</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="selectionpart">
+    <div class="row">
+        <div class="col-xs-3">
+            <h4>Gender</h4>
+        </div>
+
+        <div class="col-xs-9">
+            <div class="option">
+                <ul>
+                    <li>
+                        <div class="optionicon purple">
+                            <i class="fa fa-question"></i>
+                        </div>
+                        <a>Dont' Know</a>
+                    </li>
+
+                    <li>
+                        <div class="optionicon blue">
+                            <i class="fa fa-male"></i>
+                        </div>
+                        <a>Male</a>
+                    </li>
+
+                    <li>
+                        <div class="optionicon pink">
+                            <i class="fa fa-female"></i>
+                        </div>
+                        <a>Female</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3">
+            <h4>Age</h4>
+        </div>
+
+        <div class="col-xs-9">
+            <div class="option">
+                <ul>
+                    <li>
+                        <div class="optionicon red">
+                            <i class="fa fa-question"></i>
+                        </div>
+                        <a>My Gen</a>
+                    </li>
+
+                    <li>
+                        <div class="optionicon red">
+                            <i class="fa fa-male"></i>
+                        </div>
+                        <a>Younger Gen</a>
+                    </li>
+
+                    <li>
+                        <div class="optionicon red">
+                            <i class="fa fa-female"></i>
+                        </div>
+                        <a>Older Gen</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        
+
+        <div class="col-xs-12">
+            <div class="Hairoption">
+                <ul>
+                    <li>
+                        <div class="hairoptionicon white">
+                            <i class="fa fa-question"></i>
+                        </div>
+                        <a>Bald</a>
+                    </li>
+
+                    <li>
+                        <div class="hairoptionicon black">
+                            <i class="fa fa-question"></i>
+                        </div>
+                        <a>Dark</a>
+                    </li>
+
+                    <li>
+                        <div class="hairoptionicon brown">
+                            <i class="fa fa-question"></i>
+                        </div>
+                        <a>Brown</a>
+                    </li>
+
+                    <li>
+                        <div class="hairoptionicon yellow">
+                            <i class="fa fa-question"></i>
+                        </div>
+                        <a>Blond</a>
+                    </li>
+
+                    <li>
+                        <div class="hairoptionicon red">
+                            <i class="fa fa-question"></i>
+                        </div>
+                        <a>Red</a>
+                    </li>
+
+                    <li>
+                        <div class="hairoptionicon grey">
+                            <i class="fa fa-question"></i>
+                        </div>
+                        <a>Grey</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-3">
+            <h4>Skin</h4>
+        </div>
+
+        <div class="col-xs-9">
+            <div class="option">
+                <ul>
+                    <li>
+                        <div class="optionicon brown">
+                            <i class="fa fa-question"></i>
+                        </div>
+                        <a>Like Mine</a>
+                    </li>
+
+                    <li>
+                        <div class="optionicon brown">
+                            <i class="fa fa-male"></i>
+                        </div>
+                        <a>Darker Mine</a>
+                    </li>
+
+                    <li>
+                        <div class="optionicon brown">
+                            <i class="fa fa-female"></i>
+                        </div>
+                        <a>Lighter Mine</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-3">
+            <h4>Height</h4>
+        </div>
+
+        <div class="col-xs-9">
+            <div class="option">
+                <ul>
+                    <li>
+                        <div class="optionicon">
+                            <i class="fa fa-question"></i>
+                        </div>
+                        <a>About My Height</a>
+                    </li>
+
+                    <li>
+                        <div class="optionicon">
+                            <i class="fa fa-male"></i>
+                        </div>
+                        <a>Taller than Me</a>
+                    </li>
+
+                    <li>
+                        <div class="optionicon">
+                            <i class="fa fa-female"></i>
+                        </div>
+                        <a>Shorter than Me</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="bottomarea" ng-click="insertRecord()">
+    <a>
+        <i class="fa fa-check"></i> Done
+    </a>
+</div>
+
+
+
+
+
+
+<div class="modal fade" id="AddName">
+
+    <div class="modal-header">
+        <h4>Select option</h4>
+    </div>
+
+    <div class="modal-body">
+        <ul>
+            <li ng-click="capturePhotoNew()">
+                <a> <i class="fa fa-camera"></i> Capture Photo</a>
+            </li>
+            <li ng-click="getPhoto()">
+
+                <a><i class="fa fa-picture-o"></i> From Photo Library</a>
+            </li>
+
+            <li data-dismiss="modal">
+
+                <a><i class="fa fa-times"></i> Cancel</a>
+            </li>
+        </ul>
+    </div>
+
+
+
+</div>
+
+

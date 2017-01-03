@@ -12,6 +12,8 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
     var bodyheight = $(window).height();
 
+    alert(bodyheight);
+
     var tableheight = bodyheight - 365;
 
     $scope.tableheight = tableheight.toString() + "px";
@@ -45,7 +47,7 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
         $cordovaKeyboard.hideAccessoryBar(false);
 
-        if (_path == "/status") {
+        if (_path == "/status" || _path=="/addtips") {
 
             $cordovaKeyboard.disableScroll(true);
         }
@@ -105,9 +107,13 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
      var bottomarea = (bodyheight * 6) / 100;
 
      $scope.bottomarea = bottomarea.toString() + "px";
+
+
+     var tiparea = (bodyheight * 25) / 100;
   
-   
-  
+     $scope.tiparea = tiparea.toString() + "px";
+
+     alert($scope.tiparea);
 
     $scope.logOut = function () {
         localStorageService.set("ActivityCart", "");
