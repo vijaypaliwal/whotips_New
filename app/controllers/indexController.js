@@ -108,7 +108,7 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
      $scope.bottomarea = bottomarea.toString() + "px";
 
 
-     var tiparea = (bodyheight - 445);
+     var tiparea = (bodyheight - 460);
 
 
 
