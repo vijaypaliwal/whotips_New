@@ -637,6 +637,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
         UpdateRecentTips();
         createTable();
+        $location.path("/find")
     }
 
 
