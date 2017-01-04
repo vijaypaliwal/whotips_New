@@ -28,7 +28,7 @@ app.config(function ($routeProvider) {
         controller: "menuController",
         templateUrl: "app/views/menu.html"
     });
-    $routeProvider.otherwise({ redirectTo: "/addtips" });
+    $routeProvider.otherwise({ redirectTo: "/menu" });
 
 });
 
