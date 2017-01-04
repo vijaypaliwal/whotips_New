@@ -370,13 +370,13 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
     function GetSkin(_Type) {
         switch (_Type) {
-            case 0:
+            case 1:
                 return "Like Mine";
                 break;
-            case 1:
+            case 2:
                 return "Darker Mine";
                 break;
-            case 2:
+            case 3:
                 return "Lighter Mine";
                 break;
             default:
@@ -388,22 +388,22 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
     function GetHairs(_Type) {
         switch (_Type) {
-            case 0:
+            case 1:
                 return "Bald";
                 break;
-            case 1:
+            case 2:
                 return "Dark";
                 break;
-            case 2:
+            case 3:
                 return "Brown";
                 break;
-            case 3:
+            case 4:
                 return "Blond";
                 break;
-            case 4:
+            case 5:
                 return "Red";
                 break;
-            case 5:
+            case 6:
                 return "Grey";
                 break;
             default:
@@ -415,13 +415,13 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
     function GetHeight(_Type) {
         switch (_Type) {
-            case 0:
+            case 1:
                 return "About My Height";
                 break;
-            case 1:
+            case 2:
                 return "Taller Than me";
                 break;
-            case 2:
+            case 3:
                 return "Younger Than me";
                 break;
 
@@ -559,6 +559,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
                 }
                 CheckScopeBeforeApply();
+                console.log($scope.Contacts);
             });
 
         });
@@ -637,7 +638,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
         UpdateRecentTips();
         createTable();
-        $location.path("/find")
+        $location.path("/menu")
     }
 
 
@@ -645,6 +646,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     $scope.ClearSearchText = function () {
         $scope.SearchText = "";
         CheckScopeBeforeApply();
+        $scope.CallShowDetail();
     }
     $scope.EditRecord = function (id) {
 
@@ -1141,21 +1143,72 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         mySwiper.swipePrev();
     }
 
+
+    $scope.getHairImage=function(Hair)
+    {
+        switch (Hair) {
+            case "Bald":
+                return "bald.png";
+                break;
+            case "Dark":
+                return "dark.png";
+                break;
+            case "Brown":
+                return "brown.png";
+                break;
+            case "Blond":
+                return "blond.png";
+                break;
+            case "Red":
+                return "red.png";
+                break;
+            case "Grey":
+                return "grey.png";
+                break;
+            default:
+
+        }
+    }
+
     $scope.GetAgeType = function (Type) {
+        debugger;
         switch (Type) {
             case 1:
+            case "1":
                 return "Much Younger than Me";
                 break;
             case 2:
+            case "2":
                 return "My Generation";
                 break;
             case 3:
+            case "3":
                 return "Much Older than me";
                 break;
             default:
                 return "Relative Age";
 
         }
+    }
+    $scope.CallShowDetail = function () {
+        //applyshowdetail();
+    }
+    $scope.GetSkinClass=function(Type)
+    {
+        switch (Type) {
+            case "Like Mine":
+                return "mine";
+                break;
+            case "Darker Mine":
+                return "darkmine";
+                break;
+            case "Lighter Mine":
+                return "lightmine";
+                break;
+            default:
+
+        }
+        return "";
     }
 
     $scope.viewallTips = function () {
