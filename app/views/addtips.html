@@ -280,7 +280,7 @@
     }
 
     .darkmine {
-        background: #eac086;
+        background: #d8a054;
     }
 
     .green img {
@@ -317,6 +317,21 @@
    
     margin-top: 12px;
     }
+
+    .tiprecord ul .Norecord
+    {
+       float: none;
+    text-align: center;
+    background: none;
+    border: none;
+    padding-top: 25px;
+    box-shadow: none;
+    }
+
+      .tiprecord ul .Norecord a
+      {
+          font-size:15px;
+      }
 </style>
 
 
@@ -370,8 +385,12 @@
 
     <div ng-style="{'height':tiparea}" class="tiprecord">
         <ul>
-            <li ng-repeat="_obj in Tips" ng-click="AddtoTips(_obj.Text)" class="{{IsAvailable(3,_obj.Text)}}">
+            <li ng-repeat="_obj in Tips" ng-show="Tips.length>0" ng-click="AddtoTips(_obj.Text)" class="{{IsAvailable(3,_obj.Text)}}">
                 <a>{{_obj.Text}}</a>
+            </li>
+            <li class="Norecord" ng-show="Tips.length==0">
+                <a>Either no Tip found with search text or no tips available.</a>
+
             </li>
         </ul>
     </div>
@@ -603,7 +622,7 @@
 
 
 
-<div class="bottomarea waves-effect" ng-click="insertRecord()">
+<div class="bottomarea waves-effect hide" ng-click="insertRecord()">
     <a>
         <i class="fa fa-check"></i> Done
     </a>

@@ -1067,7 +1067,17 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
             $(".hairrow").removeClass("hide");
             $(".hairrow").addClass("animated fadeInUp");
 
-        }, 1700)
+        }, 1700);
+
+        setTimeout(function () {
+
+            $(".bottomarea").removeClass("hide");
+            $(".bottomarea").addClass("animated bounceInDown");
+
+        }, 2000);
+
+
+        
 
     
      
