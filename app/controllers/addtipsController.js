@@ -987,7 +987,11 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
         initDatabase();
 
-
+        $("#NameBox").focusin(function () {
+            $(this).attr("Placeholder", "");
+        }).focusout(function () {
+            $(this).attr("Placeholder", "Name");
+        });
 
         mySwiper = new Swiper('.swiper-container', {
             initialSlide: 0,
