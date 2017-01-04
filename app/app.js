@@ -15,7 +15,7 @@ app.config(function ($routeProvider) {
     });
 
     $routeProvider.when("/find", {
-        controller: "statusController",
+        controller: "addtipsController",
         templateUrl: "app/views/find.html"
     });
 
