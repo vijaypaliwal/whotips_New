@@ -131,7 +131,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
             var _array = [];
                 _array=angular.copy($scope.TipsCopy);
             _array = jQuery.grep(_array, function (el) {
-                return el.Text.toLowerCase().indexOf($scope.NewTips.Text) > -1;
+                return el.Text.toLowerCase().indexOf($scope.NewTips.Text.toLowerCase()) > -1;
             });
             $scope.Tips = _array;
             //if (_array != null && _array != undefined && _array != "" && _array.length > 0) {
@@ -365,7 +365,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
             GetTipsArray(1);
 
-        }, 100);
+        }, 500);
     }
 
     function GetSkin(_Type) {
@@ -610,7 +610,6 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         $scope.Tips = [];
         $scope.TipsCopy = [];
         db.transaction(function (tx) {
-
             tx.executeSql(selectAllTipsStatement, [], function (tx, result) {
                 dataset = result.rows;
                 for (var i = 0, item = null; i < dataset.length; i++) {
@@ -637,6 +636,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         insertRecord();
 
         UpdateRecentTips();
+        createTable();
     }
 
 
