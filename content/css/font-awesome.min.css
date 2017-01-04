@@ -267,10 +267,10 @@
 .option .green .fa-question:before {
     content: "\f00c";
 }
-.option .green .fa-arrow-down:before {
+.option .green .fa-long-arrow-down:before {
     content: "\f00c";
 }
-.option .green .fa-arrow-up:before {
+.option .green .fa-long-arrow-up:before {
     content: "\f00c";
 }
 .option .green .fa-arrows-v:before {

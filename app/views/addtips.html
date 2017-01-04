@@ -1,8 +1,7 @@
 ﻿<style>
-    .resultpart
-    {
-        margin-top:50px;
-        height:48px;
+    .resultpart {
+        margin-top: 50px;
+        height: 48px;
     }
 
     .container {
@@ -10,251 +9,265 @@
         padding-left: 5px;
         padding-right: 5px;
     }
-    .profileimg img
-    {
-        height:40px;
-        width:40px;
-        border-radius:50px;
+
+    .profileimg img {
+       height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    border: 2px solid #ccc;
     }
 
-    .resultpart img
-    {
-
+    .resultpart img {
     }
 
-  
 
-    .form-control
-    {
-         border-radius:0 !important;
-      
+
+    input:focus {
+        background-color: #fff;
+       box-shadow:none !important;
+       border:1px solid #3F51B5;
+     
     }
 
-    .username .form-control
-    {
-        border-radius:0;
-        border:transparent;
-        border-bottom:1px solid #ccc;
-        margin-top:5px;
-        margin-bottom:7px;
+    .username .form-control {
+        margin-top: 5px;
+        margin-bottom: 7px;
+        padding-left: 8px;
     }
 
-    .btn-danger{
-        background-color:#f04124;
+    .btn-danger {
+        background-color: #f04124;
     }
 
-    .noname
-    {
-        text-align:center;
+    .noname {
+        text-align: center;
     }
 
-    .noname .btn{
-        height:35px;
-        width:35px;
-        border-radius:35px;
-        padding:0;
-        line-height:35px;
-         
+        .noname .btn {
+            height: 35px;
+            width: 35px;
+            border-radius: 35px;
+            padding: 0;
+            line-height: 35px;
+        }
+
+    .addtip {
+        text-align: center;
     }
 
-    .addtip
+        .addtip .btn {
+            height: 35px;
+            width: 35px;
+            border-radius: 40px;
+            padding: 0;
+            line-height: 35px;
+            text-align: center;
+        }
 
-    {
-        text-align:center;
+    .tiparea .tipheader {
+        background: #eaeaea;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        height: 47px;
     }
 
-    .addtip .btn
-    {
-         height: 35px;
-    width: 35px;
-    border-radius: 40px;
-      padding: 0;
-    line-height: 35px;
-  
-    text-align: center;
-    }
-
-    .tiparea .tipheader
-    {
-        background:#eaeaea;
-        padding-top:5px;
-        padding-bottom:5px;
-        height:47px;
-    }
-
-    .tipheader .form-control{
-        margin-bottom:0;
-        padding-left:10px;
-        margin-top:0;
+    .tipheader .form-control {
+        margin-bottom: 0;
+        padding-left: 10px;
+        margin-top: 0;
     }
 
     .tiprecord {
         border: 1px solid #eaeaea;
         margin-bottom: 5px;
+        padding-left:5px;
         overflow: auto;
     }
 
-    .tiprecord ul li
-    {
-        border-bottom:1px solid #eaeaea;
+        .tiprecord ul li {
+          float: left;
+    border: 1px solid #d2d2d2;
+    padding-left: 4px;
+    padding-right: 4px;
+    color: #333;
+    margin-left: 3px;
+    margin-right: 3px;
+    box-shadow: 2px 3px 4px #ccc;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-radius: 3px;
+    background: #eaeaea;
+        }
+
+
+
+
+        .tiprecord ul .green
+        {
+            background:#8BC34A !important;
+        } 
+
+         .tiprecord ul .green a
+        {
+            color:#f1f1f1 !important;
+        } 
+
+
+
+    .option {
+        height: 48px;
     }
 
-    .option
-
-    {
-        height:48px;
-    }
-
-     .option ul {
+        .option ul {
             display: inline-block;
-            width:100%;
-            margin-bottom:0;
+            width: 100%;
+            margin-bottom: 0;
         }
 
             .option ul li {
-              float: left;
-    padding-left: 10px;
-    padding-right: 10px;
-    line-height: 13px;
-    margin-top: 3px;
-    width: 33%;
-    text-align: center;
+                float: left;
+                padding-left: 10px;
+                padding-right: 10px;
+                line-height: 13px;
+                margin-top: 3px;
+                width: 33%;
+                text-align: center;
             }
 
-            .option ul li a {
-    color: #000;
-    font-size: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-inline-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    word-break: break-all;
-}
+                .option ul li a {
+                    color: #000;
+                    font-size: 10px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-inline-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    word-break: break-all;
+                }
 
 
-        .optionicon {
-            height: 30px;
-            width: 30px;
-            line-height: 30px;
-            background: #FFC107;
-            border-radius: 100%;
-            display: block;
-            margin: 0 auto;
-            color: #fff;
+    .optionicon {
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        background: #FFC107;
+        border-radius: 100%;
+        display: block;
+        margin: 0 auto;
+        color: #fff;
+    }
+
+        .optionicon i {
+            font-size: 15px;
         }
 
-            .optionicon i {
-                font-size: 15px;
-            }
+    .selectionpart .row:nth-child(odd) {
+        background: #ececec;
+    }
 
-          .selectionpart  .row:nth-child(odd) {
-    background: #ececec;
-}
-
-          .selectionpart h4
-          {
-             margin-top: 17px;
-    font-size: 15px;
-          }
+    .selectionpart h4 {
+        margin-top: 17px;
+        font-size: 15px;
+    }
 
 
 
-            .Hairoption ul {
-            display: inline-block;
-            width:100%;
-            margin-bottom:0;
-            padding-top:5px;
+    .Hairoption ul {
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 0;
+        padding-top: 5px;
+    }
+
+        .Hairoption ul li {
+            float: left;
+            padding-left: 10px;
+            padding-right: 10px;
+            line-height: 13px;
+            margin-top: 3px;
+            width: 16.66%;
+            text-align: center;
         }
-
-            .Hairoption ul li {
-              float: left;
-    padding-left: 10px;
-    padding-right: 10px;
-    line-height: 13px;
-    margin-top: 3px;
-    width: 16.66%;
-    text-align: center;
-            }
 
             .Hairoption ul li a {
-    color: #000;
-    font-size: 8px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-inline-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    word-break: break-all;
-}
+                color: #000;
+                font-size: 8px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-inline-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                word-break: break-all;
+            }
 
 
 
-        .hairoptionicon {
-            height: 20px;
-            width: 20px;
-          
-            background: #FFC107;
-            border-radius: 100%;
-            display: block;
-            margin: 0 auto;
-            color: #fff;
+    .hairoptionicon {
+        height: 20px;
+        width: 20px;
+        background: #FFC107;
+        border-radius: 100%;
+        display: block;
+        margin: 0 auto;
+        color: #fff;
+    }
+
+        .hairoptionicon i {
+            font-size: 0;
         }
 
-            .hairoptionicon i {
-                font-size: 0;
-            }
+    .pink {
+        background: #E91E63;
+    }
 
-            .pink{
-                background:#E91E63;
-            }
+    .blue {
+        background: #2196F3;
+    }
 
-             .blue{
-                background:#2196F3;
-            }
+    .red {
+        background: #F44336;
+    }
 
-             .red{
-                 background:#F44336;
-             }
+    .purple {
+        background: #9C27B0;
+    }
 
-              .purple{
-                 background:#9C27B0;
-             }
-               .yellow{
-                 background:#FFC107;
-             }
+    .yellow {
+        background: #FFC107;
+    }
 
-                .brown{
-                 background:#795548;
-             }
-                  .grey{
-                 background:#9E9E9E;
-             }
+    .brown {
+        background: #795548;
+    }
 
-                 .white{
-                 background:#fff;
-             }
+    .grey {
+        background: #9E9E9E;
+    }
 
-                  .black{
-                 background:#000;
-             }
+    .white {
+        background: #fff;
+        border:1px solid #ccc;
+    }
+
+   .hairrow .white img
+    {
+        height: 22px;
+    width: 22px;
+    }
+
+    .black {
+        background: #000;
+    }
 
     .green {
         background-color: #4CAF50 !important;
-        color:#fff;
+        color: #fff;
     }
 
     .tiprecord ul li a {
-        font-size: 12px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-inline-box;
-      
-        padding-top: 3px;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        word-break: break-all;
-        padding-left: 5px;
+       font-size: 11px;
+    color: #333;
+     
     }
 
 
@@ -270,6 +283,40 @@
         background: #eac086;
     }
 
+    .green img {
+        display: none;
+    }
+
+    .optionicon img {
+        height: 27px;
+        width: 27px;
+        margin: 0 auto;
+        padding-top: 2px;
+    }
+
+
+    .green .fa-check {
+        display: initial !important;
+    }
+
+    .bottomarea a {
+        color: #fff !important;
+    }
+
+    .rightarrow
+    {
+    position: absolute;
+    right: 10px;
+    margin-top: -30px;
+    }
+
+    .leftarrow
+
+    {
+         position: absolute;
+   
+    margin-top: 12px;
+    }
 </style>
 
 
@@ -278,55 +325,52 @@
     <div class="row">
         <div class="col-xs-2" ng-click="openNamebox()">
             <div class="profileimg">
-                <img ng-if="ContactObject.imagepath==''" src="img/male.jpg" alt="" />
+                <img ng-if="ContactObject.imagepath==''" src="img/male.png" alt="" />
                 <img src="{{ContactObject.imagepath}}" ng-if="ContactObject.imagepath!=''" />
             </div>
-
         </div>
 
         <div class="col-xs-7">
             <div class="username">
-                <input type="text" placeholder="Type Name" ng-model="ContactObject.firstName" class="form-control" value="" />
+                <input type="text" placeholder="Type Your Name" ng-model="ContactObject.firstName" class="form-control" value="" />
             </div>
         </div>
 
         <div class="col-xs-3">
             <div class="noname">
-                <a class="btn btn-danger" href="">
+                <a class="btn btn-danger waves-effect" href="">
                     <i class="fa fa-question"></i>
                 </a>
             </div>
         </div>
     </div>
 
-  
-
 </div>
 
-<div class="tiparea">
+<div class="tiparea animated bounceInDown">
     <div class="tipheader">
         <div class="row">
             <div class="col-xs-9">
-                <input ng-model="NewTips.Text" placeholder="Find Or Add Tip" type="text" class="form-control" value="" />
+                <input ng-change="GetAlphabeticalOrderTips()" ng-model="NewTips.Text" placeholder="Find Or Add Tip" type="text" class="form-control" value="" />
 
             </div>
 
             <div class="col-xs-3">
                 <div class="addtip">
-                    <a ng-click="AddnewToTips()" class="btn btn-success">
+                    <a ng-click="AddnewToTips()" class="btn btn-success waves-effect">
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>
 
             </div>
         </div>
-      
+
 
     </div>
 
     <div ng-style="{'height':tiparea}" class="tiprecord">
         <ul>
-            <li ng-repeat="_obj in Tips|filter:NewTips.Text" ng-click="AddtoTips(_obj.Text)" class="{{IsAvailable(3,_obj.Text)}}">
+            <li ng-repeat="_obj in Tips" ng-click="AddtoTips(_obj.Text)" class="{{IsAvailable(3,_obj.Text)}}">
                 <a>{{_obj.Text}}</a>
             </li>
         </ul>
@@ -334,7 +378,7 @@
 </div>
 
 <div class="selectionpart">
-    <div class="row">
+    <div class="row genderrow hide">
         <div class="col-xs-2">
             <h4>Gender</h4>
         </div>
@@ -343,21 +387,21 @@
             <div class="option">
                 <ul>
                     <li ng-click="UpdateGender(0)">
-                        <div class="optionicon purple {{GetSelectedClass('N',1)}}">
+                        <div class="optionicon waves-effect purple {{GetSelectedClass('N',1)}}">
                             <i class="fa fa-question"></i>
                         </div>
                         <a>Dont' Know</a>
                     </li>
 
                     <li ng-click="UpdateGender(1)">
-                        <div class="optionicon blue {{GetSelectedClass('M',1)}}">
+                        <div class="optionicon waves-effect blue {{GetSelectedClass('M',1)}}">
                             <i class="fa fa-male"></i>
                         </div>
                         <a>Male</a>
                     </li>
 
                     <li ng-click="UpdateGender(2)">
-                        <div class="optionicon pink {{GetSelectedClass('F',1)}}">
+                        <div class="optionicon waves-effect pink {{GetSelectedClass('F',1)}}">
                             <i class="fa fa-female"></i>
                         </div>
                         <a>Female</a>
@@ -367,7 +411,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row agerow hide">
         <div class="col-xs-2">
             <h4>Age</h4>
         </div>
@@ -375,23 +419,25 @@
         <div class="col-xs-10">
             <div class="option">
                 <ul>
-                    <li ng-click="ContactObject.AgeType=0;">
-                        <div class="optionicon red {{GetSelectedClass(0,2)}}">
+                    <li ng-click="UpdateAgeType(1)">
+                        <div class="optionicon waves-effect red {{GetSelectedClass(1,2)}}">
                             <i class="fa fa-user"></i>
                         </div>
                         <a>My Gen</a>
                     </li>
 
-                    <li ng-click="ContactObject.AgeType=1;">
-                        <div class="optionicon red {{GetSelectedClass(1,2)}}">
-                            <i class="fa fa-child"></i>
+                    <li ng-click="UpdateAgeType(2)">
+                        <div class="optionicon waves-effect red {{GetSelectedClass(2,2)}}">
+                            <img src="img/baby.png" alt="" />
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
                         <a>Younger Gen</a>
                     </li>
 
-                    <li ng-click="ContactObject.AgeType=2;">
-                        <div class="optionicon red {{GetSelectedClass(2,2)}}">
-                            <i class="fa fa-wheelchair"></i>
+                    <li ng-click="UpdateAgeType(3)">
+                        <div class="optionicon waves-effect red {{GetSelectedClass(3,2)}}">
+                            <img src="img/beared.png" alt="" />
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
                         <a>Older Gen</a>
                     </li>
@@ -401,9 +447,9 @@
     </div>
 
 
-    
 
-    <div class="row">
+
+    <div class="row skinrow hide">
         <div class="col-xs-2">
             <h4>Skin</h4>
         </div>
@@ -411,22 +457,22 @@
         <div class="col-xs-10">
             <div class="option">
                 <ul>
-                    <li ng-click="ContactObject.Skin=0;">
-                        <div class="optionicon mine {{GetSelectedClass(0,4)}}">
+                    <li ng-click="UpdateSkinType(1)">
+                        <div class="optionicon waves-effect mine {{GetSelectedClass(1,4)}}">
                             <i class="fa fa-smile-o"></i>
                         </div>
                         <a>Like Mine</a>
                     </li>
 
-                    <li ng-click="ContactObject.Skin=1;">
-                        <div class="optionicon darkmine {{GetSelectedClass(1,4)}}">
+                    <li ng-click="UpdateSkinType(2)">
+                        <div class="optionicon waves-effect darkmine {{GetSelectedClass(2,4)}}">
                             <i class="fa fa-smile-o"></i>
                         </div>
                         <a>Darker Mine</a>
                     </li>
 
-                    <li ng-click="ContactObject.Skin=2;">
-                        <div class="optionicon lightmine {{GetSelectedClass(2,4)}}">
+                    <li ng-click="UpdateSkinType(3)">
+                        <div class="optionicon waves-effect lightmine {{GetSelectedClass(3,4)}}">
                             <i class="fa fa-smile-o"></i>
                         </div>
                         <a>Lighter Mine</a>
@@ -437,7 +483,7 @@
     </div>
 
 
-    <div class="row">
+    <div class="row heightrow hide">
         <div class="col-xs-2">
             <h4>Height</h4>
         </div>
@@ -445,23 +491,23 @@
         <div class="col-xs-10">
             <div class="option">
                 <ul>
-                    <li ng-click="ContactObject.Height=0;">
-                        <div class="optionicon {{GetSelectedClass(0,5)}}">
+                    <li ng-click="UpdateHeight(1)">
+                        <div class="optionicon waves-effect {{GetSelectedClass(1,5)}}">
                             <i class="fa fa-arrows-v"></i>
                         </div>
                         <a>About My Height</a>
                     </li>
 
-                    <li ng-click="ContactObject.Height=1;">
-                        <div class="optionicon {{GetSelectedClass(1,5)}}">
-                            <i class="fa fa-arrow-up"></i>
+                    <li ng-click="UpdateHeight(2)">
+                        <div class="optionicon waves-effect {{GetSelectedClass(2,5)}}">
+                            <i class="fa fa-long-arrow-up"></i>
                         </div>
                         <a>Taller than Me</a>
                     </li>
 
-                    <li ng-click="ContactObject.Height=2;">
-                        <div class="optionicon {{GetSelectedClass(2,5)}}">
-                            <i class="fa fa-arrow-down"></i>
+                    <li ng-click="UpdateHeight(3)">
+                        <div class="optionicon waves-effect {{GetSelectedClass(3,5)}}">
+                            <i class="fa fa-long-arrow-down"></i>
                         </div>
                         <a>Shorter than Me</a>
                     </li>
@@ -471,53 +517,76 @@
     </div>
 
 
-    <div class="row">
+    <div class="row hairrow hide">
         <div class="col-xs-2">
             <h4>Hair</h4>
         </div>
 
 
-        <div class="col-xs-10">
-            <div class="Hairoption">
+        <div ng-if="morehair==false || morehair=='false'" class="col-xs-10 animated slideInLeft">
+
+
+            <div class="option">
                 <ul>
-                    <li ng-click="ContactObject.Hair=0;">
-                        <div class="hairoptionicon white {{GetSelectedClass(0,3)}}">
-                            <i class="fa fa-question"></i>
+                    <li ng-click="UpdateHair(1)">
+                        <div class="optionicon white {{GetSelectedClass(1,3)}}">
+                            <img style="height:26px;" src="img/bald.png" alt="" />
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
                         <a>Bald</a>
                     </li>
 
-                    <li ng-click="ContactObject.Hair=1;">
-                        <div class="hairoptionicon black {{GetSelectedClass(1,3)}}">
-                            <i class="fa fa-question"></i>
+                    <li ng-click="UpdateHair(2)">
+                        <div class="optionicon white {{GetSelectedClass(2,3)}}">
+                            <img src="img/dark.png" alt="" />
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
                         <a>Dark</a>
                     </li>
 
-                    <li ng-click="ContactObject.Hair=2;">
-                        <div class="hairoptionicon brown {{GetSelectedClass(2,3)}}">
-                            <i class="fa fa-question"></i>
+                    <li ng-click="UpdateHair(3)">
+                        <div class="optionicon white {{GetSelectedClass(3,3)}}">
+                            <img src="img/brown.png" alt="" />
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
                         <a>Brown</a>
                     </li>
 
-                    <li ng-click="ContactObject.Hair=3;">
-                        <div class="hairoptionicon yellow {{GetSelectedClass(3,3)}}">
-                            <i class="fa fa-question"></i>
+               
+                </ul>
+            </div>
+
+            <i ng-click="viewmorehair()" class="fa fa-chevron-right rightarrow"></i>
+        </div>
+
+        <div ng-if="morehair==true" class="col-xs-10 animated slideInLeft">
+
+            <i ng-click="lesshair()" class="fa fa-chevron-left leftarrow"></i>
+
+            <div class="option">
+                <ul>
+
+
+                    <li ng-click="UpdateHair(4)">
+                        <div class="optionicon white {{GetSelectedClass(4,3)}}">
+                            <img src="img/blond.png" alt="" />
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
                         <a>Blond</a>
                     </li>
 
-                    <li ng-click="ContactObject.Hair=4;">
-                        <div class="hairoptionicon red {{GetSelectedClass(4,3)}}">
-                            <i class="fa fa-question"></i>
+                    <li ng-click="UpdateHair(5)">
+                        <div class="optionicon white {{GetSelectedClass(5,3)}}">
+                            <img src="img/red.png" alt="" />
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
                         <a>Red</a>
                     </li>
 
-                    <li ng-click="ContactObject.Hair=5;">
-                        <div class="hairoptionicon grey {{GetSelectedClass(5,3)}}">
-                            <i class="fa fa-question"></i>
+                    <li ng-click="UpdateHair(6)">
+                        <div class="optionicon white {{GetSelectedClass(6,3)}}">
+                            <img src="img/grey.png" alt="" />
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
                         <a>Grey</a>
                     </li>
@@ -534,7 +603,7 @@
 
 
 
-<div class="bottomarea" ng-click="insertRecord()">
+<div class="bottomarea waves-effect" ng-click="insertRecord()">
     <a>
         <i class="fa fa-check"></i> Done
     </a>
@@ -553,15 +622,15 @@
 
     <div class="modal-body">
         <ul>
-            <li ng-click="capturePhotoNew()">
+            <li class="waves-effect" ng-click="capturePhotoNew()">
                 <a> <i class="fa fa-camera"></i> Capture Photo</a>
             </li>
-            <li ng-click="getPhoto()">
+            <li class="waves-effect" ng-click="getPhoto()">
 
                 <a><i class="fa fa-picture-o"></i> From Photo Library</a>
             </li>
 
-            <li data-dismiss="modal">
+            <li class="waves-effect" data-dismiss="modal">
 
                 <a><i class="fa fa-times"></i> Cancel</a>
             </li>
