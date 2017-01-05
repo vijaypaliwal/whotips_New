@@ -534,7 +534,7 @@
     <i ng-if="SearchText!=''" ng-click="ClearSearchText()" class="times fa fa-times"></i>-->
     <!--  -->
 
-    <div ng-if="Nofilter==false" class="option">
+    <div class="option optionlist">
         <ul>
 
 
@@ -589,19 +589,12 @@
     <div class="tiparea">
         <div class="tipheader">
             <div class="row">
-                <div class="col-xs-9">
-                    <input ng-change="GetAlphabeticalOrderTips()" ng-model="NewTips.Text" placeholder="Find Or Add Tip" type="text" class="form-control" value="" />
+                <div style="padding-right:25px;" class="col-xs-12">
+                    <input ng-change="GetAlphabeticalOrderTips()" ng-model="NewTips.Text" placeholder="Find Tips" type="text" class="form-control" value="" />
 
                 </div>
 
-                <div class="col-xs-3">
-                    <div class="addtip">
-                        <a ng-click="AddnewToTips()" class="btn btn-success waves-effect">
-                            <i class="fa fa-plus"></i>
-                        </a>
-                    </div>
-
-                </div>
+                
             </div>
 
 
@@ -609,7 +602,7 @@
 
         <div ng-style="{'height':tiparea}" class="tiprecord">
             <ul>
-                <li ng-repeat="_obj in Tips" ng-show="Tips.length>0" ng-click="AddtoTips(_obj.Text)" class="{{IsAvailable(3,_obj.Text)}}">
+                <li ng-repeat="_obj in Tips | filter:NewTips.Text" ng-show="Tips.length>0" ng-click="AddtoTips(_obj.Text)" class="{{IsAvailable(3,_obj.Text)}}">
                     <a>{{_obj.Text}}</a>
                 </li>
                 <li class="Norecord" ng-show="Tips.length==0">

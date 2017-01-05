@@ -399,6 +399,8 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     }
     function init() {
 
+      
+
         initDatabase();
         setTimeout(function () {
 
