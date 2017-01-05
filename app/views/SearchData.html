@@ -515,6 +515,31 @@
             width: 26px;
             border:1px solid #ccc;
         }
+
+    .modal-backdrop
+    {
+       
+        z-index:10;
+    }
+
+    #modal3 {
+        width: 100%;
+        bottom: 0;
+        top: inherit;
+        text-align:center;
+      
+        z-index:5000;
+        
+    }
+
+        #modal3 img {
+            height: 60px;
+            width: 60px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            border-radius: 100%;
+            border: 1px solid #ccc;
+        }
 </style>
 
 <div class="dataarea">
@@ -537,8 +562,22 @@
     <div class="option optionlist">
         <ul>
 
+            <li ng-if="ContactObject.AgeType!=''">
+                <div class="skinoption red">
+                    <i class="fa fa-user" ng-if="ContactObject.AgeType==1"> </i>
+                    <img style="margin-top:2px;" ng-if="ContactObject.AgeType==2" src="img/baby.png" alt="" />
+                    <img style="margin-top:2px;" ng-if="ContactObject.AgeType==3" src="img/beared.png" alt="" />
+                </div>
 
-            <li ng-if="ContactObject.gender!=''">
+                <a ng-if="ContactObject.AgeType==1">My Gen</a>
+                <a ng-if="ContactObject.AgeType==2">Younger Gen</a>
+                <a ng-if="ContactObject.AgeType==3">Older Gen</a>
+             
+
+            </li>
+
+
+            <!--<li ng-if="ContactObject.gender!=''">
                 <div class="skinoption" style="background:brown;color:white;">
                     <i class="fa fa-question" ng-if="ContactObject.gender=='N'"> </i>
                     <i class="fa fa-male" ng-if="ContactObject.gender=='M'"> </i>
@@ -547,7 +586,7 @@
                 <a ng-if="ContactObject.gender=='N'">Don't Know</a>
                 <a ng-if="ContactObject.gender=='M'">Male</a>
                 <a ng-if="ContactObject.gender=='F'">Female</a>
-            </li>
+            </li>-->
 
             <li ng-if="ContactObject.Skin!=''">
                 <div class="skinoption {{GetSkinClass(ContactObject.Skin)}}">
@@ -622,7 +661,7 @@
             <ul>
                 <li ng-repeat="_obj in Contacts" >
 
-                    <div class="chip">
+                    <div ng-click="showdetails()" class="chip">
                         <img src="img/male.png" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)" />
                         <img src="{{_obj.imagepath}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
                         <span>   {{_obj.firstName}} {{_obj.lastName}} </span>
@@ -634,6 +673,47 @@
             </ul>
         </div>
         
+    </div>
+</div>
+
+
+
+ <!-- Modal Structure Bottom Sheet -->
+<div id="modal3" class="modal animated bounceInUp">
+    <div class="modal-content">
+
+        <div class="image">
+            <img style="height:50px; width:50px;" src="img/male.png" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)" />
+        </div>
+        <h4>Dashrath Kumawat</h4>
+        <p>Older Gen</p>
+        <p>Tip1, Tip2</p>
+
+        <div class="row">
+            <div class="col-xs-4">
+
+                <img style="margin-top: 2px; height: 30px; width: 30px; background: brown" src="img/baby.png" alt="" />
+
+                Test
+            </div>
+            <div class="col-xs-4">
+             
+
+                    <img style="margin-top: 2px; height: 30px; width: 30px; background: brown" src="img/baby.png" alt="" />
+
+            
+
+                Test
+            </div>
+            <div class="col-xs-4">
+                <img style="margin-top:2px; height:30px; width:30px; background:brown" src="img/baby.png" alt="" />
+
+                Test
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a data-dismiss="modal" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
 </div>
 

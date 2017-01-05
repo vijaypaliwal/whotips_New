@@ -397,6 +397,15 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
         return _array;
     }
+
+
+    $scope.showdetails = function () {
+
+        $("#modal3").modal('show');
+
+    }
+
+
     function init() {
 
       
