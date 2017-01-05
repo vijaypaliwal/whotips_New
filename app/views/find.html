@@ -2,13 +2,15 @@
 
 <style>
     .btn.red {
-        width: 80%;
-        margin: 0 auto;
+        width: 50%;
+       
         position: fixed;
-        bottom: 5px;
-        left: 0;
+        bottom: 0px;
+       
         right: 0;
         text-transform: capitalize;
+        height:40px;
+        line-height:40px;
     }
     .ClearBtn {
         float: right;
@@ -118,13 +120,14 @@
     }
 
     .btn.green {
-        width: 80%;
+        width: 50%;
         margin: 0 auto;
         position: fixed;
-        bottom: 55px;
+        bottom: 0;
         left: 0;
-        right: 0;
-        color:#fff;
+        height: 40px;
+        line-height: 40px;
+        color: #fff;
         text-transform: capitalize;
     }
 
@@ -308,19 +311,10 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-xs-2"></div>
-        <div class="col-xs-8" ng-click="GetMatches();">
-            <a class="btn green matchbtn hide"><i class="fa fa-search"></i> Get Matches</a>
-        </div>
-        <div class="col-xs-2"></div>
-    </div>
-    <div class="row">
-        <div class="col-xs-2"></div>
-        <div class="col-xs-8" ng-click="ResetFilter()">
-            <a class="btn red matchbtn hide"> <i class="fa fa-times"></i> Reset</a>
-        </div>
-        <div class="col-xs-2"></div>
-    </div>
+    <a ng-click="GetMatches();" class="btn green matchbtn hide"><i class="fa fa-search"></i> Get Matches</a>
+
+    <a ng-click="ResetFilter()" class="btn red matchbtn hide"> <i class="fa fa-times"></i> Reset</a>
+
+  
    
 </div>
