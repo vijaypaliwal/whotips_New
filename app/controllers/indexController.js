@@ -43,12 +43,17 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
         }
 
 
-
+        
         $cordovaKeyboard.hideAccessoryBar(false);
 
         if (_path == "/status" || _path == "/addtips") {
 
             $cordovaKeyboard.disableScroll(true);
+        }
+        else if (_path == "/more")
+        {
+            RemoveDb();
+            $cordovaKeyboard.disableScroll(false);
         }
         else {
 
@@ -143,7 +148,17 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
         return _string;
     }
-
+    function RemoveDb() {
+        var _db = openDatabase("ContactsBook", "1.0", "Contacts Book", 200000);
+        var deleteStatement1 = "DELETE FROM Contacts;";
+        var _dstatement = "DELETE FROM Tips;";
+        var _confirm = confirm("Are you sure to reset database ?")
+        if (_confirm) {
+            _db.transaction(function (tx) { tx.executeSql(deleteStatement1, [], null, null); });
+            _db.transaction(function (tx) { tx.executeSql(_dstatement, [], null, null); });
+            localStorageService.set("RecentlyAddedTips",[])
+        }
+    }
     $scope.ShowErrorMessage = function (Place, TextType, Type, Message) {
         var _returnError = ""
         if (Message != undefined && Message != null) {
