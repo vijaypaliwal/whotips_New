@@ -1,0 +1,673 @@
+﻿
+
+
+<style>
+    .mine {
+        background: #ffcd94;
+    }
+
+    .lightmine {
+        background: #ffe0bd;
+    }
+
+    .darkmine {
+        background: #d8a054;
+    }
+
+    .modal-dialog {
+        margin: 0;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: auto;
+        background: #fff;
+        width: 60%;
+        overflow-y: auto;
+    }
+
+    .modal-content {
+        border: none;
+        background: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .fade-scale {
+        transform: scale(1,0); /* scale(0); horizontal*/
+        opacity: 0;
+        -webkit-transition: all .25s linear;
+        -o-transition: all .25s linear;
+        transition: all .25s linear;
+    }
+
+        .fade-scale.in {
+            opacity: 1;
+            transform: scale(1,1); /* scale(1); horizontal*/
+        }
+</style>
+<style>
+    .times {
+        position: absolute;
+        right: 10px;
+        margin-top: -45px;
+        margin-right: 12px;
+    }
+
+    .picture .gender {
+        height: 60px;
+        width: 60px;
+        margin: 0 auto;
+        text-align: center;
+        background: #2196F3;
+        line-height: 40px;
+        border-radius: 100%;
+        color: #fff;
+    }
+
+    .gender .male {
+        background: #2196F3;
+    }
+
+    .female.gender {
+        background: #E91E63 !important;
+    }
+
+    .picture .fa-male {
+        font-size: 40px;
+        margin-top: 10px;
+    }
+
+    .picture .fa-female {
+        font-size: 40px;
+        margin-top: 10px;
+    }
+
+    .picture img {
+        border-radius: 100%;
+        height: 60px;
+        width: 60px;
+    }
+
+    .toggle {
+        border-radius: 10px;
+        padding: 1px;
+        margin: 10px;
+    }
+
+        .toggle .col-xs-4 {
+            text-align: center;
+            margin: 0 auto;
+        }
+
+    .skinoption {
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        border-radius: 30px;
+        border: 1px solid #ccc;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+        .skinoption img {
+            height: 22px;
+            width: 22px;
+            margin: 0 auto;
+        }
+
+        .skinoption i
+        {
+            font-size:17px;
+        } 
+        .col-xs-4 h4 {
+            font-size: 13px;
+        }
+
+    p {
+        font-size: 16px;
+        margin: 12px 10px 10px;
+      
+    }
+
+    .list-group-item:nth-child(even) {
+        background: #e6e6e6;
+    }
+
+    .q {
+        /*box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+        padding-bottom:10px;*/
+        border: 1px solid #ccc;
+    }
+</style>
+
+<style>
+    .resultpart {
+        margin-top: 50px;
+        height: 48px;
+    }
+
+    .container {
+        background: #fff;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .profileimg img {
+        height: 40px;
+        width: 40px;
+        border-radius: 50px;
+        border: 2px solid #ccc;
+    }
+
+    .resultpart img {
+    }
+
+    .ClearBtn {
+        float: right;
+        color: #fafafa !important;
+        font-size: 12px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        padding-left: 5px;
+        padding-right: 4px;
+        background: #777;
+    }
+
+    input:focus {
+        background-color: #fff;
+        box-shadow: none !important;
+        border: 1px solid #3F51B5;
+    }
+
+    .username .form-control {
+        margin-top: 5px;
+        margin-bottom: 7px;
+        padding-left: 8px;
+    }
+
+    .btn-danger {
+        background-color: #f04124;
+    }
+
+    .noname {
+        text-align: center;
+    }
+
+        .noname .btn {
+            height: 35px;
+            width: 35px;
+            border-radius: 35px;
+            padding: 0;
+            line-height: 35px;
+            margin-top: 4px;
+        }
+
+    .addtip {
+        text-align: center;
+    }
+
+        .addtip .btn {
+            height: 35px;
+            width: 35px;
+            border-radius: 40px;
+            padding: 0;
+            line-height: 35px;
+            text-align: center;
+        }
+
+    .tiparea .tipheader {
+        background: #eaeaea;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        height: 47px;
+    }
+
+    .tipheader .form-control {
+        margin-bottom: 0;
+        padding-left: 10px;
+        margin-top: 0;
+    }
+
+    .tiprecord {
+        border: 1px solid #eaeaea;
+        margin-bottom: 5px;
+        padding-left: 5px;
+        overflow: auto;
+    }
+
+        .tiprecord ul li {
+            float: left;
+            border: 1px solid #d2d2d2;
+            padding-left: 4px;
+            padding-right: 4px;
+            color: #333;
+            margin-left: 3px;
+            margin-right: 3px;
+            box-shadow: 2px 3px 4px #ccc;
+            margin-top: 3px;
+            margin-bottom: 3px;
+            border-radius: 3px;
+            background: #eaeaea;
+            padding-bottom: 2px;
+        }
+
+
+
+
+        .tiprecord ul .green {
+            background: #8BC34A !important;
+        }
+
+            .tiprecord ul .green a {
+                color: #f1f1f1 !important;
+            }
+
+
+
+  
+
+        .option ul {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+            .option ul li {
+                float: left;
+                padding-left: 10px;
+                padding-right: 10px;
+                line-height: 13px;
+                margin-top: 3px;
+                width: 25%;
+                text-align: center;
+            }
+
+                .option ul li a {
+                    color: #000;
+                    font-size: 10px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-inline-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    word-break: break-all;
+                }
+
+
+    .optionicon {
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        background: #FFC107;
+        border-radius: 100%;
+        display: block;
+        margin: 0 auto;
+        color: #fff;
+    }
+
+        .optionicon i {
+            font-size: 15px;
+        }
+
+    .selectionpart .row:nth-child(odd) {
+        background: #ececec;
+    }
+
+    .selectionpart h4 {
+        margin-top: 17px;
+        font-size: 15px;
+    }
+
+
+
+    .Hairoption ul {
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 0;
+        padding-top: 5px;
+    }
+
+        .Hairoption ul li {
+            float: left;
+            padding-left: 10px;
+            padding-right: 10px;
+            line-height: 13px;
+            margin-top: 3px;
+            width: 16.66%;
+            text-align: center;
+        }
+
+            .Hairoption ul li a {
+                color: #000;
+                font-size: 8px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-inline-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                word-break: break-all;
+            }
+
+
+
+    .hairoptionicon {
+        height: 20px;
+        width: 20px;
+        background: #FFC107;
+        border-radius: 100%;
+        display: block;
+        margin: 0 auto;
+        color: #fff;
+    }
+
+        .hairoptionicon i {
+            font-size: 0;
+        }
+
+    .pink {
+        background: #E91E63;
+    }
+
+    .blue {
+        background: #2196F3;
+    }
+
+    .red {
+        background: #F44336;
+    }
+
+    .purple {
+        background: #9C27B0;
+    }
+
+    .yellow {
+        background: #FFC107;
+    }
+
+    .brown {
+        background: #795548;
+    }
+
+    .grey {
+        background: #9E9E9E;
+    }
+
+    .white {
+        background: #fff;
+        border: 1px solid #ccc;
+    }
+
+    .hairrow .white img {
+        height: 22px;
+        width: 22px;
+    }
+
+    .black {
+        background: #000;
+    }
+
+    .green {
+        background-color: #4CAF50 !important;
+        color: #fff;
+    }
+
+    .tiprecord ul li a {
+        font-size: 13px;
+        color: #333;
+    }
+
+
+
+    .mine {
+        background: #ffcd94;
+    }
+
+    .lightmine {
+        background: #ffe0bd;
+    }
+
+    .darkmine {
+        background: #d8a054;
+    }
+
+    .green img {
+        display: none;
+    }
+
+    .optionicon img {
+        height: 27px;
+        width: 27px;
+        margin: 0 auto;
+        padding-top: 2px;
+    }
+
+
+    .green .fa-check {
+        display: initial !important;
+    }
+
+    .bottomarea a {
+        color: #fff !important;
+    }
+
+    .rightarrow {
+        position: absolute;
+        right: 10px;
+        margin-top: -30px;
+    }
+
+    .leftarrow {
+        position: absolute;
+        margin-top: 12px;
+    }
+
+    .tiprecord ul .Norecord {
+        float: none;
+        text-align: center;
+        background: none;
+        border: none;
+        padding-top: 25px;
+        box-shadow: none;
+    }
+
+        .tiprecord ul .Norecord a {
+            font-size: 15px;
+        }
+
+    .dataarea
+    {
+        margin-top:46px;
+    }
+
+    .filterarea img
+    {
+        height:25px;
+        width:25px;
+    }
+
+    .userchip {
+        border: 1px solid #eaeaea;
+        margin-bottom: 5px;
+        padding-left: 5px;
+        overflow: auto;
+    }
+
+        .userchip ul li {
+            float: left;
+            padding-left: 4px;
+            padding-right: 4px;
+            margin-left: 3px;
+            margin-right: 3px;
+            margin-top: 3px;
+            margin-bottom: 3px;
+            padding-bottom: 2px;
+        }
+
+    .chip {
+        height: 26px !important;
+        line-height:26px;
+    }
+
+        .chip img {
+            height: 26px;
+            width: 26px;
+            border:1px solid #ccc;
+        }
+</style>
+
+<div class="dataarea">
+
+    <!--<div>
+        <h4>
+            Find People
+
+        </h4>
+    </div>
+    <div class="input-field">
+        <input id="search" type="search" placeholder="Search" ng-change="CallShowDetail()" ng-model="SearchText">
+        <label for="search" class="active" style="top:38px;">
+            <i class="fa fa-search"></i>
+        </label>
+    </div>
+    <i ng-if="SearchText!=''" ng-click="ClearSearchText()" class="times fa fa-times"></i>-->
+    <!--  -->
+
+    <div ng-if="Nofilter==false" class="option">
+        <ul>
+
+
+            <li ng-if="ContactObject.gender!=''">
+                <div class="skinoption" style="background:brown;color:white;">
+                    <i class="fa fa-question" ng-if="ContactObject.gender=='N'"> </i>
+                    <i class="fa fa-male" ng-if="ContactObject.gender=='M'"> </i>
+                    <i class="fa fa-female" ng-if="ContactObject.gender=='F'"> </i>
+                </div>
+                <a ng-if="ContactObject.gender=='N'">Don't Know</a>
+                <a ng-if="ContactObject.gender=='M'">Male</a>
+                <a ng-if="ContactObject.gender=='F'">Female</a>
+            </li>
+
+            <li ng-if="ContactObject.Skin!=''">
+                <div class="skinoption {{GetSkinClass(ContactObject.Skin)}}">
+                </div>
+                <a ng-if="ContactObject.Skin==1">Like Mine</a>
+                <a ng-if="ContactObject.Skin==2">Darker Mine</a>
+                <a ng-if="ContactObject.Skin==3">Lighter Mine</a>
+            </li>
+            <li ng-if="ContactObject.Hair!=''">
+                <div class="skinoption ">
+                    <img ng-src="img/{{getHairImage(ContactObject.Hair)}}" alt="" />
+                </div>
+
+                <a ng-if="ContactObject.Hair==1">Bald</a>
+                <a ng-if="ContactObject.Hair==2">Dark</a>
+                <a ng-if="ContactObject.Hair==3">Brown</a>
+                <a ng-if="ContactObject.Hair==4">Blond</a>
+                <a ng-if="ContactObject.Hair==5">Red</a>
+                <a ng-if="ContactObject.Hair==6">Grey</a>
+
+            </li>
+
+            <li ng-if="ContactObject.Height!=''">
+
+                <div class="skinoption" style="background: #FFC107;color:white;">
+                    <i class="fa fa-arrows-v" ng-if="ContactObject.Height==1"> </i>
+                    <i class="fa fa-long-arrow-up" ng-if="ContactObject.Height==2"> </i>
+                    <i class="fa fa-long-arrow-down" ng-if="ContactObject.Height==3"> </i>
+                </div>
+                <a ng-if="ContactObject.Height==1">About my height</a>
+                <a ng-if="ContactObject.Height==2">Taller than me</a>
+                <a ng-if="ContactObject.Height==3">Shorter than me</a>
+            </li>
+        </ul>
+    </div>
+
+    
+
+    <div class="tiparea">
+        <div class="tipheader">
+            <div class="row">
+                <div class="col-xs-9">
+                    <input ng-change="GetAlphabeticalOrderTips()" ng-model="NewTips.Text" placeholder="Find Or Add Tip" type="text" class="form-control" value="" />
+
+                </div>
+
+                <div class="col-xs-3">
+                    <div class="addtip">
+                        <a ng-click="AddnewToTips()" class="btn btn-success waves-effect">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div ng-style="{'height':tiparea}" class="tiprecord">
+            <ul>
+                <li ng-repeat="_obj in Tips" ng-show="Tips.length>0" ng-click="AddtoTips(_obj.Text)" class="{{IsAvailable(3,_obj.Text)}}">
+                    <a>{{_obj.Text}}</a>
+                </li>
+                <li class="Norecord" ng-show="Tips.length==0">
+                    <a>Either no Tip found with search text or no tips available.</a>
+
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <p>Possible matches <a ng-click="ResetFilter()" class="ClearBtn">Clear All</a></p>
+
+
+    <div class="filterarea">
+
+        <div  class="userchip">
+            <ul>
+                <li ng-repeat="_obj in Contacts" >
+
+                    <div class="chip">
+                        <img src="img/male.png" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)" />
+                        <img src="{{_obj.imagepath}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
+                        <span>   {{_obj.firstName}} {{_obj.lastName}} </span>
+                    </div>
+
+                 
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+
+    function applyshowdetail() {
+        $(".list-group-item").click(function () {
+            debugger;
+            $(this).find(".toggle").toggle("slow");
+
+            $(this).toggleClass("q");
+
+
+        });
+    }
+    $(document).ready(function () {
+        setTimeout(function () {
+            applyshowdetail();
+        }, 100);
+
+    });
+</script>
+
+
+
+
+
+
+
+

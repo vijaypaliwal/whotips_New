@@ -315,6 +315,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     function initDatabase()  // Function Call When Page is ready.
 
     {
+
         try {
 
             if (!window.openDatabase)  // Check browser is supported SQLite or not.

@@ -817,9 +817,10 @@
     <!--ng-style="{'height':topheaderheight,'line-height':topheaderheight}"-->
 
     <div class="topheader">
-        <a href="#/menu" ng-class="getActiveClass('/menu')" style="color:white !important;">
+        <a href="#/{{ActivePath}}"  ng-class="getActiveClass('/menu')" style="color:white !important;">
             <i class="fa fa-angle-left pull-left backicon"></i>
         </a>
+        
         <span>Who Tips <span ng-if="CurrentPage!=''">- {{CurrentPage}}</span> </span>
 
     </div>
@@ -903,6 +904,7 @@
     <script src="app/controllers/addtipsController.js?v=2"></script>
 
     <script src="app/controllers/menuController.js?v=2"></script>
+    <script src="app/controllers/findController.js?v=2"></script>
 
     <!-- Load custom filters -->
     <!-- Load custom directives -->

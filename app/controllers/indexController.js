@@ -18,7 +18,7 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
     $scope.tableheight = tableheight.toString() + "px";
 
     $scope.CurrentPage = "Add";
-  
+    $scope.ActivePath = "menu";
     
     $scope.$on('$locationChangeStart', function (event) {
 
@@ -30,21 +30,28 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
       
         switch (_path) {
             case "/status":
-                $scope.CurrentPage="Add"
+                $scope.CurrentPage = "Add";
+                $scope.ActivePath = "menu";
                 break;
             case "/find":
-                $scope.CurrentPage = "Find"
+                $scope.CurrentPage = "Find";
+                $scope.ActivePath = "menu";
                 break;
             case "/more":
-                $scope.CurrentPage = "More"
+                $scope.CurrentPage = "More";
+                $scope.ActivePath = "menu";
+                break;
+            case "/SearchData":
+                $scope.CurrentPage = "Filtered Contacts";
+                $scope.ActivePath = "find";
                 break;
             default:
+
                 $scope.CurrentPage = "";
         }
 
 
         
-        $cordovaKeyboard.hideAccessoryBar(false);
 
         if (_path == "/status" || _path == "/addtips") {
 
@@ -53,13 +60,14 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
         else if (_path == "/more")
         {
             RemoveDb();
-            $cordovaKeyboard.disableScroll(false);
+           // $cordovaKeyboard.disableScroll(false);
         }
         else {
 
             $cordovaKeyboard.disableScroll(false);
         }
 
+        $cordovaKeyboard.hideAccessoryBar(false);
 
 
     });

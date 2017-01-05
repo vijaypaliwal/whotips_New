@@ -15,9 +15,16 @@ app.config(function ($routeProvider) {
     });
 
     $routeProvider.when("/find", {
-        controller: "addtipsController",
+        controller: "findController",
         templateUrl: "app/views/find.html"
     });
+
+    $routeProvider.when("/SearchData", {
+        controller: "findController",
+        templateUrl: "app/views/SearchData.html"
+    });
+
+    
 
     $routeProvider.when("/more", {
         controller: "statusController",
