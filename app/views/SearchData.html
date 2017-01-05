@@ -659,7 +659,7 @@
 
         <div  class="userchip">
             <ul>
-                <li ng-repeat="_obj in Contacts" >
+                <li ng-repeat="_obj in Contacts" class="animated" ng-class="{'bounceInDown': $last, 'bounceInRight': !$last}" style="transition-delay:{{0.7+($index/10)}}s; animation-delay:{{0.8+($index/10)}}s;">
 
                     <div ng-click="showdetails()" class="chip">
                         <img src="img/male.png" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)" />
@@ -667,7 +667,7 @@
                         <span>   {{_obj.firstName}} {{_obj.lastName}} </span>
                     </div>
 
-                 
+
                 </li>
                 
             </ul>
