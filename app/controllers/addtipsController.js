@@ -126,7 +126,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     $scope.GetAlphabeticalOrderTips = function () {
         if ($.trim($scope.NewTips.Text) != "") {
             $scope.Tips = [];
-            debugger;
+             
             var _array = [];
             _array = angular.copy($scope.TipsCopy);
             _array = jQuery.grep(_array, function (el) {
@@ -280,7 +280,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
     var insertStatementTips = "INSERT INTO Tips (Note) VALUES (?)";
 
-    var updateStatement = "UPDATE Contacts SET firstName = ?, lastName = ?,email=?gender=?,places=?,AgeType=?,imagepath=?,Relations=? WHERE id=?";
+    var updateStatement = "UPDATE Contacts SET firstName = ?, lastName = ?,email=?,gender=?,places=?,AgeType=?,imagepath=?,Relations=?,Tips=?,Hair=?,Skin=?,Height=? WHERE id=?";
 
     var deleteStatement = "DELETE FROM Contacts WHERE id=?";
 
@@ -432,18 +432,91 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     }
 
 
+    function GetSkinCode(_Type) {
+        switch (_Type) {
+            case "Like Mine" :
+                return 1 ;
+                break;
+            case "Darker Mine":
+                return 2 ;
+                break;
+            case "Lighter Mine":
+                return 3;
+                break;
+            default:
+                return "";
+
+        }
+
+    }
+
+    function GetHairsCode(_Type) {
+        switch (_Type) {
+            case "Bald":
+                return 1 ;
+                break;
+            case "Dark" :
+                return 2;
+                break;
+            case "Brown":
+                return 3;
+                break;
+            case "Blond":
+                return 4;
+                break;
+            case "Red":
+                return 5;
+                break;
+            case  "Grey":
+                return 6;
+                break;
+            default:
+                return "";
+
+        }
+
+    }
+
+    function GetHeightCode(_Type) {
+        switch (_Type) {
+            case  "About My Height":
+                return 1;
+                break;
+            case "Taller Than me":
+                return 2;
+                break;
+            case "Younger Than me":
+                return 3;
+                break;
+
+            default:
+                return "";
+        }
+
+    }
+
+
     function insertRecord() // Get value from Input and insert record . Function Call when Save/Submit Button Click..
 
     {
         //firstName, lastName, email, places, AgeType, imagepath, Relations
-        if ($.trim($scope.ContactObject.firstName) != "") {
+        if ($scope.ContactObject.id == 0) {
 
+            if ($.trim($scope.ContactObject.firstName) != "") {
 
-            db.transaction(function (tx) { tx.executeSql(insertStatement, [$scope.ContactObject.firstName, $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations, $scope.ContactObject.Tips, GetHairs($scope.ContactObject.Hair), GetSkin($scope.ContactObject.Skin), GetHeight($scope.ContactObject.Height)], loadAndReset, onError); });
+                 
+
+                db.transaction(function (tx) { tx.executeSql(insertStatement, [$scope.ContactObject.firstName, $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, "", $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, "", $scope.ContactObject.Tips, GetHairs($scope.ContactObject.Hair), GetSkin($scope.ContactObject.Skin), GetHeight($scope.ContactObject.Height)], loadAndReset, onError); });
+            }
+            else {
+                db.transaction(function (tx) { tx.executeSql(insertStatement, ["Add Name Later", $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, "", $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, "", $scope.ContactObject.Tips, GetHairs($scope.ContactObject.Hair), GetSkin($scope.ContactObject.Skin), GetHeight($scope.ContactObject.Height)], loadAndReset, onError); });
+
+            }
         }
         else {
-            db.transaction(function (tx) { tx.executeSql(insertStatement, ["Add Name Later", $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations, $scope.ContactObject.Tips, GetHairs($scope.ContactObject.Hair), GetSkin($scope.ContactObject.Skin), GetHeight($scope.ContactObject.Height)], loadAndReset, onError); });
+             
 
+            db.transaction(function (tx) { tx.executeSql(updateStatement, [$scope.ContactObject.firstName, $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations, $scope.ContactObject.Tips, GetHairs($scope.ContactObject.Hair), GetSkin($scope.ContactObject.Skin), GetHeight($scope.ContactObject.Height), $scope.ContactObject.id], loadAndReset, onError); });
         }
 
         //tx.executeSql(SQL Query Statement,[ Parameters ] , Sucess Result Handler Function, Error Result Handler Function );
@@ -529,7 +602,14 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         resetForm();
 
         showRecords();
-        log.success("added successfully");
+        if ($scope.ContactObject.id == 0)
+        {
+            log.success("added successfully");
+
+        }
+        else {
+            log.success("updated successfully");
+        }
 
     }
 
@@ -681,13 +761,14 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
                 }
                 break;
             case 3:
-                for (var i = 0; i < $scope.ContactTips.length; i++) {
-                    if ($scope.ContactTips[i].Text == text) {
-                        _defaultClass = "green";
-                        return _defaultClass;
-                    }
+                    for (var i = 0; i < $scope.ContactTips.length; i++) {
+                        if ($scope.ContactTips[i].Text == text) {
+                            _defaultClass = "green";
+                            return _defaultClass;
+                        }
 
-                }
+                    }
+               
                 break;
             default:
 
@@ -737,7 +818,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
 
     $scope.DeleteRecord = function (id) {
-        debugger;
+         
         var _confirm = confirm("Are you sure to remove this contact?");
         if (_confirm) {
 
@@ -990,7 +1071,20 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     function init() {
 
 
+        var _EditObject = localStorageService.get("EditContactSearchObj");
 
+        if (_EditObject != null && _EditObject != undefined) {
+
+            $scope.ContactObject = { id: _EditObject.id, firstName: _EditObject.firstName, lastName: _EditObject.lastName, email: "", gender: _EditObject.gender, places: "", AgeType: _EditObject.AgeType, imagepath: _EditObject.imagepath, Relations: "", Tips: _EditObject.Tips, Hair: GetHairsCode(_EditObject.Hair), Skin: GetSkinCode(_EditObject.Skin), Height: GetHeightCode(_EditObject.Height) };
+            if (_EditObject.Tips != null && _EditObject.Tips != undefined && $.trim(_EditObject.Tips) != "") {
+
+                var _Data = _EditObject.Tips.split(",");
+                for (var i = 0; i < _Data.length; i++) {
+
+                    $scope.ContactTips.push({ id: 1 + Math.floor(Math.random() * 100), Text: _Data[i] });
+                }
+            }
+        }
         initDatabase();
 
         $("#NameBox").focusin(function () {
@@ -1092,7 +1186,6 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
 
     function GetTipsArray(type) {
-        debugger;
         $scope.RecentlyAddedTips = [];
         var _RecentTips = localStorageService.get("RecentlyAddedTips");
 
@@ -1174,7 +1267,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     }
 
     $scope.GetAgeType = function (Type) {
-        debugger;
+         
         switch (Type) {
             case 1:
             case "1":

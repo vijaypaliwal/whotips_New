@@ -756,7 +756,7 @@
         <div class="image">
             <img src="img/male.png" ng-if="(SelectedContactObject.imagepath=='' || SelectedContactObject.imagepath==null)" />
             <img src="{{SelectedContactObject.imagepath}}" ng-if="SelectedContactObject.imagepath!='' && SelectedContactObject.imagepath!=null" />
-            <a class="btn btn-info edituser">
+            <a class="btn btn-info edituser" ng-click="OpenEditModal(SelectedContactObject)">
                 <i class="fa fa-pencil"></i>
             </a>
 
@@ -797,11 +797,12 @@
             </div>
         </div>
     </div>
+
     <div class="modal-footer">
 
         <div class="row">
             <div class="col-xs-6">
-                <a class="modal-action modal-close waves-effect waves-green btn-danger" ng-click="DeleteRecord(SelectedContactObject.id)">Delete</a>
+                <button class="modal-action modal-close waves-effect waves-green btn-danger" ng-click="DeleteRecordData(SelectedContactObject.id)">Delete</button>
             </div>
             <div class="col-xs-6">
                 <a data-dismiss="modal" class="modal-action modal-close waves-effect waves-green btn-info ">Close</a>

@@ -342,7 +342,7 @@
 <div class="resultpart">
 
     <div class="row">
-        <div class="col-xs-2" ng-click="openNamebox()">
+        <div class="col-xs-2" style="padding-left:10px" ng-click="openNamebox()">
             <div class="profileimg">
                 <img ng-if="ContactObject.imagepath==''" src="img/male.png" alt="" />
                 <img src="{{ContactObject.imagepath}}" ng-if="ContactObject.imagepath!=''" />
@@ -375,12 +375,12 @@
 <div class="tiparea animated bounceInDown">
     <div class="tipheader">
         <div class="row">
-            <div class="col-xs-9">
+            <div style="padding-left:10px;" class="col-xs-10">
                 <input ng-change="GetAlphabeticalOrderTips()" ng-model="NewTips.Text" placeholder="Find Or Add Tip" type="text" class="form-control" value="" />
 
             </div>
 
-            <div class="col-xs-3">
+            <div class="col-xs-2">
                 <div class="addtip">
                     <a ng-click="AddnewToTips()" class="btn btn-success waves-effect">
                         <i class="fa fa-plus"></i>

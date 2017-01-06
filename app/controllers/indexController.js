@@ -52,6 +52,7 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
             case "/find":
                 $scope.CurrentPage = "Find";
                 $scope.ActivePath = "menu";
+                
                 break;
             case "/more":
                 $scope.CurrentPage = "More";

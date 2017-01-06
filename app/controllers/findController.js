@@ -98,7 +98,8 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
     }
 
-    $scope.DeleteRecord = function (id) {
+
+    $scope.DeleteRecordData = function (id) {
         var _confirm = confirm("Are you sure to remove this contact?");
         if (_confirm) {
 
@@ -214,6 +215,16 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         });
     }
 
+
+
+    $scope.OpenEditModal=function(_obj)
+    {
+        localStorageService.set("EditContactSearchObj", _obj);
+        $location.path("/addtips");
+        $("#modal3").modal("hide");
+       
+    }
+
     $scope.FilterByTips=function(_TipsArray,_Contacts)
 
     {
@@ -224,7 +235,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
             for (var j = 0; j < _Contacts.length; j++) {
                 if ($.trim(_Contacts[j].Tips) != "") {
 
-                    if (_TipsArray[i].Text.indexOf(_Contacts[j].Tips) !== -1) {
+                    if (_Contacts[j].Tips.indexOf(_TipsArray[i].Text) !== -1) {
                         if (pluckByNameNew(_TempArray, _TipsArray[i].Text, true, 0) == false) {
 
                             _TempArray.push(_TipsArray[i]);
@@ -382,7 +393,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         var contains = (data.indexOf(name) > -1);
         callback(contains);
 
-        return;
+        return ;
 
 
     }

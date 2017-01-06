@@ -3,7 +3,7 @@ app.controller('menuController', ['$scope', 'localStorageService', 'authService'
 
 
   
-
-    
+    localStorageService.set("ContactSearchObj", "");
+    localStorageService.set("EditContactSearchObj", null);
 
 }]);
