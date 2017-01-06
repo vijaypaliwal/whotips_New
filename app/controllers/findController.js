@@ -217,7 +217,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     $scope.FilterByTips=function(_TipsArray,_Contacts)
 
     {
-        debugger;
+         
         var _TempArray = [];
          
         for (var i = 0; i < _TipsArray.length; i++) {
@@ -225,7 +225,10 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
                 if ($.trim(_Contacts[j].Tips) != "") {
 
                     if (_TipsArray[i].Text.indexOf(_Contacts[j].Tips) !== -1) {
-                        _TempArray.push(_TipsArray[i]);
+                        if (pluckByNameNew(_TempArray, _TipsArray[i].Text, true, 0) == false) {
+
+                            _TempArray.push(_TipsArray[i]);
+                        }
                     }
 
                 }
@@ -233,28 +236,51 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         }
         return _TempArray;
     }
+
+    function pluckByNameNew(inArr, name, exists, _length) {
+        var _returnVar = false;
+        if (inArr.length > 0) {
+
+            var i = 0;
+            for (i = 0; i < inArr.length; i++) {
+                if (inArr[i] != undefined && inArr[i].Text == name) {
+                    _returnVar = true;
+                    break;
+                }
+                else {
+                    _returnVar = false;
+                }
+            }
+        }
+        else {
+            _returnVar = false;
+        }
+
+        return _returnVar;
+    }
     function showRecordTips() // Function For Retrive data from Database Display records as list
 
     {
+            $scope.Tips = [];
+            db.transaction(function (tx) {
+                tx.executeSql(selectAllTipsStatement, [], function (tx, result) {
+                    dataset = result.rows;
+                    for (var i = 0, item = null; i < dataset.length; i++) {
 
-        $scope.Tips = [];
-        db.transaction(function (tx) {
-            tx.executeSql(selectAllTipsStatement, [], function (tx, result) {
-                dataset = result.rows;
-                for (var i = 0, item = null; i < dataset.length; i++) {
+                        item = dataset.item(i);
+                        var _TempObj = { id: (item['id']).toString(), Text: (item['Note']).toString() };
+                        $scope.Tips.push(_TempObj);
+                        $scope.TipsCopy.push(_TempObj);
 
-                    item = dataset.item(i);
-                    var _TempObj = { id: (item['id']).toString(), Text: (item['Note']).toString() };
-                    $scope.Tips.push(_TempObj);
-                    $scope.TipsCopy.push(_TempObj);
+                    }
+                    $scope.Tips = $scope.FilterByTips($scope.TipsCopy, $scope.Contacts);
 
-                }
-                $scope.Tips = $scope.FilterByTips($scope.TipsCopy, $scope.Contacts);
+                    CheckScopeBeforeApply();
+                    console.log($scope.Tips);
+                });
 
-                CheckScopeBeforeApply();
             });
-
-        });
+        
     }
 
 
