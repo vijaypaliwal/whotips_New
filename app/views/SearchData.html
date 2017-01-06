@@ -755,7 +755,7 @@
 
         <div class="image">
             <img src="img/male.png" ng-if="(SelectedContactObject.imagepath=='' || SelectedContactObject.imagepath==null)" />
-
+            <img src="{{SelectedContactObject.imagepath}}" ng-if="SelectedContactObject.imagepath!='' && SelectedContactObject.imagepath!=null" />
             <a class="btn btn-info edituser">
                 <i class="fa fa-pencil"></i>
             </a>
