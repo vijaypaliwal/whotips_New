@@ -114,6 +114,7 @@
         border: 1px solid #ccc;
         margin: 0 auto;
         text-align: center;
+        color:#fff;
     }
 
         .skinoption img {
@@ -559,6 +560,48 @@
              font-size:13px;
          }
 
+         .modal .modal-content .row
+         {
+             margin-top:15px;
+
+         }
+
+
+          .modal .modal-content .col-xs-4
+         {
+          font-size:12px;
+
+         }
+
+          .edituser
+          {
+              height: 32px;
+    width: 32px;
+    padding: 0px;
+    border-radius: 100%;
+    line-height: 32px;
+    margin-top: -41px;
+    margin-left: 15px;
+    background: #ce334e;
+    position: absolute;
+    
+          }
+
+          .edituser i
+          {
+              font-size:15px;
+          }
+
+          .modal-footer .modal-action
+          {
+              width:100%;
+              text-align:center;
+              float:none;
+              color:#fff;
+              padding:7px;
+              border-radius:10px;
+          }
+
 </style>
 
 <div class="dataarea">
@@ -644,7 +687,7 @@
 
     <div class="row" ng-if="ContactObject.Tips!=''" style="background:#eeeeee;">
         <div class="col-md-12">
-            <p style="font-size: 13px !important; ">
+            <p style="font-size: 12px !important;margin:3px; margin-bottom:0; ">
                 <b> Tips</b> : {{ContactObject.Tips}}
 
             </p>
@@ -712,6 +755,11 @@
 
         <div class="image">
             <img src="img/male.png" ng-if="(SelectedContactObject.imagepath=='' || SelectedContactObject.imagepath==null)" />
+
+            <a class="btn btn-info edituser">
+                <i class="fa fa-pencil"></i>
+            </a>
+
         </div>
         <h4>{{SelectedContactObject.firstName}} {{SelectedContactObject.lastName}}</h4>
         <p>{{GetAgeType(SelectedContactObject.AgeType)}}</p>
@@ -750,7 +798,17 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a data-dismiss="modal" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+
+        <div class="row">
+            <div class="col-xs-6">
+                <a class="modal-action modal-close waves-effect waves-green btn-danger" ng-click="DeleteRecord(SelectedContactObject.id)">Delete</a>
+            </div>
+            <div class="col-xs-6">
+                <a data-dismiss="modal" class="modal-action modal-close waves-effect waves-green btn-info ">Close</a>
+            </div>
+        </div> 
+
+      
     </div>
 </div>
 

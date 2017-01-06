@@ -6,7 +6,9 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     var createStatementTips = "CREATE TABLE IF NOT EXISTS Tips (id INTEGER PRIMARY KEY AUTOINCREMENT, Note TEXT)";
     var selectAllStatement = "SELECT * FROM Contacts";
     var selectAllTipsStatement = "SELECT * FROM Tips ORDER BY Note";
+    var deleteStatement = "DELETE FROM Contacts WHERE id=?";
     $scope.Tips = [];
+    $scope.TipsCopy = [];
     $scope.Contacts = [];
     $scope.ContactsCopy = [];
     $scope.ContactTips = [];
@@ -58,7 +60,26 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         }
 
     }
+    function deleteRecord(id) // Get id of record . Function Call when Delete Button Click..
 
+    {
+
+        var iddelete = id.toString();
+
+        db.transaction(function (tx) { tx.executeSql(deleteStatement, [id], showRecords, onError); log.success("Delete Sucessfully"); });
+
+
+    }
+
+    function updateRecord() // Get id of record . Function Call when Delete Button Click..
+
+    {
+
+
+
+        db.transaction(function (tx) { tx.executeSql(updateStatement, [$scope.ContactObject.firstName, $scope.ContactObject.lastName, $scope.ContactObject.email, $scope.ContactObject.gender, $scope.ContactObject.places, $scope.ContactObject.AgeType, $scope.ContactObject.imagepath, $scope.ContactObject.Relations], loadAndReset, onError); });
+
+    }
 
     function onError(tx, error) // Function for Hendeling Error...
 
@@ -75,6 +96,17 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         db.transaction(function (tx) { tx.executeSql(createStatementTips, [], showRecordTips, onError); });
 
 
+    }
+
+    $scope.DeleteRecord = function (id) {
+        var _confirm = confirm("Are you sure to remove this contact?");
+        if (_confirm) {
+
+            deleteRecord(id);
+            $("#modal3").modal('hide');
+            $scope.ContactsCopy = [];
+            CheckScopeBeforeApply();
+        }
     }
     $scope.getHairImage = function (Hair) {
         switch (Hair) {
@@ -114,7 +146,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     }
 
     $scope.GetAgeType = function (Type) {
-        debugger;
+         
         switch (Type) {
             case 1:
             case "1":
@@ -175,12 +207,32 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
             
                 $scope.Contacts = $scope.FilterByType($scope.ContactsCopy);
                 CheckScopeBeforeApply();
+              
                 
             });
 
         });
     }
 
+    $scope.FilterByTips=function(_TipsArray,_Contacts)
+
+    {
+        debugger;
+        var _TempArray = [];
+         
+        for (var i = 0; i < _TipsArray.length; i++) {
+            for (var j = 0; j < _Contacts.length; j++) {
+                if ($.trim(_Contacts[j].Tips) != "") {
+
+                    if (_TipsArray[i].Text.indexOf(_Contacts[j].Tips) !== -1) {
+                        _TempArray.push(_TipsArray[i]);
+                    }
+
+                }
+            }
+        }
+        return _TempArray;
+    }
     function showRecordTips() // Function For Retrive data from Database Display records as list
 
     {
@@ -194,19 +246,20 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
                     item = dataset.item(i);
                     var _TempObj = { id: (item['id']).toString(), Text: (item['Note']).toString() };
                     $scope.Tips.push(_TempObj);
-
+                    $scope.TipsCopy.push(_TempObj);
 
                 }
+                $scope.Tips = $scope.FilterByTips($scope.TipsCopy, $scope.Contacts);
+
                 CheckScopeBeforeApply();
             });
 
         });
-
     }
 
 
     function GetSkin(_Type) {
-        debugger;
+         
         switch (_Type) {
             case 1:
                 return "Like Mine";
@@ -295,7 +348,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
             $scope.ContactObject.Tips = text;
             $scope.ContactTips.push({ id: 1 + Math.floor(Math.random() * 100), Text: text });
         }
-
+        $scope.Contacts = $scope.FilterByType($scope.ContactsCopy);
         CheckScopeBeforeApply();
     }
     function SearchText(name, callback) {
@@ -365,7 +418,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
     $scope.GetGenderClass = function (_G) {
         var _Class = "";
-        _Class = _G == "M" ? "blue" : "pink";
+        _Class = _G == "N" ? "" : _G == "M" ? "blue" : "pink";
         return _Class;
     }
 

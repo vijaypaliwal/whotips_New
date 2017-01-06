@@ -737,7 +737,12 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
 
     $scope.DeleteRecord = function (id) {
-        deleteRecord(id);
+        debugger;
+        var _confirm = confirm("Are you sure to remove this contact?");
+        if (_confirm) {
+
+            deleteRecord(id);
+        }
     }
 
     $scope.FilterByType = function (_type, _array) {
