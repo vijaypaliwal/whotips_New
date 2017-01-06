@@ -411,47 +411,47 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
       
 
         initDatabase();
-        setTimeout(function () {
+        //setTimeout(function () {
 
-            $(".genderrow").removeClass("hide");
-            $(".genderrow").addClass("animated bounceInLeft");
+        //    $(".genderrow").removeClass("hide");
+        //    $(".genderrow").addClass("animated bounceInLeft");
 
-        }, 100);
+        //}, 100);
 
-        setTimeout(function () {
+        //setTimeout(function () {
 
-            $(".agerow").removeClass("hide");
-            $(".agerow").addClass("animated bounceInRight");
+        //    $(".agerow").removeClass("hide");
+        //    $(".agerow").addClass("animated bounceInRight");
 
-        }, 500)
+        //}, 500)
 
-        setTimeout(function () {
+        //setTimeout(function () {
 
-            $(".skinrow").removeClass("hide");
-            $(".skinrow").addClass("animated bounceInLeft");
+        //    $(".skinrow").removeClass("hide");
+        //    $(".skinrow").addClass("animated bounceInLeft");
 
-        }, 900)
+        //}, 900)
 
-        setTimeout(function () {
+        //setTimeout(function () {
 
-            $(".heightrow").removeClass("hide");
-            $(".heightrow").addClass("animated bounceInRight");
+        //    $(".heightrow").removeClass("hide");
+        //    $(".heightrow").addClass("animated bounceInRight");
 
-        }, 1300)
+        //}, 1300)
 
-        setTimeout(function () {
+        //setTimeout(function () {
 
-            $(".hairrow").removeClass("hide");
-            $(".hairrow").addClass("animated bounceInLeft");
+        //    $(".hairrow").removeClass("hide");
+        //    $(".hairrow").addClass("animated bounceInLeft");
 
-        }, 1700);
+        //}, 1700);
 
-        setTimeout(function () {
+        //setTimeout(function () {
 
-            $(".matchbtn").removeClass("hide");
-            $(".matchbtn").addClass("animated bounceInDown");
+        //    $(".matchbtn").removeClass("hide");
+        //    $(".matchbtn").addClass("animated bounceInDown");
 
-        }, 2000);
+        //}, 2000);
 
         console.log("Contact Search object");
         var _contact = localStorageService.get("ContactSearchObj");
