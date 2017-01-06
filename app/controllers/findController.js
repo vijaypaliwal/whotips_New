@@ -1,7 +1,7 @@
 ﻿'use strict';
 app.controller('findController', ['$scope', 'localStorageService', 'authService', '$location', 'log', function ($scope, localStorageService, authService, $location, log) {
     $scope.ContactObject = { id: 0, firstName: "", lastName: "", email: "", gender: "", places: "", AgeType: "", imagepath: "", Relations: "", Tips: "", Hair: "", Skin: "", Height: "" };
-
+    $scope.NewTips = { Text: "" };
     var createStatement = "CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT,lastName TEXT, email TEXT,gender integer,places TEXT,AgeType integer,imagepath TEXT,Relations TEXT,Tips TEXT,Hair TEXT,Skin TEXT,Height TEXT)";
     var createStatementTips = "CREATE TABLE IF NOT EXISTS Tips (id INTEGER PRIMARY KEY AUTOINCREMENT, Note TEXT)";
     var selectAllStatement = "SELECT * FROM Contacts";
@@ -11,7 +11,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     $scope.ContactsCopy = [];
     $scope.ContactTips = [];
     var db = openDatabase("ContactsBook", "1.0", "Contacts Book", 200000);  // Open SQLite Database
-
+    $scope.SelectedContactObject = {};
     var dataset;
 
     var DataType;
@@ -271,33 +271,41 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     $scope.AddtoTips = function (text) {
 
         if ($.trim($scope.ContactObject.Tips) != "") {
-            if ($scope.ContactObject.Tips.indexOf(text) == -1) {
 
-                $scope.ContactObject.Tips = $scope.ContactObject.Tips + "," + text;
-                $scope.ContactTips.push({ id: 1 + Math.floor(Math.random() * 100), Text: text });
-            }
+            SearchText(text, function (matched) {
 
+                if (!matched) {
+                    $scope.ContactObject.Tips = $scope.ContactObject.Tips + "," + text;
+                    $scope.ContactTips.push({ id: 1 + Math.floor(Math.random() * 100), Text: text });
+                } else {
+                    var y = angular.copy($scope.ContactTips);
+                    y = jQuery.grep(y, function (value) {
+                        return value.Text != text;
+                    });
 
+                    $scope.ContactTips = angular.copy(y);
+                    $scope.ContactObject.Tips = $.map($scope.ContactTips, function (obj) {
+                        return obj.Text
+                    }).join(", ");
+                }
+            });
 
-            else {
-
-                var y = angular.copy($scope.ContactTips);
-                y = jQuery.grep(y, function (value) {
-                    return value.Text != text;
-                });
-
-                $scope.ContactTips = angular.copy(y);
-                $scope.ContactObject.Tips = $.map($scope.ContactTips, function (obj) {
-                    return obj.Text
-                }).join(", ");
-            }
         }
         else {
             $scope.ContactObject.Tips = text;
             $scope.ContactTips.push({ id: 1 + Math.floor(Math.random() * 100), Text: text });
         }
-        $scope.Contacts = $scope.FilterByType($scope.ContactsCopy);
+
         CheckScopeBeforeApply();
+    }
+    function SearchText(name, callback) {
+        var data = $scope.ContactObject.Tips.split(",");
+        var contains = (data.indexOf(name) > -1);
+        callback(contains);
+
+        return;
+
+
     }
 
     $scope.IsAvailable = function (Type, text) {
@@ -355,6 +363,17 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         CheckScopeBeforeApply();
     }
 
+    $scope.GetGenderClass = function (_G) {
+        var _Class = "";
+        _Class = _G == "M" ? "blue" : "pink";
+        return _Class;
+    }
+
+    $scope.ClearSearchText=function()
+    {
+        $scope.NewTips.Text = "";
+        CheckScopeBeforeApply();
+    }
     $scope.FilterByType = function (_array) {
          
         if (GetTrimmedString($scope.ContactObject.gender)) {
@@ -399,10 +418,19 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     }
 
 
-    $scope.showdetails = function () {
+    $scope.showdetails = function (_obj) {
 
+        $scope.SelectedContactObject = _obj;
         $("#modal3").modal('show');
+        CheckScopeBeforeApply();
 
+    }
+     $scope.CheckFilterArray = function () {
+        if ($scope.ContactObject.AgeType != '' || $scope.ContactObject.Skin != '' || $scope.ContactObject.Hair != '' || $scope.ContactObject.Height != '')
+        {
+            return true;
+        }
+        return false;
     }
 
 
@@ -411,51 +439,9 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
       
 
         initDatabase();
-        //setTimeout(function () {
+        
 
-        //    $(".genderrow").removeClass("hide");
-        //    $(".genderrow").addClass("animated bounceInLeft");
-
-        //}, 100);
-
-        //setTimeout(function () {
-
-        //    $(".agerow").removeClass("hide");
-        //    $(".agerow").addClass("animated bounceInRight");
-
-        //}, 500)
-
-        //setTimeout(function () {
-
-        //    $(".skinrow").removeClass("hide");
-        //    $(".skinrow").addClass("animated bounceInLeft");
-
-        //}, 900)
-
-        //setTimeout(function () {
-
-        //    $(".heightrow").removeClass("hide");
-        //    $(".heightrow").addClass("animated bounceInRight");
-
-        //}, 1300)
-
-        //setTimeout(function () {
-
-        //    $(".hairrow").removeClass("hide");
-        //    $(".hairrow").addClass("animated bounceInLeft");
-
-        //}, 1700);
-
-        //setTimeout(function () {
-
-        //    $(".matchbtn").removeClass("hide");
-        //    $(".matchbtn").addClass("animated bounceInDown");
-
-        //}, 2000);
-
-        console.log("Contact Search object");
         var _contact = localStorageService.get("ContactSearchObj");
-        console.log(_contact)
 
         if(_contact!=null && _contact!=undefined)
         {

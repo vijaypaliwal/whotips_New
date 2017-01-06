@@ -12,7 +12,6 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
     var bodyheight = $(window).height();
 
-    alert(bodyheight);
 
     $scope.curentclass = "";
 
@@ -20,14 +19,12 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
         $(".findoptionicon").addClass("iphone6");
         $scope.curentclass = "iphone6"
-        alert("Iphone6");
     }
 
     if (bodyheight > 730) {
 
         $(".findoptionicon").addClass("iphone6plus");
         $scope.curentclass = "iphone6plus";
-        alert("Iphone6plus");
     }
 
    

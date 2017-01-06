@@ -2,7 +2,12 @@
 
 
 <style>
-    .mine {
+
+    .blue,.pink{
+        color:white !important;
+    }
+    
+     .mine {
         background: #ffcd94;
     }
 
@@ -51,7 +56,7 @@
     .times {
         position: absolute;
         right: 10px;
-        margin-top: -45px;
+        margin-top: -32px;
         margin-right: 12px;
     }
 
@@ -112,9 +117,12 @@
     }
 
         .skinoption img {
-            height: 22px;
-            width: 22px;
+            height: 25px !important;
+            width: 25px !important;
             margin: 0 auto;
+             margin-bottom: 0px !important;
+            
+             border: 0px solid #ccc !important;
         }
 
         .skinoption i
@@ -228,6 +236,7 @@
         margin-bottom: 0;
         padding-left: 10px;
         margin-top: 0;
+        background: white;
     }
 
     .tiprecord {
@@ -513,7 +522,6 @@
         .chip img {
             height: 26px;
             width: 26px;
-            border:1px solid #ccc;
         }
 
     .modal-backdrop
@@ -533,13 +541,24 @@
     }
 
         #modal3 img {
-            height: 60px;
-            width: 60px;
+            height: 70px;
+            width: 70px;
             margin: 0 auto;
             margin-bottom: 10px;
             border-radius: 100%;
             border: 1px solid #ccc;
         }
+
+        .modal .modal-content
+        {
+            padding:10px;
+        }
+
+         .modal .modal-content p
+         {
+             font-size:13px;
+         }
+
 </style>
 
 <div class="dataarea">
@@ -559,7 +578,7 @@
     <i ng-if="SearchText!=''" ng-click="ClearSearchText()" class="times fa fa-times"></i>-->
     <!--  -->
 
-    <div class="option optionlist">
+    <div class="option optionlist" ng-if="CheckFilterArray()==true">
         <ul>
 
             <li ng-if="ContactObject.AgeType!=''">
@@ -572,7 +591,7 @@
                 <a ng-if="ContactObject.AgeType==1">My Gen</a>
                 <a ng-if="ContactObject.AgeType==2">Younger Gen</a>
                 <a ng-if="ContactObject.AgeType==3">Older Gen</a>
-             
+
 
             </li>
 
@@ -623,14 +642,23 @@
         </ul>
     </div>
 
+    <div class="row" ng-if="ContactObject.Tips!=''" style="background:#eeeeee;">
+        <div class="col-md-12">
+            <p style="font-size: 13px !important; ">
+                <b> Tips</b> : {{ContactObject.Tips}}
+
+            </p>
+        </div>
+    </div>
+
     
 
     <div class="tiparea">
         <div class="tipheader">
             <div class="row">
                 <div style="padding-right:25px;" class="col-xs-12">
-                    <input ng-change="GetAlphabeticalOrderTips()" ng-model="NewTips.Text" placeholder="Find Tips" type="text" class="form-control" value="" />
-
+                    <input ng-change="GetAlphabeticalOrderTips()" ng-model="NewTips.Text" placeholder="Enter Tips" type="text" class="form-control" value="" />
+                    <i ng-if="NewTips.Text!=''" ng-click="ClearSearchText()" class="times fa fa-times"></i>
                 </div>
 
                 
@@ -652,7 +680,7 @@
         </div>
     </div>
 
-    <p>Possible matches <a ng-click="ResetFilter()" class="ClearBtn">Clear All</a></p>
+    <p>Possible matches <!--<a ng-click="ResetFilter()" class="ClearBtn">Clear All</a>--></p>
 
 
     <div class="filterarea">
@@ -661,7 +689,7 @@
             <ul>
                 <li ng-repeat="_obj in Contacts" class="animated" ng-class="{'bounceInDown': $last, 'bounceInRight': !$last}" style="transition-delay:{{0.7+($index/10)}}s; animation-delay:{{0.8+($index/10)}}s;">
 
-                    <div ng-click="showdetails()" class="chip">
+                    <div ng-click="showdetails(_obj)" class="chip {{GetGenderClass(_obj.gender)}}">
                         <img src="img/male.png" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)" />
                         <img src="{{_obj.imagepath}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
                         <span>   {{_obj.firstName}} {{_obj.lastName}} </span>
@@ -683,32 +711,41 @@
     <div class="modal-content">
 
         <div class="image">
-            <img style="height:50px; width:50px;" src="img/male.png" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)" />
+            <img src="img/male.png" ng-if="(SelectedContactObject.imagepath=='' || SelectedContactObject.imagepath==null)" />
         </div>
-        <h4>Dashrath Kumawat</h4>
-        <p>Older Gen</p>
-        <p>Tip1, Tip2</p>
+        <h4>{{SelectedContactObject.firstName}} {{SelectedContactObject.lastName}}</h4>
+        <p>{{GetAgeType(SelectedContactObject.AgeType)}}</p>
+        <p>{{SelectedContactObject.Tips}}</p>
 
         <div class="row">
             <div class="col-xs-4">
 
-                <img style="margin-top: 2px; height: 30px; width: 30px; background: brown" src="img/baby.png" alt="" />
+                <div class="skinoption {{GetSkinClass(SelectedContactObject.Skin)}}" ng-if="SelectedContactObject.Skin!=''">
+                </div>
 
-                Test
+                {{SelectedContactObject.Skin}}
             </div>
             <div class="col-xs-4">
              
 
-                    <img style="margin-top: 2px; height: 30px; width: 30px; background: brown" src="img/baby.png" alt="" />
+                <div class="skinoption" style="background: #FFC107;color:white;" ng-if="SelectedContactObject.Height!=''">
+                    <i class="fa fa-arrows-v" ng-if="SelectedContactObject.Height=='About My Height'"> </i>
+                    <i class="fa fa-long-arrow-up" ng-if="SelectedContactObject.Height=='Taller Than me'"> </i>
+                    <i class="fa fa-long-arrow-down" ng-if="SelectedContactObject.Height=='Younger Than me'"> </i>
+
+                </div>
 
             
 
-                Test
+                {{SelectedContactObject.Height}}
             </div>
             <div class="col-xs-4">
-                <img style="margin-top:2px; height:30px; width:30px; background:brown" src="img/baby.png" alt="" />
+                <div class="skinoption " ng-if="SelectedContactObject.Hair!=''">
+                    <img ng-src="img/{{getHairImage(SelectedContactObject.Hair)}}" alt="" />
 
-                Test
+                </div>
+
+                {{SelectedContactObject.Hair}}
             </div>
         </div>
     </div>
