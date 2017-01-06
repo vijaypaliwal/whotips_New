@@ -599,7 +599,6 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
     {
 
-        resetForm();
 
         showRecords();
         if ($scope.ContactObject.id == 0)
@@ -610,6 +609,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         else {
             log.success("updated successfully");
         }
+        resetForm();
 
     }
 

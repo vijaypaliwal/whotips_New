@@ -242,6 +242,8 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
                         }
                     }
 
+                  
+
                 }
             }
         }
@@ -464,6 +466,35 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         $scope.NewTips.Text = "";
         CheckScopeBeforeApply();
     }
+    function pluckByName(inArr, name, exists) {
+        if (inArr.length > 0) {
+
+            var i = 0;
+            for (i = 0; i < inArr.length; i++) {
+                if (inArr[i] == name) {
+                    console.log(inArr[i]);
+                    return (exists === true) ? true : inArr[i];
+                }
+            }
+        }
+        else {
+            return true;
+        }
+
+        return false;
+    }
+
+    function findMatch(arr1, arr2, value) {
+        for (var i = 0; i < arr1.length; i++) {
+            //for (j = 0; j < arr2.length; j++) {
+            if (value.indexOf(arr1[i]) > -1) {
+                    return true;
+                }
+            //}
+        }
+
+        return false;
+    }
     $scope.FilterByType = function (_array) {
          
         if (GetTrimmedString($scope.ContactObject.gender)) {
@@ -482,6 +513,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         if (GetTrimmedString($scope.ContactObject.Tips)) {
             _array = jQuery.grep(_array, function (el) {
                 return el.Tips.indexOf($scope.ContactObject.Tips) !== -1;
+               // return findMatch($scope.ContactObject.Tips.split(","), el.Tips);
             });
         }
         if (GetTrimmedString($scope.ContactObject.AgeType)) {

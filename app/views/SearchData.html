@@ -3,6 +3,16 @@
 
 <style>
 
+    .btn.red {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        text-transform: capitalize;
+        height: 40px;
+        line-height: 40px;
+    }
+
     .blue,.pink{
         color:white !important;
     }
@@ -290,7 +300,7 @@
                 padding-right: 10px;
                 line-height: 13px;
                 margin-top: 3px;
-                width: 25%;
+                width: 20%;
                 text-align: center;
             }
 
@@ -639,7 +649,7 @@
             </li>
 
 
-            <!--<li ng-if="ContactObject.gender!=''">
+            <li ng-if="ContactObject.gender!=''">
                 <div class="skinoption" style="background:brown;color:white;">
                     <i class="fa fa-question" ng-if="ContactObject.gender=='N'"> </i>
                     <i class="fa fa-male" ng-if="ContactObject.gender=='M'"> </i>
@@ -648,7 +658,7 @@
                 <a ng-if="ContactObject.gender=='N'">Don't Know</a>
                 <a ng-if="ContactObject.gender=='M'">Male</a>
                 <a ng-if="ContactObject.gender=='F'">Female</a>
-            </li>-->
+            </li>
 
             <li ng-if="ContactObject.Skin!=''">
                 <div class="skinoption {{GetSkinClass(ContactObject.Skin)}}">
@@ -812,7 +822,7 @@
       
     </div>
 </div>
-
+<a href="#/find" class="btn red matchbtn"> Back</a>
 <script>
 
     function applyshowdetail() {
