@@ -2,6 +2,9 @@
 
 
 <style>
+    .chip {
+        padding: 0 3px !important;
+    }
 
     .btn.red {
         width: 100%;
@@ -740,7 +743,7 @@
 
         <div  class="userchip">
             <ul>
-                <li ng-repeat="_obj in Contacts" class="animated" ng-class="{'bounceInDown': $last, 'bounceInRight': !$last}" style="transition-delay:{{0.7+($index/10)}}s; animation-delay:{{0.8+($index/10)}}s;">
+                <li ng-repeat="_obj in Contacts">
 
                     <div ng-click="showdetails(_obj)" class="chip {{GetGenderClass(_obj.gender)}}">
                         <img src="img/male.png" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)" />
