@@ -10,7 +10,10 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     $scope.Tips = [];
     $scope.TipsCopy = [];
     $scope.Contacts = [];
+
+    $scope.NameText = {Text:""};
     $scope.ContactsCopy = [];
+    $scope.ContactsFilteredCopy = [];
     $scope.ContactTips = [];
     var db = openDatabase("ContactsBook", "1.0", "Contacts Book", 200000);  // Open SQLite Database
     $scope.SelectedContactObject = {};
@@ -146,6 +149,10 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         }
     }
 
+
+ 
+
+
     $scope.GetAgeType = function (Type) {
          
         switch (Type) {
@@ -207,6 +214,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
                 }
             
                 $scope.Contacts = $scope.FilterByType($scope.ContactsCopy);
+                $scope.ContactsFilteredCopy = angular.copy($scope.Contacts);
                 CheckScopeBeforeApply();
               
                 
@@ -363,9 +371,8 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     $scope.AddtoTips = function (text) {
 
         if ($.trim($scope.ContactObject.Tips) != "") {
-
+           
             SearchText(text, function (matched) {
-
                 if (!matched) {
                     $scope.ContactObject.Tips = $scope.ContactObject.Tips + "," + text;
                     $scope.ContactTips.push({ id: 1 + Math.floor(Math.random() * 100), Text: text });
@@ -378,7 +385,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
                     $scope.ContactTips = angular.copy(y);
                     $scope.ContactObject.Tips = $.map($scope.ContactTips, function (obj) {
                         return obj.Text
-                    }).join(", ");
+                    }).join(",");
                 }
             });
 
@@ -411,9 +418,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
                         _defaultClass = "greenBG";
                         return _defaultClass;
                     }
-
                 }
-
 
                 break;
             case 2:
@@ -431,7 +436,6 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
                         _defaultClass = "green";
                         return _defaultClass;
                     }
-
                 }
                 break;
             default:
@@ -466,6 +470,17 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         $scope.NewTips.Text = "";
         CheckScopeBeforeApply();
     }
+
+    $scope.ClearNameText = function () {
+        $scope.NameText = "";
+        CheckScopeBeforeApply();
+    }
+
+   
+
+
+  
+    
     function pluckByName(inArr, name, exists) {
         if (inArr.length > 0) {
 
@@ -545,9 +560,9 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
     }
      $scope.CheckFilterArray = function () {
-        if ($scope.ContactObject.AgeType != '' || $scope.ContactObject.Skin != '' || $scope.ContactObject.Hair != '' || $scope.ContactObject.Height != '')
+         if ($scope.ContactObject.gender != '' || $scope.ContactObject.AgeType != '' || $scope.ContactObject.Skin != '' || $scope.ContactObject.Hair != '' || $scope.ContactObject.Height != '')
         {
-            return true;
+         return true;
         }
         return false;
     }

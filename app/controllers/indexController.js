@@ -33,6 +33,11 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
     $scope.tableheight = tableheight.toString() + "px";
 
+
+  
+
+
+
     $scope.CurrentPage = "Add";
     $scope.ActivePath = "menu";
     
@@ -140,9 +145,12 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
      var tiparea = (bodyheight - 460);
 
-
-
      $scope.tiparea = tiparea.toString() + "px";
+    
+     var possibleheight = bodyheight - (165 + tiparea);
+     $scope.possibleheight = possibleheight.toString() + "px";
+
+    
 
 
     $scope.logOut = function () {
@@ -157,6 +165,7 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
     }
 
 
+    
     $scope.GetTrimmedString = function (id) {
         var _string = $(id).val();
         if (_string != null && _string != undefined) {

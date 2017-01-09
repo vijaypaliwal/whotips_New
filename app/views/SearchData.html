@@ -510,6 +510,11 @@
         width:25px;
     }
 
+    .filterarea
+    {
+        overflow:auto;
+    }
+
     .userchip {
         border: 1px solid #eaeaea;
         margin-bottom: 5px;
@@ -616,24 +621,21 @@
               border-radius:10px;
           }
 
+          .singleline
+          {
+               color: #000;
+                font-size: 12px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-inline-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                word-break: break-all;
+          }
+
 </style>
 
 <div class="dataarea">
-
-    <!--<div>
-        <h4>
-            Find People
-
-        </h4>
-    </div>
-    <div class="input-field">
-        <input id="search" type="search" placeholder="Search" ng-change="CallShowDetail()" ng-model="SearchText">
-        <label for="search" class="active" style="top:38px;">
-            <i class="fa fa-search"></i>
-        </label>
-    </div>
-    <i ng-if="SearchText!=''" ng-click="ClearSearchText()" class="times fa fa-times"></i>-->
-    <!--  -->
 
     <div class="option optionlist" ng-if="CheckFilterArray()==true">
         <ul>
@@ -654,7 +656,7 @@
 
 
             <li ng-if="ContactObject.gender!=''">
-                <div class="skinoption" style="background:brown;color:white;">
+                <div class="skinoption {{GetGenderClass(ContactObject.gender)}}" style="color:white;">
                     <i class="fa fa-question" ng-if="ContactObject.gender=='N'"> </i>
                     <i class="fa fa-male" ng-if="ContactObject.gender=='M'"> </i>
                     <i class="fa fa-female" ng-if="ContactObject.gender=='F'"> </i>
@@ -701,7 +703,7 @@
 
     <div class="row" ng-if="ContactObject.Tips!=''" style="background:#eeeeee;">
         <div class="col-md-12">
-            <p style="font-size: 12px !important;margin:3px; margin-bottom:0; ">
+            <p class="singleline" style="font-size: 12px !important;margin:3px; margin-bottom:0; ">
                 <b> Tips</b> : {{ContactObject.Tips}}
 
             </p>
@@ -739,10 +741,8 @@
 
     <p>Possible matches <!--<a ng-click="ResetFilter()" class="ClearBtn">Clear All</a>--></p>
 
-
-    <div class="filterarea">
-
-        <div  class="userchip">
+    <div ng-style="{'height':possibleheight}" class="filterarea">
+        <div class="userchip">
             <ul>
                 <li ng-repeat="_obj in Contacts">
 
@@ -754,10 +754,10 @@
 
 
                 </li>
-                
+
             </ul>
         </div>
-        
+
     </div>
 </div>
 
@@ -773,9 +773,12 @@
             <a class="btn btn-info edituser" ng-click="OpenEditModal(SelectedContactObject)">
                 <i class="fa fa-pencil"></i>
             </a>
-
         </div>
-        <h4>{{SelectedContactObject.firstName}} {{SelectedContactObject.lastName}}</h4>
+        <h4> 
+
+            <i style="color:#2196F3" ng-if="SelectedContactObject.gender=='M'" class="fa fa-male"></i> <i style="color:#E91E63" ng-if="SelectedContactObject.gender=='F'" class="fa fa-female"></i> {{SelectedContactObject.firstName}} {{SelectedContactObject.lastName}}
+        
+        </h4>
         <p>{{GetAgeType(SelectedContactObject.AgeType)}}</p>
         <p>{{SelectedContactObject.Tips}}</p>
 

@@ -1130,51 +1130,51 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         }, 1000);
 
 
-        setTimeout(function () {
+        //setTimeout(function () {
 
-            $(".genderrow").removeClass("hide");
-            $(".genderrow").addClass("animated fadeInUp");
+        //    $(".genderrow").removeClass("hide");
+        //    $(".genderrow").addClass("animated fadeInUp");
 
-        }, 500);
+        //}, 500);
 
-        setTimeout(function () {
+        //setTimeout(function () {
 
-            $(".agerow").removeClass("hide");
-            $(".agerow").addClass("animated fadeInUp");
+        //    $(".agerow").removeClass("hide");
+        //    $(".agerow").addClass("animated fadeInUp");
 
-        }, 800)
+        //}, 800)
 
-        setTimeout(function () {
+        //setTimeout(function () {
 
-            $(".skinrow").removeClass("hide");
-            $(".skinrow").addClass("animated fadeInUp");
-            $(".tiparea").removeClass("animated");
-            $(".tiparea").removeClass("bounceInDown");
+        //    $(".skinrow").removeClass("hide");
+        //    $(".skinrow").addClass("animated fadeInUp");
+        //    $(".tiparea").removeClass("animated");
+        //    $(".tiparea").removeClass("bounceInDown");
 
 
 
-        }, 1100)
+        //}, 1100)
 
-        setTimeout(function () {
+        //setTimeout(function () {
 
-            $(".heightrow").removeClass("hide");
-            $(".heightrow").addClass("animated fadeInUp");
+        //    $(".heightrow").removeClass("hide");
+        //    $(".heightrow").addClass("animated fadeInUp");
 
-        }, 1400)
+        //}, 1400)
 
-        setTimeout(function () {
+        //setTimeout(function () {
 
-            $(".hairrow").removeClass("hide");
-            $(".hairrow").addClass("animated fadeInUp");
+        //    $(".hairrow").removeClass("hide");
+        //    $(".hairrow").addClass("animated fadeInUp");
 
-        }, 1700);
+        //}, 1700);
 
-        setTimeout(function () {
+        //setTimeout(function () {
 
-            $(".bottomarea").removeClass("hide");
-            $(".bottomarea").addClass("animated bounceInDown");
+        //    $(".bottomarea").removeClass("hide");
+        //    $(".bottomarea").addClass("animated bounceInDown");
 
-        }, 2000);
+        //}, 2000);
 
 
 
