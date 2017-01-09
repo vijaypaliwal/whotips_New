@@ -147,10 +147,8 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
      $scope.tiparea = tiparea.toString() + "px";
     
-     var possibleheight = bodyheight - (165 + tiparea);
+     var possibleheight = bodyheight - (210 + tiparea);
      $scope.possibleheight = possibleheight.toString() + "px";
-
-    
 
 
     $scope.logOut = function () {

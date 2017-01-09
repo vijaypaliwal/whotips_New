@@ -395,8 +395,8 @@
 
     <div ng-style="{'height':tiparea}" class="tiprecord">
         <ul>
-            <li ng-repeat="_obj in Tips" ng-show="Tips.length>0" ng-click="AddtoTips(_obj.Text)" class="{{IsAvailable(3,_obj.Text)}}">
-                <a>{{_obj.Text}}</a>
+            <li ng-repeat="_obj in Tips" ng-show="Tips.length>0"  ng-click="AddtoTips(_obj.Text)" class="{{IsAvailable(3,_obj.Text)}}">
+                <a><span ng-bind-html="HighLightTerm(NewTips.Text,_obj.Text)"></span>   </a>
             </li>
             <li class="Norecord" ng-show="Tips.length==0">
                 <a>Either no Tip found with search text or no tips available.</a>

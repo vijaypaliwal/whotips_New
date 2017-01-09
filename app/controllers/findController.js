@@ -449,7 +449,23 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         }
         return false;
     }
+    $scope.HighLightTerm = function (term, Text) {
+        if ($.trim(term) != "") {
 
+            var src_str = Text;
+            var term = term;
+            term = term.replace(/(\s+)/, "(<[^>]+>)*$1(<[^>]+>)*");
+            var pattern = new RegExp("(" + term + ")", "gi");
+
+            src_str = src_str.replace(pattern, "<mark>$1</mark>");
+            src_str = src_str.replace(/(<mark>[^<>]*)((<[^>]+>)+)([^<>]*<\/mark>)/, "$1</mark>$2<mark>$4");
+
+            return src_str;
+        }
+        else {
+            return Text;
+        }
+    }
     $scope.ResetFilter = function () {
         $scope.ContactObject = { id: 0, firstName: "", lastName: "", email: "", gender: "", places: "", AgeType: "", imagepath: "", Relations: "", Tips: "", Hair: "", Skin: "", Height: "" };
         $scope.ContactTips = [];
@@ -461,7 +477,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
     $scope.GetGenderClass = function (_G) {
         var _Class = "";
-        _Class = _G == "N" ? "" : _G == "M" ? "blue" : "pink";
+        _Class = _G == "N" ? "purple" : _G == "M" ? "blue" : "pink";
         return _Class;
     }
 

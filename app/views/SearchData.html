@@ -16,7 +16,7 @@
         line-height: 40px;
     }
 
-    .blue,.pink{
+    .blue,.pink,.purple{
         color:white !important;
     }
     
@@ -623,8 +623,8 @@
 
           .singleline
           {
-               color: #000;
-                font-size: 12px;
+             
+               
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-inline-box;
@@ -716,7 +716,7 @@
         <div class="tipheader">
             <div class="row">
                 <div style="padding-right:25px;" class="col-xs-12">
-                    <input ng-change="GetAlphabeticalOrderTips()" ng-model="NewTips.Text" placeholder="Enter Tips" type="text" class="form-control" value="" />
+                    <input ng-model="NewTips.Text" placeholder="Enter Tips" ng-change="FilterRecordsLength.length=(Tips | filter:NewTips.Text).length" type="text" class="form-control" value="" />
                     <i ng-if="NewTips.Text!=''" ng-click="ClearSearchText()" class="times fa fa-times"></i>
                 </div>
 
@@ -725,13 +725,16 @@
 
 
         </div>
-
         <div ng-style="{'height':tiparea}" class="tiprecord">
             <ul>
-                <li ng-repeat="_obj in Tips | filter:NewTips.Text" ng-show="Tips.length>0" ng-click="AddtoTips(_obj.Text)" class="{{IsAvailable(3,_obj.Text)}}">
-                    <a>{{_obj.Text}}</a>
+                <li ng-repeat="_obj in Tips | filter:NewTips.Text" ng-show="Tips.length>0" ng-init="FilterRecordsLength.length=(Tips | filter:NewTips.Text).length" ng-click="AddtoTips(_obj.Text)" class="{{IsAvailable(3,_obj.Text)}}">
+                    <a>
+                        <span ng-bind-html="HighLightTerm(NewTips.Text,_obj.Text)"></span>
+                    </a>
+
+
                 </li>
-                <li class="Norecord" ng-show="Tips.length==0">
+                <li class="Norecord" ng-show="FilterRecordsLength.length==0">
                     <a>Either no Tip found with search text or no tips available.</a>
 
                 </li>
@@ -741,7 +744,7 @@
 
     <p>Possible matches <!--<a ng-click="ResetFilter()" class="ClearBtn">Clear All</a>--></p>
 
-    <div ng-style="{'height':possibleheight}" class="filterarea">
+    <div ng-style="{'height':possibleheight,'min-height':possibleheight}" class="filterarea">
         <div class="userchip">
             <ul>
                 <li ng-repeat="_obj in Contacts">
@@ -776,11 +779,11 @@
         </div>
         <h4> 
 
-            <i style="color:#2196F3" ng-if="SelectedContactObject.gender=='M'" class="fa fa-male"></i> <i style="color:#E91E63" ng-if="SelectedContactObject.gender=='F'" class="fa fa-female"></i> {{SelectedContactObject.firstName}} {{SelectedContactObject.lastName}}
+            <i style="color:#2196F3; font-size:16px;" ng-if="SelectedContactObject.gender=='M'" class="fa fa-male"></i> <i style="color:#E91E63; font-size:16px;" ng-if="SelectedContactObject.gender=='F'" class="fa fa-female"></i> {{SelectedContactObject.firstName}} {{SelectedContactObject.lastName}}
         
         </h4>
         <p>{{GetAgeType(SelectedContactObject.AgeType)}}</p>
-        <p>{{SelectedContactObject.Tips}}</p>
+        <p class="singleline">{{SelectedContactObject.Tips}}</p>
 
         <div class="row">
             <div class="col-xs-4">
