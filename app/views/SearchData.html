@@ -3,7 +3,7 @@
 
 <style>
     .chip {
-        padding: 0 3px !important;
+        padding: 0 4px !important;
     }
 
     .btn.red {
@@ -257,7 +257,8 @@
         border: 1px solid #eaeaea;
         margin-bottom: 5px;
         padding-left: 5px;
-        overflow: auto;
+        overflow-y: scroll; /* has to be scroll, not auto */
+        -webkit-overflow-scrolling: touch;
     }
 
         .tiprecord ul li {
@@ -510,9 +511,9 @@
         width:25px;
     }
 
-    .filterarea
-    {
-        overflow:auto;
+    .filterarea {
+        overflow-y: scroll; /* has to be scroll, not auto */
+        -webkit-overflow-scrolling: touch;
     }
 
     .userchip {
@@ -542,6 +543,7 @@
         .chip img {
             height: 26px;
             width: 26px;
+            margin: 0 4px 0 -12px;
         }
 
     .modal-backdrop
