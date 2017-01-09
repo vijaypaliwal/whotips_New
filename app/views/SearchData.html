@@ -635,6 +635,10 @@
                 word-break: break-all;
           }
 
+    .skinoption.height img {
+        width: 18px !important;
+    }
+
 </style>
 
 <div class="dataarea">
@@ -686,15 +690,15 @@
                 <a ng-if="ContactObject.Hair==4">Blond</a>
                 <a ng-if="ContactObject.Hair==5">Red</a>
                 <a ng-if="ContactObject.Hair==6">Grey</a>
-
             </li>
 
             <li ng-if="ContactObject.Height!=''">
 
-                <div class="skinoption" style="background: #FFC107;color:white;">
-                    <i class="fa fa-arrows-v" ng-if="ContactObject.Height==1"> </i>
-                    <i class="fa fa-long-arrow-up" ng-if="ContactObject.Height==2"> </i>
-                    <i class="fa fa-long-arrow-down" ng-if="ContactObject.Height==3"> </i>
+                <div class="skinoption height" style="background: #FFC107;color:white;">
+                    <img ng-if="ContactObject.Height==1" src="img/equal.png" alt="" />
+                    <img ng-if="ContactObject.Height==2" src="img/tall.png" alt="" />
+                    <img ng-if="ContactObject.Height==3" src="img/short.png" alt="" />
+                    
                 </div>
                 <a ng-if="ContactObject.Height==1">About my height</a>
                 <a ng-if="ContactObject.Height==2">Taller than me</a>

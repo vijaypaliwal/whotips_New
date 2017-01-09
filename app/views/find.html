@@ -159,6 +159,11 @@
     font-size: 22px;
     color:#fff;
     }
+
+    .findoptionicon.height img
+    {
+        width:18px;
+    }
 </style>
 
 
@@ -258,21 +263,24 @@
             <ul>
                 <li ng-click="UpdateHeight(1)">
                     <div class="findoptionicon {{curentclass}} waves-effect {{GetSelectedClass(1,5)}}">
-                        <i class="fa fa-arrows-v"></i>
+                        <img src="img/equal.png" alt="" />
+                        <i style="display:none;" class="fa fa-check"></i>
                     </div>
                     <a>About My Height</a>
                 </li>
 
                 <li ng-click="UpdateHeight(2)">
-                    <div class="findoptionicon {{curentclass}} waves-effect {{GetSelectedClass(2,5)}}">
-                        <i class="fa fa-long-arrow-up"></i>
+                    <div class="findoptionicon height {{curentclass}} waves-effect {{GetSelectedClass(2,5)}}">
+                        <img src="img/tall.png" alt="" />
+                        <i style="display:none;" class="fa fa-check"></i>
                     </div>
                     <a>Taller than Me</a>
                 </li>
 
                 <li ng-click="UpdateHeight(3)">
                     <div class="findoptionicon {{curentclass}} waves-effect {{GetSelectedClass(3,5)}}">
-                        <i class="fa fa-long-arrow-down"></i>
+                        <img src="img/short.png" alt="" />
+                        <i style="display:none;" class="fa fa-check"></i>
                     </div>
                     <a>Shorter than Me</a>
                 </li>

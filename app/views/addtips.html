@@ -1,4 +1,8 @@
 ﻿<style>
+
+
+
+
     .resultpart {
         margin-top: 50px;
         height: 48px;
@@ -336,6 +340,11 @@
       {
           font-size:15px;
       }
+
+    .option.height img
+    {
+        width:18px;
+    }
 </style>
 
 
@@ -518,25 +527,28 @@
         </div>
 
         <div class="col-xs-10">
-            <div class="option">
+            <div class="option height">
                 <ul>
                     <li ng-click="UpdateHeight(1)">
                         <div class="optionicon waves-effect {{GetSelectedClass(1,5)}}">
-                            <i class="fa fa-arrows-v"></i>
+                            <img src="img/equal.png" alt="" />
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
                         <a>About My Height</a>
                     </li>
 
                     <li ng-click="UpdateHeight(2)">
                         <div class="optionicon waves-effect {{GetSelectedClass(2,5)}}">
-                            <i class="fa fa-long-arrow-up"></i>
+                            <img src="img/tall.png" alt="" />
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
                         <a>Taller than Me</a>
                     </li>
 
                     <li ng-click="UpdateHeight(3)">
                         <div class="optionicon waves-effect {{GetSelectedClass(3,5)}}">
-                            <i class="fa fa-long-arrow-down"></i>
+                            <img src="img/short.png" alt="" />
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
                         <a>Shorter than Me</a>
                     </li>
@@ -627,21 +639,11 @@
 
 
 
-
-
-
-
-
 <div class="bottomarea waves-effect" ng-click="insertRecord()">
     <a>
         <i class="fa fa-check"></i> Done
     </a>
 </div>
-
-
-
-
-
 
 <div class="modal fade" id="AddName">
 
