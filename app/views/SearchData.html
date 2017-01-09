@@ -803,9 +803,12 @@
              
 
                 <div class="skinoption" style="background: #FFC107;color:white;" ng-if="SelectedContactObject.Height!=''">
-                    <i class="fa fa-arrows-v" ng-if="SelectedContactObject.Height=='About My Height'"> </i>
-                    <i class="fa fa-long-arrow-up" ng-if="SelectedContactObject.Height=='Taller Than me'"> </i>
-                    <i class="fa fa-long-arrow-down" ng-if="SelectedContactObject.Height=='Younger Than me'"> </i>
+
+                    <img style="width:18px !important" ng-if="SelectedContactObject.Height=='About My Height'" src="img/equal.png" alt="" />
+                    <img style="width:18px !important" ng-if="SelectedContactObject.Height=='Taller Than me'" src="img/tall.png" alt="" />
+                    <img style="width:18px !important" ng-if="SelectedContactObject.Height=='Younger Than me'" src="img/short.png" alt="" />
+
+                   
 
                 </div>
 
