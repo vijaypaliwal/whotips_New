@@ -8,6 +8,8 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
     var db = openDatabase("ContactsBook", "1.0", "Contacts Book", 200000);  // Open SQLite Database
     $scope.Tips = [];
     $scope.Contacts = [];
+
+    $scope.CheckQueryVar = false;
     $scope.OldValue = "";
     $scope.EditTipObj = { id: 0, Text: "" };
     var dataset;
@@ -144,47 +146,27 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
 
         });
     }
+
+    function checkSuccess(_ID) {
+        $scope.CheckQueryVar = false;
+        CheckScopeBeforeApply();
+    }
+
+
+
     function updateRecordTips(Type) // Function For Retrive data from Database Display records as list
 
     {
         localStorageService.set("RecentlyAddedTips", "");
         db.transaction(function (tx) {
             tx.executeSql(selectAllStatement, [], function (tx, result) {
+                debugger;
                 dataset = result.rows;
-                for (var i = 0, item = null; i < dataset.length; i++) {
 
-                    item = dataset.item(i);
-                    var _tips = item['Tips'];
-                    var _id = item['id'];
-                    SearchText(_tips, function (matched) {
-                        if (!matched) {
-                        } else {
-
-                            if (Type == 1) {
-                                _tips = _tips.replace($scope.OldValue, $scope.EditTipObj.Text);
-
-                            }
-                            else {
-                                var y = _tips.split(",");
-                                y = jQuery.grep(y, function (value) {
-                                    return value != $scope.OldValue;
-                                });
-
-                                _tips = $.map(y, function (obj) {
-                                    return obj
-                                }).join(",");
-                            }
+                iteration(0, dataset, Type);
 
 
-
-                            db.transaction(function (tx) { tx.executeSql(updateStatementContact, [_tips, _id], null, onError); });
-
-                        }
-                    });
-                }
-
-                $scope.EditTipObj = { id: 0, Text: "" };
-                $scope.OldValue = "";
+             
 
                 CheckScopeBeforeApply();
             });
@@ -193,7 +175,57 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
 
     }
 
+    var _i = 0;
+    function iteration(_i, rows, Type) {
+
+        var item = rows.item(_i);
+        var _tips = item['Tips'];
+        var _id = item['id'];
+
+
+
+        db.transaction(function (tx) {
+            SearchText(_tips, function (matched) {
+                debugger;
+                if (!matched) {
+                } else {
+
+                    if (Type == 1) {
+                        _tips = _tips.replace($scope.OldValue, $scope.EditTipObj.Text);
+
+                    }
+                    else {
+                        var y = _tips.split(",");
+                        y = jQuery.grep(y, function (value) {
+                            return value != $scope.OldValue;
+                        });
+
+                        _tips = $.map(y, function (obj) {
+                            return obj
+                        }).join(",");
+                    }
+                }
+
+            tx.executeSql(updateStatementContact, [_tips, _id], function () {
+
+                _i += 1;
+                if (_i < rows.length) {
+
+                    iteration(_i, rows, Type);
+                }
+                else {
+
+                }
+            }, onError);
+            });
+
+        });
+
+
+    }
+
     function SearchText(value, callback) {
+        debugger;
         var data = value.split(",");
         var contains = (data.indexOf($scope.OldValue) > -1);
         callback(contains);
@@ -214,6 +246,8 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
     }
 
     $scope.EditTip = function (_obj) {
+        $scope.EditTipObj = { id: 0, Text: "" };
+        $scope.OldValue = "";
         $scope.EditTipObj = angular.copy(_obj);
         $scope.OldValue = _obj.Text;
         CheckScopeBeforeApply();
