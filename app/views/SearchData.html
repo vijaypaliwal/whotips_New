@@ -675,9 +675,9 @@
             <li ng-if="ContactObject.Skin!=''">
                 <div class="skinoption {{GetSkinClass(ContactObject.Skin)}}">
                 </div>
-                <a ng-if="ContactObject.Skin==1">Like Mine</a>
-                <a ng-if="ContactObject.Skin==2">Darker Mine</a>
-                <a ng-if="ContactObject.Skin==3">Lighter Mine</a>
+                <a ng-if="ContactObject.Skin==1">My color</a>
+                <a ng-if="ContactObject.Skin==2">Darker</a>
+                <a ng-if="ContactObject.Skin==3">Lighter</a>
             </li>
             <li ng-if="ContactObject.Hair!=''">
                 <div class="skinoption ">
@@ -700,9 +700,9 @@
                     <img ng-if="ContactObject.Height==3" src="img/short.png" alt="" />
                     
                 </div>
-                <a ng-if="ContactObject.Height==1">About my height</a>
-                <a ng-if="ContactObject.Height==2">Taller than me</a>
-                <a ng-if="ContactObject.Height==3">Shorter than me</a>
+                <a ng-if="ContactObject.Height==1">My height</a>
+                <a ng-if="ContactObject.Height==2">Taller</a>
+                <a ng-if="ContactObject.Height==3">Shorter</a>
             </li>
         </ul>
     </div>

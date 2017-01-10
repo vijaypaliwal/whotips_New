@@ -1,32 +1,123 @@
-﻿<link href="docs/css/jquery-ui.min.css" rel="stylesheet">
-<link href="css/keyboard.css" rel="stylesheet">
+﻿
 
-<script src="docs/js/jquery-ui.min.js"></script>
-<script src="js/jquery.keyboard.js"></script>
-<script src="docs/js/demo.js"></script>
+<style>
+    .btn.red {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        text-transform: capitalize;
+        height: 40px;
+        line-height: 40px;
+    }
 
-<div id="page-wrap">
-    <br><br><br><br>
-    <div class="block" id="autocomplete">
-      
-        <input id="text" type="text" placeholder=" Enter something...">
-        <br>
-        
-        
-    </div>
-    
+    .selectionpart .btn
+    {
+   width: 100%;
+    margin-bottom: 30px;
+    text-transform: capitalize;
+    color: #fff;
+    padding: 0;
+    padding-left: 0;
+    height: 75px;
+    text-align: center;
+    line-height: 74px;
+    }
 
-    <div id="showcode"></div>
-    <div id="footer"></div>
+      .selectionpart .btn i
+      {
+       font-size:30px;
+      }
+
+
+     .selectionpart .btn h4
+     {
+         color:#fff;
+     }
+
+
+    .selectionpart
+    {
+        margin-top:75px;
+    }
+
+    .container {
+        background:#fff;
+    }
+
+    .green
+    {
+        background:#8BC34A !important;
+    }
+
+    .lightgreen
+    {
+        background:#558B2F !important;
+    }
+
+     .pink
+    {
+        background:#E91E63 !important;
+    }
+
+    .lightpink
+    {
+        background:#AD1457 !important;
+    }
+
+     .indigo
+    {
+        background:#3F51B5 !important;
+    }
+
+    .lightindigo
+    {
+        background:#283593 !important;
+    }
+</style>
+
+
+<div class="selectionpart">
+    <a href="#/tips" class="btn btn-success waves-effect green">
+        <div class="row">
+            <div class="col-xs-3 lightgreen">
+                <i class="fa fa-lightbulb-o"></i>
+            </div>
+            <div class="col-xs-7">
+                <p>Manage Tips</p>
+            </div>
+            <div class="col-xs-2">
+                <i class="fa fa-chevron-right"></i>
+            </div>
+        </div>
+    </a>
+
+    <a href="#/users" class="btn btn-primary waves-effect indigo">
+        <div class="row">
+            <div class="col-xs-3 lightindigo">
+                <i class="fa fa-refresh"></i>
+            </div>
+            <div class="col-xs-7">
+                <p>Manage Users</p>
+            </div>
+            <div class="col-xs-2">
+                <i class="fa fa-chevron-right"></i>
+            </div>
+        </div>
+    </a>
+
+    <a class="btn btn-danger waves-effect pink" ng-click="RemoveDb()">
+        <div class="row">
+            <div class="col-xs-3 lightpink">
+                <i class="fa fa-user"></i>
+            </div>
+            <div class="col-xs-7">
+                <p>Reset Database</p>
+            </div>
+            <div class="col-xs-2">
+                <i class="fa fa-chevron-right"></i>
+            </div>
+        </div>
+    </a>
 </div>
-
-<script>
-
- 
-
-    $(document).ready(function () {
-       
-
-
-    });
-    </script>
+<a href="#/menu" class="btn red matchbtn"> Back</a>

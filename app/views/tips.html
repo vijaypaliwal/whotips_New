@@ -1,4 +1,197 @@
 ﻿
+<style>
+    .times {
+        position: absolute;
+        right: 15px;
+        margin-top: -32px;
+        margin-right: 7px;
+    }
+</style>
+
+<style>
+    .userdata {
+        margin-top: 35px;
+    }
 
 
-<div ng-style="{'height':resultarea}" class="resultarea"></div>
+    .first {
+        text-align: center;
+        background: #3F51B5;
+    }
+
+
+    .firstletter {
+        display: block;
+        visibility: hidden;
+        font-size: 0;
+    }
+
+
+        .firstletter:first-letter {
+            visibility: visible;
+            height: 40px;
+            width: 40px;
+            color: #fff;
+            font-size: 25px;
+        }
+
+    .container {
+        background: #fff;
+    }
+
+    .form-group {
+        background: #eaeaea;
+        padding: 5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 15px;
+        margin-bottom: 0;
+    }
+
+    .form-control {
+        padding-left: 10px !important;
+        margin: 0 !important;
+    }
+
+    .userdata .row {
+        padding-top: 7px;
+        padding-bottom: 7px;
+        border-bottom: 1px solid #dedede;
+    }
+
+    .btn {
+        height: 32px;
+        width: 32px;
+        padding: 0;
+        color: #fff;
+        text-align: center;
+        line-height: 32px;
+    }
+
+
+    .userdata p {
+        margin-bottom: 0;
+        line-height: 34px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-inline-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+    }
+
+    .userdata .col-xs-4 {
+        text-align: right;
+    }
+
+
+    .btn.matchbtn {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        text-transform: capitalize;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    .modal-footer .btn {
+        width:auto;
+        padding-left:10px;
+        padding-right:10px;
+    }
+</style>
+
+
+
+
+
+
+
+<div>
+
+
+    <div class="userdata">
+
+        <div class="form-group">
+
+            <div class="input-field">
+                <input class="form-control" id="search" type="text" placeholder="Enter to Search" ng-model="SearchText">
+                
+            </div>
+            <i ng-if="SearchText!=''" ng-click="ClearSearchText()" class="times fa fa-times"></i>
+        </div>
+        <div class="row" ng-repeat="_obj in Tips| filter:SearchText">
+            <div class="col-xs-2 first">
+                <a class="firstletter">   {{_obj.Text}}</a>
+            </div>
+            <div class="col-xs-6">
+                <p>     {{_obj.Text}}</p>
+            </div>
+            <div class="col-xs-4">
+                <a ng-click="DeleteRecord(_obj.id,_obj.Text)" class="btn red">
+                    <i class="fa fa-trash-o"></i>
+                </a>
+
+                <a ng-click="EditTip(_obj)" class="btn green">
+                    <i class="fa fa-pencil"></i>
+                </a>
+            </div>
+        </div>
+
+
+
+        <!--<ul class="list-group">
+            <li class="list-group-item" ng-repeat="_obj in Tips| filter:SearchText">
+                <div class="row ">
+
+                    <div class="col-xs-7">
+                        <span style="font-size:19px;" class="">
+                            {{_obj.Text}}
+                        </span><br />
+                    </div>
+                    <div class="col-xs-2">
+
+                        <div class="align-right">
+                            <a class="btn btn-danger pin" ng-click="EditTip(_obj)">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+                        </div>
+
+                        <div class="align-right">
+                            <a class="btn btn-danger" ng-click="DeleteRecord(_obj.id,_obj.Text)">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </li>
+
+        </ul>-->
+    </div>
+
+    <div id="modal1" class="modal" style=" top: 10%;">
+
+        <div class="modal-header">
+            <h4>Edit Tip</h4>
+        </div>
+
+        <div class="modal-body">
+           
+        <input type="text" class="form-control" style=" padding-left: 5px;" ng-model="EditTipObj.Text" />
+              
+        </div>
+        <div class="modal-footer">
+
+            <a class="btn btn-green green" ng-if="EditTipObj.Text!=''" ng-click="UpdateTip()">Update</a>
+            <a class="btn btn-green green disabled" ng-if="EditTipObj.Text==''">Update</a>
+            <a data-dismiss="modal" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
+</div>
+
+<a href="#/more" class="btn red matchbtn"> Back</a>

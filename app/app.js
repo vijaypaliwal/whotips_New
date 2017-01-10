@@ -24,7 +24,10 @@ app.config(function ($routeProvider) {
         templateUrl: "app/views/SearchData.html"
     });
 
-    
+    $routeProvider.when("/tips", {
+        controller: "tipsController",
+        templateUrl: "app/views/tips.html"
+    });
 
     $routeProvider.when("/more", {
         controller: "statusController",
@@ -35,6 +38,12 @@ app.config(function ($routeProvider) {
         controller: "menuController",
         templateUrl: "app/views/menu.html"
     });
+
+    $routeProvider.when("/users", {
+        controller: "usersController",
+        templateUrl: "app/views/users.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/menu" });
 
 });

@@ -81,15 +81,15 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
         }
         else if (_path == "/more")
         {
-            RemoveDb();
+           // RemoveDb();
            // $cordovaKeyboard.disableScroll(false);
         }
         else {
 
-            $cordovaKeyboard.disableScroll(false);
+            //$cordovaKeyboard.disableScroll(false);
         }
 
-        $cordovaKeyboard.hideAccessoryBar(false);
+       // $cordovaKeyboard.hideAccessoryBar(false);
 
 
     });
@@ -180,7 +180,7 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
         return _string;
     }
-    function RemoveDb() {
+    $scope.RemoveDb=function () {
         var _db = openDatabase("ContactsBook", "1.0", "Contacts Book", 200000);
         var deleteStatement1 = "DELETE FROM Contacts;";
         var _dstatement = "DELETE FROM Tips;";

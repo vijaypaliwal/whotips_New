@@ -290,19 +290,22 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
 
     var createStatement = "CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT,lastName TEXT, email TEXT,gender integer,places TEXT,AgeType integer,imagepath TEXT,Relations TEXT,Tips TEXT,Hair TEXT,Skin TEXT,Height TEXT)";
-    var createStatementTips = "CREATE TABLE IF NOT EXISTS Tips (id INTEGER PRIMARY KEY AUTOINCREMENT, Note TEXT)";
+   
     var selectAllStatement = "SELECT * FROM Contacts";
-    var selectAllTipsStatement = "SELECT * FROM Tips ORDER BY Note";
 
     var insertStatement = "INSERT INTO Contacts (firstName, lastName,email,gender,places,AgeType,imagepath,Relations,Tips,Hair,Skin,Height) VALUES (?, ?,?,?, ?,?,?, ?,?,?, ?,?)";
 
-    var insertStatementTips = "INSERT INTO Tips (Note) VALUES (?)";
 
     var updateStatement = "UPDATE Contacts SET firstName = ?, lastName = ?,email=?,gender=?,places=?,AgeType=?,imagepath=?,Relations=?,Tips=?,Hair=?,Skin=?,Height=? WHERE id=?";
 
     var deleteStatement = "DELETE FROM Contacts WHERE id=?";
 
     var dropStatement = "DROP TABLE Contacts";
+
+    var insertStatementTips = "INSERT INTO Tips (Note) VALUES (?)";
+
+    var createStatementTips = "CREATE TABLE IF NOT EXISTS Tips (id INTEGER PRIMARY KEY AUTOINCREMENT, Note TEXT)";
+    var selectAllTipsStatement = "SELECT * FROM Tips ORDER BY Note";
 
     var db = openDatabase("ContactsBook", "1.0", "Contacts Book", 200000);  // Open SQLite Database
 
@@ -1062,7 +1065,10 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
                 //$scope.Tips.push({ Type: 1, Text: $scope.NewTips.Text });
                 insertRecordTips($scope.NewTips.Text);
+
+                $scope.AddtoTips($scope.NewTips.Text);
                 $scope.NewTips.Text = "";
+
             }
 
             CheckScopeBeforeApply();
