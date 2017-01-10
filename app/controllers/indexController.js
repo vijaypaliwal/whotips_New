@@ -86,10 +86,10 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
         }
         else {
 
-            //$cordovaKeyboard.disableScroll(false);
+            $cordovaKeyboard.disableScroll(false);
         }
 
-       // $cordovaKeyboard.hideAccessoryBar(false);
+        $cordovaKeyboard.hideAccessoryBar(false);
 
 
     });
