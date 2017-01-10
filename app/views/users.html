@@ -108,11 +108,11 @@
 <div class="userdata">
 
     <div class="form-group">
-        <input placeholder="Enter to search" type="text" class="form-control" value="" />
+        <input placeholder="Enter to search" type="text" class="form-control" ng-model="SearchText" />
     </div>
 
 
-    <div class="row" ng-repeat="_obj in Contacts">
+    <div class="row" ng-repeat="_obj in Contacts| filter:SearchText">
         <div class="col-xs-2 first">
             <a class="firstletter"> {{_obj.firstName}} {{_obj.lastName}}</a>
         </div>
@@ -120,7 +120,7 @@
             <p>   {{_obj.firstName}} {{_obj.lastName}}</p>
         </div>
         <div class="col-xs-4">
-            
+
 
             <a class="btn green" ng-click="EditName(_obj)">
                 <i class="fa fa-pencil"></i>

@@ -68,7 +68,7 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
     function createTable()  // Function for Create Table in SQLite.
 
     {
-        debugger;
+        
 
         db.transaction(function (tx) { tx.executeSql(createStatementTips, [], showRecordTips, null); });
 
@@ -160,7 +160,7 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
         localStorageService.set("RecentlyAddedTips", "");
         db.transaction(function (tx) {
             tx.executeSql(selectAllStatement, [], function (tx, result) {
-                debugger;
+                
                 dataset = result.rows;
 
                 iteration(0, dataset, Type);
@@ -186,7 +186,7 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
 
         db.transaction(function (tx) {
             SearchText(_tips, function (matched) {
-                debugger;
+                
                 if (!matched) {
                 } else {
 
@@ -225,7 +225,7 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
     }
 
     function SearchText(value, callback) {
-        debugger;
+        
         var data = value.split(",");
         var contains = (data.indexOf($scope.OldValue) > -1);
         callback(contains);

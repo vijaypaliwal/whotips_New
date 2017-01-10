@@ -306,7 +306,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
     var createStatementTips = "CREATE TABLE IF NOT EXISTS Tips (id INTEGER PRIMARY KEY AUTOINCREMENT, Note TEXT)";
     var selectAllTipsStatement = "SELECT * FROM Tips ORDER BY Note";
-
+    var selectAllTipsStatementData = "SELECT * FROM Tips ORDER BY id DESC";
     var db = openDatabase("ContactsBook", "1.0", "Contacts Book", 200000);  // Open SQLite Database
 
     var dataset;
@@ -392,13 +392,13 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     function GetSkin(_Type) {
         switch (_Type) {
             case 1:
-                return "Like Mine";
+                return "My Color";
                 break;
             case 2:
-                return "Darker Mine";
+                return "Darker";
                 break;
             case 3:
-                return "Lighter Mine";
+                return "Lighter";
                 break;
             default:
                 return "";
@@ -437,13 +437,13 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     function GetHeight(_Type) {
         switch (_Type) {
             case 1:
-                return "About My Height";
+                return "My Height";
                 break;
             case 2:
-                return "Taller Than me";
+                return "Taller";
                 break;
             case 3:
-                return "Younger Than me";
+                return "Shorter";
                 break;
 
             default:
@@ -455,13 +455,13 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
     function GetSkinCode(_Type) {
         switch (_Type) {
-            case "Like Mine" :
+            case "My Color" :
                 return 1 ;
                 break;
-            case "Darker Mine":
+            case "Darker":
                 return 2 ;
                 break;
-            case "Lighter Mine":
+            case "Lighter":
                 return 3;
                 break;
             default:
@@ -500,13 +500,13 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
     function GetHeightCode(_Type) {
         switch (_Type) {
-            case  "About My Height":
+            case  "My Height":
                 return 1;
                 break;
-            case "Taller Than me":
+            case "Taller":
                 return 2;
                 break;
-            case "Younger Than me":
+            case "Shorter":
                 return 3;
                 break;
 
@@ -551,11 +551,38 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
 
 
-        db.transaction(function (tx) { tx.executeSql(insertStatementTips, [value], showRecordTips, onError); });
+        db.transaction(function (tx) { tx.executeSql(insertStatementTips, [value], showRecordTipsData(value), onError); });
 
 
         //tx.executeSql(SQL Query Statement,[ Parameters ] , Sucess Result Handler Function, Error Result Handler Function );
 
+    }
+
+    function showRecordTipsData(value) {
+        var _TempObj = { id: 1 + Math.floor(Math.random() * 100), Text: value };
+        $scope.Tips.push(_TempObj);
+        $scope.TipsCopy.push(_TempObj);
+        db.transaction(function (tx) {
+            tx.executeSql(selectAllTipsStatement, [], function (tx, result) {
+                dataset = result.rows;
+                for (var i = 0, item = null; i < dataset.length; i++) {
+
+                    item = dataset.item(i);
+                    var _TempObj = { id: (item['id']).toString(), Text: (item['Note']).toString() };
+                    if (pluckByNameNew($scope.Tips, _TempObj.Text, false, dataset.length) == false) {
+                        $scope.Tips.push(_TempObj);
+
+                        $scope.TipsCopy.push(_TempObj);
+                    }
+                    
+              
+
+                }
+                CheckScopeBeforeApply();
+            });
+
+        });
+        CheckScopeBeforeApply();
     }
 
     function deleteRecord(id) // Get id of record . Function Call when Delete Button Click..

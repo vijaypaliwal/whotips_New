@@ -10,7 +10,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     $scope.Tips = [];
     $scope.TipsCopy = [];
     $scope.Contacts = [];
-
+    $scope.IsEditMode = false;
     $scope.NameText = { Text: "" };
     $scope.ContactsCopy = [];
     $scope.ContactsFilteredCopy = [];
@@ -21,6 +21,12 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
     var DataType;
 
+
+    $scope.ToggleEdit = function () {
+        $scope.IsEditMode = !$scope.IsEditMode;
+        CheckScopeBeforeApply();
+
+    }
     function initDatabase()  // Function Call When Page is ready.
 
     {
@@ -102,6 +108,10 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     }
 
 
+    $scope.IsAvailableEditObj = function () {
+
+    }
+
     $scope.DeleteRecordData = function (id) {
         var _confirm = confirm("Are you sure to remove this contact?");
         if (_confirm) {
@@ -158,11 +168,12 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         switch (Type) {
             case 1:
             case "1":
-                return "Much Younger than Me";
+                return "My Generation";
                 break;
             case 2:
             case "2":
-                return "My Generation";
+                return "Much Younger than Me";
+
                 break;
             case 3:
             case "3":
@@ -176,17 +187,17 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
     $scope.GetSkinClass = function (Type) {
         switch (Type) {
-            case "Like Mine":
+            case "My Color":
             case "1":
             case 1:
                 return "mine";
                 break;
-            case "Darker Mine":
+            case "Darker":
             case "2":
             case 2:
                 return "darkmine";
                 break;
-            case "Lighter Mine":
+            case "Lighter":
             case "3":
             case 3:
                 return "lightmine";
@@ -306,13 +317,13 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
         switch (_Type) {
             case 1:
-                return "Like Mine";
+                return "My Color";
                 break;
             case 2:
-                return "Darker Mine";
+                return "Darker";
                 break;
             case 3:
-                return "Lighter Mine";
+                return "Lighter";
                 break;
             default:
                 return "";
@@ -351,13 +362,13 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     function GetHeight(_Type) {
         switch (_Type) {
             case 1:
-                return "About My Height";
+                return "My Height";
                 break;
             case 2:
-                return "Taller Than me";
+                return "Taller";
                 break;
             case 3:
-                return "Younger Than me";
+                return "Shorter";
                 break;
 
             default:

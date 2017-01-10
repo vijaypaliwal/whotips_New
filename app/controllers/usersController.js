@@ -10,7 +10,7 @@ app.controller('usersController', ['$scope', 'localStorageService', 'authService
     $scope.EditObj = { id: 0, firstName: "", lastName: "" };
     var deleteStatement = "DELETE FROM Contacts WHERE id=?";
     var dataset;
-
+    $scope.SearchText = "";
     var DataType;
     function CheckScopeBeforeApply() {
         if (!$scope.$$phase) {

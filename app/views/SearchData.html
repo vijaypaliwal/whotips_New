@@ -750,8 +750,8 @@
 
     <p>Possible matches <!--<a ng-click="ResetFilter()" class="ClearBtn">Clear All</a>--></p>
 
-    <div ng-style="{'height':possibleheight,'min-height':possibleheight}" class="filterarea">
-        <div class="userchip">
+    <div  class="filterarea">
+        <div ng-style="{'height':possibleheight,'min-height':possibleheight}" class="userchip">
             <ul>
                 <li ng-repeat="_obj in Contacts">
 
@@ -789,7 +789,24 @@
         
         </h4>
         <p>{{GetAgeType(SelectedContactObject.AgeType)}}</p>
-        <p class="singleline">{{SelectedContactObject.Tips}}</p>
+        <p class="singleline" >{{SelectedContactObject.Tips}}</p>
+        <!--<div ng-if="IsEditMode==true">
+            <div ng-style="{'height':tiparea}" class="tiprecord">
+                <ul>
+                    <li ng-repeat="_obj in Tips | filter:NewTips.Text" ng-show="Tips.length>0" ng-init="FilterRecordsLength.length=(Tips | filter:NewTips.Text).length" ng-click="AddtoExistingTips(_obj.Text)" class="{{IsAvailableEditObj(_obj.Text)}}">
+                        <a>
+                            <span ng-bind-html="HighLightTerm(NewTips.Text,_obj.Text)"></span>
+                        </a>
+
+
+                    </li>
+                    <li class="Norecord" ng-show="FilterRecordsLength.length==0">
+                        <a>Either no Tip found with search text or no tips available.</a>
+
+                    </li>
+                </ul>
+            </div>
+        </div>-->
 
         <div class="row">
             <div class="col-xs-4">
@@ -804,9 +821,9 @@
 
                 <div class="skinoption" style="background: #FFC107;color:white;" ng-if="SelectedContactObject.Height!=''">
 
-                    <img style="width:18px !important" ng-if="SelectedContactObject.Height=='About My Height'" src="img/equal.png" alt="" />
-                    <img style="width:18px !important" ng-if="SelectedContactObject.Height=='Taller Than me'" src="img/tall.png" alt="" />
-                    <img style="width:18px !important" ng-if="SelectedContactObject.Height=='Younger Than me'" src="img/short.png" alt="" />
+                    <img style="width:18px !important" ng-if="SelectedContactObject.Height=='My Height'" src="img/equal.png" alt="" />
+                    <img style="width:18px !important" ng-if="SelectedContactObject.Height=='Taller'" src="img/tall.png" alt="" />
+                    <img style="width:18px !important" ng-if="SelectedContactObject.Height=='Shorter'" src="img/short.png" alt="" />
 
                    
 

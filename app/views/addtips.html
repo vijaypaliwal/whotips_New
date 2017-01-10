@@ -495,26 +495,27 @@
         <div class="col-xs-10">
             <div class="option">
                 <ul>
+                    <li ng-click="UpdateSkinType(3)">
+                        <div class="optionicon waves-effect lightmine {{GetSelectedClass(3,4)}}">
+                            <i class="fa fa-smile-o"></i>
+                        </div>
+                        <a>Lighter</a>
+                    </li>
                     <li ng-click="UpdateSkinType(1)">
                         <div class="optionicon waves-effect mine {{GetSelectedClass(1,4)}}">
                             <i class="fa fa-smile-o"></i>
                         </div>
-                        <a>Like Mine</a>
+                        <a>My Color</a>
                     </li>
 
                     <li ng-click="UpdateSkinType(2)">
                         <div class="optionicon waves-effect darkmine {{GetSelectedClass(2,4)}}">
                             <i class="fa fa-smile-o"></i>
                         </div>
-                        <a>Darker Mine</a>
+                        <a>Darker</a>
                     </li>
 
-                    <li ng-click="UpdateSkinType(3)">
-                        <div class="optionicon waves-effect lightmine {{GetSelectedClass(3,4)}}">
-                            <i class="fa fa-smile-o"></i>
-                        </div>
-                        <a>Lighter Mine</a>
-                    </li>
+                  
                 </ul>
             </div>
         </div>
@@ -529,12 +530,19 @@
         <div class="col-xs-10">
             <div class="option height">
                 <ul>
+                    <li ng-click="UpdateHeight(3)">
+                        <div class="optionicon waves-effect {{GetSelectedClass(3,5)}}">
+                            <img src="img/short.png" alt="" />
+                            <i style="display:none;" class="fa fa-check"></i>
+                        </div>
+                        <a>Shorter</a>
+                    </li>
                     <li ng-click="UpdateHeight(1)">
                         <div class="optionicon waves-effect {{GetSelectedClass(1,5)}}">
                             <img src="img/equal.png" alt="" />
                             <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>About My Height</a>
+                        <a>My Height</a>
                     </li>
 
                     <li ng-click="UpdateHeight(2)">
@@ -542,16 +550,10 @@
                             <img src="img/tall.png" alt="" />
                             <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Taller than Me</a>
+                        <a>Taller</a>
                     </li>
 
-                    <li ng-click="UpdateHeight(3)">
-                        <div class="optionicon waves-effect {{GetSelectedClass(3,5)}}">
-                            <img src="img/short.png" alt="" />
-                            <i style="display:none;" class="fa fa-check"></i>
-                        </div>
-                        <a>Shorter than Me</a>
-                    </li>
+                    
                 </ul>
             </div>
         </div>
