@@ -559,6 +559,8 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     }
 
     function showRecordTipsData(value) {
+        $scope.Tips = [];
+        $scope.TipsCopy = [];
         var _TempObj = { id: 1 + Math.floor(Math.random() * 100), Text: value };
         $scope.Tips.push(_TempObj);
         $scope.TipsCopy.push(_TempObj);
