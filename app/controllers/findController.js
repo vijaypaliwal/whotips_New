@@ -838,6 +838,8 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     function ShowTipsuccess() {
         $scope.Contacts = [];
         $scope.ContactsCopy = [];
+        $scope.TipsCopy = [];
+
         showRecords();
         $scope.ToggleEdit();
         showRecordTips();
