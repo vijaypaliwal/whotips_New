@@ -39,24 +39,23 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
 
 
+    var _genderFolder = "/defaultMale";
+    var _gen = "/generation";
+    var _skin = "/skin";
+    var _hair = "/hair";
+    var _height = "/height";
+    var _fileName = "/Male";
 
     $scope.$watch('ContactObject.gender', function (oldValue, newValue) {
-        var _genderFolder = "/defaultMale";
-        var _gen = "/generation";
-        var _skin = "/skin";
-        var _hair = "/hair";
-        var _height = "/height";
-        var _fileName = "/Male";
+        
         if (oldValue == "M") {
             _fileName = "/Male";
             _genderFolder = "/defaultMale";
-            //$scope.PhysicalImages = { age1: _DefaultPath + "/defaultMale/generation/MaleMyAge.svg", age2: _DefaultPath + "/defaultMale/generation/MaleYounger.svg", age3: _DefaultPath + "/defaultMale/generation/MaleOlder.svg", skin1: _DefaultPath + "/defaultMale/skin/Malelighter.svg", skin2: "", skin3: "", height1: "", height2: "", height3: "", hair1: "", hair2: "", hair3: "", hair4: "", hair5: "", hair6: "" }
 
         }
         else if (oldValue == "F") {
             _genderFolder = "/defaultFemale";
             _fileName = "/Female";
-            //$scope.PhysicalImages = { age1: _DefaultPath + "/defaultFemale/generation/FemaleMyAge.svg", age2: _DefaultPath + "/defaultFemale/generation/FemaleYounger.svg", age3: _DefaultPath + "/defaultFemale/generation/FemaleOlder.svg", skin1: "", skin2: "", skin3: "", height1: "", height2: "", height3: "", hair1: "", hair2: "", hair3: "", hair4: "", hair5: "", hair6: "" }
 
 
 
@@ -83,22 +82,132 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
             hair6: _hairPath + "grey.svg"
         }
 
+        if ($scope.ContactObject.AgeType != "") {
 
+            UpdateAgeTypeImages();
+        }
+        if ($scope.ContactObject.Skin != "") {
 
-
-        $scope.PhysicalImages
+            UpdateSkinTypeImages();
+        }
+  
         CheckScopeBeforeApply();
 
     });
-    $scope.$watch('ContactObject.AgeType', function () {
+    $scope.$watch('ContactObject.AgeType', function (oldValue, newValue) {
+        _genderFolder = $scope.ContactObject.gender == "F" ? "/defaultFemale" : "/defaultMale";
+        _fileName = $scope.ContactObject.gender == "F" ? "/Female" : "/Male";
+        
+        if ($scope.ContactObject.AgeType != "") {
+
+            UpdateAgeTypeImages();
+        }
+        if ($scope.ContactObject.Skin != "") {
+
+            UpdateSkinTypeImages();
+        }
         CheckScopeBeforeApply();
 
     });
-    $scope.$watch('ContactObject.Hair', function () {
+    function UpdateSkinTypeImages() {
+        var _SkinTypeFolder = "";
+        debugger;
+        if ($scope.ContactObject.Skin == 1) {
+            _SkinTypeFolder = "/Myskin";
+
+        }
+        else if ($scope.ContactObject.Skin == 2) {
+
+            _SkinTypeFolder = "/Darkerskin";
+
+        }
+        else if ($scope.ContactObject.Skin == 3) {
+
+            _SkinTypeFolder = "/Lighterskin";
+
+
+        }
+        var _agePath = _DefaultPath + _genderFolder + _gen + _fileName;
+        var _skinPath = _DefaultPath + _genderFolder + _skin + _fileName;
+        var _hairPath = $scope.ContactObject.Skin == "" || _SkinTypeFolder == "" ? (_DefaultPath + _genderFolder + _hair + _fileName) : (_DefaultPath + _genderFolder + _skin + _SkinTypeFolder + _hair + _fileName);
+        var _heightPath = $scope.ContactObject.Skin == "" || _SkinTypeFolder == "" ? (_DefaultPath + _genderFolder + _height + _fileName) : (_DefaultPath + _genderFolder + _skin + _SkinTypeFolder + _height + _fileName);
+
+        $scope.PhysicalImages = {
+            age1: _agePath + "MyAge.svg",
+            age2: _agePath + "Younger.svg",
+            age3: _agePath + "Older.svg",
+            skin1: _skinPath + "lighter.svg",
+            skin2: _skinPath + "Mycolor.svg",
+            skin3: _skinPath + "darker.svg",
+            height1: _heightPath + "Shorter.svg",
+            height2: _heightPath + "MyHeight.svg",
+            height3: _heightPath + "Taller.svg",
+            hair1: _hairPath + "bald.svg",
+            hair2: _hairPath + "black.svg",
+            hair3: _hairPath + "brown.svg",
+            hair4: _hairPath + "blond.svg",
+            hair5: _hairPath + "red.svg",
+            hair6: _hairPath + "grey.svg"
+        }
+    }
+    function UpdateAgeTypeImages()
+    {
+        var _GeneTypeFolder = "";
+        if ($scope.ContactObject.AgeType == 1) {
+            _GeneTypeFolder = "/Mygeneration";
+
+        }
+        else if ($scope.ContactObject.AgeType == 2) {
+
+            _GeneTypeFolder = "/YoungerGeneration";
+
+        }
+        else if ($scope.ContactObject.AgeType == 3) {
+
+            _GeneTypeFolder = "/OlderGeneration";
+
+        }
+        var _agePath = _DefaultPath + _genderFolder + _gen + _fileName;
+        var _skinPath = $scope.ContactObject.AgeType == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _skin + _fileName) : (_DefaultPath + _genderFolder + _gen + _GeneTypeFolder + _skin + _fileName);
+        var _hairPath = $scope.ContactObject.AgeType == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _hair + _fileName) : (_DefaultPath + _genderFolder + _gen + _GeneTypeFolder + _hair + _fileName);
+        var _heightPath = $scope.ContactObject.AgeType == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _height + _fileName) : (_DefaultPath + _genderFolder + _gen + _GeneTypeFolder + _height + _fileName);
+
+        $scope.PhysicalImages = {
+            age1: _agePath + "MyAge.svg",
+            age2: _agePath + "Younger.svg",
+            age3: _agePath + "Older.svg",
+            skin1: _skinPath + "lighter.svg",
+            skin2: _skinPath + "Mycolor.svg",
+            skin3: _skinPath + "darker.svg",
+            height1: _heightPath + "Shorter.svg",
+            height2: _heightPath + "MyHeight.svg",
+            height3: _heightPath + "Taller.svg",
+            hair1: _hairPath + "bald.svg",
+            hair2: _hairPath + "black.svg",
+            hair3: _hairPath + "brown.svg",
+            hair4: _hairPath + "blond.svg",
+            hair5: _hairPath + "red.svg",
+            hair6: _hairPath + "grey.svg"
+        }
+
+    }
+    $scope.$watch('ContactObject.Hair', function (oldValue, newValue) {
+
+        
         CheckScopeBeforeApply();
 
     });
     $scope.$watch('ContactObject.Skin', function () {
+        _genderFolder = $scope.ContactObject.gender == "F" ? "/defaultFemale" : "/defaultMale";
+        _fileName = $scope.ContactObject.gender == "F" ? "/Female" : "/Male";
+        if ($scope.ContactObject.AgeType != "") {
+
+            UpdateAgeTypeImages();
+        }
+        if ($scope.ContactObject.Skin != "") {
+
+            UpdateSkinTypeImages();
+        }
         CheckScopeBeforeApply();
 
     });
