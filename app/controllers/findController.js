@@ -18,7 +18,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     $scope.ContactTipsFilter = [];
     var db = openDatabase("ContactsBook", "1.0", "Contacts Book", 200000);  // Open SQLite Database
 
-    var _DefaultPath = "/Emoji"
+    var _DefaultPath = "Emoji"
 
     $scope.PhysicalImages = { age1: _DefaultPath + "/defaultMale/generation/MaleMyAge.svg", age2: _DefaultPath + "/defaultMale/generation/MaleYounger.svg", age3: _DefaultPath + "/defaultMale/generation/MaleOlder.svg", skin1: "", skin2: "", skin3: "", height1: "", height2: "", height3: "", hair1: "", hair2: "", hair3: "", hair4: "", hair5: "", hair6: "" }
 
@@ -35,6 +35,9 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         CheckScopeBeforeApply();
 
     }
+
+
+
 
 
     $scope.$watch('ContactObject.gender', function (oldValue, newValue) {
