@@ -162,8 +162,22 @@
 
     .findoptionicon.height img
     {
-        width:18px;
+     width:18px;
     }
+
+    .agerow .findoptionicon {
+        background:transparent;
+        box-shadow:none !important;
+        border:none !important;
+    }
+
+        .agerow .findoptionicon img {
+            height: 27px;
+    width: 25px;
+    margin: 0 auto;
+    margin-top: 0;
+        }
+
 </style>
 
 
@@ -202,24 +216,25 @@
         <div class="option">
             <ul>
                 <li ng-click="UpdateAgeType(1)">
-                    <div class="findoptionicon {{curentclass}} waves-effect red {{GetSelectedClass(1,2)}}">
-                        <i class="fa fa-user"></i>
+                    <div class="findoptionicon {{curentclass}} waves-effect  {{GetSelectedClass(1,2)}}">
+                        <img src="img/MaleMyAge.svg" alt="" />
+                        <i tyle="display:none;" class="fa fa-check"></i>
                     </div>
                     <a>My Gen</a>
                 </li>
 
                 <li ng-click="UpdateAgeType(2)">
-                    <div class="findoptionicon {{curentclass}} waves-effect red {{GetSelectedClass(2,2)}}">
-                        <img src="img/baby.png" alt="" />
-                        <i style="display:none;" class="fa fa-check"></i>
+                    <div class="findoptionicon {{curentclass}} waves-effect  {{GetSelectedClass(2,2)}}">
+                        <img src="img/MaleYounger.svg" alt="" />
+                        <i tyle="display:none;" class="fa fa-check"></i>
                     </div>
                     <a>Younger Gen</a>
                 </li>
 
                 <li ng-click="UpdateAgeType(3)">
-                    <div class="findoptionicon {{curentclass}} waves-effect red {{GetSelectedClass(3,2)}}">
-                        <img src="img/beared.png" alt="" />
-                        <i style="display:none;" class="fa fa-check"></i>
+                    <div class="findoptionicon {{curentclass}} waves-effect  {{GetSelectedClass(3,2)}}">
+                        <img src="img/MaleOlder.svg" alt="" />
+                        <i tyle="display:none;" class="fa fa-check"></i>
                     </div>
                     <a>Older Gen</a>
                 </li>
