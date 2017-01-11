@@ -74,10 +74,26 @@
     {
         background:#283593 !important;
     }
+
+    .well {
+        color:#fff;
+        text-align:center;
+    }
+    
+    
+    
+     .well i {
+        font-size: 50px;
+    }
+
+    .center {
+        text-align:center;
+    }
+
 </style>
 
 
-<div class="selectionpart">
+<div ng-if="showgender==false || showgender=='false'" class="selectionpart">
     <a href="#/tips" class="btn btn-success waves-effect green">
         <div class="row">
             <div class="col-xs-3 lightgreen">
@@ -121,5 +137,52 @@
             </div>
         </div>
     </a>
+
+
+    <a class="btn btn-danger waves-effect purple" ng-click="showgenderType()">
+        <div class="row">
+            <div class="col-xs-3 lightindigo">
+                <i ng-if="isgender=='Male'" class="fa fa-male"></i>
+
+                <i ng-if="isgender=='Female'" class="fa fa-female"></i>
+
+            </div>
+            <div class="col-xs-7">
+                <p>About Me</p>
+            </div>
+            <div class="col-xs-2">
+                <i class="fa fa-chevron-right"></i>
+            </div>
+        </div>
+    </a>
+
+</div>
+
+
+<div ng-if="showgender==true" class="selectionpart">
+
+    <h4 class="center">Who Am I ?</h4>
+    <hr />
+  
+    <div class="row">
+
+        <div class="col-xs-6">
+
+            <div ng-click="selectedgender('Male')" class="well blue">
+                <i class="fa fa-male"></i>
+            </div>
+
+        </div>
+
+        <div class="col-xs-6">
+
+            <div ng-click="selectedgender('Female')" class="well pink">
+                <i class="fa fa-female"></i>
+
+            </div>
+        </div>
+
+    </div>
+
 </div>
 <a href="#/menu" class="btn red matchbtn"> Back</a>

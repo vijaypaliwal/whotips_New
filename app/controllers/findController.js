@@ -15,9 +15,17 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     $scope.ContactsCopy = [];
     $scope.ContactsFilteredCopy = [];
     $scope.ContactTips = [];
+    $scope.ContactTipsFilter = [];
     var db = openDatabase("ContactsBook", "1.0", "Contacts Book", 200000);  // Open SQLite Database
+
+    var _DefaultPath = "/Emoji"
+
+    $scope.PhysicalImages = { age1: _DefaultPath + "/defaultMale/generation/MaleMyAge.svg", age2: _DefaultPath + "/defaultMale/generation/MaleYounger.svg", age3: _DefaultPath + "/defaultMale/generation/MaleOlder.svg", skin1: "", skin2: "", skin3: "", height1: "", height2: "", height3: "", hair1: "", hair2: "", hair3: "", hair4: "", hair5: "", hair6: "" }
+
     $scope.SelectedContactObject = {};
     var dataset;
+
+    $scope.showgender = false;
 
     var DataType;
 
@@ -27,6 +35,72 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         CheckScopeBeforeApply();
 
     }
+
+
+    $scope.$watch('ContactObject.gender', function (oldValue, newValue) {
+        var _genderFolder = "/defaultMale";
+        var _gen = "/generation";
+        var _skin = "/skin";
+        var _hair = "/hair";
+        var _height = "/height";
+        var _fileName = "/Male";
+        if (oldValue == "M") {
+            _fileName = "/Male";
+            _genderFolder = "/defaultMale";
+            //$scope.PhysicalImages = { age1: _DefaultPath + "/defaultMale/generation/MaleMyAge.svg", age2: _DefaultPath + "/defaultMale/generation/MaleYounger.svg", age3: _DefaultPath + "/defaultMale/generation/MaleOlder.svg", skin1: _DefaultPath + "/defaultMale/skin/Malelighter.svg", skin2: "", skin3: "", height1: "", height2: "", height3: "", hair1: "", hair2: "", hair3: "", hair4: "", hair5: "", hair6: "" }
+
+        }
+        else if (oldValue == "F") {
+            _genderFolder = "/defaultFemale";
+            _fileName = "/Female";
+            //$scope.PhysicalImages = { age1: _DefaultPath + "/defaultFemale/generation/FemaleMyAge.svg", age2: _DefaultPath + "/defaultFemale/generation/FemaleYounger.svg", age3: _DefaultPath + "/defaultFemale/generation/FemaleOlder.svg", skin1: "", skin2: "", skin3: "", height1: "", height2: "", height3: "", hair1: "", hair2: "", hair3: "", hair4: "", hair5: "", hair6: "" }
+
+
+
+        }
+        var _agePath = _DefaultPath + _genderFolder + _gen + _fileName;
+        var _skinPath = _DefaultPath + _genderFolder + _skin + _fileName;
+        var _heightPath = _DefaultPath + _genderFolder + _height + _fileName;
+        var _hairPath = _DefaultPath + _genderFolder + _hair + _fileName;
+        $scope.PhysicalImages = {
+            age1: _agePath + "MyAge.svg",
+            age2: _agePath + "Younger.svg",
+            age3: _agePath + "Older.svg",
+            skin1: _skinPath + "lighter.svg",
+            skin2: _skinPath+"Mycolor.svg",
+            skin3: _skinPath + "darker.svg",
+            height1: _heightPath + "Shorter.svg",
+            height2: _heightPath + "MyHeight.svg",
+            height3: _heightPath + "Taller.svg",
+            hair1: _hairPath+"bald.svg",
+            hair2: _hairPath+"black.svg",
+            hair3: _hairPath + "brown.svg",
+            hair4: _hairPath + "blond.svg",
+            hair5: _hairPath + "red.svg",
+            hair6: _hairPath + "grey.svg"
+        }
+
+
+
+
+        $scope.PhysicalImages
+        CheckScopeBeforeApply();
+
+    });
+    $scope.$watch('ContactObject.AgeType', function () {
+        CheckScopeBeforeApply();
+
+    });
+    $scope.$watch('ContactObject.Hair', function () {
+        CheckScopeBeforeApply();
+
+    });
+    $scope.$watch('ContactObject.Skin', function () {
+        CheckScopeBeforeApply();
+
+    });
+
+
     function initDatabase()  // Function Call When Page is ready.
 
     {
@@ -108,8 +182,17 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     }
 
 
-    $scope.IsAvailableEditObj = function () {
+    $scope.IsAvailableEditObj = function (text) {
+        var _defaultClass = "";
+        debugger;
+        for (var i = 0; i < $scope.ContactTipsFilter.length; i++) {
+            if ($scope.ContactTipsFilter[i].Text == text) {
+                _defaultClass = "green";
+                return _defaultClass;
+            }
 
+        }
+        return _defaultClass;
     }
 
     $scope.DeleteRecordData = function (id) {
@@ -414,6 +497,13 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
 
     }
+    function SearchTextNew(name, callback) {
+        var data = $scope.SelectedContactObject.Tips.split(",");
+        var contains = (data.indexOf(name) > -1);
+        callback(contains);
+
+        return;
+    }
 
     $scope.IsAvailable = function (Type, text) {
 
@@ -574,10 +664,92 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         return _array;
     }
 
+    $scope.AddtoExistingTips = function (text) {
 
+        debugger;
+        if ($.trim($scope.SelectedContactObject.Tips) != "") {
+
+            SearchTextNew(text, function (matched) {
+
+                if (!matched) {
+                    $scope.SelectedContactObject.Tips = $scope.SelectedContactObject.Tips + "," + text;
+                    $scope.ContactTipsFilter.push({ id: 1 + Math.floor(Math.random() * 100), Text: text });
+                } else {
+                    var y = angular.copy($scope.ContactTipsFilter);
+                    y = jQuery.grep(y, function (value) {
+                        return value.Text != text;
+                    });
+
+                    $scope.ContactTipsFilter = angular.copy(y);
+                    $scope.SelectedContactObject.Tips = $.map($scope.ContactTipsFilter, function (obj) {
+                        return obj.Text
+                    }).join(",");
+                }
+            });
+
+        }
+        else {
+            $scope.SelectedContactObject.Tips = text;
+            $scope.ContactTipsFilter.push({ id: 1 + Math.floor(Math.random() * 100), Text: text });
+        }
+
+        CheckScopeBeforeApply();
+    }
+
+
+
+
+    $scope.showgenderType = function () {
+
+        $scope.showgender = true;
+        CheckScopeBeforeApply();
+    }
+
+
+    $scope.isgender = "Male";
+
+
+    $scope.selectedgender = function (gender) {
+
+        localStorageService.set("Gender", gender);
+
+        $scope.isgender = gender;
+
+        $scope.showgender = false;
+
+        CheckScopeBeforeApply();
+
+    }
+
+
+
+    function ShowTipsuccess() {
+        $scope.Contacts = [];
+        $scope.ContactsCopy = [];
+        showRecords();
+        $scope.ToggleEdit();
+        showRecordTips();
+        log.success("Tips Updated Successfully");
+    }
+
+    $scope.UpdateTips = function () {
+        var updateStatement = "UPDATE Contacts SET Tips=? WHERE id=?";
+        db.transaction(function (tx) { tx.executeSql(updateStatement, [$scope.SelectedContactObject.Tips, $scope.SelectedContactObject.id], ShowTipsuccess, onError); });
+    }
     $scope.showdetails = function (_obj) {
 
+        $scope.IsEditMode = false;
         $scope.SelectedContactObject = _obj;
+
+        $scope.ContactTipsFilter = [];
+        if (_obj.Tips != null && _obj.Tips != undefined && $.trim(_obj.Tips) != "") {
+
+            var _Data = _obj.Tips.split(",");
+            for (var i = 0; i < _Data.length; i++) {
+
+                $scope.ContactTipsFilter.push({ id: 1 + Math.floor(Math.random() * 100), Text: _Data[i] });
+            }
+        }
         $("#modal3").modal('show');
         CheckScopeBeforeApply();
 
@@ -601,6 +773,8 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
         if (_contact != null && _contact != undefined) {
             $scope.ContactObject = _contact;
+
+
         }
         CheckScopeBeforeApply();
 

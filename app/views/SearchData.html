@@ -639,6 +639,17 @@
         width: 18px !important;
     }
 
+    #modal3 .singleline {
+        color:#069;
+    }
+
+    .actionbtn {
+        text-align: left;
+        margin-left: 0px;
+        padding-left: 2px;
+        margin-top: 20px;
+    }
+
 </style>
 
 <div class="dataarea">
@@ -789,11 +800,11 @@
         
         </h4>
         <p>{{GetAgeType(SelectedContactObject.AgeType)}}</p>
-        <p class="singleline" >{{SelectedContactObject.Tips}}</p>
-        <!--<div ng-if="IsEditMode==true">
+        <p style="margin:0px;" class="singleline" ng-if="IsEditMode==false" ng-click="ToggleEdit()"> <i style="font-size:15px;" class="fa fa-pencil"></i> {{SelectedContactObject.Tips}}  </p>
+        <div ng-if="IsEditMode==true">
             <div ng-style="{'height':tiparea}" class="tiprecord">
                 <ul>
-                    <li ng-repeat="_obj in Tips | filter:NewTips.Text" ng-show="Tips.length>0" ng-init="FilterRecordsLength.length=(Tips | filter:NewTips.Text).length" ng-click="AddtoExistingTips(_obj.Text)" class="{{IsAvailableEditObj(_obj.Text)}}">
+                    <li ng-repeat="_obj in TipsCopy | filter:NewTips.Text" ng-show="TipsCopy.length>0" ng-init="FilterRecordsLength.length=(TipsCopy | filter:NewTips.Text).length" ng-click="AddtoExistingTips(_obj.Text)" class="{{IsAvailableEditObj(_obj.Text)}}">
                         <a>
                             <span ng-bind-html="HighLightTerm(NewTips.Text,_obj.Text)"></span>
                         </a>
@@ -801,12 +812,24 @@
 
                     </li>
                     <li class="Norecord" ng-show="FilterRecordsLength.length==0">
-                        <a>Either no Tip found with search text or no tips available.</a>
+                        <a>No tips available.</a>
 
                     </li>
                 </ul>
+
+                <div class="row">
+                    <div class="col-xs-12 actionbtn">
+
+                        <a class="btn btn-green green" ng-click="UpdateTips()">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        <a class="btn btn-default pink" ng-click="ToggleEdit()">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>-->
+        </div>
 
         <div class="row">
             <div class="col-xs-4">

@@ -30,7 +30,7 @@ app.config(function ($routeProvider) {
     });
 
     $routeProvider.when("/more", {
-        controller: "statusController",
+        controller: "findController",
         templateUrl: "app/views/more.html"
     });
 
