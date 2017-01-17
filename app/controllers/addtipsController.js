@@ -1297,14 +1297,14 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         switch (Skin) {
 
             case 1:
-                _Skinstring = $scope.Mysetting.Skin == 1 ? "My Skin" : "Lighter";
+                _Skinstring = $scope.Mysetting.Skin == 1 ? "My Skin" : "Darker";
                 break;
             case 2:
                 _Skinstring = $scope.Mysetting.Skin == 2 ? "My Skin" : "Medium";
                 break;
 
             case 3:
-                _Skinstring = $scope.Mysetting.Skin == 3 ? "My Skin" : "Darker";
+                _Skinstring = $scope.Mysetting.Skin == 3 ? "My Skin" : "Lighter";
                 break;
 
             default:
