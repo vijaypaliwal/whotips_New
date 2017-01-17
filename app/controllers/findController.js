@@ -191,9 +191,70 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         }
 
     }
+    function UpdateHairTypeImages() {
+        var _GeneTypeFolder = "";
+        if ($scope.ContactObject.Hair == 1) {
+            _GeneTypeFolder = "/bald";
+
+        }
+        else if ($scope.ContactObject.Hair == 2) {
+
+            _GeneTypeFolder = "/dark";
+
+        }
+        else if ($scope.ContactObject.Hair == 3) {
+
+            _GeneTypeFolder = "/brown";
+
+        }
+        else if ($scope.ContactObject.Hair == 4) {
+            _GeneTypeFolder = "/blond";
+
+        }
+        else if ($scope.ContactObject.Hair == 5) {
+
+            _GeneTypeFolder = "/red";
+
+        }
+        else if ($scope.ContactObject.Hair == 6) {
+
+            _GeneTypeFolder = "/grey";
+
+        }
+        var _agePath = _DefaultPath + _genderFolder + _height + _fileName;
+        var _skinPath = $scope.ContactObject.Height == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _skin + _fileName) : (_DefaultPath + _genderFolder + _hair + _GeneTypeFolder +  _fileName);
+        var _hairPath = $scope.ContactObject.Height == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _hair + _fileName) : (_DefaultPath + _genderFolder + _hair + _GeneTypeFolder + _fileName);
+        var _heightPath = $scope.ContactObject.Height == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _height + _fileName) : (_DefaultPath + _genderFolder + _hair + _GeneTypeFolder +  _fileName);
+
+        $scope.PhysicalImages = {
+            age1: _agePath + "MyAge.svg",
+            age2: _agePath + "Younger.svg",
+            age3: _agePath + "Older.svg",
+            skin1: _skinPath + "lighter.svg",
+            skin2: _skinPath + "Mycolor.svg",
+            skin3: _skinPath + "darker.svg",
+            height1: _heightPath + "Shorter.svg",
+            height2: _heightPath + "MyHeight.svg",
+            height3: _heightPath + "Taller.svg",
+            hair1: _hairPath + "bald.svg",
+            hair2: _hairPath + "black.svg",
+            hair3: _hairPath + "brown.svg",
+            hair4: _hairPath + "blond.svg",
+            hair5: _hairPath + "red.svg",
+            hair6: _hairPath + "grey.svg"
+        }
+
+    }
+
     $scope.$watch('ContactObject.Hair', function (oldValue, newValue) {
+        _genderFolder = $scope.ContactObject.gender == "F" ? "/defaultFemale" : "/defaultMale";
+        _fileName = $scope.ContactObject.gender == "F" ? "/Female" : "/Male";
 
         
+        if ($scope.ContactObject.Hair != "") {
+
+            UpdateHairTypeImages();
+        }
         CheckScopeBeforeApply();
 
     });
@@ -1028,7 +1089,17 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     }
 
 
+    $scope.Mydetails = function ()
+    {
+        debugger;
+        localStorageService.set("MydetailObj", $scope.ContactObject);
 
+        
+
+        $scope.showgender = false;
+
+        $scope.$apply();
+    }
 
 
 

@@ -1,95 +1,169 @@
 ﻿
 
 <style>
-    .btn.red {
-        width: 100%;
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        text-transform: capitalize;
-        height: 40px;
-        line-height: 40px;
-    }
+     .btn.red {
+         width: 100%;
+         position: fixed;
+         bottom: 0;
+         right: 0;
+         text-transform: capitalize;
+         height: 40px;
+         line-height: 40px;
+     }
 
-    .selectionpart .btn
-    {
-   width: 100%;
-    margin-bottom: 30px;
-    text-transform: capitalize;
-    color: #fff;
-    padding: 0;
-    padding-left: 0;
-    height: 75px;
-    text-align: center;
-    line-height: 74px;
-    }
+     .selectionpart .btn
+     {
+    width: 100%;
+     margin-bottom: 30px;
+     text-transform: capitalize;
+     color: #fff;
+     padding: 0;
+     padding-left: 0;
+     height: 75px;
+     text-align: center;
+     line-height: 74px;
+     }
 
-      .selectionpart .btn i
+       .selectionpart .btn i
+       {
+        font-size:30px;
+       }
+
+
+      .selectionpart .btn h4
       {
-       font-size:30px;
+          color:#fff;
       }
 
 
-     .selectionpart .btn h4
+     .selectionpart
      {
-         color:#fff;
+         margin-top:75px;
      }
 
 
-    .selectionpart
-    {
-        margin-top:75px;
-    }
-
-    .container {
-        background:#fff;
-    }
-
-    .green
-    {
-        background:#8BC34A !important;
-    }
-
-    .lightgreen
-    {
-        background:#558B2F !important;
-    }
-
-     .pink
-    {
-        background:#E91E63 !important;
-    }
-
-    .lightpink
-    {
-        background:#AD1457 !important;
-    }
-
-     .indigo
-    {
-        background:#3F51B5 !important;
-    }
-
-    .lightindigo
-    {
-        background:#283593 !important;
-    }
-
+       .myselectionpart
+     {
+         margin-top:10px;
+     }
     .well {
-        color:#fff;
-        text-align:center;
-    }
-    
-    
-    
-     .well i {
-        font-size: 50px;
+        margin-bottom:5px;
     }
 
-    .center {
-        text-align:center;
+
+     .container {
+         background:#fff;
+     }
+
+     .green
+     {
+         background:#8BC34A !important;
+     }
+
+     .lightgreen
+     {
+         background:#558B2F !important;
+     }
+
+      .pink
+     {
+         background:#E91E63;
+     }
+
+     .lightpink
+     {
+         background:#AD1457 !important;
+     }
+
+      .indigo
+     {
+         background:#3F51B5 !important;
+     }
+
+     .lightindigo
+     {
+      background:#283593 !important;
+     }
+
+     .well
+      {
+       color:#fff;
+       text-align:center;
+     }
+
+
+      .well i {
+         font-size:40px;
+     }
+
+     .center 
+     {
+         text-align:center;
+     }
+      
+
+        .option ul {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+            .option ul li {
+                float: left;
+                padding-left: 10px;
+                padding-right: 10px;
+                line-height: 13px;
+                margin-top: 3px;
+                width: 33%;
+                text-align: center;
+            }
+
+                .option ul li a {
+                    color: #000;
+                    font-size: 10px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-inline-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    word-break: break-all;
+                }
+
+
+    .optionicon {
+        height:45px;
+        width:45px;
+        line-height:45px;
+        border-radius: 100%;
+        display: block;
+        margin: 0 auto;
+        color: #fff;
     }
 
+
+       .optionicon i {
+    font-size: 25px;
+    padding-top: 9px;
+}
+
+    hr {
+        margin-top:15px;
+        margin-bottom:15px;
+    }
+
+     .green img {
+        display: none;
+    }
+
+      .green .fa-check {
+        display: block !important;
+    }
+
+    .myselectionpart h4 {
+        margin-top:22px;
+    }
+
+  
 </style>
 
 
@@ -159,30 +233,288 @@
 </div>
 
 
-<div ng-if="showgender==true" class="selectionpart">
 
-    <h4 class="center">Who Am I ?</h4>
-    <hr />
-  
+<h4 style="margin-top:53px;" ng-if="showgender==true" class="center">Who Am I ?</h4>
+
+<div ng-if="showgender==true" class="myselectionpart">
+
+
     <div class="row">
 
         <div class="col-xs-6">
 
-            <div ng-click="selectedgender('Male')" class="well blue">
+            <div ng-click="UpdateGender(1)" class="well blue {{GetSelectedClass('M',1)}}">
                 <i class="fa fa-male"></i>
             </div>
-
         </div>
 
         <div class="col-xs-6">
 
-            <div ng-click="selectedgender('Female')" class="well pink">
+            <div ng-click="UpdateGender(2)" class="well pink {{GetSelectedClass('F',1)}}">
                 <i class="fa fa-female"></i>
 
             </div>
         </div>
 
     </div>
+
+    <h4 style="margin-top:10px;" class="center">Hey that's me</h4>
+
+    <div>
+
+        <!--<div class="row genderrow">
+            <div class="col-xs-2">
+                <h4>Gender</h4>
+            </div>
+
+            <div class="col-xs-10">
+                <div class="option">
+                    <ul>
+                        <li ng-click="UpdateGender(0)">
+                            <div class="optionicon waves-effect purple {{GetSelectedClass('N',1)}}">
+                                <img src="img/gender/Dontknow.svg" alt="">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>Dont' Know</a>
+                        </li>
+
+                        <li ng-click="UpdateGender(1)">
+                            <div class="optionicon waves-effect blue {{GetSelectedClass('M',1)}}">
+                                <img src="img/gender/Male.svg" alt="">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>Male</a>
+                        </li>
+
+                        <li ng-click="UpdateGender(2)">
+                            <div class="optionicon waves-effect pink {{GetSelectedClass('F',1)}}">
+                                <img src="img/gender/Female.svg" alt="">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>Female</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="row agerow">
+            <div class="col-xs-2">
+                <h4>Age</h4>
+            </div>
+
+            <div class="col-xs-10">
+                <div class="option">
+                    <ul>
+                        <li ng-click="UpdateAgeType(1)">
+                            <div class="optionicon waves-effect  {{GetSelectedClass(1,2)}}">
+                                <img src="Emoji/defaultMale/generation/MaleMyAge.svg" class="defaultImg" alt="Alternate Text">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>My Gen</a>
+                        </li>
+
+                        <li ng-click="UpdateAgeType(2)">
+                            <div class="optionicon waves-effect  {{GetSelectedClass(2,2)}}">
+                                <img src="Emoji/defaultMale/generation/MaleYounger.svg" class="defaultImg" alt="Alternate Text">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>Younger Gen</a>
+                        </li>
+
+                        <li ng-click="UpdateAgeType(3)">
+                            <div class="optionicon waves-effect  {{GetSelectedClass(3,2)}}">
+                                <img src="Emoji/defaultMale/generation/MaleOlder.svg" class="defaultImg" alt="Alternate Text">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>Older Gen</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row skinrow">
+            <div class="col-xs-2">
+                <h4>Skin</h4>
+            </div>
+
+            <div class="col-xs-10">
+                <div class="option">
+                    <ul>
+                        <li ng-click="UpdateSkinType(3)">
+                            <div class="optionicon waves-effect  {{GetSelectedClass(3,4)}}">
+                                <img src="Emoji/defaultMale/skin/Malelighter.svg" class="defaultImg" alt="Alternate Text">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>Lighter</a>
+                        </li>
+                        <li ng-click="UpdateSkinType(1)">
+                            <div class="optionicon waves-effect  {{GetSelectedClass(1,4)}}">
+                                <img src="Emoji/defaultMale/skin/MaleMycolor.svg" class="defaultImg" alt="Alternate Text">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>My Color</a>
+                        </li>
+
+                        <li ng-click="UpdateSkinType(2)">
+                            <div class="optionicon waves-effect  {{GetSelectedClass(2,4)}}">
+                                <img src="Emoji/defaultMale/skin/Maledarker.svg" class="defaultImg" alt="Alternate Text">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>Darker</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row heightrow">
+            <div class="col-xs-2">
+                <h4>Height</h4>
+            </div>
+
+            <div class="col-xs-10">
+                <div class="option height">
+                    <ul>
+                        <li ng-click="UpdateHeight(3)">
+                            <div class="optionicon waves-effect {{GetSelectedClass(3,5)}}">
+                                <img src="Emoji/defaultMale/height/MaleShorter.svg" class="defaultImg" alt="Alternate Text">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>Shorter</a>
+                        </li>
+                        <li ng-click="UpdateHeight(1)">
+                            <div class="optionicon waves-effect {{GetSelectedClass(1,5)}}">
+                                <img src="Emoji/defaultMale/height/MaleMyHeight.svg" class="defaultImg" alt="Alternate Text">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>My Height</a>
+                        </li>
+
+                        <li ng-click="UpdateHeight(2)">
+                            <div class="optionicon waves-effect {{GetSelectedClass(2,5)}}">
+                                <img src="Emoji/defaultMale/height/MaleTaller.svg" class="defaultImg" alt="Alternate Text">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>Taller</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row hairrow">
+            <div class="col-xs-2">
+                <h4>Hair</h4>
+            </div>
+
+
+            <div class="col-xs-10">
+
+
+                <div class="option">
+                    <ul>
+                        <li ng-click="UpdateHair(1)">
+                            <div class="optionicon {{GetSelectedClass(1,3)}}">
+                                <img src="Emoji/defaultMale/hair/Malebald.svg" class="defaultImg" alt="Alternate Text">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>Bald</a>
+                        </li>
+
+                        <li ng-click="UpdateHair(2)">
+                            <div class="optionicon {{GetSelectedClass(2,3)}}">
+                                <img src="Emoji/defaultMale/hair/Maleblack.svg" class="defaultImg" alt="Alternate Text">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>Dark</a>
+                        </li>
+
+                        <li ng-click="UpdateHair(3)">
+                            <div class="optionicon {{GetSelectedClass(3,3)}}">
+                                <img src="Emoji/defaultMale/hair/Malebrown.svg" class="defaultImg" alt="Alternate Text">
+                                <i style="display:none;" class="fa fa-check"></i>
+                            </div>
+                            <a>Brown</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-10">
+
+
+
+                    <div class="option">
+                        <ul>
+
+
+                            <li ng-click="UpdateHair(4)">
+                                <div class="optionicon {{GetSelectedClass(4,3)}}">
+                                    <img src="Emoji/defaultMale/hair/Maleblond.svg" class="defaultImg" alt="Alternate Text">
+                                    <i style="display:none;" class="fa fa-check"></i>
+                                </div>
+                                <a>Blond</a>
+                            </li>
+
+                            <li ng-click="UpdateHair(5)">
+                                <div class="optionicon {{GetSelectedClass(5,3)}}">
+                                    <img src="Emoji/defaultMale/hair/Malered.svg" class="defaultImg" alt="Alternate Text">
+                                    <i style="display:none;" class="fa fa-check"></i>
+                                </div>
+                                <a>Red</a>
+                            </li>
+
+                            <li ng-click="UpdateHair(6)">
+                                <div class="optionicon {{GetSelectedClass(6,3)}}">
+                                    <img src="Emoji/defaultMale/hair/Malegrey.svg" class="defaultImg" alt="Alternate Text">
+                                    <i style="display:none;" class="fa fa-check"></i>
+                                </div>
+                                <a>Grey</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="option">
+                        <ul>
+                            <li></li>
+                            <li>
+                                <a style="color:#fff;" class="btn btn-success" ng-click="Mydetails()">Done</a>
+                            </li>
+                            <li></li>
+                        </ul>
+                    </div>
+
+                    
+                </div>
+            </div>
+
+
+            
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
 
 </div>
 <a href="#/menu" class="btn red matchbtn"> Back</a>

@@ -157,7 +157,7 @@
         height: 30px;
         width: 30px;
         line-height: 30px;
-        background: #FFC107;
+       
         border-radius: 100%;
         display: block;
         margin: 0 auto;
@@ -425,24 +425,27 @@
             <div class="option">
                 <ul>
                     <li ng-click="UpdateGender(0)">
-                        <div class="optionicon waves-effect purple {{GetSelectedClass('N',1)}}">
-                            <i class="fa fa-question"></i>
+                        <div class="optionicon waves-effect  {{GetSelectedClass('N',1)}}">
+                            <img src="img/gender/Dontknow.svg" alt="">
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
                         <a>Dont' Know</a>
                     </li>
 
                     <li ng-click="UpdateGender(1)">
-                        <div class="optionicon waves-effect blue {{GetSelectedClass('M',1)}}">
-                            <i class="fa fa-male"></i>
+                        <div class="optionicon waves-effect  {{GetSelectedClass('M',1)}}">
+                            <img src="img/gender/Male.svg" alt="">
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Male</a>
+                        <a ng-bind="Mygender('M')">Male</a>
                     </li>
 
                     <li ng-click="UpdateGender(2)">
-                        <div class="optionicon waves-effect pink {{GetSelectedClass('F',1)}}">
-                            <i class="fa fa-female"></i>
+                        <div class="optionicon waves-effect  {{GetSelectedClass('F',1)}}">
+                            <img src="img/gender/Female.svg" alt="">
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Female</a>
+                        <a ng-bind="Mygender('F')">Female</a>
                     </li>
                 </ul>
             </div>
@@ -458,33 +461,32 @@
             <div class="option">
                 <ul>
                     <li ng-click="UpdateAgeType(1)">
-                        <div class="optionicon waves-effect red {{GetSelectedClass(1,2)}}">
-                            <i class="fa fa-user"></i>
+                        <div class="optionicon waves-effect  {{GetSelectedClass(1,2)}}">
+                            <img src="Emoji/defaultMale/generation/MaleMyAge.svg" class="defaultImg" alt="Alternate Text">
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>My Gen</a>
+                        <a ng-bind="MyAge(1)">My Gen</a>
                     </li>
 
                     <li ng-click="UpdateAgeType(2)">
-                        <div class="optionicon waves-effect red {{GetSelectedClass(2,2)}}">
-                            <img src="img/baby.png" alt="" />
+                        <div class="optionicon waves-effect  {{GetSelectedClass(2,2)}}">
+                            <img src="Emoji/defaultMale/generation/MaleYounger.svg" class="defaultImg" alt="Alternate Text">
                             <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Younger Gen</a>
+                        <a ng-bind="MyAge(2)">Younger Gen</a>
                     </li>
 
                     <li ng-click="UpdateAgeType(3)">
-                        <div class="optionicon waves-effect red {{GetSelectedClass(3,2)}}">
-                            <img src="img/beared.png" alt="" />
+                        <div class="optionicon waves-effect  {{GetSelectedClass(3,2)}}">
+                            <img src="Emoji/defaultMale/generation/MaleOlder.svg" class="defaultImg" alt="Alternate Text">
                             <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Older Gen</a>
+                        <a ng-bind="MyAge(3)">Older Gen</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-
-
 
 
     <div class="row skinrow">
@@ -496,23 +498,26 @@
             <div class="option">
                 <ul>
                     <li ng-click="UpdateSkinType(3)">
-                        <div class="optionicon waves-effect lightmine {{GetSelectedClass(3,4)}}">
-                            <i class="fa fa-smile-o"></i>
+                        <div class="optionicon waves-effect  {{GetSelectedClass(3,4)}}">
+                            <img src="Emoji/defaultMale/skin/Malelighter.svg" class="defaultImg" alt="Alternate Text">
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Lighter</a>
+                        <a ng-bind="MySkin(3)">Lighter</a>
                     </li>
                     <li ng-click="UpdateSkinType(1)">
-                        <div class="optionicon waves-effect mine {{GetSelectedClass(1,4)}}">
-                            <i class="fa fa-smile-o"></i>
+                        <div class="optionicon waves-effect  {{GetSelectedClass(1,4)}}">
+                            <img src="Emoji/defaultMale/skin/MaleMycolor.svg" class="defaultImg" alt="Alternate Text">
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>My Color</a>
+                        <a ng-bind="MySkin(1)">My Color</a>
                     </li>
 
                     <li ng-click="UpdateSkinType(2)">
-                        <div class="optionicon waves-effect darkmine {{GetSelectedClass(2,4)}}">
-                            <i class="fa fa-smile-o"></i>
+                        <div class="optionicon waves-effect  {{GetSelectedClass(2,4)}}">
+                            <img src="Emoji/defaultMale/skin/Maledarker.svg" class="defaultImg" alt="Alternate Text">
+                            <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Darker</a>
+                        <a ng-bind="MySkin(2)">Darker</a>
                     </li>
 
                   
@@ -532,25 +537,25 @@
                 <ul>
                     <li ng-click="UpdateHeight(3)">
                         <div class="optionicon waves-effect {{GetSelectedClass(3,5)}}">
-                            <img src="img/short.png" alt="" />
+                            <img src="Emoji/defaultMale/height/MaleShorter.svg" class="defaultImg" alt="Alternate Text">
                             <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Shorter</a>
+                        <a ng-bind="MyHeight(3)">Shorter</a>
                     </li>
                     <li ng-click="UpdateHeight(1)">
                         <div class="optionicon waves-effect {{GetSelectedClass(1,5)}}">
-                            <img src="img/equal.png" alt="" />
+                            <img src="Emoji/defaultMale/height/MaleMyHeight.svg" class="defaultImg" alt="Alternate Text">
                             <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>My Height</a>
+                        <a ng-bind="MyHeight(1)">My Height</a>
                     </li>
 
                     <li ng-click="UpdateHeight(2)">
                         <div class="optionicon waves-effect {{GetSelectedClass(2,5)}}">
-                            <img src="img/tall.png" alt="" />
+                            <img src="Emoji/defaultMale/height/MaleTaller.svg" class="defaultImg" alt="Alternate Text">
                             <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Taller</a>
+                        <a ng-bind="MyHeight(2)">Taller</a>
                     </li>
 
                     
@@ -572,27 +577,27 @@
             <div class="option">
                 <ul>
                     <li ng-click="UpdateHair(1)">
-                        <div class="optionicon white {{GetSelectedClass(1,3)}}">
-                            <img style="height:26px;" src="img/bald.png" alt="" />
+                        <div class="optionicon  {{GetSelectedClass(1,3)}}">
+                            <img src="Emoji/defaultMale/hair/Malebald.svg" class="defaultImg" alt="Alternate Text">
                             <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Bald</a>
+                        <a ng-bind="MyHair(1)">Bald</a>
                     </li>
 
                     <li ng-click="UpdateHair(2)">
-                        <div class="optionicon white {{GetSelectedClass(2,3)}}">
-                            <img src="img/dark.png" alt="" />
+                        <div class="optionicon  {{GetSelectedClass(2,3)}}">
+                            <img src="Emoji/defaultMale/hair/Maleblack.svg" class="defaultImg" alt="Alternate Text">
                             <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Dark</a>
+                        <a ng-bind="MyHair(2)">Dark</a>
                     </li>
 
                     <li ng-click="UpdateHair(3)">
-                        <div class="optionicon white {{GetSelectedClass(3,3)}}">
-                            <img src="img/brown.png" alt="" />
+                        <div class="optionicon  {{GetSelectedClass(3,3)}}">
+                            <img src="Emoji/defaultMale/hair/Malebrown.svg" class="defaultImg" alt="Alternate Text">
                             <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Brown</a>
+                        <a ng-bind="MyHair(3)">Brown</a>
                     </li>
 
                
@@ -608,38 +613,34 @@
 
             <div class="option">
                 <ul>
-
-
                     <li ng-click="UpdateHair(4)">
-                        <div class="optionicon white {{GetSelectedClass(4,3)}}">
-                            <img src="img/blond.png" alt="" />
+                        <div class="optionicon  {{GetSelectedClass(4,3)}}">
+                            <img src="Emoji/defaultMale/hair/Maleblond.svg" class="defaultImg" alt="Alternate Text">
                             <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Blond</a>
+                        <a ng-bind="MyHair(4)">Blond</a>
                     </li>
 
                     <li ng-click="UpdateHair(5)">
-                        <div class="optionicon white {{GetSelectedClass(5,3)}}">
-                            <img src="img/red.png" alt="" />
+                        <div class="optionicon  {{GetSelectedClass(5,3)}}">
+                            <img src="Emoji/defaultMale/hair/Malered.svg" class="defaultImg" alt="Alternate Text">
                             <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Red</a>
+                        <a ng-bind="MyHair(5)">Red</a>
                     </li>
 
                     <li ng-click="UpdateHair(6)">
-                        <div class="optionicon white {{GetSelectedClass(6,3)}}">
-                            <img src="img/grey.png" alt="" />
+                        <div class="optionicon  {{GetSelectedClass(6,3)}}">
+                            <img src="Emoji/defaultMale/hair/Malegrey.svg" class="defaultImg" alt="Alternate Text">
                             <i style="display:none;" class="fa fa-check"></i>
                         </div>
-                        <a>Grey</a>
+                        <a ng-bind="MyHair(6)">Grey</a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
-
-
 
 <div class="bottomarea waves-effect" ng-click="insertRecord()">
     <a>

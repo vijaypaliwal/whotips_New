@@ -1230,12 +1230,156 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         //}, 2000);
 
 
+        $scope.Mysetting = localStorageService.get("MydetailObj");
 
+        console.log($scope.Mysetting);
 
 
 
         CheckScopeBeforeApply();
     }
+
+
+
+    $scope.Mygender = function(gender) {
+        var _string = "";
+
+        debugger;
+
+        switch (gender) {
+           
+
+            case "M":
+                _string = $scope.Mysetting.gender == 'M' ? "My Gender" : "Male";
+                break;
+            case "F":
+                _string = $scope.Mysetting.gender == 'F' ? "My Gender" : "Female";
+                break;
+         
+            default:
+                _string = "";
+
+        }
+
+        return _string
+    }
+
+    $scope.MyAge = function (Age) {
+        var _Agestring = "";
+
+        switch (Age) {
+
+            case 1:
+                _Agestring = $scope.Mysetting.AgeType == 1 ? "My Age" : "Younger Gen";
+                break;
+            case 2:
+                _Agestring = $scope.Mysetting.AgeType == 2 ? "My Age" : "My Gen";
+                break;
+
+            case 3:
+                _Agestring = $scope.Mysetting.AgeType == 3 ? "My Age" : "Older Gen";
+                break;
+
+            default:
+                _Agestring = "";
+
+        }
+
+        return _Agestring
+    }
+
+
+    $scope.MySkin = function (Skin) {
+        var _Skinstring = "";
+
+        debugger;
+
+        switch (Skin) {
+
+            case 1:
+                _Skinstring = $scope.Mysetting.Skin == 1 ? "My Skin" : "Lighter";
+                break;
+            case 2:
+                _Skinstring = $scope.Mysetting.Skin == 2 ? "My Skin" : "Medium";
+                break;
+
+            case 3:
+                _Skinstring = $scope.Mysetting.Skin == 3 ? "My Skin" : "Darker";
+                break;
+
+            default:
+                _Skinstring = "";
+
+        }
+
+        return _Skinstring
+    }
+
+    $scope.MyHeight = function (Height) {
+        var _Heightstring = "";
+
+     
+
+        switch (Height) {
+
+            case 1:
+                _Heightstring = $scope.Mysetting.Height == 1 ? "My Height" : "Medium";
+                break;
+            case 2:
+                _Heightstring = $scope.Mysetting.Height == 2 ? "My Height" : "Taller";
+                break;
+
+            case 3:
+                _Heightstring = $scope.Mysetting.Height == 3 ? "My Height" : "Shorter";
+                break;
+
+            default:
+                _Heightstring = "";
+
+        }
+
+        return _Heightstring
+    }
+
+
+      $scope.MyHair = function (Hair) {
+        var _Hairstring = "";
+
+     
+
+        switch (Hair) {
+
+            case 1:
+                _Hairstring = $scope.Mysetting.Hair == 1 ? "My Hair" : "Bald";
+                break;
+            case 2:
+                _Hairstring = $scope.Mysetting.Hair == 2 ? "My Hair" : "Dark";
+                break;
+
+            case 3:
+                _Hairstring = $scope.Mysetting.Hair == 3 ? "My Hair" : "Brown";
+                break;
+
+            case 4:
+                _Hairstring = $scope.Mysetting.Hair == 3 ? "My Hair" : "Blond";
+                break;
+
+            case 5:
+                _Hairstring = $scope.Mysetting.Hair == 3 ? "My Hair" : "Red";
+                break;
+
+            case 6:
+                _Hairstring = $scope.Mysetting.Hair == 3 ? "My Hair" : "Grey";
+                break;
+
+            default:
+                _Hairstring = "";
+
+        }
+
+        return _Hairstring
+    }
+
 
 
     function GetTipsArray(type) {
