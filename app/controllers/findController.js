@@ -33,9 +33,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     $scope.ToggleEdit = function () {
         $scope.IsEditMode = !$scope.IsEditMode;
         CheckScopeBeforeApply();
-
     }
-
 
 
 
@@ -47,7 +45,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     var _fileName = "/Male";
 
     $scope.$watch('ContactObject.gender', function (oldValue, newValue) {
-        
+
         if (oldValue == "M") {
             _fileName = "/Male";
             _genderFolder = "/defaultMale";
@@ -69,13 +67,13 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
             age2: _agePath + "Younger.svg",
             age3: _agePath + "Older.svg",
             skin1: _skinPath + "lighter.svg",
-            skin2: _skinPath+"Mycolor.svg",
+            skin2: _skinPath + "Mycolor.svg",
             skin3: _skinPath + "darker.svg",
             height1: _heightPath + "Shorter.svg",
             height2: _heightPath + "MyHeight.svg",
             height3: _heightPath + "Taller.svg",
-            hair1: _hairPath+"bald.svg",
-            hair2: _hairPath+"black.svg",
+            hair1: _hairPath + "bald.svg",
+            hair2: _hairPath + "black.svg",
             hair3: _hairPath + "brown.svg",
             hair4: _hairPath + "blond.svg",
             hair5: _hairPath + "red.svg",
@@ -90,14 +88,14 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
             UpdateSkinTypeImages();
         }
-  
+
         CheckScopeBeforeApply();
 
     });
     $scope.$watch('ContactObject.AgeType', function (oldValue, newValue) {
         _genderFolder = $scope.ContactObject.gender == "F" ? "/defaultFemale" : "/defaultMale";
         _fileName = $scope.ContactObject.gender == "F" ? "/Female" : "/Male";
-        
+
         if ($scope.ContactObject.AgeType != "") {
 
             UpdateAgeTypeImages();
@@ -109,26 +107,47 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         CheckScopeBeforeApply();
 
     });
+
+
+    function GetAgeTypeFolder() {
+        var _folder = "";
+        if ($scope.ContactObject.AgeType == 1) {
+            _folder = "/Mygeneration";
+
+        }
+        else if ($scope.ContactObject.AgeType == 2) {
+
+            _folder = "/YoungerGeneration";
+
+        }
+        else if ($scope.ContactObject.AgeType == 3) {
+
+            _folder = "/OlderGeneration";
+
+        }
+
+        return _folder;
+    }
     function UpdateSkinTypeImages() {
         var _SkinTypeFolder = "";
         debugger;
         if ($scope.ContactObject.Skin == 1) {
-            _SkinTypeFolder = "/Myskin";
+            _SkinTypeFolder = "/Myskin" + GetAgeTypeFolder();
 
         }
         else if ($scope.ContactObject.Skin == 2) {
 
-            _SkinTypeFolder = "/Darkerskin";
+            _SkinTypeFolder = "/Darkerskin" + GetAgeTypeFolder();
 
         }
         else if ($scope.ContactObject.Skin == 3) {
 
-            _SkinTypeFolder = "/Lighterskin";
+            _SkinTypeFolder = "/Lighterskin" + GetAgeTypeFolder();
 
 
         }
         var _agePath = _DefaultPath + _genderFolder + _gen + _fileName;
-        var _skinPath = _DefaultPath + _genderFolder + _skin + _fileName;
+        var _skinPath = _DefaultPath + _genderFolder + _skin + (GetAgeTypeFolder() == "" ? "" : GetAgeTypeFolder() + "/skin/")  +_fileName;
         var _hairPath = $scope.ContactObject.Skin == "" || _SkinTypeFolder == "" ? (_DefaultPath + _genderFolder + _hair + _fileName) : (_DefaultPath + _genderFolder + _skin + _SkinTypeFolder + _hair + _fileName);
         var _heightPath = $scope.ContactObject.Skin == "" || _SkinTypeFolder == "" ? (_DefaultPath + _genderFolder + _height + _fileName) : (_DefaultPath + _genderFolder + _skin + _SkinTypeFolder + _height + _fileName);
 
@@ -150,8 +169,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
             hair6: _hairPath + "grey.svg"
         }
     }
-    function UpdateAgeTypeImages()
-    {
+    function UpdateAgeTypeImages() {
         var _GeneTypeFolder = "";
         if ($scope.ContactObject.AgeType == 1) {
             _GeneTypeFolder = "/Mygeneration";
@@ -222,9 +240,9 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
         }
         var _agePath = _DefaultPath + _genderFolder + _height + _fileName;
-        var _skinPath = $scope.ContactObject.Height == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _skin + _fileName) : (_DefaultPath + _genderFolder + _hair + _GeneTypeFolder +  _fileName);
+        var _skinPath = $scope.ContactObject.Height == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _skin + _fileName) : (_DefaultPath + _genderFolder + _hair + _GeneTypeFolder + _fileName);
         var _hairPath = $scope.ContactObject.Height == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _hair + _fileName) : (_DefaultPath + _genderFolder + _hair + _GeneTypeFolder + _fileName);
-        var _heightPath = $scope.ContactObject.Height == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _height + _fileName) : (_DefaultPath + _genderFolder + _hair + _GeneTypeFolder +  _fileName);
+        var _heightPath = $scope.ContactObject.Height == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _height + _fileName) : (_DefaultPath + _genderFolder + _hair + _GeneTypeFolder + _fileName);
 
         $scope.PhysicalImages = {
             age1: _agePath + "MyAge.svg",
@@ -250,7 +268,7 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         _genderFolder = $scope.ContactObject.gender == "F" ? "/defaultFemale" : "/defaultMale";
         _fileName = $scope.ContactObject.gender == "F" ? "/Female" : "/Male";
 
-        
+
         if ($scope.ContactObject.Hair != "") {
 
             UpdateHairTypeImages();
@@ -1089,12 +1107,11 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     }
 
 
-    $scope.Mydetails = function ()
-    {
+    $scope.Mydetails = function () {
         debugger;
         localStorageService.set("MydetailObj", $scope.ContactObject);
 
-        
+
 
         $scope.showgender = false;
 

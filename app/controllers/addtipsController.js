@@ -834,8 +834,8 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     $scope.GetSelectedClass = function (_G, Type) {
         var _class = "";
 
-        switch (Type) {
-
+        switch (Type)
+        {
             case 1:
                 _class = $scope.ContactObject.gender == _G ? "green" : "";
                 break;

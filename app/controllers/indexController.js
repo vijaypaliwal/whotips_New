@@ -64,7 +64,7 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
                 $scope.ActivePath = "more";
                 break;
             case "/users":
-                $scope.CurrentPage = "Users";
+                $scope.CurrentPage = "People";
                 $scope.ActivePath = "more";
 
                 break;
