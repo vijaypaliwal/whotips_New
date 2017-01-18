@@ -108,7 +108,25 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
     });
 
+    function GetSkinTypeFolder() {
+        var _folder = "";
+        if ($scope.ContactObject.Skin == 1) {
+            _folder = "/Myskin";
 
+        }
+        else if ($scope.ContactObject.Skin == 2) {
+
+            _folder = "/Darkerskin";
+
+        }
+        else if ($scope.ContactObject.Skin == 3) {
+
+            _folder = "/Lighterskin";
+
+        }
+
+        return _folder;
+    }
     function GetAgeTypeFolder() {
         var _folder = "";
         if ($scope.ContactObject.AgeType == 1) {
@@ -146,8 +164,8 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
 
         }
-        var _agePath = _DefaultPath + _genderFolder + _gen + _fileName;
-        var _skinPath = _DefaultPath + _genderFolder + _skin + (GetAgeTypeFolder() == "" ? "" : GetAgeTypeFolder() + "/skin/")  +_fileName;
+        var _agePath = _DefaultPath + _genderFolder + _gen + GetSkinTypeFolder() + _fileName;
+        var _skinPath = _DefaultPath + _genderFolder + _skin + (GetAgeTypeFolder() == "" ? "" : GetAgeTypeFolder() + "/skin/") + _fileName;
         var _hairPath = $scope.ContactObject.Skin == "" || _SkinTypeFolder == "" ? (_DefaultPath + _genderFolder + _hair + _fileName) : (_DefaultPath + _genderFolder + _skin + _SkinTypeFolder + _hair + _fileName);
         var _heightPath = $scope.ContactObject.Skin == "" || _SkinTypeFolder == "" ? (_DefaultPath + _genderFolder + _height + _fileName) : (_DefaultPath + _genderFolder + _skin + _SkinTypeFolder + _height + _fileName);
 

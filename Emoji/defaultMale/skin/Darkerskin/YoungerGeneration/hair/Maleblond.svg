@@ -11,7 +11,7 @@
    enable-background="new 0 0 64 64"
    version="1.1"
    id="svg92"
-   sodipodi:docname="Male Younger bloand.svg"
+   sodipodi:docname="Male Younger blond.svg"
    inkscape:version="0.92.0 r15299">
   <metadata
      id="metadata98">
@@ -21,7 +21,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -48,54 +48,54 @@
      inkscape:window-maximized="1"
      inkscape:current-layer="svg92" />
   <path
-     d="M32,2c23,0,28,15.3,28,24c0,7.7-1,11-1,11H5c0,0-1-3.3-1-11C4,17.3,9,2,32,2z"
-     fill="#ffb300"
+     d="m 32,2 c 23,0 28,15.3 28,24 0,7.7 -1,11 -1,11 H 5 C 5,37 4,33.7 4,26 4,17.3 9,2 32,2 Z"
      id="path74"
-     style="fill:#ffff00" />
+     style="fill:#ffff00"
+     inkscape:connector-curvature="0" />
   <path
-     d="m57.2 33c0 0-.8-3.3-1.2-10.2-.5-7.5-10.9-1.5-24-1.5-13.1 0-23.5-6-24 1.5-.4 6.9-1.2 10.2-1.2 10.2-6.5 0-6.5 10.6.4 10.6 0 11.4 14.3 18.4 24.8 18.4 10.5 0 24.8-7 24.8-18.4 6.9 0 6.9-10.6.4-10.6"
-     fill="#ffdd67"
-     id="path76" />
+     d="M 57.2,33 C 57.2,33 56.4,29.7 56,22.8 55.5,15.3 45.1,21.3 32,21.3 18.9,21.3 8.5,15.3 8,22.8 7.6,29.7 6.8,33 6.8,33 0.3,33 0.3,43.6 7.2,43.6 7.2,55 21.5,62 32,62 42.5,62 56.8,55 56.8,43.6 63.7,43.6 63.7,33 57.2,33"
+     id="path76"
+     style="fill:#a88054;fill-opacity:1"
+     inkscape:connector-curvature="0" />
   <circle
      cx="44.5"
      cy="35.5"
      r="6.5"
-     fill="#fff"
-     id="circle78" />
+     id="circle78"
+     style="fill:#ffffff" />
   <circle
      cx="44.5"
      cy="35.5"
      r="4.5"
-     fill="#664e27"
-     id="circle80" />
+     id="circle80"
+     style="fill:#917c6f" />
   <circle
      cx="44.5"
      cy="35.5"
      r="1.5"
-     fill="#231f20"
      id="circle82"
      style="fill:#000000" />
   <circle
      cx="19.5"
      cy="35.5"
      r="6.5"
-     fill="#fff"
-     id="circle84" />
+     id="circle84"
+     style="fill:#ffffff" />
   <circle
      cx="19.5"
      cy="35.5"
      r="4.5"
-     fill="#664e27"
-     id="circle86" />
+     id="circle86"
+     style="fill:#917c6f" />
   <circle
      cx="19.5"
      cy="35.5"
      r="1.5"
-     fill="#231f20"
      id="circle88"
      style="fill:#000000" />
   <path
-     d="m40.1 48.1c-5.2 3.6-11 3.6-16.2 0-.6-.4-1.2.3-.8 1 1.6 2.6 4.8 4.9 8.9 4.9s7.3-2.3 8.9-4.9c.4-.7-.2-1.4-.8-1"
-     fill="#937237"
-     id="path90" />
+     d="m 40.1,48.1 c -5.2,3.6 -11,3.6 -16.2,0 -0.6,-0.4 -1.2,0.3 -0.8,1 1.6,2.6 4.8,4.9 8.9,4.9 4.1,0 7.3,-2.3 8.9,-4.9 0.4,-0.7 -0.2,-1.4 -0.8,-1"
+     id="path90"
+     style="fill:#ac9d93"
+     inkscape:connector-curvature="0" />
 </svg>
