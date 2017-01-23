@@ -1244,7 +1244,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     $scope.Mygender = function(gender) {
         var _string = "";
 
-        debugger;
+        
 
         switch (gender) {
            
@@ -1292,7 +1292,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     $scope.MySkin = function (Skin) {
         var _Skinstring = "";
 
-        debugger;
+        
 
         switch (Skin) {
 
