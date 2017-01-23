@@ -18,12 +18,16 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
     if (bodyheight > 665 && bodyheight < 675) {
 
         $(".findoptionicon").addClass("iphone6");
+
+        $(".tile").addClass("iphone6");
         $scope.curentclass = "iphone6"
     }
 
     if (bodyheight > 730) {
 
         $(".findoptionicon").addClass("iphone6plus");
+
+        $(".tile").addClass("iphone6plus");
         $scope.curentclass = "iphone6plus";
     }
 
