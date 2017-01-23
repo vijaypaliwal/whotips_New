@@ -303,10 +303,10 @@
 
 
     .rightarrow {
-      position: absolute;
-    right: 5px;
-    margin-top: -35px;
-    color: #333;
+        position: absolute;
+        right: 5px;
+        margin-top: -35px;
+        color: #333;
     }
 
     .leftarrow {
@@ -335,11 +335,12 @@
     .selectionpart img {
         display: none;
     }
-    .option
-    {
-        text-align:center;
-        vertical-align:middle;
+
+    .option {
+        text-align: center;
+        vertical-align: middle;
     }
+
     .tile {
         background: #fff;
         position: inherit;
@@ -348,18 +349,20 @@
         line-height: 3.7;
         font-size: 13px;
         border: 1px solid #efefef;
-        padding-left:0;
-        padding-right:0;
+        padding-left: 0;
+        padding-right: 0;
     }
+
     .blue-color {
-       background:#2196F3;
+        background: #2196F3;
     }
+
     .pink-color {
         background: #e91e63;
     }
 
-    .whitetext{
-        color:#fff !important;
+    .whitetext {
+        color: #fff !important;
     }
 
 
@@ -388,16 +391,19 @@
     }
 
     .doublelineheight {
-        line-height:1.8;
+        line-height: 1.8;
     }
 
     .selectionpart .col-xs-10 {
-
-        padding-left:10px;
-        padding-right:0;
-
+        padding-left: 0;
+        padding-right: 0;
     }
 
+    .tile p {
+        font-size: 13px;
+        margin: 0;
+        width: 100%;
+    }
 </style>
 
 
@@ -704,12 +710,16 @@
 
         <div class="col-xs-10">
             <div class="row option">
-                <div class="col-sm-4 col-xs-4 tile blue-color whitetext waves-effect {{GetSelectedClass('M',1)}}" ng-click="UpdateGender(1)">Male</div>
+                <div class="col-sm-4 col-xs-4 tile blue-color whitetext  {{GetSelectedClass('M',1)}}" ng-click="UpdateGender(1)">
+                    <p class="waves-effect">Male</p>
+                </div>
                 <div class="col-sm-4 col-xs-4 tile"></div>
-                <div class="col-sm-4 col-xs-4 tile pink-color whitetext waves-effect {{GetSelectedClass('F',1)}}" ng-click="UpdateGender(2)">Female</div>
+                <div class="col-sm-4 col-xs-4 tile pink-color whitetext {{GetSelectedClass('F',1)}}" ng-click="UpdateGender(2)">
+                    <p class="waves-effect">Female</p>
+                </div>
             </div>
-          </div>
-      </div>
+        </div>
+    </div>
 
     <div class="row agerow">
         <div class="col-xs-2">
@@ -718,12 +728,18 @@
 
         <div class="col-xs-10">
             <div class="row option">
-                <div class="col-sm-4 col-xs-4 tile doublelineheight waves-effect {{GetSelectedClass(1,2)}}" ng-click="UpdateAgeType(1)">My <br /> Generation</div>
-                <div class="col-sm-4 col-xs-4 tile doublelineheight waves-effect {{GetSelectedClass(2,2)}}" ng-click="UpdateAgeType(2)">Younger <br /> Generation</div>
-                <div class="col-sm-4 col-xs-4 tile doublelineheight waves-effect {{GetSelectedClass(3,2)}}" ng-click="UpdateAgeType(3)">Older <br /> Generation</div>
-            </div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight {{GetSelectedClass(1,2)}}" ng-click="UpdateAgeType(1)">
+                    <p class="waves-effect">My <br /> Generation</p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight {{GetSelectedClass(2,2)}}" ng-click="UpdateAgeType(2)">
+                    <p class="waves-effect">Younger <br /> Generation</p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight {{GetSelectedClass(3,2)}}" ng-click="UpdateAgeType(3)">
+                    <p class="waves-effect">Older <br /> Generation</p>
+                </div>
             </div>
         </div>
+    </div>
     <div class="row skinrow">
         <div class="col-xs-2">
             <h4>Skin</h4>
@@ -731,12 +747,19 @@
 
         <div class="col-xs-10">
             <div class="row option">
-                <div class="col-sm-4 col-xs-4 waves-effect tile {{GetSelectedClass(3,4)}}" ng-click="UpdateSkinType(3)">Lighter</div>
-                <div class="col-sm-4 col-xs-4 waves-effect tile doublelineheight {{GetSelectedClass(1,4)}}" ng-click="UpdateSkinType(1)">My <br /> skin Color</div>
-                <div class="col-sm-4 col-xs-4 waves-effect tile {{GetSelectedClass(2,4)}}" ng-click="UpdateSkinType(2)">Darker</div>
-            </div>
+                <div class="col-sm-4 col-xs-4 tile {{GetSelectedClass(3,4)}}" ng-click="UpdateSkinType(3)"><p class="waves-effect">Lighter</p></div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight {{GetSelectedClass(1,4)}}" ng-click="UpdateSkinType(1)">
+
+                    <p class="waves-effect"> My <br /> skin Color</p>
+                   
+                </div>
+                <div class="col-sm-4 col-xs-4 tile {{GetSelectedClass(2,4)}}" ng-click="UpdateSkinType(2)">
+
+                    <p class="waves-effect"> Darker</p>
+                </div>
             </div>
         </div>
+    </div>
 
     <div class="row heightrow">
         <div class="col-xs-2">
@@ -745,23 +768,23 @@
 
         <div class="col-xs-10">
             <div class="row option">
-                <div class="col-sm-4 waves-effect col-xs-4 tile {{GetSelectedClass(3,5)}}" ng-click="UpdateHeight(3)">Shorter</div>
-                <div class="col-sm-4 waves-effect col-xs-4 tile doublelineheight {{GetSelectedClass(1,5)}}" ng-click="UpdateHeight(1)">My <br /> Height</div>
-                <div class="col-sm-4 waves-effect col-xs-4 tile {{GetSelectedClass(2,5)}}" ng-click="UpdateHeight(2)">Taller</div>
-            </div>
+                <div class="col-sm-4 col-xs-4 tile {{GetSelectedClass(3,5)}}" ng-click="UpdateHeight(3)"><p class="waves-effect"> Shorter </p> </div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight {{GetSelectedClass(1,5)}}" ng-click="UpdateHeight(1)"> <p class="waves-effect">  My <br /> Height </p> </div>
+                <div class="col-sm-4 col-xs-4 tile {{GetSelectedClass(2,5)}}" ng-click="UpdateHeight(2)"> <p class="waves-effect">  Taller </p> </div>
             </div>
         </div>
+    </div>
     <div class="row heightrow">
         <div class="col-xs-2">
             <h4>Hair</h4>
         </div>
         <div ng-if="morehair==false || morehair=='false'" class="col-xs-10">
             <div class="row option">
-                <div class="col-sm-4 waves-effect col-xs-4 tile doublelineheight {{GetSelectedClass(1,3)}}" ng-click="UpdateHair(1)">Bald <br />Hair </div>
-                <div class="col-sm-4  waves-effect col-xs-4 tile doublelineheight blackcolor {{GetSelectedClass(2,3)}}" ng-click="UpdateHair(2)">Dark <br /> Hair</div>
-                <div class="col-sm-4 waves-effect col-xs-4 tile doublelineheight browncolor {{GetSelectedClass(3,3)}}" ng-click="UpdateHair(3)">Brown <br /> Hair</div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight {{GetSelectedClass(1,3)}}" ng-click="UpdateHair(1)"> <p class="waves-effect">  Bald <br />Hair </p> </div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight blackcolor {{GetSelectedClass(2,3)}}" ng-click="UpdateHair(2)"> <p class="waves-effect">  Dark <br /> Hair </p> </div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight browncolor {{GetSelectedClass(3,3)}}" ng-click="UpdateHair(3)"> <p class="waves-effect">  Brown <br /> Hair </p> </div>
             </div>
-            
+
             <i ng-click="viewmorehair()" class="fa fa-chevron-right rightarrow"></i>
         </div>
         <div ng-if="morehair==true" class="col-xs-10 animated slideInLeft">
@@ -769,23 +792,23 @@
             <i ng-click="lesshair()" class="fa fa-chevron-left leftarrow"></i>
 
             <div class="row option">
-                <div class="col-sm-4 waves-effect col-xs-4 tile doublelineheight blondcolor {{GetSelectedClass(4,3)}}" ng-click="UpdateHair(4)">Blond <br /> Hair</div>
-                <div class="col-sm-4 waves-effect col-xs-4 tile doublelineheight redcolor {{GetSelectedClass(5,3)}}" ng-click="UpdateHair(5)">Red <br /> Hair</div>
-                <div class="col-sm-4 waves-effect col-xs-4 tile doublelineheight greycolor {{GetSelectedClass(6,3)}}" ng-click="UpdateHair(6)">Grey <br /> Hair</div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight blondcolor {{GetSelectedClass(4,3)}}" ng-click="UpdateHair(4)">Blond <br /> Hair</div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight redcolor {{GetSelectedClass(5,3)}}" ng-click="UpdateHair(5)">Red <br /> Hair</div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight greycolor {{GetSelectedClass(6,3)}}" ng-click="UpdateHair(6)">Grey <br /> Hair</div>
             </div>
         </div>
 
-       
+
     </div>
 
 
-     
 
 
-     
 
 
-     
+
+
+
 </div>
 
 
