@@ -18,7 +18,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     $scope.ContactTips = [];
     $scope.ContactPlaces = [];
     $scope.ContactObjectImages = { hairimage: "", skinimage: "", heightimage: "", agetypeimage: "" }
-    
+    $scope.TempNewTips = [];
     $scope.morehair = false;
 
 
@@ -127,12 +127,20 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     $scope.GetAlphabeticalOrderTips = function () {
         if ($.trim($scope.NewTips.Text) != "") {
             $scope.Tips = [];
-
+            debugger;
             var _array = [];
             _array = angular.copy($scope.TipsCopy);
             _array = jQuery.grep(_array, function (el) {
-                return el.Text.toLowerCase().indexOf($scope.NewTips.Text.toLowerCase()) > -1;
+                return (el.Text.toLowerCase().indexOf($scope.NewTips.Text.toLowerCase()) > -1);
             });
+
+            _array.sort(function (a, b) {
+                var textA = a.Text.toUpperCase();
+                var textB = b.Text.toUpperCase();
+                return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+            });
+           
+
             $scope.Tips = _array;
             //if (_array != null && _array != undefined && _array != "" && _array.length > 0) {
             //    for (var i = 0; i < _array.length; i++) {
@@ -563,8 +571,10 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         $scope.Tips = [];
         $scope.TipsCopy = [];
         var _TempObj = { id: 1 + Math.floor(Math.random() * 100), Text: value };
-        $scope.Tips.push(_TempObj);
-        $scope.TipsCopy.push(_TempObj);
+       // $scope.Tips.push(_TempObj);
+      //  $scope.TipsCopy.push(_TempObj);
+        $scope.TempNewTips.unshift(_TempObj);
+
         db.transaction(function (tx) {
             tx.executeSql(selectAllTipsStatement, [], function (tx, result) {
                 dataset = result.rows;
@@ -572,7 +582,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
                     item = dataset.item(i);
                     var _TempObj = { id: (item['id']).toString(), Text: (item['Note']).toString() };
-                    if (pluckByNameNew($scope.Tips, _TempObj.Text, false, dataset.length) == false) {
+                    if (pluckByNameNew($scope.Tips, _TempObj.Text, false, dataset.length) == false && pluckByNameNew($scope.TempNewTips,_TempObj.Text,false,dataset.length)==false) {
                         $scope.Tips.push(_TempObj);
 
                         $scope.TipsCopy.push(_TempObj);
@@ -583,7 +593,11 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
                 }
                 CheckScopeBeforeApply();
             });
+            setTimeout(function () {
 
+                GetTipsArray(1);
+
+            }, 100);
         });
         CheckScopeBeforeApply();
     }
@@ -1245,46 +1259,49 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         var _string = "";
 
         
+        if ($scope.Mysetting != null) {
 
-        switch (gender) {
-           
+            switch (gender) {
 
-            case "M":
-                _string = $scope.Mysetting.gender == 'M' ? "My Gender" : "Male";
-                break;
-            case "F":
-                _string = $scope.Mysetting.gender == 'F' ? "My Gender" : "Female";
-                break;
-         
-            default:
-                _string = "";
 
+                case "M":
+                    _string = $scope.Mysetting.gender == 'M' ? "My Gender" : "Male";
+                    break;
+                case "F":
+                    _string = $scope.Mysetting.gender == 'F' ? "My Gender" : "Female";
+                    break;
+
+                default:
+                    _string = "";
+
+            }
         }
 
-        return _string
+
+            return _string
     }
 
     $scope.MyAge = function (Age) {
         var _Agestring = "";
+        if ($scope.Mysetting != null) {
+            switch (Age) {
 
-        switch (Age) {
+                case 1:
+                    _Agestring = $scope.Mysetting.AgeType == 1 ? "My Age" : "Younger Gen";
+                    break;
+                case 2:
+                    _Agestring = $scope.Mysetting.AgeType == 2 ? "My Age" : "My Gen";
+                    break;
 
-            case 1:
-                _Agestring = $scope.Mysetting.AgeType == 1 ? "My Age" : "Younger Gen";
-                break;
-            case 2:
-                _Agestring = $scope.Mysetting.AgeType == 2 ? "My Age" : "My Gen";
-                break;
+                case 3:
+                    _Agestring = $scope.Mysetting.AgeType == 3 ? "My Age" : "Older Gen";
+                    break;
 
-            case 3:
-                _Agestring = $scope.Mysetting.AgeType == 3 ? "My Age" : "Older Gen";
-                break;
+                default:
+                    _Agestring = "";
 
-            default:
-                _Agestring = "";
-
+            }
         }
-
         return _Agestring
     }
 
@@ -1292,52 +1309,52 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     $scope.MySkin = function (Skin) {
         var _Skinstring = "";
 
-        
+        if ($scope.Mysetting != null) {
 
-        switch (Skin) {
+            switch (Skin) {
 
-            case 1:
-                _Skinstring = $scope.Mysetting.Skin == 1 ? "My Skin" : "Darker";
-                break;
-            case 2:
-                _Skinstring = $scope.Mysetting.Skin == 2 ? "My Skin" : "Medium";
-                break;
+                case 1:
+                    _Skinstring = $scope.Mysetting.Skin == 1 ? "My Skin" : "Darker";
+                    break;
+                case 2:
+                    _Skinstring = $scope.Mysetting.Skin == 2 ? "My Skin" : "Medium";
+                    break;
 
-            case 3:
-                _Skinstring = $scope.Mysetting.Skin == 3 ? "My Skin" : "Lighter";
-                break;
+                case 3:
+                    _Skinstring = $scope.Mysetting.Skin == 3 ? "My Skin" : "Lighter";
+                    break;
 
-            default:
-                _Skinstring = "";
+                default:
+                    _Skinstring = "";
 
+            }
         }
-
         return _Skinstring
     }
 
     $scope.MyHeight = function (Height) {
         var _Heightstring = "";
 
-     
+        if ($scope.Mysetting != null) {
 
-        switch (Height) {
+            switch (Height) {
 
-            case 1:
-                _Heightstring = $scope.Mysetting.Height == 1 ? "My Height" : "Medium";
-                break;
-            case 2:
-                _Heightstring = $scope.Mysetting.Height == 2 ? "My Height" : "Taller";
-                break;
+                case 1:
+                    _Heightstring = $scope.Mysetting.Height == 1 ? "My Height" : "Medium";
+                    break;
+                case 2:
+                    _Heightstring = $scope.Mysetting.Height == 2 ? "My Height" : "Taller";
+                    break;
 
-            case 3:
-                _Heightstring = $scope.Mysetting.Height == 3 ? "My Height" : "Shorter";
-                break;
+                case 3:
+                    _Heightstring = $scope.Mysetting.Height == 3 ? "My Height" : "Shorter";
+                    break;
 
-            default:
-                _Heightstring = "";
+                default:
+                    _Heightstring = "";
 
+            }
         }
-
         return _Heightstring
     }
 
@@ -1346,37 +1363,37 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         var _Hairstring = "";
 
      
+        if ($scope.Mysetting != null) {
+            switch (Hair) {
 
-        switch (Hair) {
+                case 1:
+                    _Hairstring = $scope.Mysetting.Hair == 1 ? "My Hair" : "Bald";
+                    break;
+                case 2:
+                    _Hairstring = $scope.Mysetting.Hair == 2 ? "My Hair" : "Dark";
+                    break;
 
-            case 1:
-                _Hairstring = $scope.Mysetting.Hair == 1 ? "My Hair" : "Bald";
-                break;
-            case 2:
-                _Hairstring = $scope.Mysetting.Hair == 2 ? "My Hair" : "Dark";
-                break;
+                case 3:
+                    _Hairstring = $scope.Mysetting.Hair == 3 ? "My Hair" : "Brown";
+                    break;
 
-            case 3:
-                _Hairstring = $scope.Mysetting.Hair == 3 ? "My Hair" : "Brown";
-                break;
+                case 4:
+                    _Hairstring = $scope.Mysetting.Hair == 3 ? "My Hair" : "Blond";
+                    break;
 
-            case 4:
-                _Hairstring = $scope.Mysetting.Hair == 3 ? "My Hair" : "Blond";
-                break;
+                case 5:
+                    _Hairstring = $scope.Mysetting.Hair == 3 ? "My Hair" : "Red";
+                    break;
 
-            case 5:
-                _Hairstring = $scope.Mysetting.Hair == 3 ? "My Hair" : "Red";
-                break;
+                case 6:
+                    _Hairstring = $scope.Mysetting.Hair == 3 ? "My Hair" : "Grey";
+                    break;
 
-            case 6:
-                _Hairstring = $scope.Mysetting.Hair == 3 ? "My Hair" : "Grey";
-                break;
+                default:
+                    _Hairstring = "";
 
-            default:
-                _Hairstring = "";
-
+            }
         }
-
         return _Hairstring
     }
 
@@ -1385,7 +1402,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     function GetTipsArray(type) {
         $scope.RecentlyAddedTips = [];
         var _RecentTips = localStorageService.get("RecentlyAddedTips");
-
+       
         if (_RecentTips != null && _RecentTips != undefined && _RecentTips != "" && _RecentTips.length > 0) {
             for (var i = 0; i < _RecentTips.length; i++) {
 
@@ -1402,6 +1419,20 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         var _TempData = [];
 
         if (type == 1) {
+
+            
+
+            for (var i = 0; i < $scope.TempNewTips.length; i++) {
+
+                var element = $scope.TempNewTips[i];
+
+
+
+                if (pluckByNameNew(_TempData, element.Text, true, $scope.TempNewTips.length) == false) {
+                    _TempData.push(element);
+                }
+
+            }
             for (var i = 0; i < $scope.RecentlyAddedTips.length; i++) {
 
                 var element = $scope.RecentlyAddedTips[i];
