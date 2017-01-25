@@ -85,7 +85,12 @@ app.controller('usersController', ['$scope', 'localStorageService', 'authService
 
     }
 
-
+    $scope.searchpeople = function (item) {
+        if (!$scope.SearchText || (item.firstName.toLowerCase().indexOf($scope.SearchText.toLowerCase()) != -1) || (item.lastName.toLowerCase().indexOf($scope.SearchText.toLowerCase()) != -1)) {
+            return true;
+        }
+        return false;
+    };
     $scope.DeleteRecordData = function (id) {
         debugger;
         var _confirm = confirm("Are you sure to remove this contact?");
