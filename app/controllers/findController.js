@@ -529,6 +529,8 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
 
 
     $scope.OpenEditModal = function (_obj) {
+
+      
         localStorageService.set("EditContactSearchObj", _obj);
         $location.path("/addtips");
         $("#modal3").modal("hide");

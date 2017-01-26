@@ -2,12 +2,25 @@
 <style>
 
     .tile {
-        background: #fff;
+       
         position: inherit;
         height: 100%;
         line-height: 3.5;
      
     }
+
+    .tile.green
+    {
+        background:transparent !important;
+    }
+
+    .tile img
+    {
+      
+    }
+
+
+
 
     .doublelineheight {
         line-height: 1.8;
@@ -55,11 +68,12 @@
         background: #777;
     }
 
-   .green .fa-check {
-   display: initial !important;
+ .green .fa-check {
+    display: initial !important;
     position: absolute;
-    right: 2px;
-    top: 2px;
+    top:4px;
+    margin-left: 88px;
+    z-index: 10;
     color: #8bc34a;
     border-radius: 100%;
     padding: 2px;
@@ -67,9 +81,7 @@
     background: #fff;
 }
 
-    .green img {
-        display: none;
-    }
+  
 
     .option ul {
         display: inline-block;
@@ -124,8 +136,8 @@
     
     
      .iphone6 img {
-        height: 38px !important;
-        width: 38px !important;
+      
+       
     }
 
     .iphone6plus {
@@ -137,10 +149,8 @@
     }
 
         .iphone6plus img {
-            height: 48px !important;
-            width: 48px !important;
-            margin-top: 0px !important;
-        }
+  
+}
 
 
     .findoptionicon img {
@@ -182,6 +192,7 @@
         margin-bottom: 0;
         text-align:center;
         border:none;
+        background:transparent;
     }
 
     .green {
@@ -244,12 +255,6 @@
         width: 100%;
         text-align:center;
         position:relative;
-    }
-
-    .well p {
-        margin-bottom:0;
-        font-size:15px;
-        width:100%;
     }
 
     .redcolor {
@@ -319,166 +324,164 @@
         <table>
             <tr>
                 <td>
-                    <div class="waves-effect tile blue-color {{curentclass}} whitetext {{GetSelectedClass('M',1)}}" ng-click="UpdateGender(1)">
+                    <div class="tile {{curentclass}} whitetext {{GetSelectedClass('M',1)}}" ng-click="UpdateGender(1)">
                         <i style="display:none" class="fa fa-check"></i>
-                        <p>Male</p>
+                        <p class="waves-effect">
+                            <img src="img/icon/Male.svg" alt="" />
+                        </p>
                     </div>
                 </td>
                 <td></td>
                 <td>
-                    <div class="waves-effect tile pink-color {{curentclass}} whitetext {{GetSelectedClass('F',1)}}" ng-click="UpdateGender(2)">
+                    <div class="tile {{curentclass}} whitetext {{GetSelectedClass('F',1)}}" ng-click="UpdateGender(2)">
                         <i style="display:none" class="fa fa-check"></i>
-                        <p>Female</p>
+                        <p class="waves-effect">
+                            <img src="img/icon/Female.svg" alt="" />
+                        </p>
                     </div>
                 </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="tile   {{curentclass}}  {{GetSelectedClass(2,2)}}" ng-click="UpdateAgeType(2)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect"><img src="img/icon/MaleYounger.svg" alt="" />  </p>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="tile   {{curentclass}}  {{GetSelectedClass(1,2)}}" ng-click="UpdateAgeType(1)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect">
+                            <img src="img/icon/MaleMyGeneration.svg" alt="" />
+                        </p>
+
+                    </div>
+                </td>
+
+                <td>
+                    <div class="tile   {{curentclass}} {{GetSelectedClass(3,2)}}" ng-click="UpdateAgeType(3)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect">
+                            <img src="img/icon/MaleOlder.svg" alt="" />
+                        </p>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="tile  {{curentclass}}  {{GetSelectedClass(3,4)}}" ng-click="UpdateSkinType(3)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect">
+                            <img src="img/icon/MaleLighterSkin.svg" alt="" />
+                        </p>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  doublelineheight {{curentclass}}  {{GetSelectedClass(1,4)}}" ng-click="UpdateSkinType(1)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect">
+                            <img src="img/icon/MaleMySkinTone.svg" alt="" />
+                        </p>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  {{curentclass}} {{GetSelectedClass(2,4)}}" ng-click="UpdateSkinType(2)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect">
+                            <img src="img/icon/MaleDarkerSkin.svg" alt="" />
+                        </p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="tile  {{curentclass}}  {{GetSelectedClass(3,5)}}" ng-click="UpdateHeight(3)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect">
+                            <img src="img/icon/MaleShorter.svg" alt="" />
+                        </p>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  {{curentclass}}  {{GetSelectedClass(1,5)}}" ng-click="UpdateHeight(1)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect">
+                            <img src="img/icon/MaleMyHeight.svg" alt="" />
+                        </p>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  {{curentclass}} {{GetSelectedClass(2,5)}}" ng-click="UpdateHeight(2)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect">
+                            <img src="img/icon/MaleTaller.svg" alt="" />
+                        </p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="tile  {{curentclass}}  {{GetSelectedClass(4,3)}}" ng-click="UpdateHair(4)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect">
+                            <img src="img/icon/MaleBlondHair.svg" alt="" />
+                        </p>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  {{curentclass}} {{GetSelectedClass(3,3)}}" ng-click="UpdateHair(3)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect">
+                            <img src="img/icon/MaleBrownHair.svg" alt="" />
+                        </p>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  {{curentclass}} {{GetSelectedClass(6,3)}}" ng-click="UpdateHair(6)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect">
+                            <img src="img/icon/MaleGreyHair.svg" alt="" />
+                        </p>
+                    </div>
+                </td>
+
+
+
+            </tr>
+            <tr>
+
+                <td>
+                    <div class="tile  {{curentclass}}  {{GetSelectedClass(5,3)}}" ng-click="UpdateHair(5)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect">
+                            <img src="img/icon/MaleRedHair.svg" alt="" />
+                        </p>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  {{curentclass}}  {{GetSelectedClass(2,3)}}" ng-click="UpdateHair(2)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect">
+                            <img src="img/icon/MaleDarkHair.svg" alt="" />
+                        </p>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  {{curentclass}}  {{GetSelectedClass(1,3)}}" ng-click="UpdateHair(1)">
+                        <i style="display:none" class="fa fa-check"></i>
+                        <p class="waves-effect">
+                            <img src="img/icon/MaleBald.svg" alt="" />
+                        </p>
+                    </div>
+                </td>
+
             </tr>
         </table>
     </div>
 
-    <div class="well agerow">
-      
-
-        <table>
-            <tr>
-                <td>
-                    <div class="tile younger doublelineheight {{curentclass}}  {{GetSelectedClass(2,2)}}" ng-click="UpdateAgeType(2)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">Younger <br /> Generation  </p>
-
-                    </div>
-                </td>
-                <td>
-                    <div class="tile mygen doublelineheight {{curentclass}}  {{GetSelectedClass(1,2)}}" ng-click="UpdateAgeType(1)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">My <br /> Generation  </p>
-                     
-                    </div>
-                </td>
-                
-                <td>
-                    <div class="tile older doublelineheight {{curentclass}} {{GetSelectedClass(3,2)}}" ng-click="UpdateAgeType(3)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">Older <br /> Generation </p>
-                       
-                    </div>
-                </td>
-            </tr>
-        </table>
-
-        
-    </div>
-
-    <div class="well skinrow">
-     
-
-        <table>
-            <tr>
-                <td>
-                    <div class="tile lightmine {{curentclass}}  {{GetSelectedClass(3,4)}}" ng-click="UpdateSkinType(3)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">Lighter</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="tile mine doublelineheight {{curentclass}}  {{GetSelectedClass(1,4)}}" ng-click="UpdateSkinType(1)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">My <br />Skin color</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="tile darkmine {{curentclass}} {{GetSelectedClass(2,4)}}" ng-click="UpdateSkinType(2)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">Darker</p>
-                    </div>
-                </td>
-            </tr>
-        </table>
-        
-        
-    </div>
-
-    <div class="well heightrow">
-      
-
-        <table>
-            <tr>
-                <td>
-                    <div class="tile shorter {{curentclass}}  {{GetSelectedClass(3,5)}}" ng-click="UpdateHeight(3)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">Shorter</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="tile myheight {{curentclass}}  {{GetSelectedClass(1,5)}}" ng-click="UpdateHeight(1)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">My Height</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="tile taller {{curentclass}} {{GetSelectedClass(2,5)}}" ng-click="UpdateHeight(2)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">Taller</p>
-                    </div>
-                </td>
-            </tr>
-        </table>
-
-        
-    </div>
-
-    <div class="well hairrow">
-     
-
-        <table>
-            <tr>
-                <td>
-                    <div class="blondcolor tile doublelineheight {{curentclass}}  {{GetSelectedClass(4,3)}}" ng-click="UpdateHair(4)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">Blond <br /> Hair </p>
-                    </div>
-                </td>
-                <td>
-                    <div class="browncolor tile doublelineheight {{curentclass}} {{GetSelectedClass(3,3)}}" ng-click="UpdateHair(3)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">Brown <br /> Hair</p>
-                    </div>
-                </td>
-                <td>
-                    <div class="greycolor tile doublelineheight {{curentclass}} {{GetSelectedClass(6,3)}}" ng-click="UpdateHair(6)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">Grey <br /> Hair</p>
-                    </div>
-                </td>
-            
-               
-                
-            </tr>
-            <tr>
-                
-                <td>
-                    <div class="tile redcolor doublelineheight {{curentclass}}  {{GetSelectedClass(5,3)}}" ng-click="UpdateHair(5)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">Red <br /> Hair </p>
-                    </div>
-                </td>
-                <td>
-                    <div class="blackcolor tile doublelineheight {{curentclass}}  {{GetSelectedClass(2,3)}}" ng-click="UpdateHair(2)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">Dark <br /> Hair </p>
-                    </div>
-                </td>
-                <td>
-                    <div class="tile bald doublelineheight {{curentclass}}  {{GetSelectedClass(1,3)}}" ng-click="UpdateHair(1)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">Bald/Other <br /> Hair </p>
-                    </div>
-                </td>
-                
-            </tr>
-        </table>
     
-    </div>
-
     <div class="row">
         <div class="col-xs-4"></div>
         <div style="text-align:center;" class="col-xs-4">

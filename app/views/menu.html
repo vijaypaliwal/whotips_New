@@ -31,15 +31,56 @@
             .bottomarea .btn i {
                 font-size: 17px;
             }
+    .top50 {
+        margin-top:50px;
+    }
+
+    .container
+    {
+        background:#fff;
+    }
+
+    .peoplelist li
+    {
+        float:left; margin-right:10px;
+        margin-bottom:10px;
+    }
+
+    hr  
+    {
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+
+
+
 </style>
 
 
-<div>
-    <h2>
-        Menu
-
-    </h2>
+<div class="top50">
+    <h4>
+       Recently Added People
+    </h4>
+    <hr />
 </div>
+
+
+<ul class="peoplelist">
+    <!-- ngRepeat: _obj in Contacts -->
+    <li ng-repeat="_obj in Contacts | orderBy : '-id'" class=" ng-scope">
+
+        <div ng-click="OpenEditModal(_obj)" class="chip">
+            <img src="img/male.png" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)" />
+            <img src="{{_obj.imagepath}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
+
+            <span class="ng-binding">   {{_obj.firstName}} {{_obj.lastName}} </span>
+        </div>
+
+
+    </li><!-- end ngRepeat: _obj in Contacts -->
+    <!-- end ngRepeat: _obj in Contacts -->
+
+</ul>
 
 
 <br />
@@ -47,20 +88,6 @@
 <div class="btn-group btn-group-justified bottomareanew">
     <a class="btn btn-primary" ng-class="getClass('/more')" href="#/more"><i class="fa fa-th-list"></i>&nbsp;More</a>
     <a class="btn btn-primary" ng-class="getClass('/find')" href="#/find"><i class="fa fa-search"></i>&nbsp;Get</a>
-    <a class="btn btn-primary" ng-class="getClass('/addtips')" href="#/addtips"><i class="fa fa-plus"></i>&nbsp;Add</a>
+    <a ng-click="gotoAddtips()" class="btn btn-primary" ng-class="getClass('/addtips')" href="#/addtips"><i class="fa fa-plus"></i>&nbsp;Add</a>
 </div>
-<!--<div class="row">
 
-
-    <a class="col-xs-4 purplebtn btn" ng-class="getClass('/more')" href="#/more"> <i class="fa fa-th-list"></i> More</a>
-
-
-    <a class="col-xs-4 purplebtn btn" ng-class="getClass('/find')" href="#/find"> <i class="fa fa-search"></i> Get</a>
-
-
-    <a class="col-xs-4 purplebtn btn" ng-class="getClass('/status')" href="#/status"><i class="fa fa-plus"></i>Add</a>
-
-
-
-
-</div>-->

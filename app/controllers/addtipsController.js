@@ -21,6 +21,8 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     $scope.TempNewTips = [];
     $scope.morehair = false;
 
+    $scope.Ismale = true;
+
 
     $scope.viewmorehair = function () {
         $scope.morehair = true;
@@ -205,11 +207,14 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         switch (Type) {
             case 1:
                 $scope.ContactObject.gender = $scope.ContactObject.gender == "M" ? "" : "M";
+                $scope.Ismale = true;
                 break;
             case 2:
                 $scope.ContactObject.gender = $scope.ContactObject.gender == "F" ? "" : "F";
+                $scope.Ismale = false;
                 break;
             default:
+                $scope.Ismale = true;
                 $scope.ContactObject.gender = $scope.ContactObject.gender == "N" ? "" : "N";
 
 
@@ -1139,6 +1144,8 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
 
         var _EditObject = localStorageService.get("EditContactSearchObj");
+
+        debugger;
 
         if (_EditObject != null && _EditObject != undefined) {
 

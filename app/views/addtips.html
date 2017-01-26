@@ -160,9 +160,7 @@
             font-size: 15px;
         }
 
-    .selectionpart .row:nth-child(odd) {
-        background: #ececec;
-    }
+
 
     .selectionpart h4 {
         margin-top: 17px;
@@ -257,8 +255,9 @@
         background: #000;
     }
 
+
     .green {
-        background-color: #4CAF50 !important;
+        background-color:transparent !important;
         color: #fff !important;
     }
 
@@ -268,11 +267,7 @@
     }
 
 
-
-   
-
     .green img {
-        display: none;
     }
 
     .optionicon img {
@@ -283,16 +278,16 @@
     }
 
 
-    .green .fa-check {
+ .green .fa-check {
    display: initial !important;
     position: absolute;
-    right: 2px;
+    margin-left: 27px;
     top: 2px;
-    color: #8bc34a;
+    color: #fff;
     border-radius: 100%;
     padding: 2px;
     font-size: 12px;
-    background: #fff;
+    background: #8bc34a;
 }
 
     .bottomarea a {
@@ -311,7 +306,7 @@
         position: absolute;
         margin-top: 12px;
         color: #333;
-        z-index:10;
+        z-index: 10;
     }
 
     .tiprecord ul .Norecord {
@@ -332,8 +327,10 @@
     }
 
     .selectionpart img {
-        display: none;
+        height: 40px;
     }
+
+
 
     .option {
         text-align: center;
@@ -347,9 +344,8 @@
         width: 33.33%;
         line-height: 3.5;
         font-size: 13px;
-        border: 1px solid #efefef;
         padding-left: 0;
-        position:relative;
+        position: relative;
         padding-right: 0;
     }
 
@@ -382,7 +378,6 @@
 
     .blondcolor {
         background: #ffff00;
-  
     }
 
     .blackcolor {
@@ -396,42 +391,40 @@
 
     .selectionpart .col-xs-12 {
         padding-right: 0;
-        padding-left:0;
+        padding-left: 0;
     }
 
-    .tile p {
-        font-size: 13px;
-        margin: 0;
-        width: 100%;
+  
+
+    .shorter {
+        background: #BBDEFB;
     }
 
-     .shorter
-{
-      background:  #BBDEFB
+    .myheight {
+        background: #90CAF9;
+    }
 
-    } 
-
-.myheight
-{background:#90CAF9} 
-
-.taller
-{background:#64B5F6}
+    .taller {
+        background: #64B5F6;
+    }
 
     .younger {
-        background:#E1BEE7;
+        background: #E1BEE7;
     }
 
-     .mygen {
-        background:#CE93D8;
+    .mygen {
+        background: #CE93D8;
     }
-      .older {
-        background:#BA68C8;
+
+    .older {
+        background: #BA68C8;
     }
 
     .bald {
-        background:#d8d8d8;
+        background: #d8d8d8;
     }
-     .mine {
+
+    .mine {
         background: #ffcd94;
     }
 
@@ -444,7 +437,7 @@
     }
 
     body {
-        color:#4a4a4a;
+        color: #4a4a4a;
     }
 </style>
 
@@ -743,113 +736,300 @@
     </div>
 </div>
 
-<div class="selectionpart">
+<div ng-if="Ismale==true" class="selectionpart">
+
+  
+            <div class="row option">
+                <div class="col-sm-4 col-xs-4 tile  whitetext  {{GetSelectedClass('M',1)}}" ng-click="UpdateGender(1)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/Male.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile"></div>
+                <div class="col-sm-4 col-xs-4 tile  whitetext {{GetSelectedClass('F',1)}}" ng-click="UpdateGender(2)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/Female.svg" alt="" />
+                    </p>
+                </div>
+            </div>
+    
+
+  
+            <div class="row option">
+                <div class="col-sm-4 col-xs-4 tile  doublelineheight {{GetSelectedClass(2,2)}}" ng-click="UpdateAgeType(2)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/MaleYounger.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile  doublelineheight {{GetSelectedClass(1,2)}}" ng-click="UpdateAgeType(1)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/MaleMyGeneration.svg" alt="" />
+                    </p>
+                </div>
+
+                <div class="col-sm-4 col-xs-4 tile  doublelineheight {{GetSelectedClass(3,2)}}" ng-click="UpdateAgeType(3)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/MaleOlder.svg" alt="" />
+                    </p>
+                </div>
+            </div>
+     
+  
+            <div class="row option">
+                <div class="col-sm-4 col-xs-4 tile  {{GetSelectedClass(3,4)}}" ng-click="UpdateSkinType(3)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/MaleLighterSkin.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile  doublelineheight {{GetSelectedClass(1,4)}}" ng-click="UpdateSkinType(1)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/MaleMySkinTone.svg" alt="" />
+                    </p>
+
+                </div>
+                <div class="col-sm-4 col-xs-4 tile  {{GetSelectedClass(2,4)}}" ng-click="UpdateSkinType(2)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/MaleDarkerSkin.svg" alt="" />
+                    </p>
+                </div>
+            </div>
+      
+
+   
+            <div class="row option">
+                <div class="col-sm-4 col-xs-4 tile  {{GetSelectedClass(3,5)}}" ng-click="UpdateHeight(3)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"> </i>
+                        <img src="img/icon/MaleShorter.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile  doublelineheight {{GetSelectedClass(1,5)}}" ng-click="UpdateHeight(1)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+
+                        <img src="img/icon/MaleMyHeight.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile  {{GetSelectedClass(2,5)}}" ng-click="UpdateHeight(2)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/MaleTaller.svg" alt="" />
+                    </p>
+                </div>
+            </div>
+      
+   
+            <div class="row option">
+                <div class="col-sm-4 col-xs-4 tile doublelineheight  {{GetSelectedClass(4,3)}}" ng-click="UpdateHair(4)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/MaleBlondHair.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight  {{GetSelectedClass(3,3)}}" ng-click="UpdateHair(3)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/MaleBrownHair.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight  {{GetSelectedClass(6,3)}}" ng-click="UpdateHair(6)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/MaleGreyHair.svg" alt="" />
+                    </p>
+                </div>
+
+                <div class="col-sm-4 col-xs-4 tile doublelineheight  {{GetSelectedClass(5,3)}}" ng-click="UpdateHair(5)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/MaleRedHair.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight  {{GetSelectedClass(2,3)}}" ng-click="UpdateHair(2)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/MaleDarkHair.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile  doublelineheight {{GetSelectedClass(1,3)}}" ng-click="UpdateHair(1)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/MaleBald.svg" alt="" />
+                    </p>
+                </div>
+
+            </div>
+
+
+</div>
+
+<div ng-if="Ismale==false" class="selectionpart">
 
     <div class="row genderrow">
-      
+
 
         <div class="col-xs-12">
             <div class="row option">
-                <div class="col-sm-4 col-xs-4 tile blue-color whitetext  {{GetSelectedClass('M',1)}}" ng-click="UpdateGender(1)">
-                    <i style="display:none;" class="fa fa-check"></i>
-                    <p class="waves-effect">Male</p>
+                <div class="col-sm-4 col-xs-4 tile  whitetext  {{GetSelectedClass('M',1)}}" ng-click="UpdateGender(1)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/Male.svg" alt="" />
+                    </p>
                 </div>
                 <div class="col-sm-4 col-xs-4 tile"></div>
-                <div class="col-sm-4 col-xs-4 tile pink-color whitetext {{GetSelectedClass('F',1)}}" ng-click="UpdateGender(2)">
-                    <i style="display:none;" class="fa fa-check"></i>
-                    <p class="waves-effect">Female</p>
+                <div class="col-sm-4 col-xs-4 tile  whitetext {{GetSelectedClass('F',1)}}" ng-click="UpdateGender(2)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/Female.svg" alt="" />
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row agerow">
-       
 
         <div class="col-xs-12">
             <div class="row option">
-                <div class="col-sm-4 col-xs-4 tile younger doublelineheight {{GetSelectedClass(2,2)}}" ng-click="UpdateAgeType(2)">
-                    <i style="display:none;" class="fa fa-check"></i>
-                    <p class="waves-effect">Younger <br /> Generation</p>
+                <div class="col-sm-4 col-xs-4 tile  doublelineheight {{GetSelectedClass(2,2)}}" ng-click="UpdateAgeType(2)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/FemaleYounger.svg" alt="" />
+                    </p>
                 </div>
-                <div class="col-sm-4 col-xs-4 tile mygen doublelineheight {{GetSelectedClass(1,2)}}" ng-click="UpdateAgeType(1)">
-                    <i style="display:none;" class="fa fa-check"></i>
-                    <p class="waves-effect">My <br /> Generation</p>
+                <div class="col-sm-4 col-xs-4 tile  doublelineheight {{GetSelectedClass(1,2)}}" ng-click="UpdateAgeType(1)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/FemaleMyGeneration.svg" alt="" />
+                    </p>
                 </div>
-                
-                <div class="col-sm-4 col-xs-4 tile older doublelineheight {{GetSelectedClass(3,2)}}" ng-click="UpdateAgeType(3)">
-                    <i style="display:none;" class="fa fa-check"></i>
-                    <p class="waves-effect">Older <br /> Generation</p>
+
+                <div class="col-sm-4 col-xs-4 tile  doublelineheight {{GetSelectedClass(3,2)}}" ng-click="UpdateAgeType(3)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/FemaleOlder.svg" alt="" />
+                    </p>
                 </div>
             </div>
         </div>
     </div>
     <div class="row skinrow">
-       
+
 
         <div class="col-xs-12">
             <div class="row option">
-                <div class="col-sm-4 col-xs-4 tile lightmine {{GetSelectedClass(3,4)}}" ng-click="UpdateSkinType(3)">
-                    <i style="display:none;" class="fa fa-check"></i>
-                    <p class="waves-effect">Lighter</p>
+                <div class="col-sm-4 col-xs-4 tile  {{GetSelectedClass(3,4)}}" ng-click="UpdateSkinType(3)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/FemaleLighterSkin.svg" alt="" />
+                    </p>
                 </div>
-                <div class="col-sm-4 col-xs-4 tile mine doublelineheight {{GetSelectedClass(1,4)}}" ng-click="UpdateSkinType(1)">
-                    <i style="display:none;" class="fa fa-check"></i>
-                    <p class="waves-effect"> My <br /> Skin Color</p>
+                <div class="col-sm-4 col-xs-4 tile  doublelineheight {{GetSelectedClass(1,4)}}" ng-click="UpdateSkinType(1)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/FemaleMySkinTone.svg" alt="" />
+                    </p>
 
                 </div>
-                <div class="col-sm-4 col-xs-4 tile darkmine {{GetSelectedClass(2,4)}}" ng-click="UpdateSkinType(2)">
-                    <i style="display:none;" class="fa fa-check"></i>
-                    <p class="waves-effect"> Darker</p>
+                <div class="col-sm-4 col-xs-4 tile  {{GetSelectedClass(2,4)}}" ng-click="UpdateSkinType(2)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/FemaleDarkerSkin.svg" alt="" />
+                    </p>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row heightrow">
-      
+
 
         <div class="col-xs-12">
             <div class="row option">
-                <div class="col-sm-4 col-xs-4 tile shorter {{GetSelectedClass(3,5)}}" ng-click="UpdateHeight(3)"><i style="display:none;" class="fa fa-check"></i><p class="waves-effect"> Shorter </p> </div>
-                <div class="col-sm-4 col-xs-4 tile myheight doublelineheight {{GetSelectedClass(1,5)}}" ng-click="UpdateHeight(1)"> <p class="waves-effect"> <i style="display:none;" class="fa fa-check"></i> My <br /> Height </p> </div>
-                <div class="col-sm-4 col-xs-4 tile taller {{GetSelectedClass(2,5)}}" ng-click="UpdateHeight(2)"> <p class="waves-effect"> <i style="display:none;" class="fa fa-check"></i> Taller </p> </div>
+                <div class="col-sm-4 col-xs-4 tile  {{GetSelectedClass(3,5)}}" ng-click="UpdateHeight(3)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"> </i>
+                        <img src="img/icon/FemaleShorter.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile  doublelineheight {{GetSelectedClass(1,5)}}" ng-click="UpdateHeight(1)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+
+                        <img src="img/icon/FemaleMyHeight.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile  {{GetSelectedClass(2,5)}}" ng-click="UpdateHeight(2)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/FemaleTaller.svg" alt="" />
+                    </p>
+                </div>
             </div>
         </div>
     </div>
     <div class="row heightrow">
-       
+
         <div class="col-xs-12">
             <div class="row option">
-                <div class="col-sm-4 col-xs-4 tile doublelineheight blondcolor {{GetSelectedClass(4,3)}}" ng-click="UpdateHair(4)"><i style="display:none;" class="fa fa-check"></i>Blond <br /> Hair</div>
-                <div class="col-sm-4 col-xs-4 tile doublelineheight browncolor {{GetSelectedClass(3,3)}}" ng-click="UpdateHair(3)"> <p> <i style="display:none;" class="fa fa-check"></i> Brown <br /> Hair </p> </div>
-                <div class="col-sm-4 col-xs-4 tile doublelineheight greycolor {{GetSelectedClass(6,3)}}" ng-click="UpdateHair(6)"><i style="display:none;" class="fa fa-check"></i>Grey <br /> Hair</div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight  {{GetSelectedClass(4,3)}}" ng-click="UpdateHair(4)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/FemaleBlondHair.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight  {{GetSelectedClass(3,3)}}" ng-click="UpdateHair(3)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/FemaleBrownHair.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight  {{GetSelectedClass(6,3)}}" ng-click="UpdateHair(6)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/FemaleGreyHair.svg" alt="" />
+                    </p>
+                </div>
 
-                <div class="col-sm-4 col-xs-4 tile doublelineheight redcolor {{GetSelectedClass(5,3)}}" ng-click="UpdateHair(5)"><i style="display:none;" class="fa fa-check"></i>Red <br /> Hair</div>
-                <div class="col-sm-4 col-xs-4 tile doublelineheight blackcolor {{GetSelectedClass(2,3)}}" ng-click="UpdateHair(2)"> <p class="waves-effect"> <i style="display:none;" class="fa fa-check"></i> Dark <br /> Hair </p> </div>
-                <div class="col-sm-4 col-xs-4 tile bald doublelineheight {{GetSelectedClass(1,3)}}" ng-click="UpdateHair(1)"> <p class="waves-effect"><i style="display:none;" class="fa fa-check"></i>  Bald/Other <br />Hair </p> </div>
-                
-               
+                <div class="col-sm-4 col-xs-4 tile doublelineheight  {{GetSelectedClass(5,3)}}" ng-click="UpdateHair(5)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/FemaleRedHair.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile doublelineheight  {{GetSelectedClass(2,3)}}" ng-click="UpdateHair(2)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/FemaleDarkHair.svg" alt="" />
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-4 tile  doublelineheight {{GetSelectedClass(1,3)}}" ng-click="UpdateHair(1)">
+                    <p class="waves-effect">
+                        <i style="display:none;" class="fa fa-check"></i>
+                        <img src="img/icon/FemaleBald.svg" alt="" />
+                    </p>
+                </div>
+
             </div>
 
-       
+
         </div>
-        
+
 
 
     </div>
-
-
-
-
-
-
 
 
 
 </div>
-
-
 
 <div class="bottomarea waves-effect" ng-click="insertRecord()">
     <a>
