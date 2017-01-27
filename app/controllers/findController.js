@@ -36,6 +36,9 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
     }
 
 
+    $scope.Ismale = true;
+
+
 
     var _genderFolder = "/defaultMale";
     var _gen = "/generation";
@@ -1002,12 +1005,15 @@ app.controller('findController', ['$scope', 'localStorageService', 'authService'
         switch (Type) {
             case 1:
                 $scope.ContactObject.gender = $scope.ContactObject.gender == "M" ? "" : "M";
+                $scope.Ismale = true;
                 break;
             case 2:
                 $scope.ContactObject.gender = $scope.ContactObject.gender == "F" ? "" : "F";
+                $scope.Ismale = false;
                 break;
             default:
                 $scope.ContactObject.gender = $scope.ContactObject.gender == "N" ? "" : "N";
+                $scope.Ismale = true;
 
 
         }

@@ -6,6 +6,8 @@
         position: inherit;
         height: 100%;
         line-height: 3.5;
+        padding-left:3px;
+        padding-right:3px;
      
     }
 
@@ -14,9 +16,12 @@
         background:transparent !important;
     }
 
-    .tile img
-    {
-      
+  .blue-color {
+        background: #2196F3 !important;
+    }
+
+    .pink-color {
+        background: #e91e63 !important;
     }
 
 
@@ -324,59 +329,84 @@
      
     }
 
+    .malearea .btn
+     {
+          width:100%;
+         padding:0;
+        text-align:center;
+        color:#fff !important;
+        text-transform:capitalize;
+        font-size:11px;
+     
+        background:#2196F3;
+         letter-spacing: 0;
+    }
+
+    .malearea .iphone6 .btn {
+        height:68px;
+        line-height:68px;
+    }
+
+
+    .malearea .iphone6plus .btn {
+        height:80px;
+        line-height:80px;
+    }
+
+     .malearea .green .btn {
+        background:#8BC34A !important;
+        color:#fff;
+    }
+
+    .malearea .btn i {
+        font-size:12px;
+    }
+
+
+    .malearea.female .btn {
+        background:#e91e63;
+    }
+
   
 
 </style>
 
 
 <div class="selectionpart">
-    <div class="well genderrow">
+    <div ng-if="Ismale==true" class="well malearea genderrow">
 
 
         <table>
             <tr>
                 <td>
                     <div class="tile {{curentclass}} whitetext {{GetSelectedClass('M',1)}}" ng-click="UpdateGender(1)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/Male.svg" alt="" />
-                        </p>
+                        <a class="btn purple-color"><i class="fa fa-male"></i> Male </a>
                     </div>
                 </td>
                 <td></td>
                 <td>
                     <div class="tile {{curentclass}} whitetext {{GetSelectedClass('F',1)}}" ng-click="UpdateGender(2)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/Female.svg" alt="" />
-                        </p>
+                        <a class="btn pink-color"><i class="fa fa-female"></i> Female </a>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="tile   {{curentclass}}  {{GetSelectedClass(2,2)}}" ng-click="UpdateAgeType(2)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect"><img src="img/icon/MaleYounger.svg" alt="" />  </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Younger </a>
 
                     </div>
                 </td>
                 <td>
                     <div class="tile   {{curentclass}}  {{GetSelectedClass(1,2)}}" ng-click="UpdateAgeType(1)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/MaleMyGeneration.svg" alt="" />
-                        </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> My Generation </a>
 
                     </div>
                 </td>
 
                 <td>
                     <div class="tile   {{curentclass}} {{GetSelectedClass(3,2)}}" ng-click="UpdateAgeType(3)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/MaleOlder.svg" alt="" />
-                        </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Older </a>
 
                     </div>
                 </td>
@@ -384,78 +414,51 @@
             <tr>
                 <td>
                     <div class="tile  {{curentclass}}  {{GetSelectedClass(3,4)}}" ng-click="UpdateSkinType(3)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/MaleLighterSkin.svg" alt="" />
-                        </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Lighter </a>
                     </div>
                 </td>
                 <td>
                     <div class="tile  doublelineheight {{curentclass}}  {{GetSelectedClass(1,4)}}" ng-click="UpdateSkinType(1)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/MaleMySkinTone.svg" alt="" />
-                        </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> My Skin Tone </a>
                     </div>
                 </td>
                 <td>
                     <div class="tile  {{curentclass}} {{GetSelectedClass(2,4)}}" ng-click="UpdateSkinType(2)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/MaleDarkerSkin.svg" alt="" />
-                        </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Darker </a>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="tile  {{curentclass}}  {{GetSelectedClass(3,5)}}" ng-click="UpdateHeight(3)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/MaleShorter.svg" alt="" />
-                        </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Shorter </a>
                     </div>
                 </td>
                 <td>
                     <div class="tile  {{curentclass}}  {{GetSelectedClass(1,5)}}" ng-click="UpdateHeight(1)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/MaleMyHeight.svg" alt="" />
-                        </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> My Height </a>
                     </div>
                 </td>
                 <td>
                     <div class="tile  {{curentclass}} {{GetSelectedClass(2,5)}}" ng-click="UpdateHeight(2)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/MaleTaller.svg" alt="" />
-                        </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Taller </a>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="tile  {{curentclass}}  {{GetSelectedClass(4,3)}}" ng-click="UpdateHair(4)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/MaleBlondHair.svg" alt="" />
-                        </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Blond Hair </a>
                     </div>
                 </td>
                 <td>
                     <div class="tile  {{curentclass}} {{GetSelectedClass(3,3)}}" ng-click="UpdateHair(3)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/MaleBrownHair.svg" alt="" />
-                        </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Brown Hair </a>
                     </div>
                 </td>
                 <td>
                     <div class="tile  {{curentclass}} {{GetSelectedClass(6,3)}}" ng-click="UpdateHair(6)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/MaleGreyHair.svg" alt="" />
-                        </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Grey Hair </a>
                     </div>
                 </td>
 
@@ -466,26 +469,132 @@
 
                 <td>
                     <div class="tile  {{curentclass}}  {{GetSelectedClass(5,3)}}" ng-click="UpdateHair(5)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/MaleRedHair.svg" alt="" />
-                        </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Red Hair </a>
                     </div>
                 </td>
                 <td>
                     <div class="tile  {{curentclass}}  {{GetSelectedClass(2,3)}}" ng-click="UpdateHair(2)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/MaleDarkHair.svg" alt="" />
-                        </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Dark Hair </a>
                     </div>
                 </td>
                 <td>
                     <div class="tile  {{curentclass}}  {{GetSelectedClass(1,3)}}" ng-click="UpdateHair(1)">
-                        <i style="display:none" class="fa fa-check"></i>
-                        <p class="waves-effect">
-                            <img src="img/icon/MaleBald.svg" alt="" />
-                        </p>
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Bald/Other </a>
+                    </div>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+
+    <div ng-if="Ismale==false" class="well malearea female genderrow">
+
+
+        <table>
+            <tr>
+                <td>
+                    <div class="tile {{curentclass}} whitetext {{GetSelectedClass('M',1)}}" ng-click="UpdateGender(1)">
+                        <a class="btn purple-color"><i class="fa fa-male"></i> Male </a>
+                    </div>
+                </td>
+                <td></td>
+                <td>
+                    <div class="tile {{curentclass}} whitetext {{GetSelectedClass('F',1)}}" ng-click="UpdateGender(2)">
+                        <a class="btn pink-color"><i class="fa fa-female"></i> Female </a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="tile   {{curentclass}}  {{GetSelectedClass(2,2)}}" ng-click="UpdateAgeType(2)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Younger </a>
+
+                    </div>
+                </td>
+                <td>
+                    <div class="tile   {{curentclass}}  {{GetSelectedClass(1,2)}}" ng-click="UpdateAgeType(1)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> My Generation </a>
+
+                    </div>
+                </td>
+
+                <td>
+                    <div class="tile   {{curentclass}} {{GetSelectedClass(3,2)}}" ng-click="UpdateAgeType(3)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Older </a>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="tile  {{curentclass}}  {{GetSelectedClass(3,4)}}" ng-click="UpdateSkinType(3)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Lighter </a>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  doublelineheight {{curentclass}}  {{GetSelectedClass(1,4)}}" ng-click="UpdateSkinType(1)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> My Skin Tone </a>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  {{curentclass}} {{GetSelectedClass(2,4)}}" ng-click="UpdateSkinType(2)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Darker </a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="tile  {{curentclass}}  {{GetSelectedClass(3,5)}}" ng-click="UpdateHeight(3)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Shorter </a>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  {{curentclass}}  {{GetSelectedClass(1,5)}}" ng-click="UpdateHeight(1)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> My Height </a>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  {{curentclass}} {{GetSelectedClass(2,5)}}" ng-click="UpdateHeight(2)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Taller </a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="tile  {{curentclass}}  {{GetSelectedClass(4,3)}}" ng-click="UpdateHair(4)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Blond Hair </a>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  {{curentclass}} {{GetSelectedClass(3,3)}}" ng-click="UpdateHair(3)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Brown Hair </a>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  {{curentclass}} {{GetSelectedClass(6,3)}}" ng-click="UpdateHair(6)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Grey Hair </a>
+                    </div>
+                </td>
+
+
+
+            </tr>
+            <tr>
+
+                <td>
+                    <div class="tile  {{curentclass}}  {{GetSelectedClass(5,3)}}" ng-click="UpdateHair(5)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Red Hair </a>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  {{curentclass}}  {{GetSelectedClass(2,3)}}" ng-click="UpdateHair(2)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Dark Hair </a>
+                    </div>
+                </td>
+                <td>
+                    <div class="tile  {{curentclass}}  {{GetSelectedClass(1,3)}}" ng-click="UpdateHair(1)">
+                        <a class="btn"><i class="fa fa-dot-circle-o"></i> Bald/Other </a>
                     </div>
                 </td>
 
