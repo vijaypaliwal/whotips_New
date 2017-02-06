@@ -100,19 +100,23 @@
   <gap:splash src=".pgbomit/res/screen/blackberry/screen-225.png"         gap:platform="blackberry" />
   
   
-  <gap:splash src=".pgbomit/res/screen/ios/screen-iphone-portrait.png"    gap:platform="ios"     width="320" height="480" />
-  <gap:splash src=".pgbomit/res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios"     width="640" height="1136" />
-  <gap:splash src=".pgbomit/res/screen/ios/screen-ipad-portrait.png"      gap:platform="ios"     width="768" height="1024" />
-  <gap:splash src=".pgbomit/res/screen/ios/screen-ipad-landscape.png"     gap:platform="ios"     width="1024" height="768" />
+  <gap:splash src=".pgbomit/res/screen/ios/Default~iphone.png"    gap:platform="ios"     width="320" height="480" />
+  <gap:splash src=".pgbomit/res/screen/ios/Default-568h@2x~iphone.png" gap:platform="ios"     width="640" height="1136" />
+  <gap:splash src=".pgbomit/res/screen/ios/Default-Portrait~ipad.png"      gap:platform="ios"     width="768" height="1024" />
+  <gap:splash src=".pgbomit/res/screen/ios/Default-Landscape~ipad.png"     gap:platform="ios"     width="1024" height="768" />
   
   <gap:splash src=".pgbomit/res/screen/ios/Splash-1920x1080.png"     gap:platform="ios" height="1920" width="1080" />
   <gap:splash src=".pgbomit/res/screen/ios/Splash-1080x1920.png"     gap:platform="ios" height="1080" width="1920" />
-  <gap:splash src=".pgbomit/res/screen/ios/Splash-750x1334.png"     gap:platform="ios"  width="750" height="1334" />
+  <gap:splash src=".pgbomit/res/screen/ios/Default-667h.png"     gap:platform="ios"  width="750" height="1334" />
   <gap:splash src=".pgbomit/res/screen/ios/Splash-1334x750.png"     gap:platform="ios"  height="750" width="1334" />
   
 
-  <gap:splash src=".pgbomit/res/screen/ios/Splash-2208x1242.png"     gap:platform="ios" width="1242" height="2208" />
-  <gap:splash src=".pgbomit/res/screen/ios/Splash-1242x2208.png"     gap:platform="ios" width="2208" height="1242" />
+  <gap:splash src=".pgbomit/res/screen/ios/Default-736h.png"     gap:platform="ios" width="1242" height="2208" />
+  <gap:splash src=".pgbomit/res/screen/ios/Default-Landscape-736h.png"     gap:platform="ios" width="2208" height="1242" />
+  
+  <gap:splash src=".pgbomit/res/screen/ios/Default@2x~iphone.png"     gap:platform="ios" width="640" height="960" />
+  <gap:splash src=".pgbomit/res/screen/ios/Default-Landscape@2x~ipad.png"     gap:platform="ios" width="2248" height="1536" />
+  <gap:splash src=".pgbomit/res/screen/ios/Default-Portrait@2x~ipad.png"     gap:platform="ios" width="1536" height="2048" />
 
   <gap:splash src=".pgbomit/res/screen/windows-phone/screen-portrait.jpg" gap:platform="winphone" />
   <!-- content src="http://www.w3.org/2010/05/video/mediaevents.html" / -->
