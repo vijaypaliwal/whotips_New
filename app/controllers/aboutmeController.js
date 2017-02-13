@@ -20,6 +20,8 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
     var _DefaultPath = "Emoji"
 
+    $scope.isgender = "Male";
+
     $scope.PhysicalImages = { age1: _DefaultPath + "/defaultMale/generation/MaleMyAge.svg", age2: _DefaultPath + "/defaultMale/generation/MaleYounger.svg", age3: _DefaultPath + "/defaultMale/generation/MaleOlder.svg", skin1: "", skin2: "", skin3: "", height1: "", height2: "", height3: "", hair1: "", hair2: "", hair3: "", hair4: "", hair5: "", hair6: "" }
 
     $scope.SelectedMyContactObject = {};
@@ -1006,100 +1008,33 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
         }
     };
     $scope.UpdateGender = function (Type) {
+
+        $(".blue").removeClass("green");
+        $(".pink").removeClass("green");
+
+      
         switch (Type) {
             case 1:
-                $scope.MyContactObject.gender = $scope.MyContactObject.gender == "M" ? "" : "M";
+                $(".blue").addClass("green");
+                $scope.isgender = "Male";
                 break;
             case 2:
-                $scope.MyContactObject.gender = $scope.MyContactObject.gender == "F" ? "" : "F";
+                $(".pink").addClass("green");
+                $scope.isgender = "Female";
                 break;
             default:
-                $scope.MyContactObject.gender = $scope.MyContactObject.gender == "N" ? "" : "N";
-
-
+             
         }
         CheckScopeBeforeApply();
     }
 
 
-    $scope.UpdateAgeType = function (Type) {
-        switch (Type) {
-            case 1:
-                $scope.MyContactObject.AgeType = $scope.MyContactObject.AgeType == 1 ? "" : 1;
-                break;
-            case 2:
-                $scope.MyContactObject.AgeType = $scope.MyContactObject.AgeType == 2 ? "" : 2;
-                break;
-            case 3:
-                $scope.MyContactObject.AgeType = $scope.MyContactObject.AgeType == 3 ? "" : 3;
-                break;
-
-
-
-        }
+    $scope.moveback = function () {
+        $scope.showgender = false;
         CheckScopeBeforeApply();
     }
 
-    $scope.UpdateSkinType = function (Type) {
-        switch (Type) {
-            case 1:
-                $scope.MyContactObject.Skin = $scope.MyContactObject.Skin == 1 ? "" : 1;
-                break;
-            case 2:
-                $scope.MyContactObject.Skin = $scope.MyContactObject.Skin == 2 ? "" : 2;
-                break;
-            case 3:
-                $scope.MyContactObject.Skin = $scope.MyContactObject.Skin == 3 ? "" : 3;
-                break;
-
-
-
-        }
-        CheckScopeBeforeApply();
-    }
-
-    $scope.UpdateHeight = function (Type) {
-        switch (Type) {
-            case 1:
-                $scope.MyContactObject.Height = $scope.MyContactObject.Height == 1 ? "" : 1;
-                break;
-            case 2:
-                $scope.MyContactObject.Height = $scope.MyContactObject.Height == 2 ? "" : 2;
-                break;
-            case 3:
-                $scope.MyContactObject.Height = $scope.MyContactObject.Height == 3 ? "" : 3;
-                break;
-
-
-
-        }
-        CheckScopeBeforeApply();
-    }
-
-    $scope.UpdateHair = function (Type) {
-        switch (Type) {
-            case 1:
-                $scope.MyContactObject.Hair = $scope.MyContactObject.Hair == 1 ? "" : 1;
-                break;
-            case 2:
-                $scope.MyContactObject.Hair = $scope.MyContactObject.Hair == 2 ? "" : 2;
-                break;
-            case 3:
-                $scope.MyContactObject.Hair = $scope.MyContactObject.Hair == 3 ? "" : 3;
-                break;
-            case 4:
-                $scope.MyContactObject.Hair = $scope.MyContactObject.Hair == 4 ? "" : 4;
-                break;
-            case 5:
-                $scope.MyContactObject.Hair = $scope.MyContactObject.Hair == 5 ? "" : 5;
-                break;
-            case 6:
-                $scope.MyContactObject.Hair = $scope.MyContactObject.Hair == 6 ? "" : 6;
-                break;
-
-        }
-        CheckScopeBeforeApply();
-    }
+ 
   
 
     $scope.GetMatches = function () {

@@ -101,6 +101,8 @@ app.controller('menuController', ['$scope', 'localStorageService', 'authService'
                     $scope.Contacts.push(_TempObj);
 
                 }
+
+                console.log($scope.Contacts);
                 CheckScopeBeforeApply();
             });
 

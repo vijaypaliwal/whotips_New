@@ -52,6 +52,17 @@
         margin-bottom:10px;
     }
 
+      .pink
+         {
+             background:#E91E63;
+             color:#fff;
+         }
+
+      .blue {
+    background-color: #2196F3 !important;
+         color:#fff;
+}
+
 
 
 </style>
@@ -69,7 +80,22 @@
     <!-- ngRepeat: _obj in Contacts -->
     <li ng-repeat="_obj in Contacts | orderBy : '-id'" class=" ng-scope">
 
-        <div ng-click="OpenEditModal(_obj)" class="chip">
+        <div  ng-if="_obj.gender=='M'" ng-click="OpenEditModal(_obj)" class="chip blue">
+            <img src="img/male.png" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)" />
+            <img src="{{_obj.imagepath}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
+
+            <span class="ng-binding">   {{_obj.firstName}} {{_obj.lastName}} </span>
+        </div>
+
+        <div ng-if="_obj.gender=='F'" ng-click="OpenEditModal(_obj)" class="chip pink">
+            <img src="img/male.png" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)" />
+            <img src="{{_obj.imagepath}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
+
+            <span class="ng-binding">   {{_obj.firstName}} {{_obj.lastName}} </span>
+        </div>
+
+
+        <div ng-if="_obj.gender==''" ng-click="OpenEditModal(_obj)" class="chip">
             <img src="img/male.png" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)" />
             <img src="{{_obj.imagepath}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
 

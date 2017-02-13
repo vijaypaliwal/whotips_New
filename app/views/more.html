@@ -242,7 +242,7 @@
 
         <div class="col-xs-6">
 
-            <div ng-click="UpdateGender(2)" class="well pink">
+            <div ng-click="UpdateGender(2)" class="well pink ">
                 <i class="fa fa-female"></i>
 
             </div>
@@ -449,4 +449,10 @@
     <br />
 </div>
 
-<a href="#/menu" class="btn red matchbtn">Back</a>
+<a ng-if="showgender==false" href="#/menu" class="btn red matchbtn">Back</a>
+
+
+<div ng-if="showgender==true">
+    <a ng-click="moveback()" class="btn red matchbtn">Back</a>
+</div>
+
