@@ -90,9 +90,11 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
         alert("before");
         alert(sql);
 
-        var _stringdata = "DROP TABLE IF EXISTS `sqlite_sequence`;CREATE TABLE sqlite_sequence(name,seq);"
+        var _stringdata = "DROP TABLE IF EXISTS `sqlite_sequence`;";
+        var _s1 = "CREATE TABLE sqlite_sequence(name,seq);";
 
-        sql = sql.replace(_stringdata, '')
+        sql = sql.replace(_stringdata, "")
+        sql = sql.replace(_s1, "")
         alert("after");
         alert(sql);
         _InsertDatasql = sql;
@@ -107,6 +109,7 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
     };
     function ExportData() {
         alert("export Data");
+    
      
         cordova.plugins.sqlitePorter.exportDbToSql(db, {
             successFn: successFnEx
