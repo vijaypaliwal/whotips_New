@@ -38,8 +38,107 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
     }
 
+    var _InsertDatasql = "";
+    var successFn = function (count) {
+        alert("Successfully imported " + count + " SQL statements to DB");
+    };
+    var errorFn = function (error) {
+        alert("The following error occurred: " + error.message);
+    };
+    var progressFn = function (current, total) {
+        console.log("Imported " + current + "/" + total + " statements");
+    };
+
+    function ImportData() {
+        alert("into import data");
+        ReadData();
+        alert(_InsertDatasql);
+        cordova.plugins.sqlitePorter.importSqlToDb(db, _InsertDatasql, {
+            successFn: successFn,
+            errorFn: errorFn,
+            progressFn: progressFn
+        });
+    }
 
 
+    function ReadData()
+    {
+        alert("into read data");
+        var path = "Backup.txt";
+        window.resolveLocalFileSystemURL(path, gotFile, fail);
+    }
+
+    function fail(e) {
+        console.log("FileSystem Error");
+        console.dir(e);
+    }
+
+    function gotFile(fileEntry) {
+        fileEntry.file(function (file) {
+            var reader = new FileReader();
+
+            reader.onloadend = function (e) {
+                console.log("Text is: " + this.result);
+                _InsertDatasql = this.result;
+            }
+
+            reader.readAsText(file);
+        });
+
+    }
+
+    function WriteFileData() {
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
+
+    }
+
+    function gotFS(fileSystem) {
+        var path = "Backup.txt";
+        fileSystem.root.getFile(path, {create: true, exclusive: false}, gotFileEntry, fail);
+
+    }
+
+    function gotFileEntry(fileEntry) {
+
+        fileEntry.createWriter(gotFileWriter, fail);
+    }
+
+    function gotFileWriter(writer) {
+        writer.onwrite = function (evt) {
+            console.log("write success");
+        };
+        writer.write(_InsertDatasql);
+    }
+
+    var successFnEx = function (sql, count) {
+
+        var _stringdata = "DROP TABLE IF EXISTS `sqlite_sequence`;";
+        var _s1 = "CREATE TABLE sqlite_sequence(name,seq);";
+
+        sql = sql.replace(_stringdata, "")
+        sql = sql.replace(_s1, "")
+        _InsertDatasql = sql;
+        WriteFileData();
+
+        $scope.RemoveDb();
+
+      
+    };
+    function ExportData() {
+
+
+        cordova.plugins.sqlitePorter.exportDbToSql(db, {
+            successFn: successFnEx
+        });
+    }
+
+
+    $scope.ExportDb = function () {
+        ExportData();
+    }
+    $scope.ImportDb = function () {
+        ImportData();
+    }
 
     var _genderFolder = "/defaultMale";
     var _gen = "/generation";

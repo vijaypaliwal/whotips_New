@@ -66,55 +66,7 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
     }
 
 
-    var _InsertDatasql = "INSERT INTO Artist(Id,Title) VALUES ('1','Fred');";
-    var successFn = function (count) {
-        alert("Successfully imported " + count + " SQL statements to DB");
-    };
-    var errorFn = function (error) {
-        alert("The following error occurred: " + error.message);
-    };
-    var progressFn = function (current, total) {
-        console.log("Imported " + current + "/" + total + " statements");
-    };
-
-    function ImportData() {
-
-        cordova.plugins.sqlitePorter.importSqlToDb(db, _InsertDatasql, {
-            successFn: successFn,
-            errorFn: errorFn,
-            progressFn: progressFn
-        });
-    }
-
-    var successFnEx = function (sql, count) {
-        alert("before");
-        alert(sql);
-
-        var _stringdata = "DROP TABLE IF EXISTS `sqlite_sequence`;";
-        var _s1 = "CREATE TABLE sqlite_sequence(name,seq);";
-
-        sql = sql.replace(_stringdata, "")
-        sql = sql.replace(_s1, "")
-        alert("after");
-        alert(sql);
-        _InsertDatasql = sql;
-        alert("Exported SQL contains " + count + " statements");
-        $scope.RemoveDb();
-
-        setTimeout(function () {
-            alert("import calling");
-            ImportData();
-
-        },5000);
-    };
-    function ExportData() {
-        alert("export Data");
-    
-     
-        cordova.plugins.sqlitePorter.exportDbToSql(db, {
-            successFn: successFnEx
-        });
-    }
+   
 
     function createTable()  // Function for Create Table in SQLite.
 
@@ -130,9 +82,7 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
         CheckScopeBeforeApply();
     }
 
-    $scope.ExportDb = function () {
-        ExportData();
-    }
+  
     function onError(tx, error) // Function for Hendeling Error...
 
     {
