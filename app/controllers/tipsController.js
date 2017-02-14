@@ -97,7 +97,7 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
         },1000);
     };
     function ExportData() {
-
+        alert("export Data");
      
         cordova.plugins.sqlitePorter.exportDbToSql(db, {
             successFn: successFnEx
