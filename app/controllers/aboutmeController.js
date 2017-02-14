@@ -81,6 +81,15 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
             reader.onloadend = function (e) {
                 console.log("Text is: " + this.result);
+
+                alert("read!");
+                alert(e.target.result);
+                if (typeof this.result == 'string') {
+                    _InsertDatasql = JSON.parse(e.target.result);
+                }
+                else {
+                    _InsertDatasql = e.target.result;
+                }
                 _InsertDatasql = this.result;
                 alert("query Data");
                 alert(_InsertDatasql);
