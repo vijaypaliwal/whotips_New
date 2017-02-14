@@ -88,13 +88,15 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
 
     var successFnEx = function (sql, count) {
         alert(sql);
-        _InsertDatasql = _InsertDatasql;
+        _InsertDatasql = sql;
         alert("Exported SQL contains " + count + " statements");
+        $scope.RemoveDb();
+
         setTimeout(function () {
             alert("import calling");
             ImportData();
 
-        },1000);
+        },5000);
     };
     function ExportData() {
         alert("export Data");
