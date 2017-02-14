@@ -29,7 +29,7 @@
   <plugin name="org.apache.cordova.splashscreen" source="npm"/>
   <plugin name="ionic-plugin-keyboard" source="npm"/>
 
-
+  <gap:plugin name="uk.co.workingedge.cordova.plugin.sqliteporter" source="npm" />
 
 
   <!--gap:plugin name="com.phonegap.plugins.barcodescanner"/>
