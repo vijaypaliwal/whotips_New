@@ -87,6 +87,13 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
     }
 
     var successFnEx = function (sql, count) {
+        alert("before");
+        alert(sql);
+
+        var _stringdata = "DROP TABLE IF EXISTS `sqlite_sequence`;CREATE TABLE sqlite_sequence(name,seq);"
+
+        sql = sql.replace(_stringdata, '')
+        alert("after");
         alert(sql);
         _InsertDatasql = sql;
         alert("Exported SQL contains " + count + " statements");
