@@ -92,24 +92,26 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     }
 
     function WriteFileData() {
+        alert("write file data");
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 
     }
 
     function gotFS(fileSystem) {
+        alert("file system");
         var path = "Backup.txt";
         fileSystem.root.getFile(path, {create: true, exclusive: false}, gotFileEntry, fail);
 
     }
 
     function gotFileEntry(fileEntry) {
-
+        alert("into file entry");
         fileEntry.createWriter(gotFileWriter, fail);
     }
 
     function gotFileWriter(writer) {
         writer.onwrite = function (evt) {
-            console.log("write success");
+          alert("write success");
         };
         writer.write(_InsertDatasql);
     }
