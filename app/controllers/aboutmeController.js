@@ -100,6 +100,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     function gotFS(fileSystem) {
         alert("file system");
         var path = "Backup.txt";
+        alert("root name=" + fileSystem.root.name);
         fileSystem.root.getFile(path, {create: true, exclusive: false}, gotFileEntry, fail);
 
     }
