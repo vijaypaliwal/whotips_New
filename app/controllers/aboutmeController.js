@@ -77,8 +77,19 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     function gotFile(fileEntry) {
         alert("into got file");
         fileEntry.file(function (file) {
-            var reader = new FileReader();
+            alert("File size" + file.size);
+            alert("Name" + file.name);
 
+            alert("Full path"+file.fullPath);
+
+            var reader = new FileReader();
+            reader.onloadstart=function(e)
+            {
+                alert("reader start");
+            }
+            reader.onload = function (e) {
+                alert("reader loaded");
+            }
             reader.onloadend = function (e) {
                 console.log("Text is: " + this.result);
 
