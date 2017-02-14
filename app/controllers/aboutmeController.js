@@ -65,7 +65,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     {
         alert("into read data");
         var path = "Backup.txt";
-        window.resolveLocalFileSystemURL(fileSystem.root.name + path, gotFile, fail);
+        window.resolveLocalFileSystemURL(path, gotFile, fail);
        // fileSystem.root.getFile(path, { create: false, exclusive: false }, gotFile, fail);
     }
 
@@ -112,8 +112,17 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     }
 
     function gotFileWriter(writer) {
+        writer.onwritestart = function (evt) {
+            alert("on start");
+            alert(writer.length);
+        };
+        writer.onwriteend = function (evt) {
+            alert("on end");
+            alert(writer.length);
+        };
         writer.onwrite = function (evt) {
-          alert("write success");
+            alert("write success");
+            alert(_InsertDatasql);
         };
         writer.write(_InsertDatasql);
     }
