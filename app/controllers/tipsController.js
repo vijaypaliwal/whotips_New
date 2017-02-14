@@ -117,6 +117,10 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
         $scope.SearchText = "";
         CheckScopeBeforeApply();
     }
+
+    $scope.ExportDb = function () {
+        ExportData();
+    }
     function onError(tx, error) // Function for Hendeling Error...
 
     {
@@ -142,7 +146,7 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
                 }
               
 
-                alasql("SELECT * INTO CSV('names.csv',{headers:true}) FROM ?", [$scope.Tips]);
+               // alasql("SELECT * INTO CSV('names.csv',{headers:true}) FROM ?", [$scope.Tips]);
                 CheckScopeBeforeApply();
             });
 
