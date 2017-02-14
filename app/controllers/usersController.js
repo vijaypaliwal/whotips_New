@@ -6,6 +6,8 @@ app.controller('usersController', ['$scope', 'localStorageService', 'authService
     $scope.Contacts = [];
     var createStatement = "CREATE TABLE IF NOT EXISTS Contacts (id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT,lastName TEXT, email TEXT,gender integer,places TEXT,AgeType integer,imagepath TEXT,Relations TEXT,Tips TEXT,Hair TEXT,Skin TEXT,Height TEXT)";
     var updateStatement = "UPDATE Contacts SET firstName = ?, lastName = ? WHERE id=?";
+    var selectAllExport = ".mode csv;.import test.csv Contacts";
+    
     var db = openDatabase("ContactsBook", "1.0", "Contacts Book", 200000);  // Open SQLite Database
     $scope.EditObj = { id: 0, firstName: "", lastName: "" };
     var deleteStatement = "DELETE FROM Contacts WHERE id=?";
@@ -107,13 +109,24 @@ app.controller('usersController', ['$scope', 'localStorageService', 'authService
         alert(error.message);
 
     }
+
+    function ExportData()
+    {
+        db.transaction(function (tx) {
+            tx.executeSql(selectAllExport, [], function (tx, result) {
+
+            });
+        });
+    }
     function showRecords() // Function For Retrive data from Database Display records as list
 
     {
 
         $scope.Contacts = [];
         db.transaction(function (tx) {
+            
 
+           
             tx.executeSql(selectAllStatement, [], function (tx, result) {
                 dataset = result.rows;
 
@@ -124,10 +137,14 @@ app.controller('usersController', ['$scope', 'localStorageService', 'authService
                     $scope.Contacts.push(_TempObj);
 
                 }
+                
+              
                 CheckScopeBeforeApply();
             });
 
         });
+
+        ExportData();
     }
     $scope.EditName = function (_obj) {
         $scope.EditObj = angular.copy(_obj);

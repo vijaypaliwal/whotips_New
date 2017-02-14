@@ -65,6 +65,45 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
 
     }
 
+
+    var _InsertDatasql = "INSERT INTO Artist(Id,Title) VALUES ('1','Fred');";
+    var successFn = function (count) {
+        alert("Successfully imported " + count + " SQL statements to DB");
+    };
+    var errorFn = function (error) {
+        alert("The following error occurred: " + error.message);
+    };
+    var progressFn = function (current, total) {
+        console.log("Imported " + current + "/" + total + " statements");
+    };
+
+    function ImportData() {
+
+        cordova.plugins.sqlitePorter.importSqlToDb(db, _InsertDatasql, {
+            successFn: successFn,
+            errorFn: errorFn,
+            progressFn: progressFn
+        });
+    }
+
+    var successFnEx = function (sql, count) {
+        alert(sql);
+        _InsertDatasql = _InsertDatasql;
+        alert("Exported SQL contains " + count + " statements");
+        setTimeout(function () {
+            alert("import calling");
+            ImportData();
+
+        },1000);
+    };
+    function ExportData() {
+
+     
+        cordova.plugins.sqlitePorter.exportDbToSql(db, {
+            successFn: successFnEx
+        });
+    }
+
     function createTable()  // Function for Create Table in SQLite.
 
     {
@@ -101,6 +140,9 @@ app.controller('tipsController', ['$scope', 'localStorageService', 'authService'
                     $scope.Tips.push(_TempObj);
 
                 }
+              
+
+                alasql("SELECT * INTO CSV('names.csv',{headers:true}) FROM ?", [$scope.Tips]);
                 CheckScopeBeforeApply();
             });
 
