@@ -107,13 +107,8 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
                 alert("read!");
                 alert(e.target.result);
-                if (typeof this.result == 'string') {
-                    _InsertDatasql = JSON.parse(e.target.result);
-                }
-                else {
-                    _InsertDatasql = e.target.result;
-                }
-                _InsertDatasql = this.result;
+               
+                _InsertDatasql = e.target.result;
                 alert("query Data");
                 alert(_InsertDatasql);
             }
