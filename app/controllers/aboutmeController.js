@@ -52,12 +52,8 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     function ImportData() {
         alert("into import data");
         ReadData();
-        alert(_InsertDatasql);
-        cordova.plugins.sqlitePorter.importSqlToDb(db, _InsertDatasql, {
-            successFn: successFn,
-            errorFn: errorFn,
-            progressFn: progressFn
-        });
+        
+       
     }
 
 
@@ -111,6 +107,12 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
                 _InsertDatasql = e.target.result;
                 alert("query Data");
                 alert(_InsertDatasql);
+
+                cordova.plugins.sqlitePorter.importSqlToDb(db, _InsertDatasql, {
+                    successFn: successFn,
+                    errorFn: errorFn,
+                    progressFn: progressFn
+                });
             }
 
             reader.readAsText(file);
