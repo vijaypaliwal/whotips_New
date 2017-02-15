@@ -51,13 +51,12 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
     function ImportData() {
         ReadData();
-        
-       
+
+
     }
 
 
-    function ReadData()
-    {
+    function ReadData() {
         var path = "Backup.txt";
         //window.resolveLocalFileSystemURL(cordova.file.documentsDirectory+path, gotFile, fail);
         //fileSystem.root.getFile(cordova.file.documentsDirectory + path, { create: false, exclusive: false }, gotFile, fail);
@@ -84,15 +83,14 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
 
             var reader = new FileReader();
-            reader.onloadstart=function(e)
-            {
+            reader.onloadstart = function (e) {
             }
             reader.onload = function (e) {
             }
             reader.onloadend = function (e) {
                 console.log("Text is: " + this.result);
 
-               
+
                 _InsertDatasql = e.target.result;
 
                 cordova.plugins.sqlitePorter.importSqlToDb(db, _InsertDatasql, {
@@ -105,7 +103,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
             reader.readAsText(file);
         });
 
-        
+
     }
 
     function WriteFileData() {
@@ -120,7 +118,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
 
-            fs.root.getFile( path, { create: true, exclusive: false }, function (fileEntry) {
+            fs.root.getFile(path, { create: true, exclusive: false }, function (fileEntry) {
 
                 gotFileEntry(fileEntry);
 
@@ -151,7 +149,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
             fs.root.getFile(path, { create: true, exclusive: false }, function (fileEntry) {
 
                 fileEntry.file(function (file) {
-                    _fileUrl = file.localURL
+                    _fileUrl = "file://" + path
                     var reader = new FileReader();
                     reader.onloadstart = function (e) {
                     }
@@ -164,7 +162,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
                         cordova.plugins.email.open({
                             to: "gautam.p@shivamitconsultancy.com", // email addresses for TO field
-                            // attachments: _fileUrl, // file paths or base64 data streams
+                            attachments: _fileUrl, // file paths or base64 data streams
                             subject: "WhoTips Data Backup Email", // subject of the email
                             body: _dataToSend, // email body (for HTML, set isHtml to true)
                             isHtml: false, // indicats if the body is HTML or plain text
@@ -178,7 +176,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
             }, null);
 
         }, null);
-       
+
     }
 
     var successFnEx = function (sql, count) {
@@ -193,7 +191,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
         $scope.RemoveDb();
 
-      
+
     };
     function ExportData() {
 
@@ -219,7 +217,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     var _fileName = "/Male";
 
     $scope.$watch('MyContactObject.gender', function (oldValue, newValue) {
-        
+
         if (oldValue == "M") {
             _fileName = "/Male";
             _genderFolder = "/defaultMale";
@@ -241,13 +239,13 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
             age2: _agePath + "Younger.svg",
             age3: _agePath + "Older.svg",
             skin1: _skinPath + "lighter.svg",
-            skin2: _skinPath+"Mycolor.svg",
+            skin2: _skinPath + "Mycolor.svg",
             skin3: _skinPath + "darker.svg",
             height1: _heightPath + "Shorter.svg",
             height2: _heightPath + "MyHeight.svg",
             height3: _heightPath + "Taller.svg",
-            hair1: _hairPath+"bald.svg",
-            hair2: _hairPath+"black.svg",
+            hair1: _hairPath + "bald.svg",
+            hair2: _hairPath + "black.svg",
             hair3: _hairPath + "brown.svg",
             hair4: _hairPath + "blond.svg",
             hair5: _hairPath + "red.svg",
@@ -262,14 +260,14 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
             UpdateSkinTypeImages();
         }
-  
+
         CheckScopeBeforeApply();
 
     });
     $scope.$watch('MyContactObject.AgeType', function (oldValue, newValue) {
         _genderFolder = $scope.MyContactObject.gender == "F" ? "/defaultFemale" : "/defaultMale";
         _fileName = $scope.MyContactObject.gender == "F" ? "/Female" : "/Male";
-        
+
         if ($scope.MyContactObject.AgeType != "") {
 
             UpdateAgeTypeImages();
@@ -283,7 +281,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     });
     function UpdateSkinTypeImages() {
         var _SkinTypeFolder = "";
-        
+
         if ($scope.MyContactObject.Skin == 1) {
             _SkinTypeFolder = "/Myskin";
 
@@ -322,8 +320,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
             hair6: _hairPath + "grey.svg"
         }
     }
-    function UpdateAgeTypeImages()
-    {
+    function UpdateAgeTypeImages() {
         var _GeneTypeFolder = "";
         if ($scope.MyContactObject.AgeType == 1) {
             _GeneTypeFolder = "/Mygeneration";
@@ -394,9 +391,9 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
         }
         var _agePath = _DefaultPath + _genderFolder + _height + _fileName;
-        var _skinPath = $scope.MyContactObject.Height == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _skin + _fileName) : (_DefaultPath + _genderFolder + _hair + _GeneTypeFolder +  _fileName);
+        var _skinPath = $scope.MyContactObject.Height == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _skin + _fileName) : (_DefaultPath + _genderFolder + _hair + _GeneTypeFolder + _fileName);
         var _hairPath = $scope.MyContactObject.Height == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _hair + _fileName) : (_DefaultPath + _genderFolder + _hair + _GeneTypeFolder + _fileName);
-        var _heightPath = $scope.MyContactObject.Height == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _height + _fileName) : (_DefaultPath + _genderFolder + _hair + _GeneTypeFolder +  _fileName);
+        var _heightPath = $scope.MyContactObject.Height == "" || _GeneTypeFolder == "" ? (_DefaultPath + _genderFolder + _height + _fileName) : (_DefaultPath + _genderFolder + _hair + _GeneTypeFolder + _fileName);
 
         $scope.PhysicalImages = {
             age1: _agePath + "MyAge.svg",
@@ -422,7 +419,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
         _genderFolder = $scope.MyContactObject.gender == "F" ? "/defaultFemale" : "/defaultMale";
         _fileName = $scope.MyContactObject.gender == "F" ? "/Female" : "/Male";
 
-        
+
         if ($scope.MyContactObject.Hair != "") {
 
             UpdateHairTypeImages();
@@ -530,7 +527,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
     $scope.IsAvailableEditObj = function (text) {
         var _defaultClass = "";
-        
+
         for (var i = 0; i < $scope.ContactTipsFilter.length; i++) {
             if ($scope.ContactTipsFilter[i].Text == text) {
                 _defaultClass = "green";
@@ -1012,7 +1009,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
     $scope.AddtoExistingTips = function (text) {
 
-        
+
         if ($.trim($scope.SelectedMyContactObject.Tips) != "") {
 
             SearchTextNew(text, function (matched) {
@@ -1113,8 +1110,8 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
         console.log($scope.Mysetting);
 
-       
-    
+
+
 
         var _class = "";
 
@@ -1145,7 +1142,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
     function init() {
 
-      
+
 
         initDatabase();
 
@@ -1165,7 +1162,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
         $scope.MyContactObject = $scope.Mysetting;
 
 
-     //   $scope.GetSelectedClass($scope.Mysetting.gender,1)
+        //   $scope.GetSelectedClass($scope.Mysetting.gender,1)
 
 
         CheckScopeBeforeApply();
@@ -1182,7 +1179,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
         $(".blue").removeClass("green");
         $(".pink").removeClass("green");
 
-      
+
         switch (Type) {
             case 1:
                 $(".blue").addClass("green");
@@ -1193,7 +1190,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
                 $scope.isgender = "Female";
                 break;
             default:
-             
+
         }
         CheckScopeBeforeApply();
     }
@@ -1204,8 +1201,8 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
         CheckScopeBeforeApply();
     }
 
- 
-  
+
+
 
     $scope.GetMatches = function () {
         localStorageService.set("ContactSearchObj", $scope.MyContactObject);
@@ -1213,10 +1210,9 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     }
 
 
-    $scope.Mydetails = function ()
-    {
+    $scope.Mydetails = function () {
         debugger;
-        
+
         localStorageService.set("MydetailObj", $scope.MyContactObject);
 
         console.log($scope.MyContactObject);
