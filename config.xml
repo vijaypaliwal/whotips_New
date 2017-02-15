@@ -61,9 +61,10 @@
   <preference name="orientation"   value="all" />
   <preference name="target-device"  value="universal" />
   <preference name="fullscreen" value="false" />
-  
-  
-  
+  <preference name="iosExtraFilesystems" value="library,library-nosync,documents,documents-nosync,cache,bundle,root" />
+
+
+
   <preference name="StatusBarOverlaysWebView" value="false" />
   <preference name="StatusBarBackgroundColor" value="#3F51B5" />
   <preference name="StatusBarStyle" value="lightcontent" />
