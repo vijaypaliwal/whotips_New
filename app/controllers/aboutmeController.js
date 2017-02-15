@@ -72,7 +72,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
 
             alert('file system open: ' + fs.name);
-            fs.root.getFile(cordova.file.documentsDirectory + path, { create: true, exclusive: false }, function (fileEntry) {
+            fs.root.getFile(path, { create: true, exclusive: false }, function (fileEntry) {
 
                 gotFile(fileEntry);
 
@@ -133,13 +133,13 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     function gotFS(fileSystem) {
         alert("file system");
         var path = "Backup.txt";
-        fileSystem.root.getFile(cordova.file.documentsDirectory + path, { create: true, exclusive: false }, gotFileEntry, fail);
+        //fileSystem.root.getFile(cordova.file.documentsDirectory + path, { create: true, exclusive: false }, gotFileEntry, fail);
 
 
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
 
             alert('file system open: ' + fs.name);
-            fs.root.getFile(cordova.file.documentsDirectory + path, { create: true, exclusive: false }, function (fileEntry) {
+            fs.root.getFile( path, { create: true, exclusive: false }, function (fileEntry) {
 
                 gotFileEntry(fileEntry);
 
