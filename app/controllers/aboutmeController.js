@@ -65,8 +65,8 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     {
         alert("into read data");
         var path = "Backup.txt";
-        window.resolveLocalFileSystemURL(cordova.file.documentsDirectory+path, gotFile, fail);
-       // fileSystem.root.getFile(path, { create: false, exclusive: false }, gotFile, fail);
+        //window.resolveLocalFileSystemURL(cordova.file.documentsDirectory+path, gotFile, fail);
+         fileSystem.root.getFile(cordova.file.documentsDirectory+path, { create: false, exclusive: false }, gotFile, fail);
     }
 
     function fail(e) {
@@ -122,7 +122,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
         alert("file system");
         var path = "Documents/Backup.txt";
         alert("root name=" + fileSystem.root.name);
-        fileSystem.root.getFile(path, {create: true, exclusive: false}, gotFileEntry, fail);
+        fileSystem.root.getFile(cordova.file.documentsDirectory + path, { create: true, exclusive: false }, gotFileEntry, fail);
 
     }
 
