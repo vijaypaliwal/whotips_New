@@ -148,8 +148,8 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
             fs.root.getFile(path, { create: true, exclusive: false }, function (fileEntry) {
 
                 fileEntry.file(function (file) {
-
-
+                   var _fileUrl= file.localURL
+                   alert("file Url" + _fileUrl);
                     var reader = new FileReader();
                     reader.onloadstart = function (e) {
                     }
@@ -170,7 +170,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
         }, null);
         cordova.plugins.email.open({
             to: "gautam.p@shivamitconsultancy.com", // email addresses for TO field
-           // attachments: _dataToSend, // file paths or base64 data streams
+            attachments: cordova.file.applicationDirectory + _fileUrl, // file paths or base64 data streams
             subject: "test Backup Email", // subject of the email
             body: _dataToSend, // email body (for HTML, set isHtml to true)
             isHtml: false, // indicats if the body is HTML or plain text
