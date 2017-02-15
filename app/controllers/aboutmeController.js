@@ -165,13 +165,13 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
         };
         writer.write(_InsertDatasql);
 
-        cordova.plugins.email.open({
-            to: ["gautam.p@shivamitconsultancy.com"], // email addresses for TO field
-            attachments: ["Backup.txt"], // file paths or base64 data streams
-            subject: "test Backup Email", // subject of the email
-            body: "This is just test", // email body (for HTML, set isHtml to true)
-            isHtml: false, // indicats if the body is HTML or plain text
-        }, alert("mail Sent"), null);
+        //cordova.plugins.email.open({
+        //    to: ["gautam.p@shivamitconsultancy.com"], // email addresses for TO field
+        //    attachments: ["Backup.txt"], // file paths or base64 data streams
+        //    subject: "test Backup Email", // subject of the email
+        //    body: "This is just test", // email body (for HTML, set isHtml to true)
+        //    isHtml: false, // indicats if the body is HTML or plain text
+        //}, alert("mail Sent"), null);
     }
 
     var successFnEx = function (sql, count) {
