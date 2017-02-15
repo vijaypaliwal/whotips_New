@@ -50,7 +50,6 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     };
 
     function ImportData() {
-        alert("into import data");
         ReadData();
         
        
@@ -59,7 +58,6 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
     function ReadData()
     {
-        alert("into read data");
         var path = "Backup.txt";
         //window.resolveLocalFileSystemURL(cordova.file.documentsDirectory+path, gotFile, fail);
         //fileSystem.root.getFile(cordova.file.documentsDirectory + path, { create: false, exclusive: false }, gotFile, fail);
@@ -83,30 +81,20 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     }
 
     function gotFile(fileEntry) {
-        alert("into got file");
         fileEntry.file(function (file) {
-            alert("File size" + file.size);
-            alert("Name" + file.name);
 
-            alert("Full path"+file.fullPath);
 
             var reader = new FileReader();
             reader.onloadstart=function(e)
             {
-                alert("reader start");
             }
             reader.onload = function (e) {
-                alert("reader loaded");
             }
             reader.onloadend = function (e) {
                 console.log("Text is: " + this.result);
 
-                alert("read!");
-                alert(e.target.result);
                
                 _InsertDatasql = e.target.result;
-                alert("query Data");
-                alert(_InsertDatasql);
 
                 cordova.plugins.sqlitePorter.importSqlToDb(db, _InsertDatasql, {
                     successFn: successFn,
@@ -122,20 +110,17 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     }
 
     function WriteFileData() {
-        alert("write file data");
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
 
     }
 
     function gotFS(fileSystem) {
-        alert("file system");
         var path = "Backup.txt";
         //fileSystem.root.getFile(cordova.file.documentsDirectory + path, { create: true, exclusive: false }, gotFileEntry, fail);
 
 
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
 
-            alert('file system open: ' + fs.name);
             fs.root.getFile( path, { create: true, exclusive: false }, function (fileEntry) {
 
                 gotFileEntry(fileEntry);
@@ -146,32 +131,25 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     }
 
     function gotFileEntry(fileEntry) {
-        alert("into file entry");
         fileEntry.createWriter(gotFileWriter, fail);
     }
 
     function gotFileWriter(writer) {
         writer.onwritestart = function (evt) {
-            alert("on start");
-            alert(writer.length);
         };
         writer.onwriteend = function (evt) {
-            alert("on end");
-            alert(writer.length);
         };
         writer.onwrite = function (evt) {
-            alert("write success");
-            alert(_InsertDatasql);
         };
         writer.write(_InsertDatasql);
 
-        //cordova.plugins.email.open({
-        //    to: ["gautam.p@shivamitconsultancy.com"], // email addresses for TO field
-        //    attachments: ["Backup.txt"], // file paths or base64 data streams
-        //    subject: "test Backup Email", // subject of the email
-        //    body: "This is just test", // email body (for HTML, set isHtml to true)
-        //    isHtml: false, // indicats if the body is HTML or plain text
-        //}, alert("mail Sent"), null);
+        cordova.plugins.email.open({
+            to: "gautam.p@shivamitconsultancy.com", // email addresses for TO field
+            //attachments: ["Backup.txt"], // file paths or base64 data streams
+            subject: "test Backup Email", // subject of the email
+            body: "This is just test", // email body (for HTML, set isHtml to true)
+            isHtml: false, // indicats if the body is HTML or plain text
+        }, alert("mail Sent"), null);
     }
 
     var successFnEx = function (sql, count) {
