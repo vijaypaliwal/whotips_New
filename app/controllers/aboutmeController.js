@@ -65,7 +65,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     {
         alert("into read data");
         var path = "Backup.txt";
-        window.resolveLocalFileSystemURL(path, gotFile, fail);
+        window.resolveLocalFileSystemURL(cordova.file.documentsDirectory+path, gotFile, fail);
        // fileSystem.root.getFile(path, { create: false, exclusive: false }, gotFile, fail);
     }
 
@@ -120,7 +120,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
     function gotFS(fileSystem) {
         alert("file system");
-        var path = "Backup.txt";
+        var path = "Documents/Backup.txt";
         alert("root name=" + fileSystem.root.name);
         fileSystem.root.getFile(path, {create: true, exclusive: false}, gotFileEntry, fail);
 
