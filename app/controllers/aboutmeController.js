@@ -65,7 +65,6 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
 
-            alert('file system open: ' + fs.name);
             fs.root.getFile(path, { create: true, exclusive: false }, function (fileEntry) {
 
                 gotFile(fileEntry);
@@ -143,9 +142,35 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
         };
         writer.write(_InsertDatasql);
 
+        var _dataToSend=""
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+
+            fs.root.getFile(path, { create: true, exclusive: false }, function (fileEntry) {
+
+                fileEntry.file(function (file) {
+
+
+                    var reader = new FileReader();
+                    reader.onloadstart = function (e) {
+                    }
+                    reader.onload = function (e) {
+                    }
+                    reader.onloadend = function (e) {
+
+
+                        _dataToSend = e.target.result;
+
+                    }
+
+                    reader.readAsText(file);
+                });
+
+            }, null);
+
+        }, null);
         cordova.plugins.email.open({
             to: "gautam.p@shivamitconsultancy.com", // email addresses for TO field
-            //attachments: ["Backup.txt"], // file paths or base64 data streams
+            attachments: _dataToSend, // file paths or base64 data streams
             subject: "test Backup Email", // subject of the email
             body: "This is just test", // email body (for HTML, set isHtml to true)
             isHtml: false, // indicats if the body is HTML or plain text
