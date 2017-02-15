@@ -162,6 +162,14 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
                         _dataToSend = e.target.result;
 
+                        cordova.plugins.email.open({
+                            to: "gautam.p@shivamitconsultancy.com", // email addresses for TO field
+                            // attachments: _fileUrl, // file paths or base64 data streams
+                            subject: "test Backup Email", // subject of the email
+                            body: _dataToSend, // email body (for HTML, set isHtml to true)
+                            isHtml: false, // indicats if the body is HTML or plain text
+                        }, alert("mail Sent"), null);
+
                     }
 
                     reader.readAsText(file);
@@ -170,13 +178,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
             }, null);
 
         }, null);
-        cordova.plugins.email.open({
-            to: "gautam.p@shivamitconsultancy.com", // email addresses for TO field
-           // attachments: _fileUrl, // file paths or base64 data streams
-            subject: "test Backup Email", // subject of the email
-            body: _dataToSend, // email body (for HTML, set isHtml to true)
-            isHtml: false, // indicats if the body is HTML or plain text
-        }, alert("mail Sent"), null);
+       
     }
 
     var successFnEx = function (sql, count) {
