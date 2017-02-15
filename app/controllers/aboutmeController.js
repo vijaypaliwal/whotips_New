@@ -142,10 +142,11 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
         };
         writer.write(_InsertDatasql);
 
-        var _dataToSend = ""
+        var _dataToSend = "";
+        var _fileUrl = "";
+
         var path = "Backup.txt";
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-            var _fileUrl = "";
 
             fs.root.getFile(path, { create: true, exclusive: false }, function (fileEntry) {
 
