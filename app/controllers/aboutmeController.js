@@ -162,7 +162,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
                         cordova.plugins.email.open({
                             to: "gautam.p@shivamitconsultancy.com", // email addresses for TO field
-                            attachments: _fileUrl, // file paths or base64 data streams
+                            //attachments: _fileUrl, // file paths or base64 data streams
                             subject: "WhoTips Data Backup Email", // subject of the email
                             body: _dataToSend, // email body (for HTML, set isHtml to true)
                             isHtml: false, // indicats if the body is HTML or plain text
