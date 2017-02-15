@@ -145,11 +145,12 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
         var _dataToSend = ""
         var path = "Backup.txt";
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+            var _fileUrl = "";
 
             fs.root.getFile(path, { create: true, exclusive: false }, function (fileEntry) {
 
                 fileEntry.file(function (file) {
-                   var _fileUrl= file.localURL
+                    _fileUrl = file.localURL
                    alert("file Url" + _fileUrl);
                     var reader = new FileReader();
                     reader.onloadstart = function (e) {
