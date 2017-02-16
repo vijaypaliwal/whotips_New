@@ -1716,10 +1716,10 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     $scope.getPhoto = function (source) {
         // Retrieve image file location from specified source
         navigator.camera.getPicture($scope.onPhotoURISuccessNew, $scope.onFail, {
-            quality: 10,
+            quality: 50,
             correctOrientation: true,
             //destinationType: navigator.camera.DestinationType.DATA_URL,
-            destinationType: destinationType.NATIVE_URI,
+            destinationType: destinationType.FILE_URI,
             sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         });
 
