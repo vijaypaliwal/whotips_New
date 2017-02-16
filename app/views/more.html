@@ -1,15 +1,20 @@
 ﻿
 <style>
-         .btn.red {
-             width: 100%;
-             position: fixed;
-             bottom: 0;
-             right: 0;
-             text-transform: capitalize;
-             height: 40px;
-             line-height: 40px;
-             z-index:100
-         }
+
+    .btn-default {
+        background: #9eadab !important;
+    }
+    
+     .btn.red {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        text-transform: capitalize;
+        height: 40px;
+        line-height: 40px;
+        z-index: 100;
+    }
 
          .selectionpart .btn
          {
@@ -166,7 +171,7 @@
 
 </style>
 
-<div ng-if="showgender==false || showgender=='false'" class="selectionpart">
+<div ng-if="Type==1" class="selectionpart">
     <a href="#/tips" class="btn btn-success waves-effect green">
         <div class="row">
             <div class="col-xs-3 lightgreen">
@@ -223,7 +228,7 @@
         </div>
     </a>
 
-    <a class="btn btn-danger waves-effect blue" ng-click="ImportDb()">
+    <a class="btn btn-danger waves-effect blue" ng-click="openImportData()">
         <div class="row">
             <div class="col-xs-3 lightblue">
                 <i class="fa fa-upload"></i>
@@ -256,7 +261,7 @@
 
 <h4 style="margin-top:53px;" ng-if="showgender==true" class="center"> Who Am I ? </h4>
 
-<div ng-if="showgender==true" class="myselectionpart">
+<div ng-if="Type==2" class="myselectionpart" style="margin-top:75px">
 
     <div class="row">
 
@@ -277,7 +282,38 @@
 
     </div>
 
-    
+
+
+
+
+</div>
+
+<div ng-if="Type==3" class="myselectionpart" style="margin-top:75px">
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="form-group">
+<label style=" font-size: 17px;">Please paste exported query into below box.</label>                    
+
+                
+                <textarea id="DataQuery" class="form-control" ng-model="DataQuery" placeholder="Paste the query here" style="height:200px"></textarea>    
+            </div>
+            
+            <a class="btn btn-primary" style="background: #8BC34A" ng-click="ImportDb()" ng-class="{'disabled':DataQuery==''}"><i class="fa fa-check"></i> Submit</a>
+            <a class="btn btn-default" ng-click="ClearData()"><i class="fa fa-times"></i> Clear </a>
+            
+       
+        </div>
+
+        
+
+    </div>
+
+
+
+
+
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -286,10 +322,10 @@
    
     </div>
 </div>
-<a ng-if="showgender==false" href="#/menu" class="btn red matchbtn">Back</a>
+<a ng-if="Type==1" href="#/menu" class="btn red matchbtn">Back</a>
 
 
-<div ng-if="showgender==true">
+<div ng-if="Type!=2">
     <a ng-click="moveback()" class="btn red matchbtn">Back</a>
 </div>
 

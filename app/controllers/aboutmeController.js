@@ -16,6 +16,8 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     $scope.ContactsFilteredCopy = [];
     $scope.ContactTips = [];
     $scope.ContactTipsFilter = [];
+
+    $scope.DataQuery = "";
     var db = openDatabase("ContactsBook", "1.0", "Contacts Book", 200000);  // Open SQLite Database
 
     var _DefaultPath = "Emoji"
@@ -28,7 +30,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     var dataset;
 
     $scope.showgender = false;
-
+    $scope.Type = 1;
     var DataType;
 
 
@@ -41,6 +43,8 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     var _InsertDatasql = "";
     var successFn = function (count) {
         alert("Successfully imported " + count + " SQL statements to DB");
+        $scope.Type = 1;
+        CheckScopeBeforeApply();
     };
     var errorFn = function (error) {
         alert("The following error occurred: " + error.message);
@@ -50,9 +54,13 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     };
 
     function ImportData() {
-        ReadData();
+      //  ReadData();
 
-
+        cordova.plugins.sqlitePorter.importSqlToDb(db, $scope.DataQuery, {
+            successFn: successFn,
+            errorFn: errorFn,
+            progressFn: progressFn
+        });
     }
 
 
@@ -201,6 +209,13 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
         });
     }
 
+
+    $scope.ClearData = function () {
+        $scope.DataQuery = "";
+        $("#DataQuery").val("");
+        $("#DataQuery").trigger("input");
+        CheckScopeBeforeApply();
+    }
 
     $scope.ExportDb = function () {
         ExportData();
@@ -1044,7 +1059,7 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
     $scope.showgenderType = function () {
 
-        $scope.showgender = true;
+        $scope.Type = 2;
         CheckScopeBeforeApply();
     }
 
@@ -1197,12 +1212,15 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
 
     $scope.moveback = function () {
-        $scope.showgender = false;
+        $scope.Type = 1;
         CheckScopeBeforeApply();
     }
 
 
-
+    $scope.openImportData = function () {
+        $scope.Type = 3;
+        CheckScopeBeforeApply();
+    }
 
     $scope.GetMatches = function () {
         localStorageService.set("ContactSearchObj", $scope.MyContactObject);
