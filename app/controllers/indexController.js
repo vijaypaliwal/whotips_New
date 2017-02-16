@@ -16,20 +16,20 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
     $scope.GetImageFromurl=function(Url)
     {
+        Url = Url.replace("assets-library://", "cdvfile://localhost/assets-library/");
+        alert(Url);
         window.resolveLocalFileSystemURL(Url, function (fileEntry) {
 
-            var _Data = "data:image/jpeg;base64,";
+          
 
             fileEntry.file(function (file) {
                 var reader = new FileReader();
                 reader.onloadend = function (event) {
-                   
+                    var _Data = "data:image/jpeg;base64," +event.target.result;
                     alert("complete file read" + _Data);
+                    return _Data;
                 };
-                _Data = _Data +file.getAsDataURL();
-                alert(_Data)
-                return _Data;
-
+                reader.readAsDataURL(file);
             });
         });
     }
