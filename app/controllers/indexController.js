@@ -18,16 +18,18 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
     {
         window.resolveLocalFileSystemURL(Url, function (fileEntry) {
 
-          
+            var _Data = "data:image/jpeg;base64,";
 
             fileEntry.file(function (file) {
                 var reader = new FileReader();
                 reader.onloadend = function (event) {
-                    var _Data = "data:image/jpeg;base64," + Base64.encode(event.target.result);
+                   
                     alert("complete file read" + _Data);
-                    return _Data;
                 };
-                reader.readAsArrayBuffer(file);
+                _Data = _Data + reader.readAsDataURL(file);
+                alert(_Data)
+                return _Data;
+
             });
         });
     }
