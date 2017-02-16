@@ -1695,7 +1695,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
             targeHeight: 120,
             correctOrientation: true,
             //destinationType: destinationType.DATA_URL,
-            destinationType: destinationType.FILE_URI,
+            destinationType: destinationType.NATIVE_URI,
             allowEdit: true,
             saveToPhotoAlbum: true,
         });
@@ -1719,7 +1719,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
             quality: 50,
             correctOrientation: true,
             //destinationType: navigator.camera.DestinationType.DATA_URL,
-            destinationType: destinationType.FILE_URI,
+            destinationType: destinationType.NATIVE_URI,
             sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         });
 

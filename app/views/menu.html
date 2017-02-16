@@ -79,17 +79,17 @@
 <ul class="peoplelist">
     <!-- ngRepeat: _obj in Contacts -->
     <li ng-repeat="_obj in Contacts | orderBy : '-id'" class=" ng-scope">
-        {{_obj.imagepath}}
+        
         <div  ng-if="_obj.gender=='M'" ng-click="OpenEditModal(_obj)" class="chip blue">
             <img src="img/male.png" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)" />
-            <img src="{{_obj.imagepath}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
+            <img src="{{GetImageFromurl(_obj.imagepath)}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
 
             <span class="ng-binding">   {{_obj.firstName}} {{_obj.lastName}} </span>
         </div>
 
         <div ng-if="_obj.gender=='F'" ng-click="OpenEditModal(_obj)" class="chip pink">
             <img src="img/male.png" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)" />
-            <img src="{{_obj.imagepath}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
+            <img src="{{GetImageFromurl(_obj.imagepath)}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
 
             <span class="ng-binding">   {{_obj.firstName}} {{_obj.lastName}} </span>
         </div>
@@ -97,7 +97,7 @@
 
         <div ng-if="_obj.gender==''" ng-click="OpenEditModal(_obj)" class="chip">
             <img src="img/male.png" ng-if="(_obj.imagepath=='' || _obj.imagepath==null)" />
-            <img src="{{_obj.imagepath}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
+            <img src="{{GetImageFromurl(_obj.imagepath)}}" ng-if="_obj.imagepath!='' && _obj.imagepath!=null" />
 
             <span class="ng-binding">   {{_obj.firstName}} {{_obj.lastName}} </span>
         </div>

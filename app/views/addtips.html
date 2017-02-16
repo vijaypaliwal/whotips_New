@@ -491,7 +491,7 @@
         <div class="col-xs-2" style="padding-left:10px" ng-click="openNamebox()">
             <div class="profileimg">
                 <img ng-if="ContactObject.imagepath==''" src="img/male.png" alt="" />
-                <img src="{{ContactObject.imagepath}}" ng-if="ContactObject.imagepath!=''" />
+                <img src="{{GetImageFromurl(ContactObject.imagepath)}}" ng-if="ContactObject.imagepath!=''" />
             </div>
         </div>
 

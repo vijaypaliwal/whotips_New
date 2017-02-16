@@ -13,6 +13,22 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
     var bodyheight = $(window).height();
 
 
+
+    $scope.GetImageFromurl=function(Url)
+    {
+        alert("into file read")
+        window.resolveLocalFileSystemURL(Url, function (fileEntry) {
+            fileEntry.file(function (file) {
+                var reader = new FileReader();
+                reader.onloadend = function (event) {
+                    alert("complete file read");
+                    return event.target.result;
+                };
+                console.log('Reading file: ' + file.name);
+                reader.readAsArrayBuffer(file);
+            });
+        });
+    }
     $scope.curentclass = "";
 
     if (bodyheight > 665 && bodyheight < 675) {
