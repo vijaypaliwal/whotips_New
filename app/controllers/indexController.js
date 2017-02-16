@@ -29,8 +29,8 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
             fileEntry.file(function (file) {
                 var reader = new FileReader();
                 reader.onloadend = function (event) {
-                    var data = new Uint8Array(event.target.result);
-                    var _Data = "data:image/jpeg;base64," + bufferToBase64(data);
+                    //var data = new Uint8Array(event.target.result);
+                    var _Data = "data:image/jpeg;base64," + bufferToBase64(event.target.result);
                     alert("complete file read" + _Data);
                     return _Data;
                 };
