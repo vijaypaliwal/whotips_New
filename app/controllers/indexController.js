@@ -13,25 +13,30 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
     var bodyheight = $(window).height();
 
 
-
+    function bufferToBase64(buf) {
+        var binstr = Array.prototype.map.call(buf, function (ch) {
+            return String.fromCharCode(ch);
+        }).join('');
+        return btoa(binstr);
+    }
     $scope.GetImageFromurl=function(Url)
     {
         Url = Url.replace("assets-library://", "cdvfile://localhost/assets-library/");
-        return Url;
-        //window.resolveLocalFileSystemURL(Url, function (fileEntry) {
+        window.resolveLocalFileSystemURL(Url, function (fileEntry) {
 
           
 
-        //    fileEntry.file(function (file) {
-        //        var reader = new FileReader();
-        //        reader.onloadend = function (event) {
-        //            var _Data = "data:image/jpeg;base64," +event.target.result;
-        //            alert("complete file read" + _Data);
-        //            return _Data;
-        //        };
-        //        reader.readAsDataURL(file);
-        //    });
-        //});
+            fileEntry.file(function (file) {
+                var reader = new FileReader();
+                reader.onloadend = function (event) {
+                    var data = new Uint8Array(event.target.result);
+                    var _Data = "data:image/jpeg;base64," + bufferToBase64(data);
+                    alert("complete file read" + _Data);
+                    return _Data;
+                };
+                reader.readAsDataURL(file);
+            });
+        });
     }
     $scope.curentclass = "";
 
