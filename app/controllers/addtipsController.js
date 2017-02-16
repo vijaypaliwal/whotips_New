@@ -1677,7 +1677,6 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
        // imageData = "data:image/jpeg;base64," + imageData;
 
         $scope.ContactObject.imagepath = imageData;
-        alert($scope.ContactObject.imagepath);
 
         CheckScopeBeforeApply();
         $("#AddName").modal('hide');
@@ -1710,7 +1709,6 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
 
         $scope.ContactObject.imagepath = imageData;
 
-        alert($scope.ContactObject.imagepath);
         CheckScopeBeforeApply();
         $("#AddName").modal('hide');
     }
