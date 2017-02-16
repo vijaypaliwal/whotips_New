@@ -1674,9 +1674,10 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     $scope.onPhotoDataSuccessNew = function (imageData) {
         var _ImgObj = { ImageID: 0, FileName: "", bytestring: "", Size: 0 }
 
-        imageData = "data:image/jpeg;base64," + imageData;
+       // imageData = "data:image/jpeg;base64," + imageData;
 
         $scope.ContactObject.imagepath = imageData;
+        alert($scope.ContactObject.imagepath);
 
         CheckScopeBeforeApply();
         $("#AddName").modal('hide');
@@ -1694,7 +1695,8 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
             targetWidth: 120,
             targeHeight: 120,
             correctOrientation: true,
-            destinationType: destinationType.DATA_URL,
+            //destinationType: destinationType.DATA_URL,
+            destinationType: destinationType.FILE_URI,
             allowEdit: true,
             saveToPhotoAlbum: true,
         });
