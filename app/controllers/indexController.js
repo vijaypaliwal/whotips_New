@@ -26,7 +26,7 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
                    
                     alert("complete file read" + _Data);
                 };
-                _Data = _Data + reader.readAsDataURL(file);
+                _Data = _Data +file.getAsDataURL();
                 alert(_Data)
                 return _Data;
 
