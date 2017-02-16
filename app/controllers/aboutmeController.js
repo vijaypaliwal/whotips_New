@@ -55,7 +55,6 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
 
     function ImportData() {
         //  ReadData();
-        alert("below data");
         $scope.DataQuery = $("#DataQuery").val();
         CheckScopeBeforeApply();
         alert($scope.DataQuery);
@@ -221,9 +220,11 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     }
 
     $scope.ExportDb = function () {
-        ExportData();
+        var _updateStatement = "UPDATE Contacts SET imagepath = ''"
+        db.transaction(function (tx) { tx.executeSql(_updateStatement, [], ExportData, null); });
     }
     $scope.ImportDb = function () {
+     
         ImportData();
     }
 
