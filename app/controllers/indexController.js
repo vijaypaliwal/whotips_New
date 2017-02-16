@@ -16,9 +16,14 @@ app.controller('indexController', ['$scope', 'localStorageService', 'authService
 
     $scope.GetImageFromurl=function(Url)
     {
-        alert("into file read")
+        alert("into file read"+Url);
         window.resolveLocalFileSystemURL(Url, function (fileEntry) {
+
+          
+
+            alert("1" + Url);
             fileEntry.file(function (file) {
+                alert("2" + Url);
                 var reader = new FileReader();
                 reader.onloadend = function (event) {
                     alert("complete file read");
