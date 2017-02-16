@@ -219,9 +219,9 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     }
 
     $scope.ExportDb = function () {
-        //var _updateStatement = "UPDATE Contacts SET imagepath = ''"
-        //db.transaction(function (tx) { tx.executeSql(_updateStatement, [], ExportData, null); });
-        ExportData();
+        var _updateStatement = "UPDATE Contacts SET imagepath = ''"
+        db.transaction(function (tx) { tx.executeSql(_updateStatement, [], ExportData, null); });
+        //ExportData();
     }
     $scope.ImportDb = function () {
      
