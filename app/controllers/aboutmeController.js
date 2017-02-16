@@ -56,6 +56,8 @@ app.controller('aboutmeController', ['$scope', 'localStorageService', 'authServi
     function ImportData() {
         //  ReadData();
         alert("below data");
+        $scope.DataQuery = $("#DataQuery").val();
+        CheckScopeBeforeApply();
         alert($scope.DataQuery);
         cordova.plugins.sqlitePorter.importSqlToDb(db, $scope.DataQuery, {
             successFn: successFn,
