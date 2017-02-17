@@ -1705,7 +1705,7 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
     $scope.onPhotoURISuccessNew = function (imageData) {
         var _ImgObj = { ImageID: 0, FileName: "", bytestring: "", Size: 0 }
 
-       // imageData = "data:image/jpeg;base64," + imageData;
+        imageData = "data:image/jpeg;base64," + imageData;
 
         $scope.ContactObject.imagepath = imageData;
 
@@ -1718,8 +1718,8 @@ app.controller('addtipsController', ['$scope', 'localStorageService', 'authServi
         navigator.camera.getPicture($scope.onPhotoURISuccessNew, $scope.onFail, {
             quality: 50,
             correctOrientation: true,
-            //destinationType: navigator.camera.DestinationType.DATA_URL,
-            destinationType: destinationType.NATIVE_URI,
+            destinationType: navigator.camera.DestinationType.DATA_URL,
+            //destinationType: destinationType.NATIVE_URI,
             sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
         });
 
